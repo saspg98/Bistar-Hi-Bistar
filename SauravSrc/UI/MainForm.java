@@ -20,6 +20,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import verifyingTools.Verify;
 import bridge.Helper;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -57,6 +58,14 @@ public class MainForm extends javax.swing.JFrame implements MouseListener {//Mou
     private void initComponents() {
         java.awt.GridBagConstraints gridBagConstraints;
 
+        changePasswordDialog = new javax.swing.JDialog();
+        oldPasswordTF = new javax.swing.JTextField();
+        newPasswordTF = new javax.swing.JTextField();
+        cNewPasswordTF = new javax.swing.JTextField();
+        ok1Button = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
         sidebar = new javax.swing.JPanel();
         body = new javax.swing.JPanel();
         bookHotelsPanelButton = new javax.swing.JPanel();
@@ -92,7 +101,7 @@ public class MainForm extends javax.swing.JFrame implements MouseListener {//Mou
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         editButton = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        changePasswordButton = new javax.swing.JButton();
         fNameTF = new javax.swing.JTextField();
         emailTF = new javax.swing.JTextField();
         titlePanelSettings = new javax.swing.JPanel();
@@ -135,6 +144,85 @@ public class MainForm extends javax.swing.JFrame implements MouseListener {//Mou
         amenitiesTA = new javax.swing.JTextArea();
         backPanel = new javax.swing.JPanel();
         backLabel = new javax.swing.JLabel();
+
+        changePasswordDialog.setBackground(new java.awt.Color(204, 204, 204));
+        changePasswordDialog.setMinimumSize(new java.awt.Dimension(638, 361));
+
+        oldPasswordTF.setFont(new java.awt.Font("Lato", 0, 24)); // NOI18N
+        oldPasswordTF.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                oldPasswordTFActionPerformed(evt);
+            }
+        });
+
+        newPasswordTF.setFont(new java.awt.Font("Lato", 0, 24)); // NOI18N
+        newPasswordTF.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                newPasswordTFActionPerformed(evt);
+            }
+        });
+
+        cNewPasswordTF.setFont(new java.awt.Font("Lato", 0, 24)); // NOI18N
+
+        ok1Button.setFont(new java.awt.Font("Lato", 0, 30)); // NOI18N
+        ok1Button.setText("OK");
+        ok1Button.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+
+        jLabel2.setFont(new java.awt.Font("Lato Black", 0, 24)); // NOI18N
+        jLabel2.setText("Old Password");
+
+        jLabel3.setFont(new java.awt.Font("Lato Black", 0, 24)); // NOI18N
+        jLabel3.setText("New Password");
+
+        jLabel4.setFont(new java.awt.Font("Lato Black", 0, 24)); // NOI18N
+        jLabel4.setText("Confirm New Password");
+
+        javax.swing.GroupLayout changePasswordDialogLayout = new javax.swing.GroupLayout(changePasswordDialog.getContentPane());
+        changePasswordDialog.getContentPane().setLayout(changePasswordDialogLayout);
+        changePasswordDialogLayout.setHorizontalGroup(
+            changePasswordDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(changePasswordDialogLayout.createSequentialGroup()
+                .addGap(41, 41, 41)
+                .addGroup(changePasswordDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(changePasswordDialogLayout.createSequentialGroup()
+                        .addComponent(jLabel4)
+                        .addGap(18, 18, 18)
+                        .addComponent(cNewPasswordTF))
+                    .addGroup(changePasswordDialogLayout.createSequentialGroup()
+                        .addGroup(changePasswordDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(changePasswordDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(oldPasswordTF)
+                            .addComponent(newPasswordTF, javax.swing.GroupLayout.DEFAULT_SIZE, 295, Short.MAX_VALUE))))
+                .addGap(27, 27, 27))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, changePasswordDialogLayout.createSequentialGroup()
+                .addContainerGap(269, Short.MAX_VALUE)
+                .addComponent(ok1Button, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(255, 255, 255))
+        );
+        changePasswordDialogLayout.setVerticalGroup(
+            changePasswordDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(changePasswordDialogLayout.createSequentialGroup()
+                .addGap(34, 34, 34)
+                .addGroup(changePasswordDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(changePasswordDialogLayout.createSequentialGroup()
+                        .addGroup(changePasswordDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(oldPasswordTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(43, 43, 43)
+                        .addGroup(changePasswordDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(newPasswordTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(75, 75, 75))
+                    .addGroup(changePasswordDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(cNewPasswordTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel4)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
+                .addComponent(ok1Button, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(40, 40, 40))
+        );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("BISTAR HI BISTAR"); // NOI18N
@@ -530,8 +618,13 @@ public class MainForm extends javax.swing.JFrame implements MouseListener {//Mou
             }
         });
 
-        jButton2.setFont(new java.awt.Font("Lato Black", 0, 22)); // NOI18N
-        jButton2.setText("Change Password");
+        changePasswordButton.setFont(new java.awt.Font("Lato Black", 0, 22)); // NOI18N
+        changePasswordButton.setText("Change Password");
+        changePasswordButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                changePasswordButtonActionPerformed(evt);
+            }
+        });
 
         fNameTF.setEditable(false);
         fNameTF.setFont(new java.awt.Font("Lato", 0, 22)); // NOI18N
@@ -635,7 +728,7 @@ public class MainForm extends javax.swing.JFrame implements MouseListener {//Mou
                     .addGroup(myProfilePanelLayout.createSequentialGroup()
                         .addComponent(editButton)
                         .addGap(60, 60, 60)
-                        .addComponent(jButton2)
+                        .addComponent(changePasswordButton)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, myProfilePanelLayout.createSequentialGroup()
                         .addGroup(myProfilePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -698,7 +791,7 @@ public class MainForm extends javax.swing.JFrame implements MouseListener {//Mou
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(myProfilePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(editButton)
-                    .addComponent(jButton2))
+                    .addComponent(changePasswordButton))
                 .addGap(74, 74, 74))
         );
 
@@ -848,6 +941,12 @@ public class MainForm extends javax.swing.JFrame implements MouseListener {//Mou
         bookingConfirmationLinkLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         bookingConfirmationLinkLabel.setText("3 Executive Rooms, 18 Guests");
         bookingConfirmationLinkLabel.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        bookingConfirmationLinkLabel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        bookingConfirmationLinkLabel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                bookingConfirmationLinkLabelMouseClicked(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
@@ -1253,6 +1352,23 @@ public class MainForm extends javax.swing.JFrame implements MouseListener {//Mou
         }
     }//GEN-LAST:event_editButtonActionPerformed
 
+    private void bookingConfirmationLinkLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bookingConfirmationLinkLabelMouseClicked
+        JOptionPane.showMessageDialog(null,"Not Yet Implemented! Problem? Open an issue");
+    }//GEN-LAST:event_bookingConfirmationLinkLabelMouseClicked
+
+    private void oldPasswordTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_oldPasswordTFActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_oldPasswordTFActionPerformed
+
+    private void newPasswordTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newPasswordTFActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_newPasswordTFActionPerformed
+
+    private void changePasswordButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_changePasswordButtonActionPerformed
+        changePasswordDialog.setLocationRelativeTo(null);
+        changePasswordDialog.setVisible(true);
+    }//GEN-LAST:event_changePasswordButtonActionPerformed
+
     private void resetBgColor(){
         //reset bg color of all buttons
         bookHotelsPanelButton.setBackground(defaultButtonColor);
@@ -1333,6 +1449,9 @@ public class MainForm extends javax.swing.JFrame implements MouseListener {//Mou
     private javax.swing.JPanel bookPanel;
     private javax.swing.JLabel bookingConfirmationLinkLabel;
     private javax.swing.JPanel bookingOptionsPanel;
+    private javax.swing.JTextField cNewPasswordTF;
+    private javax.swing.JButton changePasswordButton;
+    private javax.swing.JDialog changePasswordDialog;
     private custom.components.DatePanel checkInDatePanel;
     private custom.components.DatePanel checkOutDatePanel;
     private javax.swing.JPanel descriptionLabelContainerPanel;
@@ -1353,7 +1472,6 @@ public class MainForm extends javax.swing.JFrame implements MouseListener {//Mou
     private javax.swing.JLabel hotelNameLabel;
     private javax.swing.JPanel hotelTitlePanel;
     private javax.swing.JPanel imagePanel;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -1365,7 +1483,10 @@ public class MainForm extends javax.swing.JFrame implements MouseListener {//Mou
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
@@ -1380,7 +1501,10 @@ public class MainForm extends javax.swing.JFrame implements MouseListener {//Mou
     private javax.swing.JPanel myBookingsPanelButton;
     private javax.swing.JLabel myProfileLabel;
     private javax.swing.JPanel myProfilePanel;
+    private javax.swing.JTextField newPasswordTF;
     private javax.swing.JLabel numReviewsLabel;
+    private javax.swing.JButton ok1Button;
+    private javax.swing.JTextField oldPasswordTF;
     private javax.swing.JPanel pastBookingsPanel;
     private javax.swing.JTextField pinCodeTF;
     private javax.swing.JSlider priceSlider;
