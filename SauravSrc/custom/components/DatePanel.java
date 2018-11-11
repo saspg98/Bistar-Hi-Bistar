@@ -5,19 +5,80 @@
  */
 package custom.components;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.time.LocalDate;
+
 
 /**
  *
  * @author Pranek
  */
-public class DatePanel extends javax.swing.JPanel {
-
+public class DatePanel extends javax.swing.JPanel implements ActionListener {
+    int count=0;
     /**
      * Creates new form Datepanel
      */
-    public DatePanel() {
+    public DatePanel() {//"this" is passed in the constructor, check if it would cause problems
         initComponents();
+        dateCB.addActionListener(this);
+        monthCB.addActionListener(this);
+        yearCB.addActionListener(this);
        
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {//NOTE: Take care !! An infinite chain of events may ensue!!
+        System.out.println("ActionPerform called in DatePanel for the "+ ++count +"th time!");
+        
+        if(Integer.parseInt((String) dateCB.getSelectedItem())>28 && Month.valueOf((String) monthCB.getSelectedItem()).equals(Month.Feb)){
+            if(Integer.parseInt((String) yearCB.getSelectedItem())%4==0)
+                dateCB.setSelectedIndex(dateCB.getItemCount()-3);
+            else 
+                dateCB.setSelectedIndex(dateCB.getItemCount()-4);
+        } 
+        else if(Integer.parseInt((String) dateCB.getSelectedItem())>30){
+            switch(Month.valueOf((String) monthCB.getSelectedItem())){
+                case Apr:                                           //30 ke mahine
+                case Jun:
+                case Sep:
+                case Nov:
+                    dateCB.setSelectedIndex(dateCB.getItemCount()-2);//setting date = 30
+                   
+            }
+        }
+    }
+    
+    private enum Month{//barebones enum for quickly getting int value of Month
+        Jan(1),
+        Feb(2),
+        Mar(3),
+        Apr(4),
+        May(5),
+        Jun(6),
+        Jul(7),
+        Aug(8),
+        Sep(9),
+        Oct(10),
+        Nov(11),
+        Dec(12);
+    
+        private final int value;
+        private Month(int v){
+            value =v;
+        }
+    
+        public int getValue(){
+            return value;
+        }
+    }
+    
+    public LocalDate getDate(){
+       int dayOfMonth = Integer.parseInt((String) dateCB.getSelectedItem());
+       int month = Month.valueOf((String) monthCB.getSelectedItem()).getValue();
+       int year = Integer.parseInt((String) yearCB.getSelectedItem());
+       
+       return LocalDate.of(year,month,dayOfMonth);
     }
 
     /**
@@ -38,7 +99,7 @@ public class DatePanel extends javax.swing.JPanel {
         setLayout(new java.awt.GridBagLayout());
 
         dateCB.setFont(new java.awt.Font("Lato", 0, 24)); // NOI18N
-        dateCB.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", " " }));
+        dateCB.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31" }));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
