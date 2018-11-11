@@ -59,9 +59,9 @@ public class Verify {
      
      public static boolean isValidConfirmPassword(char s1[],char s2[]){ 
         
-       if( Arrays.equals(s1, s2)) return false;
+       if( Arrays.equals(s1, s2)) return true;
        
-       return true;
+       return false;
     
     }
 

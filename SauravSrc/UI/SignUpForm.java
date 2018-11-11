@@ -41,6 +41,8 @@ public class SignUpForm extends javax.swing.JFrame {
     private void initComponents() {
         java.awt.GridBagConstraints gridBagConstraints;
 
+        signupSuccessfulDialog = new javax.swing.JDialog();
+        jLabel11 = new javax.swing.JLabel();
         outerPanel = new javax.swing.JPanel();
         scrollPane = new javax.swing.JScrollPane();
         container = new javax.swing.JPanel();
@@ -76,6 +78,19 @@ public class SignUpForm extends javax.swing.JFrame {
         mobileNumberTF = new javax.swing.JTextField();
         errorMobileNumberLabel = new javax.swing.JLabel();
         errorEmailIDLabel = new javax.swing.JLabel();
+
+        signupSuccessfulDialog.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        signupSuccessfulDialog.setTitle("Sign Up- BISTAR HI BISTAR");
+        signupSuccessfulDialog.setMinimumSize(new java.awt.Dimension(419, 157));
+        signupSuccessfulDialog.getContentPane().setLayout(new java.awt.GridBagLayout());
+
+        jLabel11.setFont(new java.awt.Font("Lato Black", 0, 24)); // NOI18N
+        jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel11.setText("Sign Up Successful!");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        signupSuccessfulDialog.getContentPane().add(jLabel11, gridBagConstraints);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Sign Up - BISTAR HI BISTAR");
@@ -497,7 +512,8 @@ public class SignUpForm extends javax.swing.JFrame {
                         errorUsernameLabel.setVisible(true);  // Method to check and enter user data in database
 
                     } else {
-
+                        signupSuccessfulDialog.setLocationRelativeTo(null);
+                        signupSuccessfulDialog.setVisible(true);
                         this.dispose();
 
                     }
@@ -534,6 +550,7 @@ public class SignUpForm extends javax.swing.JFrame {
     private javax.swing.JTextField fNameTF;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -550,6 +567,7 @@ public class SignUpForm extends javax.swing.JFrame {
     private javax.swing.JTextField pinCodeTF;
     private javax.swing.JScrollPane scrollPane;
     private javax.swing.JButton signUpButton;
+    private javax.swing.JDialog signupSuccessfulDialog;
     private javax.swing.JLabel titleLabel;
     private javax.swing.JPanel titlePane;
     private javax.swing.JTextField usernameTF;
