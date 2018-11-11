@@ -79,4 +79,12 @@ public class UIMethods {
         
         return s.toString();
     }
+    
+    public static String getStarString(){
+        return STAR;
+    }
+    
+    public static String getEmptyStarString(){
+        return EMPTY_STAR;
+    }
 }
