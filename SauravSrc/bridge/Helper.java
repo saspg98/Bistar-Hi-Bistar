@@ -16,8 +16,6 @@ import java.sql.*;
 public class Helper {
 
     private static JDBCConnection query;
-    
-    private static User usr;
 
     private static void makeConnection() {
 
@@ -85,7 +83,7 @@ public class Helper {
 
         }
 
-        usr = new User();
+        User usr = new User();
 
         s = "SELECT * FROM dbo.userDetails WHERE username = \'" + u + "\'";
 
@@ -102,7 +100,6 @@ public class Helper {
                 usr.setCustomerID(rs.getInt("CustomerID"));
                 usr.setMobile(rs.getString("Mobile"));
                 usr.setPinCode(rs.getInt("PinCode"));
-                usr.setUsername(u);
             }
 
             rs.close();
@@ -147,29 +144,6 @@ public class Helper {
             
         }
         return true;
-    }
-    
-    public static void updateUserProfile(User u){
-        
-        makeConnection();
-        
-        try{
-            
-            System.out.println(usr.getUsername());
-            
-            String s = "UPDATE dbo.userDetails SET FirstName =\'"+u.getFName()+"\',LastName =\'"+u.getLName()+"\',Address =\'"+u.getAddress()+"\',EmailID =\'"+u.getEmail()+"\',Mobile =\'"+u.getMobile()+"\',PinCode =\'"+u.getPinCode()+"\' WHERE Username =\'"+usr.getUsername()+"\'"; 
-            
-            query.getSt().executeUpdate(s);
-            
-        }catch (SQLException e) {
-
-            closeConnection();
-            e.printStackTrace();
-            
-        }
-        
-        closeConnection();
-       
     }
 
 }

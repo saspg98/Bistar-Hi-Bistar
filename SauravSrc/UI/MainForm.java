@@ -18,8 +18,6 @@ import java.sql.Date;
 import javax.swing.BorderFactory;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import verifyingTools.Verify;
-import bridge.Helper;
 
 /**
  *
@@ -57,6 +55,14 @@ public class MainForm extends javax.swing.JFrame implements MouseListener {//Mou
     private void initComponents() {
         java.awt.GridBagConstraints gridBagConstraints;
 
+        changePasswordDialog = new javax.swing.JDialog();
+        oldPasswordTF = new javax.swing.JTextField();
+        newPasswordTF = new javax.swing.JTextField();
+        cNewPasswordTF = new javax.swing.JTextField();
+        ok1Button = new javax.swing.JButton();
+        jLabel18 = new javax.swing.JLabel();
+        jLabel19 = new javax.swing.JLabel();
+        jLabel20 = new javax.swing.JLabel();
         sidebar = new javax.swing.JPanel();
         body = new javax.swing.JPanel();
         bookHotelsPanelButton = new javax.swing.JPanel();
@@ -88,8 +94,8 @@ public class MainForm extends javax.swing.JFrame implements MouseListener {//Mou
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         editButton = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        fNameTF = new javax.swing.JTextField();
+        changePassButton = new javax.swing.JButton();
+        nameTF = new javax.swing.JTextField();
         emailTF = new javax.swing.JTextField();
         titlePanelSettings = new javax.swing.JPanel();
         jLabel14 = new javax.swing.JLabel();
@@ -101,8 +107,6 @@ public class MainForm extends javax.swing.JFrame implements MouseListener {//Mou
         jLabel13 = new javax.swing.JLabel();
         dobTF = new javax.swing.JTextField();
         addTF = new javax.swing.JTextField();
-        jLabel18 = new javax.swing.JLabel();
-        lNameTF = new javax.swing.JTextField();
         pastBookingsPanel = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         recordsTable = new javax.swing.JTable();
@@ -131,6 +135,89 @@ public class MainForm extends javax.swing.JFrame implements MouseListener {//Mou
         amenitiesTA = new javax.swing.JTextArea();
         backPanel = new javax.swing.JPanel();
         backLabel = new javax.swing.JLabel();
+
+        changePasswordDialog.setBackground(new java.awt.Color(204, 204, 204));
+
+        oldPasswordTF.setFont(new java.awt.Font("Lato", 0, 24)); // NOI18N
+        oldPasswordTF.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                oldPasswordTFActionPerformed(evt);
+            }
+        });
+
+        newPasswordTF.setFont(new java.awt.Font("Lato", 0, 24)); // NOI18N
+        newPasswordTF.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                newPasswordTFActionPerformed(evt);
+            }
+        });
+
+        cNewPasswordTF.setFont(new java.awt.Font("Lato", 0, 24)); // NOI18N
+
+        ok1Button.setFont(new java.awt.Font("Lato", 0, 30)); // NOI18N
+        ok1Button.setText("OK");
+        ok1Button.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        ok1Button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ok1ButtonActionPerformed(evt);
+            }
+        });
+
+        jLabel18.setFont(new java.awt.Font("Lato Black", 0, 24)); // NOI18N
+        jLabel18.setText("Old Password");
+
+        jLabel19.setFont(new java.awt.Font("Lato Black", 0, 24)); // NOI18N
+        jLabel19.setText("New Password");
+
+        jLabel20.setFont(new java.awt.Font("Lato Black", 0, 24)); // NOI18N
+        jLabel20.setText("Confirm New Password");
+
+        javax.swing.GroupLayout changePasswordDialogLayout = new javax.swing.GroupLayout(changePasswordDialog.getContentPane());
+        changePasswordDialog.getContentPane().setLayout(changePasswordDialogLayout);
+        changePasswordDialogLayout.setHorizontalGroup(
+            changePasswordDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(changePasswordDialogLayout.createSequentialGroup()
+                .addGap(41, 41, 41)
+                .addGroup(changePasswordDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(changePasswordDialogLayout.createSequentialGroup()
+                        .addComponent(jLabel20)
+                        .addGap(18, 18, 18)
+                        .addComponent(cNewPasswordTF))
+                    .addGroup(changePasswordDialogLayout.createSequentialGroup()
+                        .addGroup(changePasswordDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(changePasswordDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(oldPasswordTF)
+                            .addComponent(newPasswordTF, javax.swing.GroupLayout.DEFAULT_SIZE, 295, Short.MAX_VALUE))))
+                .addGap(27, 27, 27))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, changePasswordDialogLayout.createSequentialGroup()
+                .addContainerGap(269, Short.MAX_VALUE)
+                .addComponent(ok1Button, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(255, 255, 255))
+        );
+        changePasswordDialogLayout.setVerticalGroup(
+            changePasswordDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(changePasswordDialogLayout.createSequentialGroup()
+                .addGap(34, 34, 34)
+                .addGroup(changePasswordDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(changePasswordDialogLayout.createSequentialGroup()
+                        .addGroup(changePasswordDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(oldPasswordTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(43, 43, 43)
+                        .addGroup(changePasswordDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(newPasswordTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(75, 75, 75))
+                    .addGroup(changePasswordDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(cNewPasswordTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel20)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
+                .addComponent(ok1Button, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(40, 40, 40))
+        );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("BISTAR HI BISTAR"); // NOI18N
@@ -270,7 +357,7 @@ public class MainForm extends javax.swing.JFrame implements MouseListener {//Mou
             .addComponent(settingsPanelButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(myBookingsPanelButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(bookHotelsPanelButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(welcomeLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 293, Short.MAX_VALUE)
+            .addComponent(welcomeLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 248, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, bodyLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(logoutLinkLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -286,7 +373,7 @@ public class MainForm extends javax.swing.JFrame implements MouseListener {//Mou
                 .addComponent(myBookingsPanelButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(settingsPanelButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 387, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 355, Short.MAX_VALUE)
                 .addComponent(logoutLinkLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(44, 44, 44))
         );
@@ -309,7 +396,7 @@ public class MainForm extends javax.swing.JFrame implements MouseListener {//Mou
         gridBagConstraints.gridy = 0;
         gridBagConstraints.gridheight = 10;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.weightx = 1.5;
+        gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
         getContentPane().add(sidebar, gridBagConstraints);
 
@@ -417,7 +504,7 @@ public class MainForm extends javax.swing.JFrame implements MouseListener {//Mou
                 .addGroup(bookPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(bookPanelLayout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(roomPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 1364, Short.MAX_VALUE))
+                        .addComponent(roomPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 1411, Short.MAX_VALUE))
                     .addGroup(bookPanelLayout.createSequentialGroup()
                         .addGap(235, 235, 235)
                         .addGroup(bookPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -474,7 +561,7 @@ public class MainForm extends javax.swing.JFrame implements MouseListener {//Mou
                             .addComponent(jLabel16)
                             .addComponent(roomSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(28, 28, 28)
-                .addComponent(roomPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 482, Short.MAX_VALUE)
+                .addComponent(roomPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 450, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -484,7 +571,7 @@ public class MainForm extends javax.swing.JFrame implements MouseListener {//Mou
 
         jLabel6.setFont(new java.awt.Font("Lato Black", 0, 22)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel6.setText("First Name");
+        jLabel6.setText("Name");
 
         jLabel7.setFont(new java.awt.Font("Lato Black", 0, 22)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
@@ -498,13 +585,18 @@ public class MainForm extends javax.swing.JFrame implements MouseListener {//Mou
             }
         });
 
-        jButton2.setFont(new java.awt.Font("Lato Black", 0, 22)); // NOI18N
-        jButton2.setText("Change Password");
+        changePassButton.setFont(new java.awt.Font("Lato Black", 0, 22)); // NOI18N
+        changePassButton.setText("Change Password");
+        changePassButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                changePassButtonActionPerformed(evt);
+            }
+        });
 
-        fNameTF.setEditable(false);
-        fNameTF.setFont(new java.awt.Font("Lato", 0, 22)); // NOI18N
-        fNameTF.setDisabledTextColor(new java.awt.Color(51, 51, 51));
-        fNameTF.setEnabled(false);
+        nameTF.setEditable(false);
+        nameTF.setFont(new java.awt.Font("Lato", 0, 22)); // NOI18N
+        nameTF.setDisabledTextColor(new java.awt.Color(51, 51, 51));
+        nameTF.setEnabled(false);
 
         emailTF.setEditable(false);
         emailTF.setFont(new java.awt.Font("Lato", 0, 22)); // NOI18N
@@ -583,15 +675,6 @@ public class MainForm extends javax.swing.JFrame implements MouseListener {//Mou
             }
         });
 
-        jLabel18.setFont(new java.awt.Font("Lato Black", 0, 22)); // NOI18N
-        jLabel18.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel18.setText("Last Name");
-
-        lNameTF.setEditable(false);
-        lNameTF.setFont(new java.awt.Font("Lato", 0, 22)); // NOI18N
-        lNameTF.setDisabledTextColor(new java.awt.Color(51, 51, 51));
-        lNameTF.setEnabled(false);
-
         javax.swing.GroupLayout myProfilePanelLayout = new javax.swing.GroupLayout(myProfilePanel);
         myProfilePanel.setLayout(myProfilePanelLayout);
         myProfilePanelLayout.setHorizontalGroup(
@@ -603,26 +686,24 @@ public class MainForm extends javax.swing.JFrame implements MouseListener {//Mou
                     .addGroup(myProfilePanelLayout.createSequentialGroup()
                         .addComponent(editButton)
                         .addGap(60, 60, 60)
-                        .addComponent(jButton2)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, myProfilePanelLayout.createSequentialGroup()
+                        .addComponent(changePassButton)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(myProfilePanelLayout.createSequentialGroup()
                         .addGroup(myProfilePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel6)
+                            .addComponent(jLabel13)
                             .addComponent(jLabel11)
                             .addComponent(jLabel7)
                             .addComponent(jLabel12)
-                            .addComponent(jLabel8)
-                            .addComponent(jLabel13)
-                            .addComponent(jLabel18))
+                            .addComponent(jLabel8))
                         .addGap(44, 44, 44)
                         .addGroup(myProfilePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(lNameTF)
                             .addComponent(emailTF)
                             .addComponent(mobileTF)
                             .addComponent(pinCodeTF, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(dobTF, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 1001, Short.MAX_VALUE)
-                            .addComponent(addTF, javax.swing.GroupLayout.DEFAULT_SIZE, 1001, Short.MAX_VALUE)
-                            .addComponent(fNameTF, javax.swing.GroupLayout.Alignment.LEADING))
+                            .addComponent(dobTF, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 1048, Short.MAX_VALUE)
+                            .addComponent(nameTF, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 1048, Short.MAX_VALUE)
+                            .addComponent(addTF, javax.swing.GroupLayout.DEFAULT_SIZE, 1048, Short.MAX_VALUE))
                         .addGap(50, 50, 50))))
         );
         myProfilePanelLayout.setVerticalGroup(
@@ -633,25 +714,18 @@ public class MainForm extends javax.swing.JFrame implements MouseListener {//Mou
                 .addGap(77, 77, 77)
                 .addGroup(myProfilePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
-                    .addComponent(fNameTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(nameTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(myProfilePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel18)
-                    .addComponent(lNameTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(myProfilePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(myProfilePanelLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(dobTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, myProfilePanelLayout.createSequentialGroup()
-                        .addGap(22, 22, 22)
-                        .addComponent(jLabel13)))
+                    .addComponent(jLabel13)
+                    .addComponent(dobTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(myProfilePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(emailTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(myProfilePanelLayout.createSequentialGroup()
                         .addGap(3, 3, 3)
                         .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(13, 13, 13)
                 .addGroup(myProfilePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(addTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel11))
@@ -663,10 +737,10 @@ public class MainForm extends javax.swing.JFrame implements MouseListener {//Mou
                 .addGroup(myProfilePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel12)
                     .addComponent(mobileTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 134, Short.MAX_VALUE)
                 .addGroup(myProfilePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(editButton)
-                    .addComponent(jButton2))
+                    .addComponent(changePassButton))
                 .addGap(74, 74, 74))
         );
 
@@ -720,7 +794,7 @@ public class MainForm extends javax.swing.JFrame implements MouseListener {//Mou
         pastBookingsPanel.setLayout(pastBookingsPanelLayout);
         pastBookingsPanelLayout.setHorizontalGroup(
             pastBookingsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(titlePanelMyBookings, javax.swing.GroupLayout.DEFAULT_SIZE, 1394, Short.MAX_VALUE)
+            .addComponent(titlePanelMyBookings, javax.swing.GroupLayout.DEFAULT_SIZE, 1441, Short.MAX_VALUE)
             .addGroup(pastBookingsPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane1)
@@ -762,11 +836,11 @@ public class MainForm extends javax.swing.JFrame implements MouseListener {//Mou
                 .addGap(43, 43, 43)
                 .addGroup(hotelTitlePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(hotelTitlePanelLayout.createSequentialGroup()
-                        .addComponent(hotelDetailsRatingLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(hotelDetailsRatingLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
                         .addComponent(numReviewsLabel))
                     .addComponent(hotelNameLabel))
-                .addContainerGap(1019, Short.MAX_VALUE))
+                .addContainerGap(1045, Short.MAX_VALUE))
         );
         hotelTitlePanelLayout.setVerticalGroup(
             hotelTitlePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -993,7 +1067,7 @@ public class MainForm extends javax.swing.JFrame implements MouseListener {//Mou
             backPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(backPanelLayout.createSequentialGroup()
                 .addComponent(backLabel)
-                .addGap(0, 1288, Short.MAX_VALUE))
+                .addGap(0, 1334, Short.MAX_VALUE))
         );
         backPanelLayout.setVerticalGroup(
             backPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1019,17 +1093,19 @@ public class MainForm extends javax.swing.JFrame implements MouseListener {//Mou
         gridBagConstraints.gridy = 0;
         gridBagConstraints.gridheight = 10;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.weightx = 7.5;
+        gridBagConstraints.weightx = 8.0;
         gridBagConstraints.weighty = 1.0;
         getContentPane().add(mainPanel, gridBagConstraints);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void emailTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_emailTFActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_emailTFActionPerformed
+
     private void settingsPanelButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_settingsPanelButtonMouseClicked
         // TODO add your handling code here:
-        
-        personalize();
         ((CardLayout)mainPanel.getLayout()).show(mainPanel, "settingsPanel");
         resetBgColor();
         UIMethods.setSelectedPanelButton(settingsPanelButton, myProfileLabel);
@@ -1110,6 +1186,41 @@ public class MainForm extends javax.swing.JFrame implements MouseListener {//Mou
         priceSlider.setValue((int)d);
     }//GEN-LAST:event_priceSpinnerStateChanged
 
+    private void editButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editButtonActionPerformed
+        if(!isEditing){
+            nameTF.setEditable(true);
+            emailTF.setEditable(true);
+            addTF.setEditable(true);
+            mobileTF.setEditable(true);
+            pinCodeTF.setEditable(true);
+            nameTF.setEnabled(true);
+            emailTF.setEnabled(true);
+            addTF.setEnabled(true);
+            mobileTF.setEnabled(true);
+            pinCodeTF.setEnabled(true);
+            isEditing=true;
+            editButton.setText("Save");
+            
+        } else {
+            nameTF.setEditable(false);
+            emailTF.setEditable(false);
+            addTF.setEditable(false);
+            mobileTF.setEditable(false);
+            pinCodeTF.setEditable(false);
+            nameTF.setEnabled(false);
+            emailTF.setEnabled(false);
+            addTF.setEnabled(false);
+            mobileTF.setEnabled(false);
+            pinCodeTF.setEnabled(false);
+            isEditing=false;
+            
+            saveDetails();
+            editButton.setText("Edit");
+        }
+        
+        
+    }//GEN-LAST:event_editButtonActionPerformed
+
     private void goButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_goButtonActionPerformed
         //TODO: Get all the relevant details from the given fields and return array of HotelListItemPanel objects
         
@@ -1156,70 +1267,42 @@ public class MainForm extends javax.swing.JFrame implements MouseListener {//Mou
         // TODO add your handling code here:
     }//GEN-LAST:event_bookNowButtonActionPerformed
 
-    private void backLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backLabelMouseClicked
-        ((CardLayout)mainPanel.getLayout()).show(mainPanel, "bookPanel");
-    }//GEN-LAST:event_backLabelMouseClicked
-
-    private void addTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addTFActionPerformed
+    private void mobileTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mobileTFActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_addTFActionPerformed
-
-    private void dobTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dobTFActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_dobTFActionPerformed
+    }//GEN-LAST:event_mobileTFActionPerformed
 
     private void pinCodeTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pinCodeTFActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_pinCodeTFActionPerformed
 
-    private void mobileTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mobileTFActionPerformed
+    private void dobTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dobTFActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_mobileTFActionPerformed
+    }//GEN-LAST:event_dobTFActionPerformed
 
-    private void emailTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_emailTFActionPerformed
+    private void addTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addTFActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_emailTFActionPerformed
+    }//GEN-LAST:event_addTFActionPerformed
 
-    private void editButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editButtonActionPerformed
-        if(!isEditing){
-            fNameTF.setEditable(true);
-            lNameTF.setEditable(true);
-            emailTF.setEditable(true);
-            addTF.setEditable(true);
-            mobileTF.setEditable(true);
-            dobTF.setEditable(true);
-            pinCodeTF.setEditable(true);
-            fNameTF.setEnabled(true);
-            lNameTF.setEnabled(true);
-            emailTF.setEnabled(true);
-            addTF.setEnabled(true);
-            mobileTF.setEnabled(true);
-            dobTF.setEnabled(true);
-            pinCodeTF.setEnabled(true);
-            isEditing=true;
-            editButton.setText("Save");
+    private void changePassButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_changePassButtonActionPerformed
+        changePasswordDialog.setLocationRelativeTo(null);
+        changePasswordDialog.setVisible(true);
+    }//GEN-LAST:event_changePassButtonActionPerformed
 
-        } else {
-            fNameTF.setEditable(false);
-            lNameTF.setEditable(false);
-            emailTF.setEditable(false);
-            addTF.setEditable(false);
-            mobileTF.setEditable(false);
-            pinCodeTF.setEditable(false);
-            dobTF.setEditable(false);
-            fNameTF.setEnabled(false);
-            lNameTF.setEnabled(false);
-            emailTF.setEnabled(false);
-            addTF.setEnabled(false);
-            dobTF.setEnabled(false);
-            mobileTF.setEnabled(false);
-            pinCodeTF.setEnabled(false);
-            isEditing=false;
+    private void backLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backLabelMouseClicked
+        ((CardLayout)mainPanel.getLayout()).show(mainPanel, "bookPanel");
+    }//GEN-LAST:event_backLabelMouseClicked
 
-            saveDetails();
-            editButton.setText("Edit");
-        }
-    }//GEN-LAST:event_editButtonActionPerformed
+    private void oldPasswordTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_oldPasswordTFActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_oldPasswordTFActionPerformed
+
+    private void newPasswordTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newPasswordTFActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_newPasswordTFActionPerformed
+
+    private void ok1ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ok1ButtonActionPerformed
+        
+    }//GEN-LAST:event_ok1ButtonActionPerformed
 
     private void resetBgColor(){
         //reset bg color of all buttons
@@ -1301,6 +1384,9 @@ public class MainForm extends javax.swing.JFrame implements MouseListener {//Mou
     private javax.swing.JPanel bookPanel;
     private javax.swing.JLabel bookingConfirmationLinkLabel;
     private javax.swing.JPanel bookingOptionsPanel;
+    private javax.swing.JTextField cNewPasswordTF;
+    private javax.swing.JButton changePassButton;
+    private javax.swing.JDialog changePasswordDialog;
     private javax.swing.JPanel descriptionLabelContainerPanel;
     private javax.swing.JPanel descriptionPanel;
     private javax.swing.JScrollPane descriptionScrollPane;
@@ -1308,7 +1394,6 @@ public class MainForm extends javax.swing.JFrame implements MouseListener {//Mou
     private javax.swing.JTextField dobTF;
     private javax.swing.JButton editButton;
     private javax.swing.JTextField emailTF;
-    private javax.swing.JTextField fNameTF;
     private javax.swing.JButton goButton;
     private javax.swing.JSpinner guestSpinner;
     private javax.swing.JLabel headingLabel;
@@ -1319,7 +1404,6 @@ public class MainForm extends javax.swing.JFrame implements MouseListener {//Mou
     private javax.swing.JLabel hotelNameLabel;
     private javax.swing.JPanel hotelTitlePanel;
     private javax.swing.JPanel imagePanel;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -1330,12 +1414,13 @@ public class MainForm extends javax.swing.JFrame implements MouseListener {//Mou
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
+    private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField lNameTF;
     private javax.swing.JComboBox<String> locationComboBox;
     private javax.swing.JLabel logoutLinkLabel;
     private javax.swing.JPanel mainPanel;
@@ -1344,7 +1429,11 @@ public class MainForm extends javax.swing.JFrame implements MouseListener {//Mou
     private javax.swing.JPanel myBookingsPanelButton;
     private javax.swing.JLabel myProfileLabel;
     private javax.swing.JPanel myProfilePanel;
+    private javax.swing.JTextField nameTF;
+    private javax.swing.JTextField newPasswordTF;
     private javax.swing.JLabel numReviewsLabel;
+    private javax.swing.JButton ok1Button;
+    private javax.swing.JTextField oldPasswordTF;
     private javax.swing.JPanel pastBookingsPanel;
     private javax.swing.JTextField pinCodeTF;
     private javax.swing.JSlider priceSlider;
@@ -1372,9 +1461,8 @@ public class MainForm extends javax.swing.JFrame implements MouseListener {//Mou
     }
 
     private void personalize() {
-        welcomeLabel.setText(" Welcome "+ user.getUsername()+ "! ");
-        fNameTF.setText(user.getFName());
-        lNameTF.setText(user.getLName());
+        welcomeLabel.setText(" Welcome "+ user.getFName()+ "! ");
+        nameTF.setText(user.getFName()+" "+user.getLName());
         emailTF.setText(user.getEmail());
         addTF.setText(user.getAddress());
         mobileTF.setText(user.getMobile());
@@ -1382,49 +1470,7 @@ public class MainForm extends javax.swing.JFrame implements MouseListener {//Mou
     }
 
     private void saveDetails() {
-        
-        User u = new User();
-        
-        try{
-        
-        if (!Verify.isValidEmail(emailTF.getText().trim())) {
-
-                emailTF.setText("Invalid Email");
-                emailTF.setForeground(Color.RED);
-
-            } else if (!Verify.isValidPinCode(pinCodeTF.getText().trim())) {
-
-                pinCodeTF.setText("Invalid Pincode");
-                pinCodeTF.setForeground(Color.RED);
-
-            } else if (!Verify.isValidMobile(mobileTF.getText().trim())) {
-
-                 mobileTF.setText("Invalid Mobile Number");
-                 mobileTF.setForeground(Color.RED);
-                 
-            }else{
-        
-                             u.setFName(fNameTF.getText().trim());
-                             u.setLName(lNameTF.getText().trim());
-                             u.setAddress(addTF.getText().trim());
-                             u.setEmail(emailTF.getText().trim());
-                             u.setMobile(mobileTF.getText().trim());
-                             u.setMobile(pinCodeTF.getText().trim());
-        
-                            Helper.updateUserProfile(u);
-        
-                            System.out.println("Saving.....Well, not really but ok");
-            }
-        }catch (NumberFormatException e) {
-
-           pinCodeTF.setText("Invalid Pincode");
-           pinCodeTF.setForeground(Color.RED);
-            e.printStackTrace();
-
-        } catch (Exception e) {
-
-            e.printStackTrace();
-        }
+        System.out.println("Saving.....Well, not really but ok");
     }
 
     @Override

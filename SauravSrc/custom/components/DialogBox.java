@@ -57,6 +57,11 @@ public class DialogBox extends javax.swing.JPanel {
         ok1Button.setFont(new java.awt.Font("Lato", 0, 30)); // NOI18N
         ok1Button.setText("OK");
         ok1Button.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        ok1Button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ok1ButtonActionPerformed(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Lato Black", 0, 24)); // NOI18N
         jLabel1.setText("Old Password");
@@ -133,6 +138,10 @@ public class DialogBox extends javax.swing.JPanel {
     private void oldPasswordTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_oldPasswordTFActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_oldPasswordTFActionPerformed
+
+    private void ok1ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ok1ButtonActionPerformed
+
+    }//GEN-LAST:event_ok1ButtonActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

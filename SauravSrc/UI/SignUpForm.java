@@ -5,10 +5,12 @@
  */
 package UI;
 
-import verifyingTools.Verify;
 import bridge.Helper;
 import internal.User;
-
+import java.util.*;
+import custom.components.Registered;
+import javax.swing.JOptionPane;
+import function.*;
 
 /**
  *
@@ -41,6 +43,8 @@ public class SignUpForm extends javax.swing.JFrame {
     private void initComponents() {
         java.awt.GridBagConstraints gridBagConstraints;
 
+        confirmationDialog = new javax.swing.JDialog();
+        jLabel11 = new javax.swing.JLabel();
         outerPanel = new javax.swing.JPanel();
         scrollPane = new javax.swing.JScrollPane();
         container = new javax.swing.JPanel();
@@ -76,6 +80,22 @@ public class SignUpForm extends javax.swing.JFrame {
         mobileNumberTF = new javax.swing.JTextField();
         errorMobileNumberLabel = new javax.swing.JLabel();
         errorEmailIDLabel = new javax.swing.JLabel();
+
+        confirmationDialog.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        confirmationDialog.setTitle("Sign Up Successful");
+        confirmationDialog.setMinimumSize(new java.awt.Dimension(725, 288));
+        confirmationDialog.getContentPane().setLayout(new java.awt.GridBagLayout());
+
+        jLabel11.setFont(new java.awt.Font("Lato", 0, 24)); // NOI18N
+        jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel11.setText("You have signed up successfully!");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        confirmationDialog.getContentPane().add(jLabel11, gridBagConstraints);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Sign Up - BISTAR HI BISTAR");
@@ -181,9 +201,7 @@ public class SignUpForm extends javax.swing.JFrame {
 
         addressTextArea.setColumns(5);
         addressTextArea.setFont(new java.awt.Font("Lato", 0, 22)); // NOI18N
-        addressTextArea.setLineWrap(true);
         addressTextArea.setRows(5);
-        addressTextArea.setWrapStyleWord(true);
         jScrollPane1.setViewportView(addressTextArea);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -417,8 +435,11 @@ public class SignUpForm extends javax.swing.JFrame {
         scrollPane.setViewportView(container);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.ipadx = 72;
         gridBagConstraints.ipady = 24;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
         outerPanel.add(scrollPane, gridBagConstraints);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -454,29 +475,29 @@ public class SignUpForm extends javax.swing.JFrame {
 
                 errorEmptyField.setVisible(true);
 
-            } else if (!Verify.isValidPassword(passwordPF.getPassword())) {
+            } else if (passwordPF.getPassword().length < 8) {
 
                 errorPasswordLabel.setVisible(true);
                 confirmPasswordPF.setText("");
                 passwordPF.setText("");
 
-            } else if (!Verify.isValidConfirmPassword(confirmPasswordPF.getPassword(), passwordPF.getPassword())) {
+            } else if (Arrays.equals(passwordPF.getPassword(), confirmPasswordPF.getPassword()) == false) {
 
                 errorPasswordMatchLabel.setVisible(true);
                 confirmPasswordPF.setText("");
                 passwordPF.setText("");
 
-            } else if (!Verify.isValidEmail(emailTF.getText().trim())) {
+            } else if (!emailIDChecker.isValidEmail(emailTF.getText().trim())) {
 
                 errorEmailIDLabel.setVisible(true);
                 emailTF.setText("");
 
-            } else if (!Verify.isValidPinCode(pinCodeTF.getText().trim())) {
+            } else if ((pinCodeTF.getText().length() != 6) || (Integer.parseInt(pinCodeTF.getText()) < 100000)) {
 
                 errorPinCodeLabel.setVisible(true);
                 pinCodeTF.setText("");
 
-            } else if (!Verify.isValidMobile(mobileNumberTF.getText().trim())) {
+            } else if (!mobileChecker.isValidMobile(mobileNumberTF.getText().trim())) {
 
                 errorMobileNumberLabel.setVisible(true);
                 mobileNumberTF.setText("");
@@ -497,7 +518,8 @@ public class SignUpForm extends javax.swing.JFrame {
                         errorUsernameLabel.setVisible(true);  // Method to check and enter user data in database
 
                     } else {
-
+                        confirmationDialog.setLocationRelativeTo(null);
+                        confirmationDialog.setVisible(true);
                         this.dispose();
 
                     }
@@ -521,6 +543,7 @@ public class SignUpForm extends javax.swing.JFrame {
     private javax.swing.JTextArea addressTextArea;
     private javax.swing.JPanel centerBottomPanel;
     private javax.swing.JPasswordField confirmPasswordPF;
+    private javax.swing.JDialog confirmationDialog;
     private javax.swing.JPanel container;
     private custom.components.DatePanel datePanel1;
     private javax.swing.JTextField emailTF;
@@ -534,6 +557,7 @@ public class SignUpForm extends javax.swing.JFrame {
     private javax.swing.JTextField fNameTF;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

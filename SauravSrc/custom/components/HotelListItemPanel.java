@@ -152,6 +152,7 @@ public class HotelListItemPanel extends javax.swing.JPanel {
 
         ratingLabel.setFont(new java.awt.Font("FreeMono", 0, 36)); // NOI18N
         ratingLabel.setForeground(new java.awt.Color(255, 255, 0));
+        ratingLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         ratingLabel.setText("Rating");
 
         priceRangeLabel.setFont(new java.awt.Font("Lato", 0, 24)); // NOI18N
@@ -188,7 +189,8 @@ public class HotelListItemPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(hotelNameLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 550, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(ratingLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(ratingLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(reviewLinkLabel)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
