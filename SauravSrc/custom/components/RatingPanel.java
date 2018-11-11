@@ -82,7 +82,7 @@ public class RatingPanel extends javax.swing.JPanel implements MouseListener {
         int i=0;
         do{
             starLabel[i].setText(UIMethods.getStarString());
-        }while(!starLabel[i++].equals(e.getComponent()) || i>=5);//NOTE: Point of contention
+        }while(!starLabel[i++].equals(e.getComponent()) && i<5);//NOTE: Point of contention
         
         
     }
@@ -104,7 +104,7 @@ public class RatingPanel extends javax.swing.JPanel implements MouseListener {
             int i=0;
             do{
                 starLabel[i].setText(UIMethods.getStarString());
-            }while(!starLabel[i++].equals(e.getComponent()) || i>=5);//NOTE: Point of contention
+            }while(!starLabel[i++].equals(e.getComponent()) && i<5);//NOTE: Point of contention
         }
     }
 
