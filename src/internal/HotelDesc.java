@@ -3,8 +3,8 @@
  */
 package internal;
 
-import java.sql.Date;
 import java.time.LocalDate;
+
 
 /**
  *
@@ -21,18 +21,24 @@ public class HotelDesc {
     int stars;
     int numReviews;
     String description;
-    String amenities;
+    String roomAmenities;
+    String hotelAmenities;
+    Rating rating;
+    String adress;
     
     
     private static final String CURRENCY = "\u20B9";
-    public HotelDesc(String hotelName, String[] roomType, double[] price, int stars, int numReviews, String description, String amenities) {
+    public HotelDesc(String hotelName, String[] roomType, double[] price, int stars, int numReviews, String description, String roomAmenities, String hotelAmenities, Rating rating, String adress) {
         this.hotelName = hotelName;
         this.roomTypes = roomType;
         this.prices = price;
         this.stars = stars;
         this.numReviews = numReviews;
         this.description = description;
-        this.amenities = amenities;
+        this.roomAmenities = roomAmenities;
+        this.hotelAmenities = hotelAmenities;
+        this.rating=rating;
+        this.adress=adress;
     }
 
     public String getHotelName() {
@@ -59,8 +65,20 @@ public class HotelDesc {
         return description;
     }
 
-    public String getAmenities() {
-        return amenities;
+    public String getRoomAmenities() {
+        return roomAmenities;
+    }
+    
+    public String getHotelAmenities() {
+        return hotelAmenities;
+    }
+    
+    public String getAdress() {
+        return adress;
+    }
+    
+    public Rating getRating() {
+        return rating;
     }
     
     
