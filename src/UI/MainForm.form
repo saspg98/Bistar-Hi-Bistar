@@ -39,7 +39,7 @@
               </Group>
               <Group type="102" alignment="1" attributes="0">
                   <EmptySpace pref="269" max="32767" attributes="0"/>
-                  <Component id="ok1Button" min="-2" pref="114" max="-2" attributes="0"/>
+                  <Component id="changePasswordOkButton" min="-2" pref="114" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="255" max="-2" attributes="0"/>
               </Group>
           </Group>
@@ -67,7 +67,7 @@
                       </Group>
                   </Group>
                   <EmptySpace pref="46" max="32767" attributes="0"/>
-                  <Component id="ok1Button" min="-2" pref="51" max="-2" attributes="0"/>
+                  <Component id="changePasswordOkButton" min="-2" pref="51" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
               </Group>
           </Group>
@@ -95,7 +95,7 @@
             </Property>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="ok1Button">
+        <Component class="javax.swing.JButton" name="changePasswordOkButton">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Lato" size="30" style="0"/>
@@ -108,7 +108,7 @@
             </Property>
           </Properties>
           <Events>
-            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="ok1ButtonMouseClicked"/>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="changePasswordOkButtonMouseClicked"/>
           </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel2">

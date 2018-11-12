@@ -62,7 +62,7 @@ public class MainForm extends javax.swing.JFrame implements MouseListener {//Mou
         oldPasswordTF = new javax.swing.JTextField();
         newPasswordTF = new javax.swing.JTextField();
         cNewPasswordTF = new javax.swing.JTextField();
-        ok1Button = new javax.swing.JButton();
+        changePasswordOkButton = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -154,12 +154,12 @@ public class MainForm extends javax.swing.JFrame implements MouseListener {//Mou
 
         cNewPasswordTF.setFont(new java.awt.Font("Lato", 0, 24)); // NOI18N
 
-        ok1Button.setFont(new java.awt.Font("Lato", 0, 30)); // NOI18N
-        ok1Button.setText("OK");
-        ok1Button.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        ok1Button.addMouseListener(new java.awt.event.MouseAdapter() {
+        changePasswordOkButton.setFont(new java.awt.Font("Lato", 0, 30)); // NOI18N
+        changePasswordOkButton.setText("OK");
+        changePasswordOkButton.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        changePasswordOkButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                ok1ButtonMouseClicked(evt);
+                changePasswordOkButtonMouseClicked(evt);
             }
         });
 
@@ -194,7 +194,7 @@ public class MainForm extends javax.swing.JFrame implements MouseListener {//Mou
                 .addGap(27, 27, 27))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, changePasswordDialogLayout.createSequentialGroup()
                 .addContainerGap(269, Short.MAX_VALUE)
-                .addComponent(ok1Button, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(changePasswordOkButton, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(255, 255, 255))
         );
         changePasswordDialogLayout.setVerticalGroup(
@@ -215,7 +215,7 @@ public class MainForm extends javax.swing.JFrame implements MouseListener {//Mou
                         .addComponent(cNewPasswordTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel4)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
-                .addComponent(ok1Button, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(changePasswordOkButton, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(40, 40, 40))
         );
 
@@ -1311,9 +1311,9 @@ public class MainForm extends javax.swing.JFrame implements MouseListener {//Mou
         changePasswordDialog.setVisible(true);
     }//GEN-LAST:event_changePasswordButtonActionPerformed
 
-    private void ok1ButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ok1ButtonMouseClicked
+    private void changePasswordOkButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_changePasswordOkButtonMouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_ok1ButtonMouseClicked
+    }//GEN-LAST:event_changePasswordOkButtonMouseClicked
 
     private void resetBgColor(){
         //reset bg color of all buttons
@@ -1398,6 +1398,7 @@ public class MainForm extends javax.swing.JFrame implements MouseListener {//Mou
     private javax.swing.JTextField cNewPasswordTF;
     private javax.swing.JButton changePasswordButton;
     private javax.swing.JDialog changePasswordDialog;
+    private javax.swing.JButton changePasswordOkButton;
     private custom.components.DatePanel checkInDatePanel;
     private custom.components.DatePanel checkOutDatePanel;
     private javax.swing.JPanel descriptionLabelContainerPanel;
@@ -1449,7 +1450,6 @@ public class MainForm extends javax.swing.JFrame implements MouseListener {//Mou
     private javax.swing.JPanel myProfilePanel;
     private javax.swing.JTextField newPasswordTF;
     private javax.swing.JLabel numReviewsLabel;
-    private javax.swing.JButton ok1Button;
     private javax.swing.JTextField oldPasswordTF;
     private javax.swing.JPanel pastBookingsPanel;
     private javax.swing.JTextField pinCodeTF;
