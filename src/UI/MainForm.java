@@ -70,9 +70,6 @@ public class MainForm extends javax.swing.JFrame implements MouseListener {//Mou
         oldPasswordPF = new javax.swing.JPasswordField();
         confirmNewPasswordPF = new javax.swing.JPasswordField();
         newPasswordPF = new javax.swing.JPasswordField();
-        oldPasswordTF = new javax.swing.JTextField();
-        newPasswordTF = new javax.swing.JTextField();
-        confirmNewPasswordTF = new javax.swing.JTextField();
         sidebar = new javax.swing.JPanel();
         body = new javax.swing.JPanel();
         bookHotelsPanelButton = new javax.swing.JPanel();
@@ -139,7 +136,7 @@ public class MainForm extends javax.swing.JFrame implements MouseListener {//Mou
         bookNowButton = new javax.swing.JButton();
         checkInConfDatePanel = new custom.components.DatePanel();
         checkOutConfDatePanel = new custom.components.DatePanel();
-        bookingConfirmationLinkLabel1 = new javax.swing.JLabel();
+        bookingConfirmationLinkLabel = new javax.swing.JLabel();
         checkOutLabel = new javax.swing.JLabel();
         descriptionPanel = new javax.swing.JPanel();
         headingLabel = new javax.swing.JLabel();
@@ -225,12 +222,6 @@ public class MainForm extends javax.swing.JFrame implements MouseListener {//Mou
                 .addComponent(changePasswordOkButton, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(26, 26, 26))
         );
-
-        oldPasswordTF.setFont(new java.awt.Font("Lato", 0, 24)); // NOI18N
-
-        newPasswordTF.setFont(new java.awt.Font("Lato", 0, 24)); // NOI18N
-
-        confirmNewPasswordTF.setFont(new java.awt.Font("Lato", 0, 24)); // NOI18N
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("BISTAR HI BISTAR"); // NOI18N
@@ -913,12 +904,7 @@ public class MainForm extends javax.swing.JFrame implements MouseListener {//Mou
         checkInLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         checkInLabel.setText("Check In:");
         checkInLabel.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        checkInLabel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        checkInLabel.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                checkInLabelMouseClicked(evt);
-            }
-        });
+        checkInLabel.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
@@ -985,15 +971,15 @@ public class MainForm extends javax.swing.JFrame implements MouseListener {//Mou
         gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
         bookingOptionsPanel.add(checkOutConfDatePanel, gridBagConstraints);
 
-        bookingConfirmationLinkLabel1.setFont(new java.awt.Font("Lato Black", 0, 24)); // NOI18N
-        bookingConfirmationLinkLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        bookingConfirmationLinkLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        bookingConfirmationLinkLabel1.setText("3 Executive Rooms, 18 Guests");
-        bookingConfirmationLinkLabel1.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        bookingConfirmationLinkLabel1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        bookingConfirmationLinkLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
+        bookingConfirmationLinkLabel.setFont(new java.awt.Font("Lato Black", 0, 24)); // NOI18N
+        bookingConfirmationLinkLabel.setForeground(new java.awt.Color(255, 255, 255));
+        bookingConfirmationLinkLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        bookingConfirmationLinkLabel.setText("3 Executive Rooms, 18 Guests");
+        bookingConfirmationLinkLabel.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        bookingConfirmationLinkLabel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        bookingConfirmationLinkLabel.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                bookingConfirmationLinkLabel1MouseClicked(evt);
+                bookingConfirmationLinkLabelMouseClicked(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -1005,19 +991,14 @@ public class MainForm extends javax.swing.JFrame implements MouseListener {//Mou
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
-        bookingOptionsPanel.add(bookingConfirmationLinkLabel1, gridBagConstraints);
+        bookingOptionsPanel.add(bookingConfirmationLinkLabel, gridBagConstraints);
 
         checkOutLabel.setFont(new java.awt.Font("Lato Black", 0, 24)); // NOI18N
         checkOutLabel.setForeground(new java.awt.Color(255, 255, 255));
         checkOutLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         checkOutLabel.setText("Check Out:");
         checkOutLabel.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        checkOutLabel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        checkOutLabel.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                checkOutLabelMouseClicked(evt);
-            }
-        });
+        checkOutLabel.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 2;
@@ -1379,10 +1360,6 @@ public class MainForm extends javax.swing.JFrame implements MouseListener {//Mou
         }
     }//GEN-LAST:event_editButtonActionPerformed
 
-    private void checkInLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_checkInLabelMouseClicked
-        JOptionPane.showMessageDialog(null, "Not Yet Implemented! Problem? Open an issue");
-    }//GEN-LAST:event_checkInLabelMouseClicked
-
     private void changePasswordButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_changePasswordButtonActionPerformed
         changePasswordDialog.setLocationRelativeTo(null);
         
@@ -1415,13 +1392,9 @@ public class MainForm extends javax.swing.JFrame implements MouseListener {//Mou
             pinCodeTF.setText("");
     }//GEN-LAST:event_pinCodeTFFocusGained
 
-    private void bookingConfirmationLinkLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bookingConfirmationLinkLabel1MouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_bookingConfirmationLinkLabel1MouseClicked
-
-    private void checkOutLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_checkOutLabelMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_checkOutLabelMouseClicked
+    private void bookingConfirmationLinkLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bookingConfirmationLinkLabelMouseClicked
+        
+    }//GEN-LAST:event_bookingConfirmationLinkLabelMouseClicked
 
     private void resetBgColor() {
         //reset bg color of all buttons
@@ -1499,7 +1472,7 @@ public class MainForm extends javax.swing.JFrame implements MouseListener {//Mou
     private javax.swing.JPanel bookHotelsPanelButton;
     private javax.swing.JButton bookNowButton;
     private javax.swing.JPanel bookPanel;
-    private javax.swing.JLabel bookingConfirmationLinkLabel1;
+    private javax.swing.JLabel bookingConfirmationLinkLabel;
     private javax.swing.JPanel bookingOptionsPanel;
     private javax.swing.JButton changePasswordButton;
     private javax.swing.JDialog changePasswordDialog;
@@ -1511,7 +1484,6 @@ public class MainForm extends javax.swing.JFrame implements MouseListener {//Mou
     private custom.components.DatePanel checkOutDatePanel;
     private javax.swing.JLabel checkOutLabel;
     private javax.swing.JPasswordField confirmNewPasswordPF;
-    private javax.swing.JTextField confirmNewPasswordTF;
     private javax.swing.JPanel descriptionLabelContainerPanel;
     private javax.swing.JPanel descriptionPanel;
     private javax.swing.JScrollPane descriptionScrollPane;
@@ -1558,10 +1530,8 @@ public class MainForm extends javax.swing.JFrame implements MouseListener {//Mou
     private javax.swing.JLabel myProfileLabel;
     private javax.swing.JPanel myProfilePanel;
     private javax.swing.JPasswordField newPasswordPF;
-    private javax.swing.JTextField newPasswordTF;
     private javax.swing.JLabel numReviewsLabel;
     private javax.swing.JPasswordField oldPasswordPF;
-    private javax.swing.JTextField oldPasswordTF;
     private javax.swing.JPanel pastBookingsPanel;
     private javax.swing.JTextField pinCodeTF;
     private javax.swing.JSlider priceSlider;
@@ -1706,7 +1676,7 @@ public class MainForm extends javax.swing.JFrame implements MouseListener {//Mou
         hotelNameLabel.setText(des.getHotelName());
         numReviewsLabel.setText(des.getNumReviews() + " reviews");//TODO: add commas- as in "3,245" instead of "3245"
         hotelDetailsRatingLabel.setText(UIMethods.getRatingString(des.getStars()));
-        checkInLabel.setText(numOfRooms + " " + type + ", " + numOfGuest + " Guests");
+        bookingConfirmationLinkLabel.setText(numOfRooms + " " + type + ", " + numOfGuest + " Guests");
         totalPriceLabel.setText(des.getCost(type, numOfRooms, checkIn, checkOut) + "");
         descriptionTextArea.setText(des.getDescription());
         amenitiesTA.setText(des.getAmenities());
