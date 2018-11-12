@@ -5,6 +5,8 @@
  */
 package custom.components;
 
+import internal.BookedRooms;
+
 /**
  *
  * @author Sarthak
@@ -16,6 +18,16 @@ public class PastBookingListPanel extends javax.swing.JPanel {
      */
     public PastBookingListPanel() {
         initComponents();
+    }
+    
+    public PastBookingListPanel(BookedRooms booking){
+        initComponents();
+        checkInLabel.setText(booking.getCheckIn().toString());
+        checkOutLabel.setText(booking.getCheckIn().toString());
+        guestLabel.setText(String.valueOf(booking.getNumPeople()));
+        hotelNameLabel.setText(booking.getHotelName());
+        roomLabel.setText(booking.getRoomType());
+        
     }
 
     /**
@@ -33,7 +45,6 @@ public class PastBookingListPanel extends javax.swing.JPanel {
         checkOutLabel = new javax.swing.JLabel();
         guestLabel = new javax.swing.JLabel();
         roomLabel = new javax.swing.JLabel();
-        priceLabel = new javax.swing.JLabel();
         modifyButton = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(25, 25, 25));
@@ -99,18 +110,6 @@ public class PastBookingListPanel extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(5, 10, 5, 10);
         add(roomLabel, gridBagConstraints);
 
-        priceLabel.setFont(new java.awt.Font("Lato Black", 0, 28)); // NOI18N
-        priceLabel.setForeground(new java.awt.Color(255, 255, 255));
-        priceLabel.setText("Price");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
-        gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 1.0;
-        gridBagConstraints.insets = new java.awt.Insets(5, 10, 5, 10);
-        add(priceLabel, gridBagConstraints);
-
         modifyButton.setBackground(new java.awt.Color(59, 35, 59));
         modifyButton.setFont(new java.awt.Font("Lato", 0, 24)); // NOI18N
         modifyButton.setForeground(new java.awt.Color(255, 255, 255));
@@ -140,7 +139,6 @@ public class PastBookingListPanel extends javax.swing.JPanel {
     private javax.swing.JLabel guestLabel;
     private javax.swing.JLabel hotelNameLabel;
     private javax.swing.JButton modifyButton;
-    private javax.swing.JLabel priceLabel;
     private javax.swing.JLabel roomLabel;
     // End of variables declaration//GEN-END:variables
 }
