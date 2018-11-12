@@ -966,6 +966,9 @@
                 </Property>
                 <Property name="enabled" type="boolean" value="false"/>
               </Properties>
+              <Events>
+                <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="emailTFFocusGained"/>
+              </Events>
             </Component>
             <Container class="javax.swing.JPanel" name="titlePanelSettings">
               <Properties>
@@ -1027,6 +1030,9 @@
                 </Property>
                 <Property name="enabled" type="boolean" value="false"/>
               </Properties>
+              <Events>
+                <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="mobileTFFocusGained"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel12">
               <Properties>
@@ -1050,6 +1056,9 @@
                 </Property>
                 <Property name="enabled" type="boolean" value="false"/>
               </Properties>
+              <Events>
+                <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="pinCodeTFFocusGained"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel13">
               <Properties>

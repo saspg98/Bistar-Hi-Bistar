@@ -630,6 +630,11 @@ public class MainForm extends javax.swing.JFrame implements MouseListener {//Mou
         emailTF.setFont(new java.awt.Font("Lato", 0, 22)); // NOI18N
         emailTF.setDisabledTextColor(new java.awt.Color(51, 51, 51));
         emailTF.setEnabled(false);
+        emailTF.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                emailTFFocusGained(evt);
+            }
+        });
 
         titlePanelSettings.setBackground(new java.awt.Color(25, 25, 25));
         titlePanelSettings.setLayout(new java.awt.GridBagLayout());
@@ -654,6 +659,11 @@ public class MainForm extends javax.swing.JFrame implements MouseListener {//Mou
         mobileTF.setFont(new java.awt.Font("Lato", 0, 22)); // NOI18N
         mobileTF.setDisabledTextColor(new java.awt.Color(51, 51, 51));
         mobileTF.setEnabled(false);
+        mobileTF.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                mobileTFFocusGained(evt);
+            }
+        });
 
         jLabel12.setFont(new java.awt.Font("Lato Black", 0, 22)); // NOI18N
         jLabel12.setForeground(new java.awt.Color(255, 255, 255));
@@ -663,6 +673,11 @@ public class MainForm extends javax.swing.JFrame implements MouseListener {//Mou
         pinCodeTF.setFont(new java.awt.Font("Lato", 0, 22)); // NOI18N
         pinCodeTF.setDisabledTextColor(new java.awt.Color(51, 51, 51));
         pinCodeTF.setEnabled(false);
+        pinCodeTF.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                pinCodeTFFocusGained(evt);
+            }
+        });
 
         jLabel13.setFont(new java.awt.Font("Lato Black", 0, 22)); // NOI18N
         jLabel13.setForeground(new java.awt.Color(255, 255, 255));
@@ -1323,6 +1338,24 @@ public class MainForm extends javax.swing.JFrame implements MouseListener {//Mou
         // TODO add your handling code here:
     }//GEN-LAST:event_changePasswordOkButtonMouseClicked
 
+    private void emailTFFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_emailTFFocusGained
+        
+            emailTF.setForeground(Color.BLACK);
+            emailTF.setText("");
+    }//GEN-LAST:event_emailTFFocusGained
+
+    private void mobileTFFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_mobileTFFocusGained
+        
+            mobileTF.setForeground(Color.BLACK);
+            mobileTF.setText("");
+    }//GEN-LAST:event_mobileTFFocusGained
+
+    private void pinCodeTFFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_pinCodeTFFocusGained
+        
+            pinCodeTF.setForeground(Color.BLACK);
+            pinCodeTF.setText("");
+    }//GEN-LAST:event_pinCodeTFFocusGained
+
     private void resetBgColor() {
         //reset bg color of all buttons
         bookHotelsPanelButton.setBackground(defaultButtonColor);
@@ -1519,8 +1552,6 @@ public class MainForm extends javax.swing.JFrame implements MouseListener {//Mou
                 user.setPinCode(Integer.parseInt(pinCodeTF.getText().trim()));
 
                 Helper.updateUserProfile(user);
-
-                System.out.println("Saving.....Well, not really but ok");
 
                 return true;
             }
