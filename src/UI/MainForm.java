@@ -60,13 +60,16 @@ public class MainForm extends javax.swing.JFrame implements MouseListener {//Mou
         java.awt.GridBagConstraints gridBagConstraints;
 
         changePasswordDialog = new javax.swing.JDialog();
-        oldPasswordTF = new javax.swing.JTextField();
-        newPasswordTF = new javax.swing.JTextField();
-        confirmNewPasswordTF = new javax.swing.JTextField();
         changePasswordOkButton = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
+        oldPasswordPF = new javax.swing.JPasswordField();
+        confirmNewPasswordPF = new javax.swing.JPasswordField();
+        newPasswordPF = new javax.swing.JPasswordField();
+        oldPasswordTF = new javax.swing.JTextField();
+        newPasswordTF = new javax.swing.JTextField();
+        confirmNewPasswordTF = new javax.swing.JTextField();
         sidebar = new javax.swing.JPanel();
         body = new javax.swing.JPanel();
         bookHotelsPanelButton = new javax.swing.JPanel();
@@ -150,12 +153,6 @@ public class MainForm extends javax.swing.JFrame implements MouseListener {//Mou
         changePasswordDialog.setBackground(new java.awt.Color(204, 204, 204));
         changePasswordDialog.setMinimumSize(new java.awt.Dimension(638, 361));
 
-        oldPasswordTF.setFont(new java.awt.Font("Lato", 0, 24)); // NOI18N
-
-        newPasswordTF.setFont(new java.awt.Font("Lato", 0, 24)); // NOI18N
-
-        confirmNewPasswordTF.setFont(new java.awt.Font("Lato", 0, 24)); // NOI18N
-
         changePasswordOkButton.setFont(new java.awt.Font("Lato", 0, 30)); // NOI18N
         changePasswordOkButton.setText("OK");
         changePasswordOkButton.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
@@ -181,45 +178,49 @@ public class MainForm extends javax.swing.JFrame implements MouseListener {//Mou
             .addGroup(changePasswordDialogLayout.createSequentialGroup()
                 .addGap(41, 41, 41)
                 .addGroup(changePasswordDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(changePasswordDialogLayout.createSequentialGroup()
-                        .addComponent(jLabel4)
-                        .addGap(18, 18, 18)
-                        .addComponent(confirmNewPasswordTF))
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(changePasswordDialogLayout.createSequentialGroup()
                         .addGroup(changePasswordDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel4))
+                        .addGap(67, 67, 67)
                         .addGroup(changePasswordDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(oldPasswordTF)
-                            .addComponent(newPasswordTF, javax.swing.GroupLayout.DEFAULT_SIZE, 295, Short.MAX_VALUE))))
-                .addGap(27, 27, 27))
+                            .addComponent(oldPasswordPF)
+                            .addComponent(newPasswordPF)
+                            .addComponent(confirmNewPasswordPF, javax.swing.GroupLayout.DEFAULT_SIZE, 190, Short.MAX_VALUE))))
+                .addGap(82, 82, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, changePasswordDialogLayout.createSequentialGroup()
-                .addContainerGap(269, Short.MAX_VALUE)
+                .addContainerGap(268, Short.MAX_VALUE)
                 .addComponent(changePasswordOkButton, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(255, 255, 255))
+                .addGap(256, 256, 256))
         );
         changePasswordDialogLayout.setVerticalGroup(
             changePasswordDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(changePasswordDialogLayout.createSequentialGroup()
-                .addGap(34, 34, 34)
+                .addGap(38, 38, 38)
                 .addGroup(changePasswordDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(changePasswordDialogLayout.createSequentialGroup()
-                        .addGroup(changePasswordDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(oldPasswordTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(43, 43, 43)
-                        .addGroup(changePasswordDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(newPasswordTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(75, 75, 75))
-                    .addGroup(changePasswordDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(confirmNewPasswordTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel4)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
+                        .addGroup(changePasswordDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, changePasswordDialogLayout.createSequentialGroup()
+                                .addGroup(changePasswordDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(oldPasswordPF, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(48, 48, 48)
+                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(newPasswordPF, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(48, 48, 48)
+                        .addComponent(confirmNewPasswordPF, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
                 .addComponent(changePasswordOkButton, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(40, 40, 40))
+                .addGap(26, 26, 26))
         );
+
+        oldPasswordTF.setFont(new java.awt.Font("Lato", 0, 24)); // NOI18N
+
+        newPasswordTF.setFont(new java.awt.Font("Lato", 0, 24)); // NOI18N
+
+        confirmNewPasswordTF.setFont(new java.awt.Font("Lato", 0, 24)); // NOI18N
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("BISTAR HI BISTAR"); // NOI18N
@@ -1496,6 +1497,7 @@ public class MainForm extends javax.swing.JFrame implements MouseListener {//Mou
     private custom.components.DatePanel checkOutConfDatePanel;
     private custom.components.DatePanel checkOutDatePanel;
     private javax.swing.JLabel checkOutLabel;
+    private javax.swing.JPasswordField confirmNewPasswordPF;
     private javax.swing.JTextField confirmNewPasswordTF;
     private javax.swing.JPanel descriptionLabelContainerPanel;
     private javax.swing.JPanel descriptionPanel;
@@ -1542,8 +1544,10 @@ public class MainForm extends javax.swing.JFrame implements MouseListener {//Mou
     private javax.swing.JPanel myBookingsPanelButton;
     private javax.swing.JLabel myProfileLabel;
     private javax.swing.JPanel myProfilePanel;
+    private javax.swing.JPasswordField newPasswordPF;
     private javax.swing.JTextField newPasswordTF;
     private javax.swing.JLabel numReviewsLabel;
+    private javax.swing.JPasswordField oldPasswordPF;
     private javax.swing.JTextField oldPasswordTF;
     private javax.swing.JPanel pastBookingsPanel;
     private javax.swing.JTextField pinCodeTF;
