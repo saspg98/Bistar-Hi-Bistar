@@ -18,6 +18,13 @@ public class GuestRoomPanel extends javax.swing.JPanel {
         initComponents();
     }
 
+    public int getRooms(){
+        return (Integer)(roomSpinner.getValue());
+    }
+    
+    public int getGuests(){
+        return (Integer)(guestSpinner.getValue());
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -28,13 +35,20 @@ public class GuestRoomPanel extends javax.swing.JPanel {
     private void initComponents() {
         java.awt.GridBagConstraints gridBagConstraints;
 
+        guestPanel = new javax.swing.JPanel();
         jLabel17 = new javax.swing.JLabel();
-        jLabel16 = new javax.swing.JLabel();
         guestSpinner = new javax.swing.JSpinner();
+        roomPanel = new javax.swing.JPanel();
+        jLabel16 = new javax.swing.JLabel();
         roomSpinner = new javax.swing.JSpinner();
 
         setBackground(new java.awt.Color(25, 25, 25));
         setLayout(new java.awt.GridBagLayout());
+
+        guestPanel.setBackground(new java.awt.Color(25, 25, 25));
+        guestPanel.setMinimumSize(new java.awt.Dimension(260, 38));
+        guestPanel.setPreferredSize(new java.awt.Dimension(260, 38));
+        guestPanel.setLayout(new java.awt.GridBagLayout());
 
         jLabel17.setFont(new java.awt.Font("Lato Black", 0, 22)); // NOI18N
         jLabel17.setForeground(new java.awt.Color(255, 255, 255));
@@ -44,46 +58,63 @@ public class GuestRoomPanel extends javax.swing.JPanel {
         gridBagConstraints.gridy = 0;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        add(jLabel17, gridBagConstraints);
-
-        jLabel16.setFont(new java.awt.Font("Lato Black", 0, 22)); // NOI18N
-        jLabel16.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel16.setText("Number of Rooms");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 1.0;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        add(jLabel16, gridBagConstraints);
+        guestPanel.add(jLabel17, gridBagConstraints);
 
         guestSpinner.setFont(new java.awt.Font("Lato", 0, 22)); // NOI18N
         guestSpinner.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 0;
-        gridBagConstraints.weightx = 0.16;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        guestPanel.add(guestSpinner, gridBagConstraints);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
+        gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        add(guestSpinner, gridBagConstraints);
+        add(guestPanel, gridBagConstraints);
+
+        roomPanel.setBackground(new java.awt.Color(25, 25, 25));
+        roomPanel.setLayout(new java.awt.GridBagLayout());
+
+        jLabel16.setFont(new java.awt.Font("Lato Black", 0, 22)); // NOI18N
+        jLabel16.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel16.setText("Number of Rooms");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        roomPanel.add(jLabel16, gridBagConstraints);
 
         roomSpinner.setFont(new java.awt.Font("Lato", 0, 22)); // NOI18N
         roomSpinner.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1));
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 0;
-        gridBagConstraints.weightx = 0.16;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        roomPanel.add(roomSpinner, gridBagConstraints);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_END;
+        gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        add(roomSpinner, gridBagConstraints);
+        add(roomPanel, gridBagConstraints);
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel guestPanel;
     private javax.swing.JSpinner guestSpinner;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
+    private javax.swing.JPanel roomPanel;
     private javax.swing.JSpinner roomSpinner;
     // End of variables declaration//GEN-END:variables
 }
