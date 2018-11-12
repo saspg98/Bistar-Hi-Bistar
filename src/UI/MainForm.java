@@ -1230,18 +1230,7 @@ public class MainForm extends javax.swing.JFrame implements MouseListener {//Mou
         //TODO: Get all the relevant details from the given fields and return array of HotelListItemPanel objects
 
         HotelListItemPanel results[];
-        //dummy code starts
-        //dummy result array
-        String hotelName = "Hotel Reshma";
-        String[] roomTypes = {"Reshma Ka", "Savita ka", "Phuljadi ka", "Lalu ka"};
-        double[] prices = {3000, 2500, 1500, -200};
-        int stars = 3;
-        resultList = new HotelListItemPanel[60];
-        for (int i = 0; i < 60; i++) {
-            resultList[i] = new HotelListItemPanel(new HotelDesc(hotelName, roomTypes, prices, stars, 2345, "Bada sa description", "Wi-Fi"), this, i);
-        }
 
-        //dummy code ends
         //TODO: Uncoment!
         /*HotelDesc[] list = searchAndReturnHotelList(makeBookingConstraints());
         resultList = new HotelListItemPanel[list.length];
@@ -1668,7 +1657,7 @@ public class MainForm extends javax.swing.JFrame implements MouseListener {//Mou
         hotelDetailsRatingLabel.setText(UIMethods.getRatingString(des.getStars()));
         bookingConfirmationLinkLabel.setText(numOfRooms + " " + type + ", " + numOfGuest + " Guests");
         totalPriceLabel.setText(des.getCost(type, numOfRooms, checkIn, checkOut) + "");
-        descriptionTabbedPanel1.setDescription(des.getDescription(), des.getAmenities(), des.getStars());
+        descriptionTabbedPanel1.setDescription(des.getDescription(), des.getHotelAmenities(), des.getStars());
 
     }
 
