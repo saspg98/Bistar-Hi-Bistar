@@ -21,6 +21,7 @@ import verifyingTools.Verify;
 import bridge.Helper;
 import custom.components.PastBookingListPanel;
 import internal.BookedRooms;
+import internal.BookingConstraints;
 import internal.DialogActionListener;
 import java.awt.Dialog;
 import java.awt.event.FocusEvent;
@@ -93,7 +94,7 @@ public class MainForm extends javax.swing.JFrame implements MouseListener {//Mou
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         priceSlider = new javax.swing.JSlider();
-        locationComboBox = new javax.swing.JComboBox<>();
+        locationCB = new javax.swing.JComboBox<>();
         roomPanel = new javax.swing.JPanel();
         roomScrollPane = new javax.swing.JScrollPane();
         roomListPanel = new javax.swing.JPanel();
@@ -105,7 +106,7 @@ public class MainForm extends javax.swing.JFrame implements MouseListener {//Mou
         jLabel20 = new javax.swing.JLabel();
         checkInDatePanel = new custom.components.DatePanel();
         checkOutDatePanel = new custom.components.DatePanel();
-        guestRoomPanel1 = new custom.components.GuestRoomPanel();
+        bookGuestRoomPanel = new custom.components.GuestRoomPanel();
         myProfilePanel = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
@@ -458,11 +459,11 @@ public class MainForm extends javax.swing.JFrame implements MouseListener {//Mou
             }
         });
 
-        locationComboBox.setFont(new java.awt.Font("Lato", 0, 22)); // NOI18N
-        locationComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Gondwa", "Thane", "Awadh" }));
-        locationComboBox.addActionListener(new java.awt.event.ActionListener() {
+        locationCB.setFont(new java.awt.Font("Lato", 0, 22)); // NOI18N
+        locationCB.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Gondwa", "Thane", "Awadh" }));
+        locationCB.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                locationComboBoxActionPerformed(evt);
+                locationCBActionPerformed(evt);
             }
         });
 
@@ -550,10 +551,10 @@ public class MainForm extends javax.swing.JFrame implements MouseListener {//Mou
                             .addGroup(bookPanelLayout.createSequentialGroup()
                                 .addComponent(jLabel9)
                                 .addGap(75, 75, 75)
-                                .addComponent(locationComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(locationCB, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(322, 469, Short.MAX_VALUE))
                             .addGroup(bookPanelLayout.createSequentialGroup()
-                                .addComponent(guestRoomPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 531, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(bookGuestRoomPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 531, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(48, 48, 48)
                                 .addComponent(goButton)
                                 .addGap(0, 0, Short.MAX_VALUE)))
@@ -583,11 +584,11 @@ public class MainForm extends javax.swing.JFrame implements MouseListener {//Mou
                 .addGap(18, 18, 18)
                 .addGroup(bookPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel9)
-                    .addComponent(locationComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(locationCB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(19, 19, 19)
                 .addGroup(bookPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(goButton)
-                    .addComponent(guestRoomPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(bookGuestRoomPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(bookPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(bookPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -813,7 +814,7 @@ public class MainForm extends javax.swing.JFrame implements MouseListener {//Mou
         gridBagConstraints.insets = new java.awt.Insets(9, 9, 9, 9);
         pastBookingsPanel.add(titlePanelMyBookings, gridBagConstraints);
 
-        bookingListPanel.setBackground(new java.awt.Color(25, 25, 25));
+        bookingListPanel.setBackground(new java.awt.Color(24, 24, 24));
 
         javax.swing.GroupLayout bookingListPanelLayout = new javax.swing.GroupLayout(bookingListPanel);
         bookingListPanel.setLayout(bookingListPanelLayout);
@@ -1211,9 +1212,9 @@ public class MainForm extends javax.swing.JFrame implements MouseListener {//Mou
         logout();
     }//GEN-LAST:event_logoutLinkLabelMouseClicked
 
-    private void locationComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_locationComboBoxActionPerformed
+    private void locationCBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_locationCBActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_locationComboBoxActionPerformed
+    }//GEN-LAST:event_locationCBActionPerformed
 
     private void priceSliderStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_priceSliderStateChanged
         priceSpinner.setValue(priceSlider.getValue());
@@ -1241,6 +1242,13 @@ public class MainForm extends javax.swing.JFrame implements MouseListener {//Mou
         }
 
         //dummy code ends
+        //TODO: Uncoment!
+        /*HotelDesc[] list = searchAndReturnHotelList(makeBookingConstraints());
+        resultList = new HotelListItemPanel[list.length];
+        for (int i = 0; i < list.length; i++) {
+        resultList[i] = new HotelListItemPanel(list[i]), this, i);
+        }*/
+        
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.anchor = GridBagConstraints.FIRST_LINE_START;
         gbc.fill = GridBagConstraints.HORIZONTAL;
@@ -1449,6 +1457,7 @@ public class MainForm extends javax.swing.JFrame implements MouseListener {//Mou
     private javax.swing.JLabel backLabel;
     private javax.swing.JPanel backPanel;
     private javax.swing.JPanel body;
+    private custom.components.GuestRoomPanel bookGuestRoomPanel;
     private javax.swing.JLabel bookHotelsLabel;
     private javax.swing.JPanel bookHotelsPanelButton;
     private javax.swing.JButton bookNowButton;
@@ -1475,7 +1484,6 @@ public class MainForm extends javax.swing.JFrame implements MouseListener {//Mou
     private javax.swing.JTextField fNameTF;
     private javax.swing.JButton goButton;
     private custom.components.GuestRoomDialogPanel guestRoomDialogPanel2;
-    private custom.components.GuestRoomPanel guestRoomPanel1;
     private javax.swing.JLabel headingLabel;
     private javax.swing.JPanel hotelDetailsOptionsBottomPanel;
     private javax.swing.JPanel hotelDetailsPanel;
@@ -1502,7 +1510,7 @@ public class MainForm extends javax.swing.JFrame implements MouseListener {//Mou
     private javax.swing.JLabel jLabel9;
     private javax.swing.JTextField lNameTF;
     private javax.swing.JComboBox<String> listTypeCB;
-    private javax.swing.JComboBox<String> locationComboBox;
+    private javax.swing.JComboBox<String> locationCB;
     private javax.swing.JLabel logoutLinkLabel;
     private javax.swing.JPanel mainPanel;
     private javax.swing.JTextField mobileTF;
@@ -1693,6 +1701,17 @@ public class MainForm extends javax.swing.JFrame implements MouseListener {//Mou
         bookingListPanel.revalidate();
         bookingListPanel.repaint();
         
+    }
+
+    private BookingConstraints makeBookingConstraints() {
+     double price = (Double)(priceSpinner.getValue());
+     String loc =locationCB.getSelectedItem().toString();
+     int g = bookGuestRoomPanel.getGuests();
+     int r = bookGuestRoomPanel.getRooms();
+     LocalDate checkIn = checkInDatePanel.getDate();
+     LocalDate checkOut = checkOutDatePanel.getDate();
+     System.out.println("WARNING! CHOOSING ROOM TYPE Executive Room HERE, ALSO, SETTING HOTEL NAME \"Random\" here");
+     return new BookingConstraints("RANDOM", "Executive Room", price, r, loc, checkIn, checkOut);
     }
 
     

@@ -166,7 +166,7 @@ public class DatePanel extends javax.swing.JPanel implements ItemListener {
         monthCB = new javax.swing.JComboBox<>();
         yearCB = new javax.swing.JComboBox<>();
 
-        setBackground(new java.awt.Color(36, 119, 119));
+        setBackground(new java.awt.Color(25, 25, 25));
         setLayout(new java.awt.GridBagLayout());
 
         dateCB.setFont(new java.awt.Font("Lato", 0, 24)); // NOI18N

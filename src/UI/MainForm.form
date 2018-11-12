@@ -515,11 +515,11 @@
                                   <Group type="102" attributes="0">
                                       <Component id="jLabel9" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace min="-2" pref="75" max="-2" attributes="0"/>
-                                      <Component id="locationComboBox" min="-2" pref="212" max="-2" attributes="0"/>
+                                      <Component id="locationCB" min="-2" pref="212" max="-2" attributes="0"/>
                                       <EmptySpace min="322" pref="469" max="32767" attributes="0"/>
                                   </Group>
                                   <Group type="102" alignment="0" attributes="0">
-                                      <Component id="guestRoomPanel1" min="-2" pref="531" max="-2" attributes="0"/>
+                                      <Component id="bookGuestRoomPanel" min="-2" pref="531" max="-2" attributes="0"/>
                                       <EmptySpace min="-2" pref="48" max="-2" attributes="0"/>
                                       <Component id="goButton" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
@@ -560,12 +560,12 @@
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel9" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="locationComboBox" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="locationCB" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="goButton" min="-2" max="-2" attributes="0"/>
-                          <Component id="guestRoomPanel1" min="-2" max="-2" attributes="0"/>
+                          <Component id="bookGuestRoomPanel" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="1" attributes="0">
@@ -621,7 +621,7 @@
                 <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="priceSliderStateChanged"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JComboBox" name="locationComboBox">
+            <Component class="javax.swing.JComboBox" name="locationCB">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Lato" size="22" style="0"/>
@@ -635,7 +635,7 @@
                 </Property>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="locationComboBoxActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="locationCBActionPerformed"/>
               </Events>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
@@ -770,7 +770,7 @@
                 </Property>
               </Properties>
             </Component>
-            <Component class="custom.components.GuestRoomPanel" name="guestRoomPanel1">
+            <Component class="custom.components.GuestRoomPanel" name="bookGuestRoomPanel">
             </Component>
           </SubComponents>
         </Container>
@@ -1154,7 +1154,7 @@
             <Container class="javax.swing.JPanel" name="bookingListPanel">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="19" green="19" red="19" type="rgb"/>
+                  <Color blue="18" green="18" red="18" type="rgb"/>
                 </Property>
               </Properties>
               <Constraints>
