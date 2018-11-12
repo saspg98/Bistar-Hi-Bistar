@@ -169,8 +169,8 @@
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
-              <JTabbedPaneConstraints tabName="tab4">
-                <Property name="tabTitle" type="java.lang.String" value="tab4"/>
+              <JTabbedPaneConstraints tabName="Reviews">
+                <Property name="tabTitle" type="java.lang.String" value="Reviews"/>
               </JTabbedPaneConstraints>
             </Constraint>
           </Constraints>
@@ -208,7 +208,7 @@
 
               <Layout class="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout"/>
               <SubComponents>
-                <Component class="javax.swing.JLabel" name="totalRatingLabel">
+                <Component class="javax.swing.JLabel" name="ratingDistributionLabel">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Lato Black" size="24" style="0"/>
@@ -224,7 +224,7 @@
                     </Constraint>
                   </Constraints>
                 </Component>
-                <Component class="javax.swing.JLabel" name="ratingDistributionLabel">
+                <Component class="javax.swing.JLabel" name="overallRatingLabel">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Lato Black" size="72" style="0"/>

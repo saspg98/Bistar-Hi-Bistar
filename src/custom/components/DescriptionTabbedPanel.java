@@ -17,6 +17,14 @@ public class DescriptionTabbedPanel extends javax.swing.JPanel {
     public DescriptionTabbedPanel() {
         initComponents();
     }
+    
+    public void setDescription(String des, String amen, int rating){
+        descriptionTextArea.setText(des);
+        amenitiesTA.setText(amen);
+        //add support for rating
+        //dummy
+        
+    }
 
     //ADD THIS TO MAIN
     /*  JLabel lab = new JLabel();
@@ -36,8 +44,8 @@ public class DescriptionTabbedPanel extends javax.swing.JPanel {
         amenitiesTA = new javax.swing.JTextArea();
         reviewsTabPanel = new javax.swing.JPanel();
         reviewsPanel = new javax.swing.JPanel();
-        totalRatingLabel = new javax.swing.JLabel();
         ratingDistributionLabel = new javax.swing.JLabel();
+        overallRatingLabel = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(25, 25, 25));
         setLayout(new java.awt.GridBagLayout());
@@ -108,9 +116,9 @@ public class DescriptionTabbedPanel extends javax.swing.JPanel {
         reviewsPanel.setForeground(new java.awt.Color(255, 255, 255));
         reviewsPanel.setLayout(new java.awt.GridBagLayout());
 
-        totalRatingLabel.setFont(new java.awt.Font("Lato Black", 0, 24)); // NOI18N
-        totalRatingLabel.setForeground(new java.awt.Color(255, 255, 255));
-        totalRatingLabel.setText("Excellent(3),Good(2),Poor(18),Average(87)");
+        ratingDistributionLabel.setFont(new java.awt.Font("Lato Black", 0, 24)); // NOI18N
+        ratingDistributionLabel.setForeground(new java.awt.Color(255, 255, 255));
+        ratingDistributionLabel.setText("Excellent(3),Good(2),Poor(18),Average(87)");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 1;
@@ -118,12 +126,12 @@ public class DescriptionTabbedPanel extends javax.swing.JPanel {
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        reviewsPanel.add(totalRatingLabel, gridBagConstraints);
+        reviewsPanel.add(ratingDistributionLabel, gridBagConstraints);
 
-        ratingDistributionLabel.setFont(new java.awt.Font("Lato Black", 0, 72)); // NOI18N
-        ratingDistributionLabel.setForeground(new java.awt.Color(255, 255, 255));
-        ratingDistributionLabel.setText("Rating(4.3)");
-        ratingDistributionLabel.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        overallRatingLabel.setFont(new java.awt.Font("Lato Black", 0, 72)); // NOI18N
+        overallRatingLabel.setForeground(new java.awt.Color(255, 255, 255));
+        overallRatingLabel.setText("Rating(4.3)");
+        overallRatingLabel.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
@@ -132,7 +140,7 @@ public class DescriptionTabbedPanel extends javax.swing.JPanel {
         gridBagConstraints.anchor = java.awt.GridBagConstraints.LAST_LINE_END;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 2.0;
-        reviewsPanel.add(ratingDistributionLabel, gridBagConstraints);
+        reviewsPanel.add(overallRatingLabel, gridBagConstraints);
 
         javax.swing.GroupLayout reviewsTabPanelLayout = new javax.swing.GroupLayout(reviewsTabPanel);
         reviewsTabPanel.setLayout(reviewsTabPanelLayout);
@@ -151,7 +159,7 @@ public class DescriptionTabbedPanel extends javax.swing.JPanel {
                 .addContainerGap(255, Short.MAX_VALUE))
         );
 
-        jTabbedPane1.addTab("tab4", reviewsTabPanel);
+        jTabbedPane1.addTab("Reviews", reviewsTabPanel);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
@@ -170,9 +178,9 @@ public class DescriptionTabbedPanel extends javax.swing.JPanel {
     private javax.swing.JScrollPane descriptionScrollPane;
     private javax.swing.JTextArea descriptionTextArea;
     private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JLabel overallRatingLabel;
     private javax.swing.JLabel ratingDistributionLabel;
     private javax.swing.JPanel reviewsPanel;
     private javax.swing.JPanel reviewsTabPanel;
-    private javax.swing.JLabel totalRatingLabel;
     // End of variables declaration//GEN-END:variables
 }

@@ -19,6 +19,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import verifyingTools.Verify;
 import bridge.Helper;
+import custom.components.PastBookingListPanel;
+import internal.BookedRooms;
 import internal.DialogActionListener;
 import java.awt.Dialog;
 import java.awt.event.FocusEvent;
@@ -146,13 +148,7 @@ public class MainForm extends javax.swing.JFrame implements MouseListener {//Mou
         checkOutLabel = new javax.swing.JLabel();
         descriptionPanel = new javax.swing.JPanel();
         headingLabel = new javax.swing.JLabel();
-        descriptionLabelContainerPanel = new javax.swing.JPanel();
-        descriptionScrollPane = new javax.swing.JScrollPane();
-        descriptionTextArea = new javax.swing.JTextArea();
-        amenitiesPanel = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        amenitiesTAScrollPane = new javax.swing.JScrollPane();
-        amenitiesTA = new javax.swing.JTextArea();
+        descriptionTabbedPanel1 = new custom.components.DescriptionTabbedPanel();
         backPanel = new javax.swing.JPanel();
         backLabel = new javax.swing.JLabel();
 
@@ -837,6 +833,11 @@ public class MainForm extends javax.swing.JFrame implements MouseListener {//Mou
 
         listTypeCB.setFont(new java.awt.Font("Lato Black", 0, 30)); // NOI18N
         listTypeCB.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Confirmed Bookings", "Waiting List", "Previous Bookings" }));
+        listTypeCB.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                listTypeCBItemStateChanged(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
@@ -1055,85 +1056,14 @@ public class MainForm extends javax.swing.JFrame implements MouseListener {//Mou
         gridBagConstraints.weightx = 2.0;
         gridBagConstraints.weighty = 1.0;
         descriptionPanel.add(headingLabel, gridBagConstraints);
-
-        descriptionLabelContainerPanel.setBackground(new java.awt.Color(25, 25, 25));
-        descriptionLabelContainerPanel.setLayout(new java.awt.GridBagLayout());
-
-        descriptionScrollPane.setBackground(new java.awt.Color(25, 25, 25));
-        descriptionScrollPane.setBorder(null);
-        descriptionScrollPane.setForeground(new java.awt.Color(255, 255, 255));
-
-        descriptionTextArea.setEditable(false);
-        descriptionTextArea.setBackground(new java.awt.Color(25, 25, 25));
-        descriptionTextArea.setColumns(20);
-        descriptionTextArea.setFont(new java.awt.Font("Lato", 0, 24)); // NOI18N
-        descriptionTextArea.setForeground(new java.awt.Color(255, 255, 255));
-        descriptionTextArea.setLineWrap(true);
-        descriptionTextArea.setRows(5);
-        descriptionTextArea.setTabSize(4);
-        descriptionTextArea.setText("The InterContinental Mauritius Resort Balaclava Fort is located on one of the most pristine stretches of beach overlooking Balaclava, Mauritius. Offering 210 well-appointed rooms including 10 presidential suites, 40 family-type, 20 Jacuzzi rooms and 140 Deluxe rooms. Facilities include: 3 bars, 5 restaurants, 2 swimming pools ( all heated in winter ), 8 massage rooms, a unique private island, Planet Trekkers kids club, recreational activities, tennis court, 4 meeting rooms & 1 ballroom.");
-        descriptionTextArea.setWrapStyleWord(true);
-        descriptionScrollPane.setViewportView(descriptionTextArea);
-
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 1.0;
-        descriptionLabelContainerPanel.add(descriptionScrollPane, gridBagConstraints);
-
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridwidth = 2;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 3.0;
-        descriptionPanel.add(descriptionLabelContainerPanel, gridBagConstraints);
-
-        amenitiesPanel.setBackground(new java.awt.Color(25, 25, 25));
-        amenitiesPanel.setLayout(new java.awt.GridBagLayout());
-
-        jLabel1.setFont(new java.awt.Font("Lato", 0, 24)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(188, 188, 188));
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Amenities");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.FIRST_LINE_START;
-        gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 1.0;
-        amenitiesPanel.add(jLabel1, gridBagConstraints);
-
-        amenitiesTAScrollPane.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-
-        amenitiesTA.setEditable(false);
-        amenitiesTA.setBackground(new java.awt.Color(25, 25, 25));
-        amenitiesTA.setColumns(20);
-        amenitiesTA.setFont(new java.awt.Font("Lato", 0, 24)); // NOI18N
-        amenitiesTA.setForeground(new java.awt.Color(188, 188, 188));
-        amenitiesTA.setLineWrap(true);
-        amenitiesTA.setRows(5);
-        amenitiesTA.setText("Business Centre with Internet Access\nFitness Centre with Gym / Workout Room\nFree High Speed Internet (WiFi)\nChildren Activities (Kid / Family Friendly)\nWheelchair Access\nSpa\nPool\nRoom Service");
-        amenitiesTA.setWrapStyleWord(true);
-        amenitiesTAScrollPane.setViewportView(amenitiesTA);
-
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.FIRST_LINE_START;
-        gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 3.0;
-        amenitiesPanel.add(amenitiesTAScrollPane, gridBagConstraints);
-
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 3.0;
-        descriptionPanel.add(amenitiesPanel, gridBagConstraints);
+        gridBagConstraints.weightx = 2.0;
+        gridBagConstraints.weighty = 4.0;
+        descriptionPanel.add(descriptionTabbedPanel1, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -1215,6 +1145,8 @@ public class MainForm extends javax.swing.JFrame implements MouseListener {//Mou
         resetBgColor();
         UIMethods.setSelectedPanelButton(myBookingsPanelButton, myBookingsLabel);
         isSelected[1] = true;
+        
+        //loadBookings();
     }//GEN-LAST:event_myBookingsPanelButtonMouseClicked
 
     private void bookHotelsPanelButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bookHotelsPanelButtonMouseClicked
@@ -1418,6 +1350,23 @@ public class MainForm extends javax.swing.JFrame implements MouseListener {//Mou
             changeGuestRoomDialog.setVisible(true);
     }//GEN-LAST:event_bookingConfirmationLinkLabelMouseClicked
 
+    private void listTypeCBItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_listTypeCBItemStateChanged
+        if(listTypeCB.getSelectedIndex()>0 && isSelected[1]){
+            switch(listTypeCB.getSelectedIndex()){
+            
+                case 0:
+                    //loadBookings(PastBookingListPanel.CONFIRMED);
+                    break;
+                case 1:
+                    //loadBookings(PastBookingListPanel.WAIT_LIST);
+                    break;    
+                case 2:
+                    //loadBookings(PastBookingListPanel.PREVIOUS);
+                    break;    
+            }
+        }
+    }//GEN-LAST:event_listTypeCBItemStateChanged
+
     private void resetBgColor() {
         //reset bg color of all buttons
         bookHotelsPanelButton.setBackground(defaultButtonColor);
@@ -1488,9 +1437,6 @@ public class MainForm extends javax.swing.JFrame implements MouseListener {//Mou
     private boolean isEditing = false;//state of the edit button in the settings panel
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField addTF;
-    private javax.swing.JPanel amenitiesPanel;
-    private javax.swing.JTextArea amenitiesTA;
-    private javax.swing.JScrollPane amenitiesTAScrollPane;
     private javax.swing.JLabel backLabel;
     private javax.swing.JPanel backPanel;
     private javax.swing.JPanel body;
@@ -1512,10 +1458,8 @@ public class MainForm extends javax.swing.JFrame implements MouseListener {//Mou
     private custom.components.DatePanel checkOutDatePanel;
     private javax.swing.JLabel checkOutLabel;
     private javax.swing.JPasswordField confirmNewPasswordPF;
-    private javax.swing.JPanel descriptionLabelContainerPanel;
     private javax.swing.JPanel descriptionPanel;
-    private javax.swing.JScrollPane descriptionScrollPane;
-    private javax.swing.JTextArea descriptionTextArea;
+    private custom.components.DescriptionTabbedPanel descriptionTabbedPanel1;
     private javax.swing.JTextField dobTF;
     private javax.swing.JButton editButton;
     private javax.swing.JTextField emailTF;
@@ -1531,7 +1475,6 @@ public class MainForm extends javax.swing.JFrame implements MouseListener {//Mou
     private javax.swing.JLabel hotelNameLabel;
     private javax.swing.JPanel hotelTitlePanel;
     private javax.swing.JPanel imagePanel;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
@@ -1708,9 +1651,39 @@ public class MainForm extends javax.swing.JFrame implements MouseListener {//Mou
         hotelDetailsRatingLabel.setText(UIMethods.getRatingString(des.getStars()));
         bookingConfirmationLinkLabel.setText(numOfRooms + " " + type + ", " + numOfGuest + " Guests");
         totalPriceLabel.setText(des.getCost(type, numOfRooms, checkIn, checkOut) + "");
-        descriptionTextArea.setText(des.getDescription());
-        amenitiesTA.setText(des.getAmenities());
+        descriptionTabbedPanel1.setDescription(des.getDescription(), des.getAmenities(), des.getStars());
 
+    }
+
+    private void loadBookings() {
+        loadBookings(PastBookingListPanel.CONFIRMED);
+        
+    }
+    
+    private void loadBookings(String type) {
+        //dummycode
+        //getConfirmedBookingsFromDatabase
+        PastBookingListPanel[] list = UIMethods.createBookingListPanels(new BookedRooms[1],type);
+        
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.anchor = GridBagConstraints.FIRST_LINE_START;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        gbc.weightx = 1.0;
+        gbc.weighty = 0.2;
+
+        bookingListPanel.removeAll();
+        bookingListPanel.revalidate();
+        bookingListPanel.repaint();
+        for (int i = 0; i < resultList.length; i++) {
+            gbc.gridy = i;
+            bookingListPanel.add(list[i], gbc);
+        }
+        //TODO: see if revalidate() can/should be removed
+        bookingListPanel.revalidate();
+        bookingListPanel.repaint();
+        
     }
 
     
