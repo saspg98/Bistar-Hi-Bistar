@@ -36,6 +36,7 @@ public class MainForm extends javax.swing.JFrame implements MouseListener {//Mou
     private int numOfGuest;
     private LocalDate checkIn;
     private LocalDate checkOut;
+    private static long NUMBER_OF_FUTURE_YEARS=4;
 
     /**
      * Creates new form Main
@@ -1389,6 +1390,10 @@ public class MainForm extends javax.swing.JFrame implements MouseListener {//Mou
         roomScrollPane.getVerticalScrollBar().setUnitIncrement(15);
         backLabel.setText("\u2190");//setting the back button unicode
 
+        //setting up the date panels
+        checkInDatePanel.setMinDate(LocalDate.now());
+        checkInDatePanel.setMaxDate(LocalDate.now().plusYears(NUMBER_OF_FUTURE_YEARS));
+        
         //Personalizing
         personalize();
 
