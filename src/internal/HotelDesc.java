@@ -4,6 +4,7 @@
 package internal;
 
 import java.sql.Date;
+import java.time.LocalDate;
 
 /**
  *
@@ -76,7 +77,7 @@ public class HotelDesc {
     
     
     //TODO: COMPLETE METHOD! DUMMY BODY
-    public double getCost(String type, int rooms, Date checkIn, Date checkOut){
+    public double getCost(String type, int rooms, LocalDate checkIn, LocalDate checkOut){
         return 3450;
     }
     
