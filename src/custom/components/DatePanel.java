@@ -15,22 +15,27 @@ import java.time.LocalDate;
  * @author Pranek
  */
 public class DatePanel extends javax.swing.JPanel implements ActionListener {
-    int count=0;
+    private int count=0;
+    private LocalDate minDate = LocalDate.of(1900, 1, 1);
+    private LocalDate maxDate = LocalDate.now();
     /**
      * Creates new form Datepanel
      */
-    public DatePanel() {//"this" is passed in the constructor, check if it would cause problems
+    public DatePanel() {
+
+    //"this" is passed in the constructor, check if it would cause problems
         initComponents();
         dateCB.addActionListener(this);
         monthCB.addActionListener(this);
         yearCB.addActionListener(this);
+        setDate(maxDate);
        
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {//NOTE: Take care !! An infinite chain of events may ensue!!
         System.out.println("ActionPerform called in DatePanel for the "+ ++count +"th time!");
-        
+        //Checking basic calender constraints
         if(Integer.parseInt((String) dateCB.getSelectedItem())>28 && Month.valueOf((String) monthCB.getSelectedItem()).equals(Month.Feb)){
             if(Integer.parseInt((String) yearCB.getSelectedItem())%4==0)
                 dateCB.setSelectedIndex(dateCB.getItemCount()-3);
@@ -47,6 +52,15 @@ public class DatePanel extends javax.swing.JPanel implements ActionListener {
                    
             }
         }
+    
+    
+        //checking min and max date constraints
+        if(getDate().isBefore(minDate))
+            setDate(minDate);
+        if(getDate().isAfter(maxDate))
+            setDate(maxDate);
+    
+    
     }
     
     private enum Month{//barebones enum for quickly getting int value of Month
@@ -80,6 +94,38 @@ public class DatePanel extends javax.swing.JPanel implements ActionListener {
        
        return LocalDate.of(year,month,dayOfMonth);
     }
+    
+    public void setDate(LocalDate date){
+        dateCB.setSelectedIndex(date.getDayOfMonth()-1);
+        monthCB.setSelectedIndex(date.getMonthValue()-1);
+        yearCB.setSelectedItem(date.getYear());
+    }
+
+    public void setMinDate(LocalDate minDate) {
+        this.minDate = minDate;
+        //only changing model of JComboBox for yearCB
+        if(this.minDate.isBefore(maxDate)){//only update model if it is possible
+           updateYearModel();
+        }
+    }
+
+    public void setMaxDate(LocalDate maxDate) {
+        this.maxDate = maxDate;
+         //only changing model of JComboBox for yearCB
+        if(minDate.isBefore(this.maxDate)){//only update model if it is possible
+           updateYearModel();
+        }
+    }
+    
+    private void updateYearModel(){
+         yearCB.removeAllItems();
+         for(int i = minDate.getYear();i<=maxDate.getYear();i++){
+             System.out.println("Adding year " + i + " to the year combobox");
+             yearCB.addItem(String.valueOf(i));
+         }
+         
+    }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
