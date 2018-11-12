@@ -26,7 +26,7 @@ public class DatePanel extends javax.swing.JPanel implements ItemListener {
      * Creates new form Datepanel
      */
     public DatePanel() {
-        System.out.println("Constructor called!");
+        
         initComponents();
         
         this.yearModel = new ArrayList<>();
@@ -50,8 +50,7 @@ public class DatePanel extends javax.swing.JPanel implements ItemListener {
     @Override
     public void itemStateChanged(ItemEvent e) {
         if (yearCB.getSelectedItem()!=null) {
-            System.out.println(e.toString());
-            System.out.println("ActionPerform called in DatePanel for the " + ++count + "th time!");
+            
             //Checking basic calender constraints
             if (Integer.parseInt((String) dateCB.getSelectedItem()) > 28 && Month.valueOf((String) monthCB.getSelectedItem()).equals(Month.Feb)) {
                 if (Integer.parseInt((String) yearCB.getSelectedItem()) % 4 == 0) {
@@ -109,8 +108,7 @@ public class DatePanel extends javax.swing.JPanel implements ItemListener {
     }
     
     public LocalDate getDate(){
-        System.out.println(" Get date Called !!\n\tDay of month is "+ ((String) dateCB.getSelectedItem()) + "\n\tmonth is " 
-                + ((String) monthCB.getSelectedItem()) + "\n\tyear is :" + ((String)yearCB.getSelectedItem()));
+       
        int dayOfMonth = Integer.parseInt((String) dateCB.getSelectedItem());
        int month = Month.valueOf((String) monthCB.getSelectedItem()).getValue();
        int year = Integer.parseInt((String)yearCB.getSelectedItem());
@@ -119,7 +117,7 @@ public class DatePanel extends javax.swing.JPanel implements ItemListener {
     }
     
     public void setDate(LocalDate date){
-        System.out.println("setDate called with date " + date.toString());
+       
         dateCB.setSelectedIndex(date.getDayOfMonth()-1);
         monthCB.setSelectedIndex(date.getMonthValue()-1);
         yearCB.setSelectedIndex(yearModel.indexOf(date.getYear()));
@@ -145,7 +143,7 @@ public class DatePanel extends javax.swing.JPanel implements ItemListener {
          yearCB.removeAllItems();
          yearModel.clear();
          for(int i = minDate.getYear();i<=maxDate.getYear();i++){
-             System.out.println("Adding year " + i + " to the year combobox");
+             
              yearCB.addItem(String.valueOf(i));
              yearModel.add(i);
          }
