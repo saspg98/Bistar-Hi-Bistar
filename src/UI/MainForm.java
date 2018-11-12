@@ -14,12 +14,12 @@ import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.sql.Date;
 import javax.swing.BorderFactory;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import verifyingTools.Verify;
 import bridge.Helper;
+import java.time.LocalDate;
 import javax.swing.JOptionPane;
 
 /**
@@ -34,14 +34,15 @@ public class MainForm extends javax.swing.JFrame implements MouseListener {//Mou
     private static final String STAR = "\u2605";
     private int numOfRooms;
     private int numOfGuest;
-    private Date checkIn;
-    private Date checkOut;
+    private LocalDate checkIn;
+    private LocalDate checkOut;
+    private static long NUMBER_OF_FUTURE_YEARS=4;
+
     /**
      * Creates new form Main
      */
 
-    
-    public MainForm(User user, LoginForm l){
+    public MainForm(User user, LoginForm l) {
         this.user = user;
         initComponents();
         startupCode();
@@ -61,8 +62,8 @@ public class MainForm extends javax.swing.JFrame implements MouseListener {//Mou
         changePasswordDialog = new javax.swing.JDialog();
         oldPasswordTF = new javax.swing.JTextField();
         newPasswordTF = new javax.swing.JTextField();
-        cNewPasswordTF = new javax.swing.JTextField();
-        ok1Button = new javax.swing.JButton();
+        confirmNewPasswordTF = new javax.swing.JTextField();
+        changePasswordOkButton = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -129,10 +130,14 @@ public class MainForm extends javax.swing.JFrame implements MouseListener {//Mou
         imagePanel = new javax.swing.JPanel();
         hotelImageLabel = new javax.swing.JLabel();
         bookingOptionsPanel = new javax.swing.JPanel();
-        bookingConfirmationLinkLabel = new javax.swing.JLabel();
+        checkInLabel = new javax.swing.JLabel();
         totalPriceLabel = new javax.swing.JLabel();
         hotelDetailsOptionsBottomPanel = new javax.swing.JPanel();
         bookNowButton = new javax.swing.JButton();
+        checkInConfDatePanel = new custom.components.DatePanel();
+        checkOutConfDatePanel = new custom.components.DatePanel();
+        bookingConfirmationLinkLabel1 = new javax.swing.JLabel();
+        checkOutLabel = new javax.swing.JLabel();
         descriptionPanel = new javax.swing.JPanel();
         headingLabel = new javax.swing.JLabel();
         descriptionLabelContainerPanel = new javax.swing.JPanel();
@@ -152,14 +157,14 @@ public class MainForm extends javax.swing.JFrame implements MouseListener {//Mou
 
         newPasswordTF.setFont(new java.awt.Font("Lato", 0, 24)); // NOI18N
 
-        cNewPasswordTF.setFont(new java.awt.Font("Lato", 0, 24)); // NOI18N
+        confirmNewPasswordTF.setFont(new java.awt.Font("Lato", 0, 24)); // NOI18N
 
-        ok1Button.setFont(new java.awt.Font("Lato", 0, 30)); // NOI18N
-        ok1Button.setText("OK");
-        ok1Button.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        ok1Button.addMouseListener(new java.awt.event.MouseAdapter() {
+        changePasswordOkButton.setFont(new java.awt.Font("Lato", 0, 30)); // NOI18N
+        changePasswordOkButton.setText("OK");
+        changePasswordOkButton.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        changePasswordOkButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                ok1ButtonMouseClicked(evt);
+                changePasswordOkButtonMouseClicked(evt);
             }
         });
 
@@ -182,7 +187,7 @@ public class MainForm extends javax.swing.JFrame implements MouseListener {//Mou
                     .addGroup(changePasswordDialogLayout.createSequentialGroup()
                         .addComponent(jLabel4)
                         .addGap(18, 18, 18)
-                        .addComponent(cNewPasswordTF))
+                        .addComponent(confirmNewPasswordTF))
                     .addGroup(changePasswordDialogLayout.createSequentialGroup()
                         .addGroup(changePasswordDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -194,7 +199,7 @@ public class MainForm extends javax.swing.JFrame implements MouseListener {//Mou
                 .addGap(27, 27, 27))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, changePasswordDialogLayout.createSequentialGroup()
                 .addContainerGap(269, Short.MAX_VALUE)
-                .addComponent(ok1Button, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(changePasswordOkButton, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(255, 255, 255))
         );
         changePasswordDialogLayout.setVerticalGroup(
@@ -212,10 +217,10 @@ public class MainForm extends javax.swing.JFrame implements MouseListener {//Mou
                             .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(75, 75, 75))
                     .addGroup(changePasswordDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(cNewPasswordTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(confirmNewPasswordTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel4)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
-                .addComponent(ok1Button, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(changePasswordOkButton, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(40, 40, 40))
         );
 
@@ -630,6 +635,11 @@ public class MainForm extends javax.swing.JFrame implements MouseListener {//Mou
         emailTF.setFont(new java.awt.Font("Lato", 0, 22)); // NOI18N
         emailTF.setDisabledTextColor(new java.awt.Color(51, 51, 51));
         emailTF.setEnabled(false);
+        emailTF.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                emailTFFocusGained(evt);
+            }
+        });
 
         titlePanelSettings.setBackground(new java.awt.Color(25, 25, 25));
         titlePanelSettings.setLayout(new java.awt.GridBagLayout());
@@ -654,6 +664,11 @@ public class MainForm extends javax.swing.JFrame implements MouseListener {//Mou
         mobileTF.setFont(new java.awt.Font("Lato", 0, 22)); // NOI18N
         mobileTF.setDisabledTextColor(new java.awt.Color(51, 51, 51));
         mobileTF.setEnabled(false);
+        mobileTF.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                mobileTFFocusGained(evt);
+            }
+        });
 
         jLabel12.setFont(new java.awt.Font("Lato Black", 0, 22)); // NOI18N
         jLabel12.setForeground(new java.awt.Color(255, 255, 255));
@@ -663,6 +678,11 @@ public class MainForm extends javax.swing.JFrame implements MouseListener {//Mou
         pinCodeTF.setFont(new java.awt.Font("Lato", 0, 22)); // NOI18N
         pinCodeTF.setDisabledTextColor(new java.awt.Color(51, 51, 51));
         pinCodeTF.setEnabled(false);
+        pinCodeTF.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                pinCodeTFFocusGained(evt);
+            }
+        });
 
         jLabel13.setFont(new java.awt.Font("Lato Black", 0, 22)); // NOI18N
         jLabel13.setForeground(new java.awt.Color(255, 255, 255));
@@ -861,7 +881,7 @@ public class MainForm extends javax.swing.JFrame implements MouseListener {//Mou
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(numReviewsLabel))
                     .addComponent(hotelNameLabel))
-                .addContainerGap(1019, Short.MAX_VALUE))
+                .addContainerGap(1015, Short.MAX_VALUE))
         );
         hotelTitlePanelLayout.setVerticalGroup(
             hotelTitlePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -906,23 +926,25 @@ public class MainForm extends javax.swing.JFrame implements MouseListener {//Mou
         bookingOptionsPanel.setBackground(new java.awt.Color(25, 25, 25));
         bookingOptionsPanel.setLayout(new java.awt.GridBagLayout());
 
-        bookingConfirmationLinkLabel.setFont(new java.awt.Font("Lato Black", 0, 24)); // NOI18N
-        bookingConfirmationLinkLabel.setForeground(new java.awt.Color(255, 255, 255));
-        bookingConfirmationLinkLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        bookingConfirmationLinkLabel.setText("3 Executive Rooms, 18 Guests");
-        bookingConfirmationLinkLabel.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        bookingConfirmationLinkLabel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        bookingConfirmationLinkLabel.addMouseListener(new java.awt.event.MouseAdapter() {
+        checkInLabel.setFont(new java.awt.Font("Lato Black", 0, 24)); // NOI18N
+        checkInLabel.setForeground(new java.awt.Color(255, 255, 255));
+        checkInLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        checkInLabel.setText("Check In:");
+        checkInLabel.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        checkInLabel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        checkInLabel.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                bookingConfirmationLinkLabelMouseClicked(evt);
+                checkInLabelMouseClicked(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        bookingOptionsPanel.add(bookingConfirmationLinkLabel, gridBagConstraints);
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(3, 30, 3, 3);
+        bookingOptionsPanel.add(checkInLabel, gridBagConstraints);
 
         totalPriceLabel.setFont(new java.awt.Font("Lato Black", 0, 36)); // NOI18N
         totalPriceLabel.setForeground(new java.awt.Color(0, 198, 0));
@@ -930,9 +952,13 @@ public class MainForm extends javax.swing.JFrame implements MouseListener {//Mou
         totalPriceLabel.setText("Rs. 34,981");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 2;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.gridwidth = 2;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
         bookingOptionsPanel.add(totalPriceLabel, gridBagConstraints);
 
         hotelDetailsOptionsBottomPanel.setBackground(new java.awt.Color(25, 25, 25));
@@ -953,10 +979,71 @@ public class MainForm extends javax.swing.JFrame implements MouseListener {//Mou
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 3;
+        gridBagConstraints.gridy = 4;
+        gridBagConstraints.gridwidth = 2;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
         bookingOptionsPanel.add(hotelDetailsOptionsBottomPanel, gridBagConstraints);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
+        bookingOptionsPanel.add(checkInConfDatePanel, gridBagConstraints);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
+        bookingOptionsPanel.add(checkOutConfDatePanel, gridBagConstraints);
+
+        bookingConfirmationLinkLabel1.setFont(new java.awt.Font("Lato Black", 0, 24)); // NOI18N
+        bookingConfirmationLinkLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        bookingConfirmationLinkLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        bookingConfirmationLinkLabel1.setText("3 Executive Rooms, 18 Guests");
+        bookingConfirmationLinkLabel1.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        bookingConfirmationLinkLabel1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        bookingConfirmationLinkLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                bookingConfirmationLinkLabel1MouseClicked(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
+        bookingOptionsPanel.add(bookingConfirmationLinkLabel1, gridBagConstraints);
+
+        checkOutLabel.setFont(new java.awt.Font("Lato Black", 0, 24)); // NOI18N
+        checkOutLabel.setForeground(new java.awt.Color(255, 255, 255));
+        checkOutLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        checkOutLabel.setText("Check Out:");
+        checkOutLabel.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        checkOutLabel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        checkOutLabel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                checkOutLabelMouseClicked(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(3, 30, 3, 3);
+        bookingOptionsPanel.add(checkOutLabel, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -1129,60 +1216,66 @@ public class MainForm extends javax.swing.JFrame implements MouseListener {//Mou
 
     private void settingsPanelButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_settingsPanelButtonMouseClicked
         // TODO add your handling code here:
-        
+
         personalize();
-        ((CardLayout)mainPanel.getLayout()).show(mainPanel, "settingsPanel");
+        ((CardLayout) mainPanel.getLayout()).show(mainPanel, "settingsPanel");
         resetBgColor();
         UIMethods.setSelectedPanelButton(settingsPanelButton, myProfileLabel);
-        isSelected[2]=true;
-        
+        isSelected[2] = true;
+
     }//GEN-LAST:event_settingsPanelButtonMouseClicked
 
     private void myBookingsPanelButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_myBookingsPanelButtonMouseClicked
         // TODO add your handling code here:
-        ((CardLayout)mainPanel.getLayout()).show(mainPanel, "pastBookingsPanel");
+        ((CardLayout) mainPanel.getLayout()).show(mainPanel, "pastBookingsPanel");
         resetBgColor();
-         UIMethods.setSelectedPanelButton(myBookingsPanelButton, myBookingsLabel);
-         isSelected[1]=true;
+        UIMethods.setSelectedPanelButton(myBookingsPanelButton, myBookingsLabel);
+        isSelected[1] = true;
     }//GEN-LAST:event_myBookingsPanelButtonMouseClicked
 
     private void bookHotelsPanelButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bookHotelsPanelButtonMouseClicked
-        ((CardLayout)mainPanel.getLayout()).show(mainPanel, "bookPanel");
+        ((CardLayout) mainPanel.getLayout()).show(mainPanel, "bookPanel");
         resetBgColor();
         UIMethods.setSelectedPanelButton(bookHotelsPanelButton, bookHotelsLabel);
-        isSelected[0]=true;
-      
+        isSelected[0] = true;
+
     }//GEN-LAST:event_bookHotelsPanelButtonMouseClicked
 
     private void bookHotelsPanelButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bookHotelsPanelButtonMouseEntered
         // TODO add your handling code here:
-        if(!isSelected[0])
-        UIMethods.setHoveredPanelButton(bookHotelsPanelButton,true);        
+        if (!isSelected[0]) {
+            UIMethods.setHoveredPanelButton(bookHotelsPanelButton, true);
+        }
     }//GEN-LAST:event_bookHotelsPanelButtonMouseEntered
 
     private void myBookingsPanelButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_myBookingsPanelButtonMouseEntered
-        if(!isSelected[1])
-            UIMethods.setHoveredPanelButton(myBookingsPanelButton,true);
+        if (!isSelected[1]) {
+            UIMethods.setHoveredPanelButton(myBookingsPanelButton, true);
+        }
     }//GEN-LAST:event_myBookingsPanelButtonMouseEntered
 
     private void settingsPanelButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_settingsPanelButtonMouseEntered
-        if(!isSelected[2])
-            UIMethods.setHoveredPanelButton(settingsPanelButton,true);
+        if (!isSelected[2]) {
+            UIMethods.setHoveredPanelButton(settingsPanelButton, true);
+        }
     }//GEN-LAST:event_settingsPanelButtonMouseEntered
 
     private void bookHotelsPanelButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bookHotelsPanelButtonMouseExited
-        if(!isSelected[0])
-            UIMethods.setHoveredPanelButton(bookHotelsPanelButton,false);   
+        if (!isSelected[0]) {
+            UIMethods.setHoveredPanelButton(bookHotelsPanelButton, false);
+        }
     }//GEN-LAST:event_bookHotelsPanelButtonMouseExited
 
     private void myBookingsPanelButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_myBookingsPanelButtonMouseExited
-        if(!isSelected[1])
-            UIMethods.setHoveredPanelButton(myBookingsPanelButton,false);
+        if (!isSelected[1]) {
+            UIMethods.setHoveredPanelButton(myBookingsPanelButton, false);
+        }
     }//GEN-LAST:event_myBookingsPanelButtonMouseExited
 
     private void settingsPanelButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_settingsPanelButtonMouseExited
-        if(!isSelected[2])
-            UIMethods.setHoveredPanelButton(settingsPanelButton,false);
+        if (!isSelected[2]) {
+            UIMethods.setHoveredPanelButton(settingsPanelButton, false);
+        }
     }//GEN-LAST:event_settingsPanelButtonMouseExited
 
     private void logoutLinkLabelMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoutLinkLabelMouseEntered
@@ -1203,33 +1296,30 @@ public class MainForm extends javax.swing.JFrame implements MouseListener {//Mou
 
     private void priceSliderStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_priceSliderStateChanged
         priceSpinner.setValue(priceSlider.getValue());
-        
+
     }//GEN-LAST:event_priceSliderStateChanged
 
     private void priceSpinnerStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_priceSpinnerStateChanged
         double d = Double.parseDouble(priceSpinner.getValue().toString());
-        priceSlider.setValue((int)d);
+        priceSlider.setValue((int) d);
     }//GEN-LAST:event_priceSpinnerStateChanged
 
     private void goButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_goButtonActionPerformed
         //TODO: Get all the relevant details from the given fields and return array of HotelListItemPanel objects
-        
-        
+
         HotelListItemPanel results[];
         //dummy code starts
         //dummy result array
-        String hotelName="Hotel Reshma";
-        String[] roomTypes={"Reshma Ka","Savita ka","Phuljadi ka","Lalu ka"};
-        double[] prices={3000,2500,1500,-200};
-        int stars=3;
+        String hotelName = "Hotel Reshma";
+        String[] roomTypes = {"Reshma Ka", "Savita ka", "Phuljadi ka", "Lalu ka"};
+        double[] prices = {3000, 2500, 1500, -200};
+        int stars = 3;
         resultList = new HotelListItemPanel[60];
-        for(int i=0;i<60;i++)
-            resultList[i] = new HotelListItemPanel(new HotelDesc(hotelName,roomTypes,prices,stars,2345,"Bada sa description","Wi-Fi"), this,i);
-        
+        for (int i = 0; i < 60; i++) {
+            resultList[i] = new HotelListItemPanel(new HotelDesc(hotelName, roomTypes, prices, stars, 2345, "Bada sa description", "Wi-Fi"), this, i);
+        }
+
         //dummy code ends
-        
-        
-        
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.anchor = GridBagConstraints.FIRST_LINE_START;
         gbc.fill = GridBagConstraints.HORIZONTAL;
@@ -1237,20 +1327,19 @@ public class MainForm extends javax.swing.JFrame implements MouseListener {//Mou
         gbc.gridy = 0;
         gbc.weightx = 1.0;
         gbc.weighty = 0.3;
-        
+
         roomListPanel.removeAll();
         roomListPanel.revalidate();
         roomListPanel.repaint();
-        for (int i=0;i<resultList.length;i++) {
+        for (int i = 0; i < resultList.length; i++) {
             gbc.gridy = i;
-            roomListPanel.add(resultList[i],gbc);
+            roomListPanel.add(resultList[i], gbc);
         }
-        
-        
+
         //TODO: see if revalidate() can/should be removed
         roomListPanel.revalidate();
         roomListPanel.repaint();
-        
+
     }//GEN-LAST:event_goButtonActionPerformed
 
     private void bookNowButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bookNowButtonActionPerformed
@@ -1258,11 +1347,11 @@ public class MainForm extends javax.swing.JFrame implements MouseListener {//Mou
     }//GEN-LAST:event_bookNowButtonActionPerformed
 
     private void backLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backLabelMouseClicked
-        ((CardLayout)mainPanel.getLayout()).show(mainPanel, "bookPanel");
+        ((CardLayout) mainPanel.getLayout()).show(mainPanel, "bookPanel");
     }//GEN-LAST:event_backLabelMouseClicked
 
     private void editButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editButtonActionPerformed
-        if(!isEditing){
+        if (!isEditing) {
             fNameTF.setEditable(true);
             lNameTF.setEditable(true);
             emailTF.setEditable(true);
@@ -1277,110 +1366,142 @@ public class MainForm extends javax.swing.JFrame implements MouseListener {//Mou
             mobileTF.setEnabled(true);
             dobTF.setEnabled(true);
             pinCodeTF.setEnabled(true);
-            isEditing=true;
+            isEditing = true;
             editButton.setText("Save");
 
         } else {
-            fNameTF.setEditable(false);
-            lNameTF.setEditable(false);
-            emailTF.setEditable(false);
-            addTF.setEditable(false);
-            mobileTF.setEditable(false);
-            pinCodeTF.setEditable(false);
-            dobTF.setEditable(false);
-            fNameTF.setEnabled(false);
-            lNameTF.setEnabled(false);
-            emailTF.setEnabled(false);
-            addTF.setEnabled(false);
-            dobTF.setEnabled(false);
-            mobileTF.setEnabled(false);
-            pinCodeTF.setEnabled(false);
-            isEditing=false;
 
-            saveDetails();
-            editButton.setText("Edit");
+            if (saveDetails()) {
+
+                fNameTF.setEditable(false);
+                lNameTF.setEditable(false);
+                emailTF.setEditable(false);
+                addTF.setEditable(false);
+                mobileTF.setEditable(false);
+                pinCodeTF.setEditable(false);
+                dobTF.setEditable(false);
+                fNameTF.setEnabled(false);
+                lNameTF.setEnabled(false);
+                emailTF.setEnabled(false);
+                addTF.setEnabled(false);
+                dobTF.setEnabled(false);
+                mobileTF.setEnabled(false);
+                pinCodeTF.setEnabled(false);
+                isEditing = false;
+                editButton.setText("Edit");
+
+            } else {
+
+                isEditing = true;
+            }
         }
     }//GEN-LAST:event_editButtonActionPerformed
 
-    private void bookingConfirmationLinkLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bookingConfirmationLinkLabelMouseClicked
-        JOptionPane.showMessageDialog(null,"Not Yet Implemented! Problem? Open an issue");
-    }//GEN-LAST:event_bookingConfirmationLinkLabelMouseClicked
+    private void checkInLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_checkInLabelMouseClicked
+        JOptionPane.showMessageDialog(null, "Not Yet Implemented! Problem? Open an issue");
+    }//GEN-LAST:event_checkInLabelMouseClicked
 
     private void changePasswordButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_changePasswordButtonActionPerformed
         changePasswordDialog.setLocationRelativeTo(null);
         changePasswordDialog.setVisible(true);
     }//GEN-LAST:event_changePasswordButtonActionPerformed
 
-    private void ok1ButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ok1ButtonMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_ok1ButtonMouseClicked
+    private void changePasswordOkButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_changePasswordOkButtonMouseClicked
+        
+     /*  if(Arrays.equals(oldPasswordTF.getPassword().trim(), user.getPassword()))
+        {
+            Helper.updatePassword();
+        }else */
+    }//GEN-LAST:event_changePasswordOkButtonMouseClicked
 
-    private void resetBgColor(){
+    private void emailTFFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_emailTFFocusGained
+        
+            emailTF.setForeground(Color.BLACK);
+            emailTF.setText("");
+    }//GEN-LAST:event_emailTFFocusGained
+
+    private void mobileTFFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_mobileTFFocusGained
+        
+            mobileTF.setForeground(Color.BLACK);
+            mobileTF.setText("");
+    }//GEN-LAST:event_mobileTFFocusGained
+
+    private void pinCodeTFFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_pinCodeTFFocusGained
+        
+            pinCodeTF.setForeground(Color.BLACK);
+            pinCodeTF.setText("");
+    }//GEN-LAST:event_pinCodeTFFocusGained
+
+    private void bookingConfirmationLinkLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bookingConfirmationLinkLabel1MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_bookingConfirmationLinkLabel1MouseClicked
+
+    private void checkOutLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_checkOutLabelMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_checkOutLabelMouseClicked
+
+    private void resetBgColor() {
         //reset bg color of all buttons
         bookHotelsPanelButton.setBackground(defaultButtonColor);
         myBookingsPanelButton.setBackground(defaultButtonColor);
         settingsPanelButton.setBackground(defaultButtonColor);
-        
+
         //reset font of all labels
         bookHotelsLabel.setFont(defaultButtonFont);
         myBookingsLabel.setFont(defaultButtonFont);
         myProfileLabel.setFont(defaultButtonFont);
-        
+
         //reset font color of all labels
         bookHotelsLabel.setForeground(defaultButtonFontColor);
         myBookingsLabel.setForeground(defaultButtonFontColor);
         myProfileLabel.setForeground(defaultButtonFontColor);
-        
-        for(int i=0;i<3;i++)
-            isSelected[i]=false;
+
+        for (int i = 0; i < 3; i++) {
+            isSelected[i] = false;
+        }
     }
-    
-    
-    
-    
+
     private void startupCode() {
         //Tidying up the UI
         resetBgColor();
         UIMethods.setSelectedPanelButton(bookHotelsPanelButton, bookHotelsLabel);
-        isSelected[0]=true;
+        isSelected[0] = true;
         recordsTable.getTableHeader().setFont(defaultKeyFont);
         bookHotelsPanelButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         myBookingsPanelButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         settingsPanelButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         roomScrollPane.getVerticalScrollBar().setUnitIncrement(15);
         backLabel.setText("\u2190");//setting the back button unicode
+
+        //setting up the date panels
+        checkInDatePanel.setMinDate(LocalDate.now());
+        checkInDatePanel.setMaxDate(LocalDate.now().plusYears(NUMBER_OF_FUTURE_YEARS));
         
         //Personalizing
         personalize();
-        
-        
+
     }
 
-    
     //Custom Variable declarations
-    private final Color defaultButtonColor = new Color(59,35,59);
-    private final Color pressedButtonColor = new Color(36,119,119);
-    private final Color hoverButtonColor = new Color(45,27,45);
-    
-    private final Color defaultButtonFontColor = new Color(191,191,191);
-    private final Color pressedButtonFontColor = new Color(250,250,250);
-    
-    
+    private final Color defaultButtonColor = new Color(59, 35, 59);
+    private final Color pressedButtonColor = new Color(36, 119, 119);
+    private final Color hoverButtonColor = new Color(45, 27, 45);
+
+    private final Color defaultButtonFontColor = new Color(191, 191, 191);
+    private final Color pressedButtonFontColor = new Color(250, 250, 250);
+
     private final Font defaultButtonFont = new Font("Lato", Font.PLAIN, 24);
     private final Font pressedButtonFont = new Font("Lato Black", Font.PLAIN, 24);
-    
-    
+
     private final Font defaultKeyFont = new Font("Lato Black", Font.PLAIN, 22);
     private final Font defaultValueFont = new Font("Lato", Font.PLAIN, 22);
-    
-    
-    private final Color textColor = new Color(0,0,0);
-    private final Color bgColor = new Color(255,255,255);
-    
+
+    private final Color textColor = new Color(0, 0, 0);
+    private final Color bgColor = new Color(255, 255, 255);
+
     private boolean isSelected[] = new boolean[3];//particularly dirty, will replace with PButton once out of netbeans
-    
-    
-    private boolean isEditing=false;//state of the edit button in the settings panel
+
+    private boolean isEditing = false;//state of the edit button in the settings panel
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField addTF;
     private javax.swing.JPanel amenitiesPanel;
@@ -1393,13 +1514,18 @@ public class MainForm extends javax.swing.JFrame implements MouseListener {//Mou
     private javax.swing.JPanel bookHotelsPanelButton;
     private javax.swing.JButton bookNowButton;
     private javax.swing.JPanel bookPanel;
-    private javax.swing.JLabel bookingConfirmationLinkLabel;
+    private javax.swing.JLabel bookingConfirmationLinkLabel1;
     private javax.swing.JPanel bookingOptionsPanel;
-    private javax.swing.JTextField cNewPasswordTF;
     private javax.swing.JButton changePasswordButton;
     private javax.swing.JDialog changePasswordDialog;
+    private javax.swing.JButton changePasswordOkButton;
+    private custom.components.DatePanel checkInConfDatePanel;
     private custom.components.DatePanel checkInDatePanel;
+    private javax.swing.JLabel checkInLabel;
+    private custom.components.DatePanel checkOutConfDatePanel;
     private custom.components.DatePanel checkOutDatePanel;
+    private javax.swing.JLabel checkOutLabel;
+    private javax.swing.JTextField confirmNewPasswordTF;
     private javax.swing.JPanel descriptionLabelContainerPanel;
     private javax.swing.JPanel descriptionPanel;
     private javax.swing.JScrollPane descriptionScrollPane;
@@ -1449,7 +1575,6 @@ public class MainForm extends javax.swing.JFrame implements MouseListener {//Mou
     private javax.swing.JPanel myProfilePanel;
     private javax.swing.JTextField newPasswordTF;
     private javax.swing.JLabel numReviewsLabel;
-    private javax.swing.JButton ok1Button;
     private javax.swing.JTextField oldPasswordTF;
     private javax.swing.JPanel pastBookingsPanel;
     private javax.swing.JTextField pinCodeTF;
@@ -1478,7 +1603,7 @@ public class MainForm extends javax.swing.JFrame implements MouseListener {//Mou
     }
 
     private void personalize() {
-        welcomeLabel.setText(" Welcome "+ user.getUsername()+ "! ");
+        welcomeLabel.setText(" Welcome " + user.getUsername() + "! ");
         fNameTF.setText(user.getFName());
         lNameTF.setText(user.getLName());
         emailTF.setText(user.getEmail());
@@ -1487,49 +1612,52 @@ public class MainForm extends javax.swing.JFrame implements MouseListener {//Mou
         pinCodeTF.setText(Integer.toString(user.getPinCode()));
     }
 
-    private void saveDetails() {
-        
-        User u = new User();
-        
-        try{
-        
-        if (!Verify.isValidEmail(emailTF.getText().trim())) {
+    private boolean saveDetails() {            // Method to change the details of the user in the database
+
+        try {
+
+            if (!Verify.isValidEmail(emailTF.getText().trim())) {
 
                 emailTF.setText("Invalid Email");
                 emailTF.setForeground(Color.RED);
+                return false;
 
             } else if (!Verify.isValidPinCode(pinCodeTF.getText().trim())) {
 
                 pinCodeTF.setText("Invalid Pincode");
                 pinCodeTF.setForeground(Color.RED);
+                return false;
 
             } else if (!Verify.isValidMobile(mobileTF.getText().trim())) {
 
-                 mobileTF.setText("Invalid Mobile Number");
-                 mobileTF.setForeground(Color.RED);
-                 
-            }else{
-        
-                             u.setFName(fNameTF.getText().trim());
-                             u.setLName(lNameTF.getText().trim());
-                             u.setAddress(addTF.getText().trim());
-                             u.setEmail(emailTF.getText().trim());
-                             u.setMobile(mobileTF.getText().trim());
-                             u.setMobile(pinCodeTF.getText().trim());
-        
-                            Helper.updateUserProfile(u);
-        
-                            System.out.println("Saving.....Well, not really but ok");
-            }
-        }catch (NumberFormatException e) {
+                mobileTF.setText("Invalid Mobile Number");
+                mobileTF.setForeground(Color.RED);
+                return false;
 
-           pinCodeTF.setText("Invalid Pincode");
-           pinCodeTF.setForeground(Color.RED);
+            } else {
+
+                user.setFName(fNameTF.getText().trim());
+                user.setLName(lNameTF.getText().trim());
+                user.setAddress(addTF.getText().trim());
+                user.setEmail(emailTF.getText().trim());
+                user.setMobile(mobileTF.getText().trim());
+                user.setPinCode(Integer.parseInt(pinCodeTF.getText().trim()));
+
+                Helper.updateUserProfile(user);
+
+                return true;
+            }
+        } catch (NumberFormatException e) {
+
+            pinCodeTF.setText("Invalid Pincode");
+            pinCodeTF.setForeground(Color.RED);
             e.printStackTrace();
+            return false;
 
         } catch (Exception e) {
-
+            
             e.printStackTrace();
+            return false;
         }
     }
 
@@ -1539,64 +1667,64 @@ public class MainForm extends javax.swing.JFrame implements MouseListener {//Mou
         JLabel label = (JLabel) e.getComponent();
         JPanel j = (JPanel) label.getParent();
         HotelListItemPanel i;
-        
-        if(j instanceof HotelListItemPanel){
+
+        if (j instanceof HotelListItemPanel) {
             i = (HotelListItemPanel) j;
             loadHotel(resultList[i.getIndex()]);
-        }
-        else{//IMP! Assuming the type of rooms wont have the character '-' inside them!!
+        } else {//IMP! Assuming the type of rooms wont have the character '-' inside them!!
             i = (HotelListItemPanel) j.getParent().getParent();
             String s = label.getText();
-            s = s.substring(s.indexOf('>')+1,s.indexOf('-')-1);
+            s = s.substring(s.indexOf('>') + 1, s.indexOf('-') - 1);
             System.out.println(s);
-            loadHotel(resultList[i.getIndex()],s);
+            loadHotel(resultList[i.getIndex()], s);
         }
         // loadHotel(resultList[i.getIndex()]);
-        ((CardLayout)mainPanel.getLayout()).show(mainPanel, "hotelDetailsPanel");
-        System.out.println("Clicked On "+ ((JLabel)e.getComponent()).getText());
-               
+        ((CardLayout) mainPanel.getLayout()).show(mainPanel, "hotelDetailsPanel");
+        System.out.println("Clicked On " + ((JLabel) e.getComponent()).getText());
+
     }
 
     @Override
     public void mousePressed(MouseEvent e) {
-        
+
     }
 
     @Override
     public void mouseReleased(MouseEvent e) {
-        
+
     }
 
     @Override
     public void mouseEntered(MouseEvent e) {
-        JLabel j =(JLabel) e.getComponent();
-        if(j.getName().equals("underline"))
+        JLabel j = (JLabel) e.getComponent();
+        if (j.getName().equals("underline")) {
             j.setBorder(BorderFactory.createMatteBorder(0, 0, 1, 0, j.getForeground()));
+        }
     }
 
     @Override
     public void mouseExited(MouseEvent e) {
-        JLabel j =(JLabel) e.getComponent();
-        if(j.getName().equals("underline"))
+        JLabel j = (JLabel) e.getComponent();
+        if (j.getName().equals("underline")) {
             j.setBorder(BorderFactory.createEmptyBorder(0, 0, 1, 0));
+        }
         //j.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 1, 0));
     }
 
     private void loadHotel(HotelListItemPanel hotelListItemPanel) {
         HotelDesc des = hotelListItemPanel.getHotelDesc();
-        loadHotel(hotelListItemPanel,des.getRoomTypes()[0]);
+        loadHotel(hotelListItemPanel, des.getRoomTypes()[0]);
     }
 
     private void loadHotel(HotelListItemPanel hotelListItemPanel, String type) {
         HotelDesc des = hotelListItemPanel.getHotelDesc();
         hotelNameLabel.setText(des.getHotelName());
-        numReviewsLabel.setText(des.getNumReviews()+" reviews");//TODO: add commas- as in "3,245" instead of "3245"
-        hotelDetailsRatingLabel.setText(UIMethods.getRatingString(des.getStars()));   
-        bookingConfirmationLinkLabel.setText(numOfRooms+" "+type+", "+numOfGuest+" Guests");
-        totalPriceLabel.setText(des.getCost(type,numOfRooms,checkIn,checkOut)+"");
+        numReviewsLabel.setText(des.getNumReviews() + " reviews");//TODO: add commas- as in "3,245" instead of "3245"
+        hotelDetailsRatingLabel.setText(UIMethods.getRatingString(des.getStars()));
+        checkInLabel.setText(numOfRooms + " " + type + ", " + numOfGuest + " Guests");
+        totalPriceLabel.setText(des.getCost(type, numOfRooms, checkIn, checkOut) + "");
         descriptionTextArea.setText(des.getDescription());
         amenitiesTA.setText(des.getAmenities());
-        
-        
+
     }
 }
