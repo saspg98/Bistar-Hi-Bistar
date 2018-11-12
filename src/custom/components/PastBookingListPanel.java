@@ -26,6 +26,7 @@ public class PastBookingListPanel extends javax.swing.JPanel {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+        java.awt.GridBagConstraints gridBagConstraints;
 
         hotelNameLabel = new javax.swing.JLabel();
         checkInLabel = new javax.swing.JLabel();
@@ -33,6 +34,7 @@ public class PastBookingListPanel extends javax.swing.JPanel {
         guestLabel = new javax.swing.JLabel();
         roomLabel = new javax.swing.JLabel();
         priceLabel = new javax.swing.JLabel();
+        modifyButton = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(25, 25, 25));
         setBorder(javax.swing.BorderFactory.createMatteBorder(2, 0, 2, 0, new java.awt.Color(255, 255, 255)));
@@ -41,33 +43,95 @@ public class PastBookingListPanel extends javax.swing.JPanel {
         hotelNameLabel.setFont(new java.awt.Font("Lato Black", 0, 28)); // NOI18N
         hotelNameLabel.setForeground(new java.awt.Color(255, 255, 255));
         hotelNameLabel.setText("Hotel Name");
-        add(hotelNameLabel, new java.awt.GridBagConstraints());
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridwidth = 4;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
+        gridBagConstraints.weightx = 5.0;
+        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
+        add(hotelNameLabel, gridBagConstraints);
 
         checkInLabel.setFont(new java.awt.Font("Lato Black", 0, 28)); // NOI18N
         checkInLabel.setForeground(new java.awt.Color(255, 255, 255));
         checkInLabel.setText("checkin date");
-        add(checkInLabel, new java.awt.GridBagConstraints());
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(5, 10, 5, 10);
+        add(checkInLabel, gridBagConstraints);
 
-        checkOutLabel.setFont(new java.awt.Font("Lato Black", 0, 28)); // NOI18N
+        checkOutLabel.setFont(new java.awt.Font("Lato Black", 0, 24)); // NOI18N
         checkOutLabel.setForeground(new java.awt.Color(255, 255, 255));
         checkOutLabel.setText("checkout date");
-        add(checkOutLabel, new java.awt.GridBagConstraints());
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 4;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(5, 10, 5, 10);
+        add(checkOutLabel, gridBagConstraints);
 
         guestLabel.setFont(new java.awt.Font("Lato Black", 0, 28)); // NOI18N
         guestLabel.setForeground(new java.awt.Color(255, 255, 255));
         guestLabel.setText("3 guests");
-        add(guestLabel, new java.awt.GridBagConstraints());
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(5, 10, 5, 10);
+        add(guestLabel, gridBagConstraints);
 
         roomLabel.setFont(new java.awt.Font("Lato Black", 0, 28)); // NOI18N
         roomLabel.setForeground(new java.awt.Color(255, 255, 255));
         roomLabel.setText("2 rooms");
-        add(roomLabel, new java.awt.GridBagConstraints());
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(5, 10, 5, 10);
+        add(roomLabel, gridBagConstraints);
 
         priceLabel.setFont(new java.awt.Font("Lato Black", 0, 28)); // NOI18N
         priceLabel.setForeground(new java.awt.Color(255, 255, 255));
         priceLabel.setText("Price");
-        add(priceLabel, new java.awt.GridBagConstraints());
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(5, 10, 5, 10);
+        add(priceLabel, gridBagConstraints);
+
+        modifyButton.setBackground(new java.awt.Color(59, 35, 59));
+        modifyButton.setFont(new java.awt.Font("Lato", 0, 24)); // NOI18N
+        modifyButton.setForeground(new java.awt.Color(255, 255, 255));
+        modifyButton.setText("Modify Dates");
+        modifyButton.setContentAreaFilled(false);
+        modifyButton.setOpaque(true);
+        modifyButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                modifyButtonActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(5, 10, 5, 10);
+        add(modifyButton, gridBagConstraints);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void modifyButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modifyButtonActionPerformed
+        //change dates wala logic
+    }//GEN-LAST:event_modifyButtonActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -75,6 +139,7 @@ public class PastBookingListPanel extends javax.swing.JPanel {
     private javax.swing.JLabel checkOutLabel;
     private javax.swing.JLabel guestLabel;
     private javax.swing.JLabel hotelNameLabel;
+    private javax.swing.JButton modifyButton;
     private javax.swing.JLabel priceLabel;
     private javax.swing.JLabel roomLabel;
     // End of variables declaration//GEN-END:variables
