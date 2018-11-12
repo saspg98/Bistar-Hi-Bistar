@@ -19,6 +19,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import verifyingTools.Verify;
 import bridge.Helper;
+import internal.DialogActionListener;
 import java.awt.Dialog;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
@@ -40,6 +41,7 @@ public class MainForm extends javax.swing.JFrame implements MouseListener {//Mou
     private LocalDate checkIn;
     private LocalDate checkOut;
     private static long NUMBER_OF_FUTURE_YEARS=4;
+    DialogActionListener dal;
 
     /**
      * Creates new form Main
@@ -70,6 +72,10 @@ public class MainForm extends javax.swing.JFrame implements MouseListener {//Mou
         oldPasswordPF = new javax.swing.JPasswordField();
         confirmNewPasswordPF = new javax.swing.JPasswordField();
         newPasswordPF = new javax.swing.JPasswordField();
+        modifyDateDialog = new javax.swing.JDialog();
+        modifyDateDialogPanel1 = new custom.components.ModifyDateDialogPanel();
+        changeGuestRoomDialog = new javax.swing.JDialog();
+        guestRoomDialogPanel2 = new custom.components.GuestRoomDialogPanel();
         sidebar = new javax.swing.JPanel();
         body = new javax.swing.JPanel();
         bookHotelsPanelButton = new javax.swing.JPanel();
@@ -222,6 +228,28 @@ public class MainForm extends javax.swing.JFrame implements MouseListener {//Mou
                 .addComponent(changePasswordOkButton, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(26, 26, 26))
         );
+
+        modifyDateDialog.setMinimumSize(new java.awt.Dimension(520, 300));
+        modifyDateDialog.getContentPane().setLayout(new java.awt.GridBagLayout());
+
+        modifyDateDialogPanel1.setMinimumSize(new java.awt.Dimension(447, 300));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        modifyDateDialog.getContentPane().add(modifyDateDialogPanel1, gridBagConstraints);
+
+        changeGuestRoomDialog.setMinimumSize(new java.awt.Dimension(533, 173));
+        changeGuestRoomDialog.getContentPane().setLayout(new java.awt.GridBagLayout());
+
+        guestRoomDialogPanel2.setMinimumSize(new java.awt.Dimension(579, 293));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        changeGuestRoomDialog.getContentPane().add(guestRoomDialogPanel2, gridBagConstraints);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("BISTAR HI BISTAR"); // NOI18N
@@ -1393,7 +1421,8 @@ public class MainForm extends javax.swing.JFrame implements MouseListener {//Mou
     }//GEN-LAST:event_pinCodeTFFocusGained
 
     private void bookingConfirmationLinkLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bookingConfirmationLinkLabelMouseClicked
-        
+            changeGuestRoomDialog.setLocationRelativeTo(null);
+            changeGuestRoomDialog.setVisible(true);
     }//GEN-LAST:event_bookingConfirmationLinkLabelMouseClicked
 
     private void resetBgColor() {
@@ -1429,7 +1458,11 @@ public class MainForm extends javax.swing.JFrame implements MouseListener {//Mou
         roomScrollPane.getVerticalScrollBar().setUnitIncrement(15);
         backLabel.setText("\u2190");//setting the back button unicode
         
+        
+        dal = new DialogActionListener(guestRoomDialogPanel2,modifyDateDialogPanel1);
         changePasswordDialog.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
+        changeGuestRoomDialog.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
+        modifyDateDialog.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
 
         //setting up the date panels
         checkInDatePanel.setMinDate(LocalDate.now());
@@ -1474,6 +1507,7 @@ public class MainForm extends javax.swing.JFrame implements MouseListener {//Mou
     private javax.swing.JPanel bookPanel;
     private javax.swing.JLabel bookingConfirmationLinkLabel;
     private javax.swing.JPanel bookingOptionsPanel;
+    private javax.swing.JDialog changeGuestRoomDialog;
     private javax.swing.JButton changePasswordButton;
     private javax.swing.JDialog changePasswordDialog;
     private javax.swing.JButton changePasswordOkButton;
@@ -1493,6 +1527,7 @@ public class MainForm extends javax.swing.JFrame implements MouseListener {//Mou
     private javax.swing.JTextField emailTF;
     private javax.swing.JTextField fNameTF;
     private javax.swing.JButton goButton;
+    private custom.components.GuestRoomDialogPanel guestRoomDialogPanel2;
     private custom.components.GuestRoomPanel guestRoomPanel1;
     private javax.swing.JLabel headingLabel;
     private javax.swing.JPanel hotelDetailsOptionsBottomPanel;
@@ -1525,6 +1560,8 @@ public class MainForm extends javax.swing.JFrame implements MouseListener {//Mou
     private javax.swing.JLabel logoutLinkLabel;
     private javax.swing.JPanel mainPanel;
     private javax.swing.JTextField mobileTF;
+    private javax.swing.JDialog modifyDateDialog;
+    private custom.components.ModifyDateDialogPanel modifyDateDialogPanel1;
     private javax.swing.JLabel myBookingsLabel;
     private javax.swing.JPanel myBookingsPanelButton;
     private javax.swing.JLabel myProfileLabel;

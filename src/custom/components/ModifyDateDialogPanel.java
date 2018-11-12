@@ -5,17 +5,29 @@
  */
 package custom.components;
 
+import java.awt.event.ActionListener;
+
 /**
  *
  * @author Sarthak
  */
 public class ModifyDateDialogPanel extends javax.swing.JPanel {
 
+    public static final String  D_UPDATE= "DATE_UPDATE";
+    public static final String  D_CANCEL= "DATE_CANCEL";
     /**
      * Creates new form GuestRoomDialogPanel
      */
     public ModifyDateDialogPanel() {
         initComponents();
+        updateButton.setActionCommand(D_UPDATE);
+        cancelButton.setActionCommand(D_CANCEL);
+    }
+    
+    
+    public void setActionListener(ActionListener a){
+        updateButton.addActionListener(a);
+        cancelButton.addActionListener(a);
     }
 
     /**
@@ -28,8 +40,8 @@ public class ModifyDateDialogPanel extends javax.swing.JPanel {
     private void initComponents() {
         java.awt.GridBagConstraints gridBagConstraints;
 
-        changeGuestRoomButton = new javax.swing.JButton();
-        changeGuestRoomButton1 = new javax.swing.JButton();
+        cancelButton = new javax.swing.JButton();
+        updateButton = new javax.swing.JButton();
         datePanel1 = new custom.components.DatePanel();
         datePanel2 = new custom.components.DatePanel();
         jLabel1 = new javax.swing.JLabel();
@@ -38,31 +50,31 @@ public class ModifyDateDialogPanel extends javax.swing.JPanel {
         setBackground(new java.awt.Color(25, 25, 25));
         setLayout(new java.awt.GridBagLayout());
 
-        changeGuestRoomButton.setBackground(new java.awt.Color(59, 35, 59));
-        changeGuestRoomButton.setFont(new java.awt.Font("Lato Black", 0, 24)); // NOI18N
-        changeGuestRoomButton.setForeground(new java.awt.Color(255, 255, 255));
-        changeGuestRoomButton.setText("Cancel");
-        changeGuestRoomButton.setContentAreaFilled(false);
+        cancelButton.setBackground(new java.awt.Color(59, 35, 59));
+        cancelButton.setFont(new java.awt.Font("Lato Black", 0, 24)); // NOI18N
+        cancelButton.setForeground(new java.awt.Color(255, 255, 255));
+        cancelButton.setText("Cancel");
+        cancelButton.setContentAreaFilled(false);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 2;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(3, 3, 13, 13);
-        add(changeGuestRoomButton, gridBagConstraints);
+        add(cancelButton, gridBagConstraints);
 
-        changeGuestRoomButton1.setBackground(new java.awt.Color(59, 35, 59));
-        changeGuestRoomButton1.setFont(new java.awt.Font("Lato Black", 0, 24)); // NOI18N
-        changeGuestRoomButton1.setForeground(new java.awt.Color(255, 255, 255));
-        changeGuestRoomButton1.setText("Update");
-        changeGuestRoomButton1.setContentAreaFilled(false);
+        updateButton.setBackground(new java.awt.Color(59, 35, 59));
+        updateButton.setFont(new java.awt.Font("Lato Black", 0, 24)); // NOI18N
+        updateButton.setForeground(new java.awt.Color(255, 255, 255));
+        updateButton.setText("Update");
+        updateButton.setContentAreaFilled(false);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 2;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(3, 13, 13, 3);
-        add(changeGuestRoomButton1, gridBagConstraints);
+        add(updateButton, gridBagConstraints);
 
         datePanel1.setBackground(new java.awt.Color(25, 25, 25));
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -109,11 +121,11 @@ public class ModifyDateDialogPanel extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton changeGuestRoomButton;
-    private javax.swing.JButton changeGuestRoomButton1;
+    private javax.swing.JButton cancelButton;
     private custom.components.DatePanel datePanel1;
     private custom.components.DatePanel datePanel2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JButton updateButton;
     // End of variables declaration//GEN-END:variables
 }
