@@ -149,24 +149,19 @@ public class MainForm extends javax.swing.JFrame implements MouseListener {//Mou
         changePasswordDialog.setMinimumSize(new java.awt.Dimension(638, 361));
 
         oldPasswordTF.setFont(new java.awt.Font("Lato", 0, 24)); // NOI18N
-        oldPasswordTF.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                oldPasswordTFActionPerformed(evt);
-            }
-        });
 
         newPasswordTF.setFont(new java.awt.Font("Lato", 0, 24)); // NOI18N
-        newPasswordTF.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                newPasswordTFActionPerformed(evt);
-            }
-        });
 
         cNewPasswordTF.setFont(new java.awt.Font("Lato", 0, 24)); // NOI18N
 
         ok1Button.setFont(new java.awt.Font("Lato", 0, 30)); // NOI18N
         ok1Button.setText("OK");
         ok1Button.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        ok1Button.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                ok1ButtonMouseClicked(evt);
+            }
+        });
 
         jLabel2.setFont(new java.awt.Font("Lato Black", 0, 24)); // NOI18N
         jLabel2.setText("Old Password");
@@ -635,11 +630,6 @@ public class MainForm extends javax.swing.JFrame implements MouseListener {//Mou
         emailTF.setFont(new java.awt.Font("Lato", 0, 22)); // NOI18N
         emailTF.setDisabledTextColor(new java.awt.Color(51, 51, 51));
         emailTF.setEnabled(false);
-        emailTF.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                emailTFActionPerformed(evt);
-            }
-        });
 
         titlePanelSettings.setBackground(new java.awt.Color(25, 25, 25));
         titlePanelSettings.setLayout(new java.awt.GridBagLayout());
@@ -664,11 +654,6 @@ public class MainForm extends javax.swing.JFrame implements MouseListener {//Mou
         mobileTF.setFont(new java.awt.Font("Lato", 0, 22)); // NOI18N
         mobileTF.setDisabledTextColor(new java.awt.Color(51, 51, 51));
         mobileTF.setEnabled(false);
-        mobileTF.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mobileTFActionPerformed(evt);
-            }
-        });
 
         jLabel12.setFont(new java.awt.Font("Lato Black", 0, 22)); // NOI18N
         jLabel12.setForeground(new java.awt.Color(255, 255, 255));
@@ -678,11 +663,6 @@ public class MainForm extends javax.swing.JFrame implements MouseListener {//Mou
         pinCodeTF.setFont(new java.awt.Font("Lato", 0, 22)); // NOI18N
         pinCodeTF.setDisabledTextColor(new java.awt.Color(51, 51, 51));
         pinCodeTF.setEnabled(false);
-        pinCodeTF.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                pinCodeTFActionPerformed(evt);
-            }
-        });
 
         jLabel13.setFont(new java.awt.Font("Lato Black", 0, 22)); // NOI18N
         jLabel13.setForeground(new java.awt.Color(255, 255, 255));
@@ -692,21 +672,11 @@ public class MainForm extends javax.swing.JFrame implements MouseListener {//Mou
         dobTF.setFont(new java.awt.Font("Lato", 0, 22)); // NOI18N
         dobTF.setDisabledTextColor(new java.awt.Color(51, 51, 51));
         dobTF.setEnabled(false);
-        dobTF.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                dobTFActionPerformed(evt);
-            }
-        });
 
         addTF.setEditable(false);
         addTF.setFont(new java.awt.Font("Lato", 0, 22)); // NOI18N
         addTF.setDisabledTextColor(new java.awt.Color(51, 51, 51));
         addTF.setEnabled(false);
-        addTF.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                addTFActionPerformed(evt);
-            }
-        });
 
         jLabel18.setFont(new java.awt.Font("Lato Black", 0, 22)); // NOI18N
         jLabel18.setForeground(new java.awt.Color(255, 255, 255));
@@ -1291,26 +1261,6 @@ public class MainForm extends javax.swing.JFrame implements MouseListener {//Mou
         ((CardLayout)mainPanel.getLayout()).show(mainPanel, "bookPanel");
     }//GEN-LAST:event_backLabelMouseClicked
 
-    private void addTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addTFActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_addTFActionPerformed
-
-    private void dobTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dobTFActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_dobTFActionPerformed
-
-    private void pinCodeTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pinCodeTFActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_pinCodeTFActionPerformed
-
-    private void mobileTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mobileTFActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_mobileTFActionPerformed
-
-    private void emailTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_emailTFActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_emailTFActionPerformed
-
     private void editButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editButtonActionPerformed
         if(!isEditing){
             fNameTF.setEditable(true);
@@ -1356,18 +1306,14 @@ public class MainForm extends javax.swing.JFrame implements MouseListener {//Mou
         JOptionPane.showMessageDialog(null,"Not Yet Implemented! Problem? Open an issue");
     }//GEN-LAST:event_bookingConfirmationLinkLabelMouseClicked
 
-    private void oldPasswordTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_oldPasswordTFActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_oldPasswordTFActionPerformed
-
-    private void newPasswordTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newPasswordTFActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_newPasswordTFActionPerformed
-
     private void changePasswordButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_changePasswordButtonActionPerformed
         changePasswordDialog.setLocationRelativeTo(null);
         changePasswordDialog.setVisible(true);
     }//GEN-LAST:event_changePasswordButtonActionPerformed
+
+    private void ok1ButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ok1ButtonMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ok1ButtonMouseClicked
 
     private void resetBgColor(){
         //reset bg color of all buttons
