@@ -7,62 +7,82 @@ package custom.components;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.time.LocalDate;
+import java.util.ArrayList;
 
 
 /**
  *
  * @author Pranek
  */
-public class DatePanel extends javax.swing.JPanel implements ActionListener {
+public class DatePanel extends javax.swing.JPanel implements ItemListener {
     private int count=0;
-    private LocalDate minDate = LocalDate.of(1900, 1, 1);
-    private LocalDate maxDate = LocalDate.now();
+    private LocalDate minDate;
+    private LocalDate maxDate;
+    private ArrayList<Integer> yearModel; 
     /**
      * Creates new form Datepanel
      */
     public DatePanel() {
+        System.out.println("Constructor called!");
+        initComponents();
+        
+        this.yearModel = new ArrayList<>();
+        this.maxDate = LocalDate.now();
+        this.minDate = LocalDate.of(1900, 1, 1);
+        updateYearModel();
+        setDate(maxDate);
 
     //"this" is passed in the constructor, check if it would cause problems
-        initComponents();
-        dateCB.addActionListener(this);
-        monthCB.addActionListener(this);
-        yearCB.addActionListener(this);
-     
-        setDate(maxDate);
+        
+       
+        
+        dateCB.addItemListener(this);
+        monthCB.addItemListener(this);
+        yearCB.addItemListener(this);
+        
+        
        
     }
 
     @Override
-    public void actionPerformed(ActionEvent e) {//NOTE: Take care !! An infinite chain of events may ensue!!
-        System.out.println("ActionPerform called in DatePanel for the "+ ++count +"th time!");
-        //Checking basic calender constraints
-        if(Integer.parseInt((String) dateCB.getSelectedItem())>28 && Month.valueOf((String) monthCB.getSelectedItem()).equals(Month.Feb)){
-            if(Integer.parseInt((String) yearCB.getSelectedItem())%4==0)
-                dateCB.setSelectedIndex(dateCB.getItemCount()-3);
-            else 
-                dateCB.setSelectedIndex(dateCB.getItemCount()-4);
-        } 
-        else if(Integer.parseInt((String) dateCB.getSelectedItem())>30){
-            switch(Month.valueOf((String) monthCB.getSelectedItem())){
-                case Apr:                                           //30 ke mahine
-                case Jun:
-                case Sep:
-                case Nov:
-                    dateCB.setSelectedIndex(dateCB.getItemCount()-2);//setting date = 30
-                   
+    public void itemStateChanged(ItemEvent e) {
+        if (yearCB.getSelectedItem()!=null) {
+            System.out.println(e.toString());
+            System.out.println("ActionPerform called in DatePanel for the " + ++count + "th time!");
+            //Checking basic calender constraints
+            if (Integer.parseInt((String) dateCB.getSelectedItem()) > 28 && Month.valueOf((String) monthCB.getSelectedItem()).equals(Month.Feb)) {
+                if (Integer.parseInt((String) yearCB.getSelectedItem()) % 4 == 0) {
+                    dateCB.setSelectedIndex(dateCB.getItemCount() - 3);
+                    
+                } else {
+                    dateCB.setSelectedIndex(dateCB.getItemCount() - 4);
+                    
+                }
+            } else if (Integer.parseInt((String) dateCB.getSelectedItem()) > 30) {
+                switch (Month.valueOf((String) monthCB.getSelectedItem())) {
+                    case Apr:                                           //30 ke mahine
+                    case Jun:
+                    case Sep:
+                    case Nov:
+                        dateCB.setSelectedIndex(dateCB.getItemCount() - 2);//setting date = 30
+                    
+                }
+            }
+
+            //checking min and max date constraints
+            if (getDate().isBefore(minDate)) {
+                setDate(minDate);                
+            }
+            if (getDate().isAfter(maxDate)) {
+                setDate(maxDate);
             }
         }
-    
-    
-        //checking min and max date constraints
-        if(getDate().isBefore(minDate))
-            setDate(minDate);
-        if(getDate().isAfter(maxDate))
-            setDate(maxDate);
-    
-    
     }
+
+
     
     private enum Month{//barebones enum for quickly getting int value of Month
         Jan(1),
@@ -89,17 +109,20 @@ public class DatePanel extends javax.swing.JPanel implements ActionListener {
     }
     
     public LocalDate getDate(){
+        System.out.println(" Get date Called !!\n\tDay of month is "+ ((String) dateCB.getSelectedItem()) + "\n\tmonth is " 
+                + ((String) monthCB.getSelectedItem()) + "\n\tyear is :" + ((String)yearCB.getSelectedItem()));
        int dayOfMonth = Integer.parseInt((String) dateCB.getSelectedItem());
        int month = Month.valueOf((String) monthCB.getSelectedItem()).getValue();
-       int year = Integer.parseInt((String) yearCB.getSelectedItem());
+       int year = Integer.parseInt((String)yearCB.getSelectedItem());
        
        return LocalDate.of(year,month,dayOfMonth);
     }
     
     public void setDate(LocalDate date){
+        System.out.println("setDate called with date " + date.toString());
         dateCB.setSelectedIndex(date.getDayOfMonth()-1);
         monthCB.setSelectedIndex(date.getMonthValue()-1);
-        yearCB.setSelectedItem(date.getYear());
+        yearCB.setSelectedIndex(yearModel.indexOf(date.getYear()));
     }
 
     public void setMinDate(LocalDate minDate) {
@@ -120,9 +143,11 @@ public class DatePanel extends javax.swing.JPanel implements ActionListener {
     
     private void updateYearModel(){
          yearCB.removeAllItems();
+         yearModel.clear();
          for(int i = minDate.getYear();i<=maxDate.getYear();i++){
              System.out.println("Adding year " + i + " to the year combobox");
              yearCB.addItem(String.valueOf(i));
+             yearModel.add(i);
          }
          
     }
