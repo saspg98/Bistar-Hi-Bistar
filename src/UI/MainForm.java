@@ -19,6 +19,9 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import verifyingTools.Verify;
 import bridge.Helper;
+import java.awt.Dialog;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 import java.time.LocalDate;
 import javax.swing.JOptionPane;
 
@@ -150,6 +153,7 @@ public class MainForm extends javax.swing.JFrame implements MouseListener {//Mou
         backPanel = new javax.swing.JPanel();
         backLabel = new javax.swing.JLabel();
 
+        changePasswordDialog.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         changePasswordDialog.setBackground(new java.awt.Color(204, 204, 204));
         changePasswordDialog.setMinimumSize(new java.awt.Dimension(638, 361));
 
@@ -1381,6 +1385,7 @@ public class MainForm extends javax.swing.JFrame implements MouseListener {//Mou
 
     private void changePasswordButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_changePasswordButtonActionPerformed
         changePasswordDialog.setLocationRelativeTo(null);
+        
         changePasswordDialog.setVisible(true);
     }//GEN-LAST:event_changePasswordButtonActionPerformed
 
@@ -1450,6 +1455,8 @@ public class MainForm extends javax.swing.JFrame implements MouseListener {//Mou
         settingsPanelButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         roomScrollPane.getVerticalScrollBar().setUnitIncrement(15);
         backLabel.setText("\u2190");//setting the back button unicode
+        
+        changePasswordDialog.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
 
         //setting up the date panels
         checkInDatePanel.setMinDate(LocalDate.now());
@@ -1705,4 +1712,6 @@ public class MainForm extends javax.swing.JFrame implements MouseListener {//Mou
         amenitiesTA.setText(des.getAmenities());
 
     }
+
+    
 }
