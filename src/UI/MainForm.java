@@ -124,10 +124,10 @@ public class MainForm extends javax.swing.JFrame implements MouseListener {//Mou
         jLabel18 = new javax.swing.JLabel();
         lNameTF = new javax.swing.JTextField();
         pastBookingsPanel = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        recordsTable = new javax.swing.JTable();
         titlePanelMyBookings = new javax.swing.JPanel();
         jLabel15 = new javax.swing.JLabel();
+        bookingListPanel = new javax.swing.JPanel();
+        listTypeCB = new javax.swing.JComboBox<>();
         hotelDetailsPanel = new javax.swing.JPanel();
         hotelTitlePanel = new javax.swing.JPanel();
         hotelDetailsRatingLabel = new javax.swing.JLabel();
@@ -789,37 +789,7 @@ public class MainForm extends javax.swing.JFrame implements MouseListener {//Mou
         mainPanel.add(myProfilePanel, "settingsPanel");
 
         pastBookingsPanel.setBackground(new java.awt.Color(25, 25, 25));
-
-        recordsTable.setFont(new java.awt.Font("Lato", 0, 18)); // NOI18N
-        recordsTable.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {"Reshma Lodge", "31/06/17", "3 Days",  new Double(300.0)}
-            },
-            new String [] {
-                "Hotel", "Date", "Duration", "Charges"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.String.class, java.lang.Object.class, java.lang.Object.class, java.lang.Double.class
-            };
-            boolean[] canEdit = new boolean [] {
-                false, false, true, false
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        recordsTable.getTableHeader().setReorderingAllowed(false);
-        jScrollPane1.setViewportView(recordsTable);
-        if (recordsTable.getColumnModel().getColumnCount() > 0) {
-            recordsTable.getColumnModel().getColumn(0).setResizable(false);
-            recordsTable.getColumnModel().getColumn(1).setResizable(false);
-        }
+        pastBookingsPanel.setLayout(new java.awt.GridBagLayout());
 
         titlePanelMyBookings.setBackground(new java.awt.Color(25, 25, 25));
         titlePanelMyBookings.setLayout(new java.awt.GridBagLayout());
@@ -832,24 +802,47 @@ public class MainForm extends javax.swing.JFrame implements MouseListener {//Mou
         gridBagConstraints.gridy = 0;
         titlePanelMyBookings.add(jLabel15, gridBagConstraints);
 
-        javax.swing.GroupLayout pastBookingsPanelLayout = new javax.swing.GroupLayout(pastBookingsPanel);
-        pastBookingsPanel.setLayout(pastBookingsPanelLayout);
-        pastBookingsPanelLayout.setHorizontalGroup(
-            pastBookingsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(titlePanelMyBookings, javax.swing.GroupLayout.DEFAULT_SIZE, 1394, Short.MAX_VALUE)
-            .addGroup(pastBookingsPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1)
-                .addContainerGap())
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(9, 9, 9, 9);
+        pastBookingsPanel.add(titlePanelMyBookings, gridBagConstraints);
+
+        bookingListPanel.setBackground(new java.awt.Color(25, 25, 25));
+
+        javax.swing.GroupLayout bookingListPanelLayout = new javax.swing.GroupLayout(bookingListPanel);
+        bookingListPanel.setLayout(bookingListPanelLayout);
+        bookingListPanelLayout.setHorizontalGroup(
+            bookingListPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
-        pastBookingsPanelLayout.setVerticalGroup(
-            pastBookingsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pastBookingsPanelLayout.createSequentialGroup()
-                .addComponent(titlePanelMyBookings, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(156, 156, 156)
-                .addComponent(jScrollPane1)
-                .addContainerGap())
+        bookingListPanelLayout.setVerticalGroup(
+            bookingListPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.ipadx = 1;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 14.0;
+        gridBagConstraints.insets = new java.awt.Insets(9, 9, 9, 9);
+        pastBookingsPanel.add(bookingListPanel, gridBagConstraints);
+
+        listTypeCB.setFont(new java.awt.Font("Lato Black", 0, 30)); // NOI18N
+        listTypeCB.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Confirmed Bookings", "Waiting List", "Previous Bookings" }));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.insets = new java.awt.Insets(19, 19, 19, 19);
+        pastBookingsPanel.add(listTypeCB, gridBagConstraints);
 
         mainPanel.add(pastBookingsPanel, "pastBookingsPanel");
 
@@ -1451,7 +1444,7 @@ public class MainForm extends javax.swing.JFrame implements MouseListener {//Mou
         resetBgColor();
         UIMethods.setSelectedPanelButton(bookHotelsPanelButton, bookHotelsLabel);
         isSelected[0] = true;
-        recordsTable.getTableHeader().setFont(defaultKeyFont);
+        
         bookHotelsPanelButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         myBookingsPanelButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         settingsPanelButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
@@ -1506,6 +1499,7 @@ public class MainForm extends javax.swing.JFrame implements MouseListener {//Mou
     private javax.swing.JButton bookNowButton;
     private javax.swing.JPanel bookPanel;
     private javax.swing.JLabel bookingConfirmationLinkLabel;
+    private javax.swing.JPanel bookingListPanel;
     private javax.swing.JPanel bookingOptionsPanel;
     private javax.swing.JDialog changeGuestRoomDialog;
     private javax.swing.JButton changePasswordButton;
@@ -1554,8 +1548,8 @@ public class MainForm extends javax.swing.JFrame implements MouseListener {//Mou
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField lNameTF;
+    private javax.swing.JComboBox<String> listTypeCB;
     private javax.swing.JComboBox<String> locationComboBox;
     private javax.swing.JLabel logoutLinkLabel;
     private javax.swing.JPanel mainPanel;
@@ -1573,7 +1567,6 @@ public class MainForm extends javax.swing.JFrame implements MouseListener {//Mou
     private javax.swing.JTextField pinCodeTF;
     private javax.swing.JSlider priceSlider;
     private javax.swing.JSpinner priceSpinner;
-    private javax.swing.JTable recordsTable;
     private javax.swing.JPanel roomListPanel;
     private javax.swing.JPanel roomPanel;
     private javax.swing.JScrollPane roomScrollPane;

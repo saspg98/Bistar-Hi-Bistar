@@ -16,8 +16,10 @@ import java.awt.event.ActionListener;
 public class PastBookingListPanel extends javax.swing.JPanel {
 
     
-    public static final String  P_UPDATE= "PAST_UPDATE";
-    public static final String  P_CANCEL= "PAST_CANCEL";
+    public static final String WAIT_LIST = "wait";
+    public static final String CONFIRMED= "conf";
+    public static final String PREVIOUS= "previous";
+    
     /**
      * Creates new form PastBookingListPanel
      */
@@ -28,7 +30,7 @@ public class PastBookingListPanel extends javax.swing.JPanel {
         
     }
     
-    public PastBookingListPanel(BookedRooms booking){
+    public PastBookingListPanel(BookedRooms booking, String type){
         initComponents();
         checkInLabel.setText(booking.getCheckIn().toString());
         checkOutLabel.setText(booking.getCheckIn().toString());
@@ -36,6 +38,14 @@ public class PastBookingListPanel extends javax.swing.JPanel {
         hotelNameLabel.setText(booking.getHotelName());
         roomLabel.setText(booking.getRoomType());
         roomTypeLabel.setText(booking.getRoomType());
+        
+        if(type.equals(PREVIOUS)){
+            updateButton.setVisible(false);
+            updateButton.setEnabled(false);
+            
+            cancelButton.setVisible(false);
+            cancelButton.setEnabled(false);
+        }
         
     }
 

@@ -11,8 +11,6 @@ import static custom.components.ModifyBookingDialogPanel.D_UPDATE;
 import static custom.components.ModifyBookingDialogPanel.D_CANCEL;
 import static custom.components.GuestRoomDialogPanel.G_UPDATE;
 import static custom.components.GuestRoomDialogPanel.G_CANCEL;
-import static custom.components.PastBookingListPanel.P_CANCEL;
-import static custom.components.PastBookingListPanel.P_UPDATE;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;

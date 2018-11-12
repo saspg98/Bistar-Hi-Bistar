@@ -91,10 +91,10 @@ public class UIMethods {
     }
     
     
-    public static PastBookingListPanel[] createBookingListPanels(BookedRooms[] items){
+    public static PastBookingListPanel[] createBookingListPanels(BookedRooms[] items, String type){
         PastBookingListPanel[] itemPanels = new PastBookingListPanel[items.length];
         for(int i=0;i<items.length;i++){
-            itemPanels[i] = new PastBookingListPanel(items[i]);
+            itemPanels[i] = new PastBookingListPanel(items[i], type);
         }
         return itemPanels;
     }
