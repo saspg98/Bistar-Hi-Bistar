@@ -237,6 +237,11 @@ public class SignUpForm extends javax.swing.JFrame {
         container.add(centerBottomPanel, gridBagConstraints);
 
         confirmPasswordPF.setFont(new java.awt.Font("Lato Black", 0, 24)); // NOI18N
+        confirmPasswordPF.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                confirmPasswordPFActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 6;
@@ -531,6 +536,10 @@ public class SignUpForm extends javax.swing.JFrame {
             e.printStackTrace();
         }
     }//GEN-LAST:event_signUpButtonActionPerformed
+
+    private void confirmPasswordPFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmPasswordPFActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_confirmPasswordPFActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

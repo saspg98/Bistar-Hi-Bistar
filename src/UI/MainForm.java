@@ -171,6 +171,12 @@ public class MainForm extends javax.swing.JFrame implements MouseListener {//Mou
         jLabel4.setFont(new java.awt.Font("Lato Black", 0, 24)); // NOI18N
         jLabel4.setText("Confirm New Password");
 
+        oldPasswordPF.setFont(new java.awt.Font("Lato", 0, 24)); // NOI18N
+
+        confirmNewPasswordPF.setFont(new java.awt.Font("Lato", 0, 24)); // NOI18N
+
+        newPasswordPF.setFont(new java.awt.Font("Lato", 0, 24)); // NOI18N
+
         javax.swing.GroupLayout changePasswordDialogLayout = new javax.swing.GroupLayout(changePasswordDialog.getContentPane());
         changePasswordDialog.getContentPane().setLayout(changePasswordDialogLayout);
         changePasswordDialogLayout.setHorizontalGroup(
@@ -188,9 +194,9 @@ public class MainForm extends javax.swing.JFrame implements MouseListener {//Mou
                             .addComponent(oldPasswordPF)
                             .addComponent(newPasswordPF)
                             .addComponent(confirmNewPasswordPF, javax.swing.GroupLayout.DEFAULT_SIZE, 190, Short.MAX_VALUE))))
-                .addGap(82, 82, Short.MAX_VALUE))
+                .addGap(92, 92, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, changePasswordDialogLayout.createSequentialGroup()
-                .addContainerGap(268, Short.MAX_VALUE)
+                .addContainerGap(278, Short.MAX_VALUE)
                 .addComponent(changePasswordOkButton, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(256, 256, 256))
         );
@@ -211,7 +217,7 @@ public class MainForm extends javax.swing.JFrame implements MouseListener {//Mou
                             .addComponent(newPasswordPF, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(48, 48, 48)
                         .addComponent(confirmNewPasswordPF, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 52, Short.MAX_VALUE)
                 .addComponent(changePasswordOkButton, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(26, 26, 26))
         );
