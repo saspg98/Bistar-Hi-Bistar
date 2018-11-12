@@ -1487,7 +1487,7 @@ public class MainForm extends javax.swing.JFrame implements MouseListener {//Mou
         pinCodeTF.setText(Integer.toString(user.getPinCode()));
     }
 
-    private void saveDetails() {
+    private void saveDetails() {            // Method to change the details of the user in the database
         
         User u = new User();
         
@@ -1497,16 +1497,19 @@ public class MainForm extends javax.swing.JFrame implements MouseListener {//Mou
 
                 emailTF.setText("Invalid Email");
                 emailTF.setForeground(Color.RED);
+                isEditing = true;
 
             } else if (!Verify.isValidPinCode(pinCodeTF.getText().trim())) {
 
                 pinCodeTF.setText("Invalid Pincode");
                 pinCodeTF.setForeground(Color.RED);
+                isEditing = true;
 
             } else if (!Verify.isValidMobile(mobileTF.getText().trim())) {
 
                  mobileTF.setText("Invalid Mobile Number");
                  mobileTF.setForeground(Color.RED);
+                 isEditing = true;
                  
             }else{
         
@@ -1525,7 +1528,8 @@ public class MainForm extends javax.swing.JFrame implements MouseListener {//Mou
 
            pinCodeTF.setText("Invalid Pincode");
            pinCodeTF.setForeground(Color.RED);
-            e.printStackTrace();
+           isEditing = true;
+           e.printStackTrace();
 
         } catch (Exception e) {
 
