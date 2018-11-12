@@ -28,6 +28,7 @@ public class DatePanel extends javax.swing.JPanel implements ActionListener {
         dateCB.addActionListener(this);
         monthCB.addActionListener(this);
         yearCB.addActionListener(this);
+     
         setDate(maxDate);
        
     }

@@ -94,6 +94,7 @@ public class Helper {
             ResultSet rs = query.getSt().executeQuery(s);
 
             while (rs.next()) {
+                
                 usr.setFName(rs.getString("FirstName"));
                 usr.setLName(rs.getString("LastName"));
                 usr.setDOB(rs.getString("DOB"));
@@ -103,6 +104,8 @@ public class Helper {
                 usr.setMobile(rs.getString("Mobile"));
                 usr.setPinCode(rs.getInt("PinCode"));
                 usr.setUsername(u);
+                usr.setPassword(p);
+             
             }
 
             rs.close();
@@ -161,14 +164,28 @@ public class Helper {
             query.getSt().executeUpdate(s);
             
         }catch (SQLException e) {
-
-            closeConnection();
+            
             e.printStackTrace();
             
-        }
-        
-        closeConnection();
+        }finally{  closeConnection(); }
        
     }
-
+    
+    public static void updatePassword(){
+        
+        makeConnection();
+        
+        try{
+        
+        String s = "UPDATE dbo.userCredential SET Password =\'"+usr.getPassword()+"\' WHERE Username =\'"+usr.getUsername()+"\'";
+        
+        query.getSt().executeUpdate(s);
+        
+        }catch (SQLException e) {
+            
+            e.printStackTrace();
+            
+        }finally{  closeConnection(); } 
+        
+    }
 }

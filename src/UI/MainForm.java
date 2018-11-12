@@ -62,7 +62,7 @@ public class MainForm extends javax.swing.JFrame implements MouseListener {//Mou
         changePasswordDialog = new javax.swing.JDialog();
         oldPasswordTF = new javax.swing.JTextField();
         newPasswordTF = new javax.swing.JTextField();
-        cNewPasswordTF = new javax.swing.JTextField();
+        confirmNewPasswordTF = new javax.swing.JTextField();
         changePasswordOkButton = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -153,7 +153,7 @@ public class MainForm extends javax.swing.JFrame implements MouseListener {//Mou
 
         newPasswordTF.setFont(new java.awt.Font("Lato", 0, 24)); // NOI18N
 
-        cNewPasswordTF.setFont(new java.awt.Font("Lato", 0, 24)); // NOI18N
+        confirmNewPasswordTF.setFont(new java.awt.Font("Lato", 0, 24)); // NOI18N
 
         changePasswordOkButton.setFont(new java.awt.Font("Lato", 0, 30)); // NOI18N
         changePasswordOkButton.setText("OK");
@@ -183,7 +183,7 @@ public class MainForm extends javax.swing.JFrame implements MouseListener {//Mou
                     .addGroup(changePasswordDialogLayout.createSequentialGroup()
                         .addComponent(jLabel4)
                         .addGap(18, 18, 18)
-                        .addComponent(cNewPasswordTF))
+                        .addComponent(confirmNewPasswordTF))
                     .addGroup(changePasswordDialogLayout.createSequentialGroup()
                         .addGroup(changePasswordDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -213,7 +213,7 @@ public class MainForm extends javax.swing.JFrame implements MouseListener {//Mou
                             .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(75, 75, 75))
                     .addGroup(changePasswordDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(cNewPasswordTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(confirmNewPasswordTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel4)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
                 .addComponent(changePasswordOkButton, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1336,7 +1336,11 @@ public class MainForm extends javax.swing.JFrame implements MouseListener {//Mou
     }//GEN-LAST:event_changePasswordButtonActionPerformed
 
     private void changePasswordOkButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_changePasswordOkButtonMouseClicked
-        // TODO add your handling code here:
+        
+     /*  if(Arrays.equals(oldPasswordTF.getPassword().trim(), user.getPassword()))
+        {
+            Helper.updatePassword();
+        }else */
     }//GEN-LAST:event_changePasswordOkButtonMouseClicked
 
     private void emailTFFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_emailTFFocusGained
@@ -1433,12 +1437,12 @@ public class MainForm extends javax.swing.JFrame implements MouseListener {//Mou
     private javax.swing.JPanel bookPanel;
     private javax.swing.JLabel bookingConfirmationLinkLabel;
     private javax.swing.JPanel bookingOptionsPanel;
-    private javax.swing.JTextField cNewPasswordTF;
     private javax.swing.JButton changePasswordButton;
     private javax.swing.JDialog changePasswordDialog;
     private javax.swing.JButton changePasswordOkButton;
     private custom.components.DatePanel checkInDatePanel;
     private custom.components.DatePanel checkOutDatePanel;
+    private javax.swing.JTextField confirmNewPasswordTF;
     private javax.swing.JPanel descriptionLabelContainerPanel;
     private javax.swing.JPanel descriptionPanel;
     private javax.swing.JScrollPane descriptionScrollPane;
