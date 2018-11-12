@@ -73,7 +73,7 @@ public class MainForm extends javax.swing.JFrame implements MouseListener {//Mou
         confirmNewPasswordPF = new javax.swing.JPasswordField();
         newPasswordPF = new javax.swing.JPasswordField();
         modifyDateDialog = new javax.swing.JDialog();
-        modifyDateDialogPanel1 = new custom.components.ModifyDateDialogPanel();
+        modifyDateDialogPanel1 = new custom.components.ModifyBookingDialogPanel();
         changeGuestRoomDialog = new javax.swing.JDialog();
         guestRoomDialogPanel2 = new custom.components.GuestRoomDialogPanel();
         sidebar = new javax.swing.JPanel();
@@ -1561,7 +1561,7 @@ public class MainForm extends javax.swing.JFrame implements MouseListener {//Mou
     private javax.swing.JPanel mainPanel;
     private javax.swing.JTextField mobileTF;
     private javax.swing.JDialog modifyDateDialog;
-    private custom.components.ModifyDateDialogPanel modifyDateDialogPanel1;
+    private custom.components.ModifyBookingDialogPanel modifyDateDialogPanel1;
     private javax.swing.JLabel myBookingsLabel;
     private javax.swing.JPanel myBookingsPanelButton;
     private javax.swing.JLabel myProfileLabel;

@@ -6,17 +6,16 @@
 package internal;
 
 import custom.components.GuestRoomDialogPanel;
-import custom.components.ModifyDateDialogPanel;
-
-import static custom.components.ModifyDateDialogPanel.D_UPDATE;
-import static custom.components.ModifyDateDialogPanel.D_CANCEL;
+import custom.components.ModifyBookingDialogPanel;
+import static custom.components.ModifyBookingDialogPanel.D_UPDATE;
+import static custom.components.ModifyBookingDialogPanel.D_CANCEL;
 import static custom.components.GuestRoomDialogPanel.G_UPDATE;
 import static custom.components.GuestRoomDialogPanel.G_CANCEL;
+import static custom.components.PastBookingListPanel.P_CANCEL;
+import static custom.components.PastBookingListPanel.P_UPDATE;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import javax.swing.JDialog;
-import javax.swing.JPanel;
 
 /**
  *
@@ -25,9 +24,9 @@ import javax.swing.JPanel;
 public class DialogActionListener implements ActionListener {
     
     GuestRoomDialogPanel guest;
-    ModifyDateDialogPanel date;
+    ModifyBookingDialogPanel date;
 
-    public DialogActionListener(GuestRoomDialogPanel date, ModifyDateDialogPanel guestRoom) {
+    public DialogActionListener(GuestRoomDialogPanel date, ModifyBookingDialogPanel guestRoom) {
         this.guest = date;
         this.date = guestRoom;
         
@@ -47,12 +46,16 @@ public class DialogActionListener implements ActionListener {
     public void actionPerformed(ActionEvent e) {
        switch(e.getActionCommand()){
            case D_UPDATE:
+               //update details in database>refresh mainForm>dispose dialog
                break;
             case D_CANCEL:
+                //dispose dialogBox(create public method in MainForm)
                break;
             case G_UPDATE:
+                //update booking object>refresh details>dispose dialog
                break;
             case G_CANCEL:
+                //dispose dialog
                break;
        }
         

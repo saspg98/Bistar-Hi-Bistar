@@ -144,7 +144,7 @@
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout"/>
       <SubComponents>
-        <Component class="custom.components.ModifyDateDialogPanel" name="modifyDateDialogPanel1">
+        <Component class="custom.components.ModifyBookingDialogPanel" name="modifyDateDialogPanel1">
           <Properties>
             <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
               <Dimension value="[447, 300]"/>

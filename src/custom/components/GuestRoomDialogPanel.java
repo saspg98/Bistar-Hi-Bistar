@@ -54,6 +54,7 @@ public class GuestRoomDialogPanel extends javax.swing.JPanel {
         cancelButton.setForeground(new java.awt.Color(255, 255, 255));
         cancelButton.setText("Cancel");
         cancelButton.setContentAreaFilled(false);
+        cancelButton.setOpaque(true);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 2;
@@ -68,6 +69,7 @@ public class GuestRoomDialogPanel extends javax.swing.JPanel {
         updateButton.setForeground(new java.awt.Color(255, 255, 255));
         updateButton.setText("Update");
         updateButton.setContentAreaFilled(false);
+        updateButton.setOpaque(true);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 2;

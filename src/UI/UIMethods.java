@@ -5,6 +5,8 @@
  */
 package UI;
 
+import custom.components.PastBookingListPanel;
+import internal.BookedRooms;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.font.TextAttribute;
@@ -86,5 +88,14 @@ public class UIMethods {
     
     public static String getEmptyStarString(){
         return EMPTY_STAR;
+    }
+    
+    
+    public static PastBookingListPanel[] createBookingListPanels(BookedRooms[] items){
+        PastBookingListPanel[] itemPanels = new PastBookingListPanel[items.length];
+        for(int i=0;i<items.length;i++){
+            itemPanels[i] = new PastBookingListPanel(items[i]);
+        }
+        return itemPanels;
     }
 }
