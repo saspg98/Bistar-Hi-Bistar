@@ -3,22 +3,22 @@
  */
 package internal;
 
-import java.sql.Date;
+import java.time.LocalDate;
 /**
  *
  * @author Snehit
  */
 public class BookingConstraints {
     
-    Date checkIn;
-    Date checkOut;
+    LocalDate checkIn;
+    LocalDate checkOut;
     double maxPrice;
     int numRooms;
     String location;
     String hotelName;
     String roomType;
     
-    public BookingConstraints(String hotelName, String roomType, double maxPrice, int numRooms, String location, Date checkIn, Date checkOut) {
+    public BookingConstraints(String hotelName, String roomType, double maxPrice, int numRooms, String location, LocalDate checkIn, LocalDate checkOut) {
         this.hotelName = hotelName;
         this.roomType = roomType;
         this.maxPrice = maxPrice;
@@ -48,11 +48,11 @@ public class BookingConstraints {
         return numRooms;
     }
         
-    public Date getCheckIn() {
+    public LocalDate getCheckIn() {
         return checkIn;
     }
         
-    public Date getCheckOut() {
+    public LocalDate getCheckOut() {
         return checkOut;
     }
     
@@ -76,11 +76,11 @@ public class BookingConstraints {
         this.numRooms = numRooms;
     }
         
-    public void setCheckIn(Date checkIn) {
+    public void setCheckIn(LocalDate checkIn) {
         this.checkIn = checkIn;
     }
         
-    public void setCheckOut(Date checkOut) {
+    public void setCheckOut(LocalDate checkOut) {
         this.checkOut = checkOut;
     }
     
