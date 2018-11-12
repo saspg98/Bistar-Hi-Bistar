@@ -151,7 +151,7 @@ public class MainForm extends javax.swing.JFrame implements MouseListener {//Mou
         backLabel = new javax.swing.JLabel();
 
         changePasswordDialog.setBackground(new java.awt.Color(204, 204, 204));
-        changePasswordDialog.setMinimumSize(new java.awt.Dimension(638, 361));
+        changePasswordDialog.setMinimumSize(new java.awt.Dimension(648, 383));
 
         changePasswordOkButton.setFont(new java.awt.Font("Lato", 0, 30)); // NOI18N
         changePasswordOkButton.setText("OK");
