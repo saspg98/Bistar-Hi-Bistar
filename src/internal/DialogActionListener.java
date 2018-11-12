@@ -7,13 +7,13 @@ package internal;
 
 import custom.components.GuestRoomDialogPanel;
 import custom.components.ModifyBookingDialogPanel;
-import static custom.components.ModifyBookingDialogPanel.D_UPDATE;
-import static custom.components.ModifyBookingDialogPanel.D_CANCEL;
 import static custom.components.GuestRoomDialogPanel.G_UPDATE;
 import static custom.components.GuestRoomDialogPanel.G_CANCEL;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import static custom.components.ModifyBookingDialogPanel.B_UPDATE;
+import static custom.components.ModifyBookingDialogPanel.B_CANCEL;
 
 /**
  *
@@ -22,14 +22,14 @@ import java.awt.event.ActionListener;
 public class DialogActionListener implements ActionListener {
     
     GuestRoomDialogPanel guest;
-    ModifyBookingDialogPanel date;
+    ModifyBookingDialogPanel book;
 
     public DialogActionListener(GuestRoomDialogPanel date, ModifyBookingDialogPanel guestRoom) {
         this.guest = date;
-        this.date = guestRoom;
+        this.book = guestRoom;
         
         this.guest.setActionListener(this);
-        this.date.setActionListener(this);
+        this.book.setActionListener(this);
     }
 
 
@@ -43,10 +43,11 @@ public class DialogActionListener implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
        switch(e.getActionCommand()){
-           case D_UPDATE:
-               //update details in database>refresh mainForm>dispose dialog
+           case B_UPDATE:
+               BookedRooms old =book.getBooking();
+               BookedRooms newR;//get from ModifyBookingPanel
                break;
-            case D_CANCEL:
+            case B_CANCEL:
                 //dispose dialogBox(create public method in MainForm)
                break;
             case G_UPDATE:

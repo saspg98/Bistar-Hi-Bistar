@@ -5,6 +5,7 @@
  */
 package custom.components;
 
+import internal.BookedRooms;
 import java.awt.event.ActionListener;
 
 /**
@@ -13,15 +14,16 @@ import java.awt.event.ActionListener;
  */
 public class ModifyBookingDialogPanel extends javax.swing.JPanel {
 
-    public static final String  D_UPDATE= "DATE_UPDATE";
-    public static final String  D_CANCEL= "DATE_CANCEL";
+    public static final String  B_UPDATE= "DATE_UPDATE";
+    public static final String  B_CANCEL= "DATE_CANCEL";
+    private BookedRooms booking;
     /**
      * Creates new form GuestRoomDialogPanel
      */
     public ModifyBookingDialogPanel() {
         initComponents();
-        updateButton.setActionCommand(D_UPDATE);
-        cancelButton.setActionCommand(D_CANCEL);
+        updateButton.setActionCommand(B_UPDATE);
+        cancelButton.setActionCommand(B_CANCEL);
     }
     
     
@@ -29,6 +31,15 @@ public class ModifyBookingDialogPanel extends javax.swing.JPanel {
         updateButton.addActionListener(a);
         cancelButton.addActionListener(a);
     }
+
+    public BookedRooms getBooking() {
+        return booking;
+    }
+
+    
+    
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.

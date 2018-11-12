@@ -74,7 +74,7 @@ public class MainForm extends javax.swing.JFrame implements MouseListener {//Mou
         oldPasswordPF = new javax.swing.JPasswordField();
         confirmNewPasswordPF = new javax.swing.JPasswordField();
         newPasswordPF = new javax.swing.JPasswordField();
-        modifyDateDialog = new javax.swing.JDialog();
+        modifyBookingDialog = new javax.swing.JDialog();
         modifyDateDialogPanel1 = new custom.components.ModifyBookingDialogPanel();
         changeGuestRoomDialog = new javax.swing.JDialog();
         guestRoomDialogPanel2 = new custom.components.GuestRoomDialogPanel();
@@ -164,6 +164,11 @@ public class MainForm extends javax.swing.JFrame implements MouseListener {//Mou
                 changePasswordOkButtonMouseClicked(evt);
             }
         });
+        changePasswordOkButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                changePasswordOkButtonActionPerformed(evt);
+            }
+        });
 
         jLabel2.setFont(new java.awt.Font("Lato Black", 0, 24)); // NOI18N
         jLabel2.setText("Old Password");
@@ -225,8 +230,8 @@ public class MainForm extends javax.swing.JFrame implements MouseListener {//Mou
                 .addGap(26, 26, 26))
         );
 
-        modifyDateDialog.setMinimumSize(new java.awt.Dimension(520, 300));
-        modifyDateDialog.getContentPane().setLayout(new java.awt.GridBagLayout());
+        modifyBookingDialog.setMinimumSize(new java.awt.Dimension(520, 300));
+        modifyBookingDialog.getContentPane().setLayout(new java.awt.GridBagLayout());
 
         modifyDateDialogPanel1.setMinimumSize(new java.awt.Dimension(447, 300));
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -235,7 +240,7 @@ public class MainForm extends javax.swing.JFrame implements MouseListener {//Mou
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        modifyDateDialog.getContentPane().add(modifyDateDialogPanel1, gridBagConstraints);
+        modifyBookingDialog.getContentPane().add(modifyDateDialogPanel1, gridBagConstraints);
 
         changeGuestRoomDialog.setMinimumSize(new java.awt.Dimension(533, 173));
         changeGuestRoomDialog.getContentPane().setLayout(new java.awt.GridBagLayout());
@@ -1367,6 +1372,10 @@ public class MainForm extends javax.swing.JFrame implements MouseListener {//Mou
         }
     }//GEN-LAST:event_listTypeCBItemStateChanged
 
+    private void changePasswordOkButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_changePasswordOkButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_changePasswordOkButtonActionPerformed
+
     private void resetBgColor() {
         //reset bg color of all buttons
         bookHotelsPanelButton.setBackground(defaultButtonColor);
@@ -1404,7 +1413,7 @@ public class MainForm extends javax.swing.JFrame implements MouseListener {//Mou
         dal = new DialogActionListener(guestRoomDialogPanel2,modifyDateDialogPanel1);
         changePasswordDialog.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
         changeGuestRoomDialog.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
-        modifyDateDialog.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
+        modifyBookingDialog.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
 
         //setting up the date panels
         checkInDatePanel.setMinDate(LocalDate.now());
@@ -1497,7 +1506,7 @@ public class MainForm extends javax.swing.JFrame implements MouseListener {//Mou
     private javax.swing.JLabel logoutLinkLabel;
     private javax.swing.JPanel mainPanel;
     private javax.swing.JTextField mobileTF;
-    private javax.swing.JDialog modifyDateDialog;
+    private javax.swing.JDialog modifyBookingDialog;
     private custom.components.ModifyBookingDialogPanel modifyDateDialogPanel1;
     private javax.swing.JLabel myBookingsLabel;
     private javax.swing.JPanel myBookingsPanelButton;
