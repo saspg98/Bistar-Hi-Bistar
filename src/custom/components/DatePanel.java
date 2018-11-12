@@ -22,6 +22,7 @@ public class DatePanel extends javax.swing.JPanel implements ItemListener {
     private LocalDate minDate;
     private LocalDate maxDate;
     private ArrayList<Integer> yearModel; 
+    private boolean isChanging=false;
     /**
      * Creates new form Datepanel
      */
@@ -49,7 +50,7 @@ public class DatePanel extends javax.swing.JPanel implements ItemListener {
 
     @Override
     public void itemStateChanged(ItemEvent e) {
-        if (yearCB.getSelectedItem()!=null) {
+        if (yearCB.getSelectedIndex()>0 && monthCB.getSelectedIndex()>0 && dateCB.getSelectedIndex()>0 && !isChanging) {
             
             //Checking basic calender constraints
             if (Integer.parseInt((String) dateCB.getSelectedItem()) > 28 && Month.valueOf((String) monthCB.getSelectedItem()).equals(Month.Feb)) {
@@ -66,8 +67,7 @@ public class DatePanel extends javax.swing.JPanel implements ItemListener {
                     case Jun:
                     case Sep:
                     case Nov:
-                        dateCB.setSelectedIndex(dateCB.getItemCount() - 2);//setting date = 30
-                    
+                        dateCB.setSelectedIndex(dateCB.getItemCount() - 2);//setting date = 30   
                 }
             }
 
@@ -117,10 +117,11 @@ public class DatePanel extends javax.swing.JPanel implements ItemListener {
     }
     
     public void setDate(LocalDate date){
-       
+        isChanging=true;
         dateCB.setSelectedIndex(date.getDayOfMonth()-1);
         monthCB.setSelectedIndex(date.getMonthValue()-1);
         yearCB.setSelectedIndex(yearModel.indexOf(date.getYear()));
+        isChanging=false;
     }
 
     public void setMinDate(LocalDate minDate) {
