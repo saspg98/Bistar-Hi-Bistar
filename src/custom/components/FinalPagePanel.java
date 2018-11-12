@@ -9,12 +9,12 @@ package custom.components;
  *
  * @author Pranek
  */
-public class BookNow extends javax.swing.JPanel {
+public class FinalPagePanel extends javax.swing.JPanel {
 
     /**
      * Creates new form BookNow
      */
-    public BookNow() {
+    public FinalPagePanel() {
         initComponents();
     }
 
