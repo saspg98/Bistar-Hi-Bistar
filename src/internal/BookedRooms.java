@@ -5,22 +5,22 @@
  */
 package internal;
 
-import java.sql.Date;
+import java.time.LocalDate;
 
 /**
  *
  * @author Snehit
  */
 public class BookedRooms {
-    Date checkIn;
-    Date checkOut;
+    LocalDate checkIn;
+    LocalDate checkOut;
     int numPeople;
     int numRooms;
     String location;
     String hotelName;
     String roomType;
     
-    public BookedRooms(String hotelName, String roomType, int numPeople, int numRooms, String location, Date checkIn, Date checkOut) {
+    public BookedRooms(String hotelName, String roomType, int numPeople, int numRooms, String location, LocalDate checkIn, LocalDate checkOut) {
         
         this.hotelName = hotelName;
         this.roomType = roomType;
@@ -51,11 +51,11 @@ public class BookedRooms {
         return numRooms;
     }
         
-    public Date getCheckIn() {
+    public LocalDate getCheckIn() {
         return checkIn;
     }
         
-    public Date getCheckOut() {
+    public LocalDate getCheckOut() {
         return checkOut;
     }
     
@@ -79,11 +79,11 @@ public class BookedRooms {
         this.numRooms = numRooms;
     }
         
-    public void setCheckIn(Date checkIn) {
+    public void setCheckIn(LocalDate checkIn) {
         this.checkIn = checkIn;
     }
         
-    public void setCheckOut(Date checkOut) {
+    public void setCheckOut(LocalDate checkOut) {
         this.checkOut = checkOut;
     }
     
