@@ -79,6 +79,9 @@ public class MainForm extends javax.swing.JFrame implements MouseListener {//Mou
         oldPasswordPF = new javax.swing.JPasswordField();
         confirmNewPasswordPF = new javax.swing.JPasswordField();
         newPasswordPF = new javax.swing.JPasswordField();
+        errorOldPasswordLabel = new javax.swing.JLabel();
+        errorPasswordMatchLabel = new javax.swing.JLabel();
+        errorPasswordLengthLabel = new javax.swing.JLabel();
         modifyBookingDialog = new javax.swing.JDialog();
         modifyDateDialogPanel1 = new custom.components.ModifyBookingDialogPanel();
         changeGuestRoomDialog = new javax.swing.JDialog();
@@ -158,6 +161,8 @@ public class MainForm extends javax.swing.JFrame implements MouseListener {//Mou
         changePasswordDialog.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         changePasswordDialog.setBackground(new java.awt.Color(204, 204, 204));
         changePasswordDialog.setMinimumSize(new java.awt.Dimension(638, 361));
+        changePasswordDialog.setPreferredSize(new java.awt.Dimension(658, 408));
+        changePasswordDialog.getContentPane().setLayout(new java.awt.GridBagLayout());
 
         changePasswordOkButton.setFont(new java.awt.Font("Lato", 0, 30)); // NOI18N
         changePasswordOkButton.setText("OK");
@@ -167,66 +172,119 @@ public class MainForm extends javax.swing.JFrame implements MouseListener {//Mou
                 changePasswordOkButtonActionPerformed(evt);
             }
         });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 5;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.gridheight = 2;
+        gridBagConstraints.ipadx = 50;
+        gridBagConstraints.ipady = 25;
+        gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
+        changePasswordDialog.getContentPane().add(changePasswordOkButton, gridBagConstraints);
 
         jLabel2.setFont(new java.awt.Font("Lato Black", 0, 24)); // NOI18N
         jLabel2.setText("Old Password");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
+        changePasswordDialog.getContentPane().add(jLabel2, gridBagConstraints);
 
         jLabel3.setFont(new java.awt.Font("Lato Black", 0, 24)); // NOI18N
         jLabel3.setText("New Password");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
+        changePasswordDialog.getContentPane().add(jLabel3, gridBagConstraints);
 
         jLabel4.setFont(new java.awt.Font("Lato Black", 0, 24)); // NOI18N
         jLabel4.setText("Confirm New Password");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
+        changePasswordDialog.getContentPane().add(jLabel4, gridBagConstraints);
 
         oldPasswordPF.setFont(new java.awt.Font("Lato", 0, 24)); // NOI18N
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.ipadx = 200;
+        gridBagConstraints.ipady = 4;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
+        changePasswordDialog.getContentPane().add(oldPasswordPF, gridBagConstraints);
 
         confirmNewPasswordPF.setFont(new java.awt.Font("Lato", 0, 24)); // NOI18N
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.ipadx = 200;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
+        changePasswordDialog.getContentPane().add(confirmNewPasswordPF, gridBagConstraints);
 
         newPasswordPF.setFont(new java.awt.Font("Lato", 0, 24)); // NOI18N
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.ipadx = 200;
+        gridBagConstraints.ipady = 6;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
+        changePasswordDialog.getContentPane().add(newPasswordPF, gridBagConstraints);
 
-        javax.swing.GroupLayout changePasswordDialogLayout = new javax.swing.GroupLayout(changePasswordDialog.getContentPane());
-        changePasswordDialog.getContentPane().setLayout(changePasswordDialogLayout);
-        changePasswordDialogLayout.setHorizontalGroup(
-            changePasswordDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(changePasswordDialogLayout.createSequentialGroup()
-                .addGap(41, 41, 41)
-                .addGroup(changePasswordDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(changePasswordDialogLayout.createSequentialGroup()
-                        .addGroup(changePasswordDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel4))
-                        .addGap(67, 67, 67)
-                        .addGroup(changePasswordDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(oldPasswordPF)
-                            .addComponent(newPasswordPF)
-                            .addComponent(confirmNewPasswordPF, javax.swing.GroupLayout.DEFAULT_SIZE, 190, Short.MAX_VALUE))))
-                .addGap(92, 92, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, changePasswordDialogLayout.createSequentialGroup()
-                .addContainerGap(278, Short.MAX_VALUE)
-                .addComponent(changePasswordOkButton, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(256, 256, 256))
-        );
-        changePasswordDialogLayout.setVerticalGroup(
-            changePasswordDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(changePasswordDialogLayout.createSequentialGroup()
-                .addGap(38, 38, 38)
-                .addGroup(changePasswordDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(changePasswordDialogLayout.createSequentialGroup()
-                        .addGroup(changePasswordDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, changePasswordDialogLayout.createSequentialGroup()
-                                .addGroup(changePasswordDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(oldPasswordPF, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(48, 48, 48)
-                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(newPasswordPF, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(48, 48, 48)
-                        .addComponent(confirmNewPasswordPF, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 52, Short.MAX_VALUE)
-                .addComponent(changePasswordOkButton, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(26, 26, 26))
-        );
+        errorOldPasswordLabel.setFont(new java.awt.Font("Lato", 0, 18)); // NOI18N
+        errorOldPasswordLabel.setForeground(new java.awt.Color(255, 51, 51));
+        errorOldPasswordLabel.setText("*Old password same as new password");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
+        changePasswordDialog.getContentPane().add(errorOldPasswordLabel, gridBagConstraints);
+
+        errorPasswordMatchLabel.setFont(new java.awt.Font("Lato", 0, 18)); // NOI18N
+        errorPasswordMatchLabel.setForeground(new java.awt.Color(255, 51, 51));
+        errorPasswordMatchLabel.setText("*Passwords do not match");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
+        changePasswordDialog.getContentPane().add(errorPasswordMatchLabel, gridBagConstraints);
+
+        errorPasswordLengthLabel.setFont(new java.awt.Font("Lato", 0, 18)); // NOI18N
+        errorPasswordLengthLabel.setForeground(new java.awt.Color(255, 51, 51));
+        errorPasswordLengthLabel.setText("*Password must be greater than 8 characters");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
+        changePasswordDialog.getContentPane().add(errorPasswordLengthLabel, gridBagConstraints);
 
         modifyBookingDialog.setMinimumSize(new java.awt.Dimension(520, 300));
         modifyBookingDialog.getContentPane().setLayout(new java.awt.GridBagLayout());
@@ -1366,7 +1424,7 @@ public class MainForm extends javax.swing.JFrame implements MouseListener {//Mou
     }//GEN-LAST:event_listTypeCBItemStateChanged
 
     private void changePasswordOkButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_changePasswordOkButtonActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_changePasswordOkButtonActionPerformed
 
     private void resetBgColor() {
@@ -1401,6 +1459,12 @@ public class MainForm extends javax.swing.JFrame implements MouseListener {//Mou
         settingsPanelButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         roomScrollPane.getVerticalScrollBar().setUnitIncrement(15);
         backLabel.setText("\u2190");//setting the back button unicode
+        
+        //Setting error labels invisible
+        errorOldPasswordLabel.setVisible(false);
+        errorPasswordLengthLabel.setVisible(false);
+        errorPasswordMatchLabel.setVisible(false);
+        
         
         
         setupLocations(Helper.distinctLocations());//replace with actual method name
@@ -1472,6 +1536,9 @@ public class MainForm extends javax.swing.JFrame implements MouseListener {//Mou
     private javax.swing.JTextField dobTF;
     private javax.swing.JButton editButton;
     private javax.swing.JTextField emailTF;
+    private javax.swing.JLabel errorOldPasswordLabel;
+    private javax.swing.JLabel errorPasswordLengthLabel;
+    private javax.swing.JLabel errorPasswordMatchLabel;
     private javax.swing.JTextField fNameTF;
     private javax.swing.JDialog finalDialog;
     private custom.components.FinalDialogPanel finalDialogPanel;
@@ -1664,7 +1731,7 @@ public class MainForm extends javax.swing.JFrame implements MouseListener {//Mou
         
         guestRoomDialogPanel.setRoomTypes(des.getRoomTypes());
         thisBooking = new Booking(bc.getCheckIn(), bc.getCheckOut(), numOfGuests, 
-                bc.getNumRooms(), bc.getLocation(), bc.getHotelName(), type,
+                bc.getNumRooms(), bc.getLocation(), des.getHotelName(), type,
                 price);//TODO: ADD SOMETHING FOR WATILIST!!
         guestRoomDialogPanel.setThisBooking(thisBooking);
         if(!des.isAvailable()){
@@ -1711,13 +1778,13 @@ public class MainForm extends javax.swing.JFrame implements MouseListener {//Mou
     }
 
     private void makeBookingConstraints() {
-     double price = (Double)(priceSpinner.getValue());
+     double price = (int)(priceSpinner.getValue());
      String loc =locationCB.getSelectedItem().toString();
      int r = bookGuestRoomPanel.getRooms();
      LocalDate checkIn = checkInDatePanel.getDate();
      LocalDate checkOut = checkOutDatePanel.getDate();
      System.out.println("WARNING! CHOOSING ROOM TYPE Executive Room HERE, ALSO, SETTING HOTEL NAME \"Random\" here");
-     bc = new BookingConstraints("RANDOM", "Executive Room", price, r, loc, checkIn, checkOut);
+     bc = new BookingConstraints(price, r, loc, checkIn, checkOut);
     }
 
     private void setupLocations(String[] locStrings) {
