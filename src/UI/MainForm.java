@@ -28,6 +28,7 @@ import java.awt.Dimension;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 /**
@@ -1215,12 +1216,12 @@ public class MainForm extends javax.swing.JFrame implements MouseListener {//Mou
     }//GEN-LAST:event_priceSpinnerStateChanged
 
     private void goButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_goButtonActionPerformed
-        //TODO: Uncoment!
-        /*HotelDesc[] list = searchAndReturnHotelList(makeBookingConstraints());
-        resultList = new HotelListItemPanel[list.length];
-        for (int i = 0; i < list.length; i++) {
-        resultList[i] = new HotelListItemPanel(list[i]), this, i);
-        }*/
+
+        ArrayList<HotelDesc> list = Helper.searchAndReturnHotelList(makeBookingConstraints());
+        resultList = new HotelListItemPanel[list.size()];
+        for (int i = 0; i < list.size(); i++) {
+        resultList[i] = new HotelListItemPanel(list.get(i), this, i);
+        }
         
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.anchor = GridBagConstraints.FIRST_LINE_START;
