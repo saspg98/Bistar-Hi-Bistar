@@ -24,6 +24,8 @@ import internal.Booking;
 import internal.BookingConstraints;
 import internal.DialogActionListener;
 import java.awt.Dialog;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
@@ -32,7 +34,8 @@ import javax.swing.JOptionPane;
  *
  * @author Sarthak
  */
-public class MainForm extends javax.swing.JFrame implements MouseListener {//Mouse Listener for the mouse events in HotelListItemPanel
+public class MainForm extends javax.swing.JFrame implements MouseListener,
+        ActionListener{//Mouse Listener for the mouse events in HotelListItemPanel, ActionListener for button clicks in PastBookingListPanel
 
     User user;
     LoginForm loginScreen;
@@ -1797,7 +1800,7 @@ public class MainForm extends javax.swing.JFrame implements MouseListener {//Mou
         ;
          
         
-        PastBookingListPanel[] list = UIMethods.createBookingListPanels(new Booking[1],type);
+        PastBookingListPanel[] list = UIMethods.createBookingListPanels(new Booking[1],type,this);
         
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.anchor = GridBagConstraints.FIRST_LINE_START;
@@ -1849,6 +1852,11 @@ public class MainForm extends javax.swing.JFrame implements MouseListener {//Mou
             bookNowButton.setText("Waitlist");
         else
             bookNowButton.setText("Book Now");
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        
     }
 
     

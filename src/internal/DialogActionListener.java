@@ -81,7 +81,7 @@ public class DialogActionListener implements ActionListener {
                 //replace with actual method
                 //String ref = Helper.book(fin.getBookingDetails());
                 //JOptionPane.showInternalMessageDialog(null, 
-                //        "Congratulations on your booking! Your booking reference is " + ref, "Booking Confirmed- EzyBook", JOptionPane.PLAIN_MESSAGE);
+                //        "Congratulations on your booking! Your booking reference is #" + ref, "Booking Confirmed- EzyBook", JOptionPane.PLAIN_MESSAGE);
                 ((JDialog)SwingUtilities.getAncestorOfClass(JDialog.class, fin)).dispose();//Add null check!
                System.out.println("DO NULL CHECK");
                break;

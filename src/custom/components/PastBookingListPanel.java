@@ -21,36 +21,49 @@ public class PastBookingListPanel extends javax.swing.JPanel {
     public static final String CONFIRMED = "conf";
     public static final String PREVIOUS = "previous";
 
+    private final Booking thisBooking;
+    private final ActionListener actionListener;
+   
+    
     /**
      * Creates new form PastBookingListPanel
      */
     //DELETE THIS CONSTRUCTOR
     public PastBookingListPanel() {
         initComponents();
-        System.out.println("Error Incomming: Empty Const of PastBookingListPanel Called!");
+        System.out.println("Error Incomming: Empty Const of PastBookingListPanel Called! Setting thisBooking to null");
+        thisBooking = null;
+        actionListener = null;
 
     }
 
-    public PastBookingListPanel(Booking booking, String type) {
+    public PastBookingListPanel(Booking booking, String typeOfPanel, ActionListener a) {
         initComponents();
+        thisBooking = booking;
+        actionListener = a;
+ 
+        
         checkInLabel.setText(booking.getCheckIn().toString());
         checkOutLabel.setText(booking.getCheckIn().toString());
         guestLabel.setText(String.valueOf(booking.getNumPeople()));
-        hotelNameLabel.setText(booking.getHotelName());
+        hotelNameLabel.setText(booking.getHotelName() + "(#"+booking.getBookingReference()+")");
         roomLabel.setText(booking.getRoomType());
         roomTypeLabel.setText(booking.getRoomType());
+        
+        updateButton.addActionListener(actionListener);
+        cancelButton.addActionListener(actionListener);
 
-        if (type.equals(PREVIOUS)) {
+        if (typeOfPanel.equals(PREVIOUS)) {
             setStateToPrevious();
 
-        } else if (type.equals(WAIT_LIST)) {
+        } else if (typeOfPanel.equals(WAIT_LIST)) {
             setStateToWaitlist();
         }
 
     }
 
     private void setStateToPrevious() {
-        remove(updateButton);
+        
         remove(cancelButton);
         GridBagConstraints gbc = new GridBagConstraints();
         ratingPanel = new RatingPanel();
@@ -61,16 +74,8 @@ public class PastBookingListPanel extends javax.swing.JPanel {
         gbc.insets = new java.awt.Insets(5, 10, 5, 10);
         add(ratingPanel, gbc);
 
-        submitButton = new JButton();
-        submitButton.setBackground(new java.awt.Color(59, 35, 59));
-        submitButton.setFont(new java.awt.Font("Lato Black", 0, 24)); // NOI18N
-        submitButton.setForeground(new java.awt.Color(255, 255, 255));
-        submitButton.setText("Modify");
-        submitButton.setContentAreaFilled(false);
-        submitButton.setOpaque(true);
-
-        gbc.gridx = 4;
-        add(submitButton, gbc);
+        updateButton.setText("Submit");
+        updateButton.setActionCommand(SUBMIT_RATING);
     }
 
     private void setStateToWaitlist() {
@@ -79,8 +84,10 @@ public class PastBookingListPanel extends javax.swing.JPanel {
         updateButton.setText("Book Now");
         updateButton.setActionCommand(BOOK_WAITLIST);
     }
+    
+    
     public final String BOOK_WAITLIST = "Book Wait List";
-
+    public final String SUBMIT_RATING = "submit rating";
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -106,7 +113,7 @@ public class PastBookingListPanel extends javax.swing.JPanel {
 
         hotelNameLabel.setFont(new java.awt.Font("Lato Black", 0, 28)); // NOI18N
         hotelNameLabel.setForeground(new java.awt.Color(255, 255, 255));
-        hotelNameLabel.setText("Hotel Name");
+        hotelNameLabel.setText("Hotel Name(#23212)");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridwidth = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
@@ -154,11 +161,6 @@ public class PastBookingListPanel extends javax.swing.JPanel {
         updateButton.setText("Modify");
         updateButton.setContentAreaFilled(false);
         updateButton.setOpaque(true);
-        updateButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                updateButtonActionPerformed(evt);
-            }
-        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 4;
         gridBagConstraints.gridy = 0;
@@ -173,11 +175,6 @@ public class PastBookingListPanel extends javax.swing.JPanel {
         cancelButton.setText("Cancel Booking");
         cancelButton.setContentAreaFilled(false);
         cancelButton.setOpaque(true);
-        cancelButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cancelButtonActionPerformed(evt);
-            }
-        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 0;
@@ -209,17 +206,9 @@ public class PastBookingListPanel extends javax.swing.JPanel {
         add(roomLabel, gridBagConstraints);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void updateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateButtonActionPerformed
-        //change dates wala logic
-    }//GEN-LAST:event_updateButtonActionPerformed
-
-    private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cancelButtonActionPerformed
-
     private static final Color BOOK_COLOR = new Color(0, 140, 0);
     private RatingPanel ratingPanel;
-    private JButton submitButton;
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton cancelButton;
     private javax.swing.JLabel checkInLabel;

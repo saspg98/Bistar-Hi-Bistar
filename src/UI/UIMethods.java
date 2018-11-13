@@ -9,6 +9,7 @@ import custom.components.PastBookingListPanel;
 import internal.Booking;
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.event.ActionListener;
 import java.awt.font.TextAttribute;
 import java.util.HashMap;
 import java.util.Map;
@@ -91,10 +92,10 @@ public class UIMethods {
     }
     
     
-    public static PastBookingListPanel[] createBookingListPanels(Booking[] items, String type){
+    public static PastBookingListPanel[] createBookingListPanels(Booking[] items, String type, ActionListener actionListener){
         PastBookingListPanel[] itemPanels = new PastBookingListPanel[items.length];
         for(int i=0;i<items.length;i++){
-            itemPanels[i] = new PastBookingListPanel(items[i], type);
+            itemPanels[i] = new PastBookingListPanel(items[i], type, actionListener);
         }
         return itemPanels;
     }
