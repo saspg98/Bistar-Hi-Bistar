@@ -5,6 +5,7 @@
  */
 package bridge;
 
+import com.sun.webkit.graphics.RenderTheme;
 import internal.User;
 import jdbc.*;
 import java.sql.*;
@@ -206,6 +207,10 @@ public class Helper {
                     
                     ResultSet rs1 = query.getSt().executeQuery(s);
                     rs1.next();
+                    //README!! THE NEXT LINE WILL THROW AN ERROR!! THIS IS BECAUSE
+                    /*the two result sets(rs and rs1 are using the same Statement Object(returned by query.getSt())
+                    this is not permissible!! To do such a thing, either do everything using one resultSet and some other logic
+                    or create multiple Statement objects!!*/
                     if (rs.getInt("Penthouse") - rs1.getInt("SUM(NoOfRooms)") < bc.getNumRooms()) {
                         availablePenthouse = false;
                     }
