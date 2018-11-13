@@ -148,6 +148,7 @@ public class MainForm extends javax.swing.JFrame implements MouseListener {//Mou
         hotelDetailsOptionsBottomPanel = new javax.swing.JPanel();
         bookNowButton = new javax.swing.JButton();
         bookingConfirmationLinkLabel = new javax.swing.JLabel();
+        dateLabel = new javax.swing.JLabel();
         descriptionPanel = new javax.swing.JPanel();
         headingLabel = new javax.swing.JLabel();
         descriptionTabbedPanel1 = new custom.components.DescriptionTabbedPanel();
@@ -972,7 +973,7 @@ public class MainForm extends javax.swing.JFrame implements MouseListener {//Mou
         totalPriceLabel.setText("Rs. 34,981");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridy = 2;
         gridBagConstraints.gridwidth = 2;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
@@ -999,7 +1000,7 @@ public class MainForm extends javax.swing.JFrame implements MouseListener {//Mou
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 2;
+        gridBagConstraints.gridy = 3;
         gridBagConstraints.gridwidth = 2;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 1.0;
@@ -1028,6 +1029,22 @@ public class MainForm extends javax.swing.JFrame implements MouseListener {//Mou
         gridBagConstraints.weighty = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
         bookingOptionsPanel.add(bookingConfirmationLinkLabel, gridBagConstraints);
+
+        dateLabel.setFont(new java.awt.Font("Lato Black", 0, 24)); // NOI18N
+        dateLabel.setForeground(new java.awt.Color(255, 255, 255));
+        dateLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        dateLabel.setText("From someDate to somOtherDate");
+        dateLabel.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
+        bookingOptionsPanel.add(dateLabel, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -1458,6 +1475,7 @@ public class MainForm extends javax.swing.JFrame implements MouseListener {//Mou
     private custom.components.DatePanel checkInDatePanel;
     private custom.components.DatePanel checkOutDatePanel;
     private javax.swing.JPasswordField confirmNewPasswordPF;
+    private javax.swing.JLabel dateLabel;
     private javax.swing.JPanel descriptionPanel;
     private custom.components.DescriptionTabbedPanel descriptionTabbedPanel1;
     private javax.swing.JTextField dobTF;
@@ -1650,26 +1668,29 @@ public class MainForm extends javax.swing.JFrame implements MouseListener {//Mou
         hotelNameLabel.setText(des.getHotelName());
         numReviewsLabel.setText(des.getNumReviews() + " reviews");//TODO: add commas- as in "3,245" instead of "3245"
         hotelDetailsRatingLabel.setText(UIMethods.getRatingString(des.getStars()));
-        bookingConfirmationLinkLabel.setText(bc.getNumRooms() + " " + type + ", " + numOfGuests + " Guests");
-        totalPriceLabel.setText(des.getCost(type, bc.getNumRooms(), bc.getCheckIn(), bc.getCheckOut()) + "");
         descriptionTabbedPanel1.setDescription(des.getDescription(), des.getHotelAmenities(), des.getStars());
+        
         
         guestRoomDialogPanel.setRoomTypes(des.getRoomTypes());
         thisBooking = new Booking(bc.getCheckIn(), bc.getCheckOut(), numOfGuests, 
                 bc.getNumRooms(), bc.getLocation(), bc.getHotelName(), type,
                 price);//TODO: ADD SOMETHING FOR WATILIST!!
-        
+        guestRoomDialogPanel.setThisBooking(thisBooking);
         if(!des.isAvailable()){
             bookNowButton.setText("WAITLIST");
             thisBooking.setWaitlist(true);
             System.out.println("NOT SUPPORTED! BOOKING OBJECT DOESNT HAVE INFO ON WAITLIST!");
         }
-
+        refreshBookingUI();
+        /*bookingConfirmationLinkLabel.setText(bc.getNumRooms() + " " + type + ", " + numOfGuests + " Guests");
+        totalPriceLabel.setText(HotelDesc.getCost(type, bc.getNumRooms(), bc.getCheckIn(), bc.getCheckOut()) + "");
+        dateLabel.setText("From "+bc.getCheckIn().toString() + " to " + bc.getCheckOut().toString());*/
+        
+        
     }
 
     private void loadBookings() {
-        loadBookings(PastBookingListPanel.CONFIRMED);
-        
+        loadBookings(PastBookingListPanel.CONFIRMED);    
     }
     
     private void loadBookings(String type) {
@@ -1715,6 +1736,13 @@ public class MainForm extends javax.swing.JFrame implements MouseListener {//Mou
             locationCB.addItem(s);
             System.out.println("Adding "+s);
         }
+    }
+    //IMP! TO be called everytime after booking is changed!
+    public void refreshBookingUI(){
+        numOfGuests = thisBooking.getNumPeople();
+        bookingConfirmationLinkLabel.setText(thisBooking.getNumRooms() + " " + thisBooking.getRoomType() + ", " + numOfGuests + " Guests");
+        totalPriceLabel.setText(HotelDesc.getCost(thisBooking.getRoomType(), thisBooking.getNumRooms(), thisBooking.getCheckIn(), thisBooking.getCheckOut()) + "");
+        dateLabel.setText("From "+thisBooking.getCheckIn().toString() + " to " + thisBooking.getCheckOut().toString());
     }
 
     

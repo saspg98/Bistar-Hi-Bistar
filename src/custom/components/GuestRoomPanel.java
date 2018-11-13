@@ -25,6 +25,14 @@ public class GuestRoomPanel extends javax.swing.JPanel {
     public int getGuests(){
         return (Integer)(guestSpinner.getValue());
     }
+    public void setRooms(int i){
+        roomSpinner.setValue(i);
+    }
+    
+    public void setGuests(int i){
+        guestSpinner.setValue(i);
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

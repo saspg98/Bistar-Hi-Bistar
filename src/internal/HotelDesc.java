@@ -155,7 +155,7 @@ public class HotelDesc {
     
     
     //TODO: COMPLETE METHOD! DUMMY BODY
-    public int getCost(String type, int rooms, LocalDate checkIn, LocalDate checkOut){
+    public static int getCost(String type, int rooms, LocalDate checkIn, LocalDate checkOut){
         return 3450;
     }
     

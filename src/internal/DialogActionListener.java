@@ -58,8 +58,11 @@ public class DialogActionListener implements ActionListener {
                break;
             case G_UPDATE:
                 //update booking object>refresh details>dispose dialog
-                
-                
+                Booking temp = guest.getThisBooking();
+                temp.setNumPeople(guest.getGuests());
+                temp.setNumRooms(guest.getRooms());
+                temp.setRoomType(guest.getRoomType());
+                System.out.println("Warning refresh required!");
                 ((JDialog)SwingUtilities.getAncestorOfClass(JDialog.class, guest)).dispose();//Add null check!
                System.out.println("DO NULL CHECK");
                break;

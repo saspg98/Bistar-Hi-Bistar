@@ -5,6 +5,7 @@
  */
 package custom.components;
 
+import internal.Booking;
 import java.awt.event.ActionListener;
 
 /**
@@ -15,6 +16,8 @@ public class GuestRoomDialogPanel extends javax.swing.JPanel {
 
     public static final String  G_UPDATE= "GUEST_UPDATE";
     public static final String  G_CANCEL= "GUEST_CANCEL";
+    
+    private Booking thisBooking;
     
     /**
      * Creates new form GuestRoomDialogPanel
@@ -43,12 +46,40 @@ public class GuestRoomDialogPanel extends javax.swing.JPanel {
         return (String) (roomTypeCB.getSelectedItem());
     }
     
+    public void setRooms(int i){
+        guestRoomPanel.setRooms(i);
+    }
+    
+    public void setGuests(int i){
+        guestRoomPanel.setGuests(i);
+    }
+    
+    public void setRoomType(String type){
+        System.out.println("Setting room type equal to " + type);
+        roomTypeCB.setSelectedItem(type);
+    }
+    
     public void setRoomTypes(String[] types){
         roomTypeCB.removeAllItems();
         for(String type: types){
             roomTypeCB.addItem(type);
         }
     }
+
+    public Booking getThisBooking() {
+        return thisBooking;
+    }
+
+    public void setThisBooking(Booking thisBooking) {
+        this.thisBooking = thisBooking;
+        
+        
+        this.setRoomType(thisBooking.getRoomType());
+        this.setRooms(thisBooking.getNumRooms());
+        this.setGuests(thisBooking.getNumPeople());
+    }
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
