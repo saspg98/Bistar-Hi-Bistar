@@ -294,6 +294,29 @@ public class Helper {
        
         return hotelList;
     }
+    
+    public static String[] distinctLocations(){
+        
+        makeConnection();
+        ArrayList<String> locations = new ArrayList();
+        try {
+            String s;
+            s = "SELECT DISTINCT City FROM dbo.hotelDetails";
+            ResultSet rs = query.getSt().executeQuery(s);
+            
+            while (rs.next()) 
+                locations.add(rs.getString("City"));
+            
+        }catch (SQLException se) {
+            closeConnection();
+            se.printStackTrace();
+        }
+            
+        String[] locationsArray = new String[locations.size()];
+        locations.toArray(locationsArray);
+            
+        return locationsArray;
+    }
 
 }
  
