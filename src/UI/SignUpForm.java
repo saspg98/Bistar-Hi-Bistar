@@ -8,6 +8,7 @@ package UI;
 import verifyingTools.Verify;
 import bridge.Helper;
 import internal.User;
+import java.time.LocalDate;
 
 
 /**
@@ -28,7 +29,11 @@ public class SignUpForm extends javax.swing.JFrame {
         errorEmptyField.setVisible(false);
         errorMobileNumberLabel.setVisible(false);
         errorEmailIDLabel.setVisible(false);
-
+        
+        //setting min max date in DatePanel
+        datePanel1.setMinDate(LocalDate.of(1900, 1, 1));
+        datePanel1.setMaxDate(LocalDate.now());
+        datePanel1.setDate(LocalDate.now());
     }
 
     /**

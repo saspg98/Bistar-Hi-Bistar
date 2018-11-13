@@ -31,8 +31,6 @@ public class DatePanel extends javax.swing.JPanel implements ItemListener {
         this.yearModel = new ArrayList<>();
         this.maxDate = LocalDate.now();
         this.minDate = LocalDate.of(1900, 1, 1);
-        updateYearModel();
-        setDate(maxDate);
 
     //"this" is passed in the constructor, check if it would cause problems
         
