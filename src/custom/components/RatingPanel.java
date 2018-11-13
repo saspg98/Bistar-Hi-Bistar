@@ -21,6 +21,7 @@ public class RatingPanel extends javax.swing.JPanel implements MouseListener {
     boolean emptyState=true;
     static final Color EMPTY_STATE_COLOR = new Color(242, 242, 96);
     static final Color NORMAL_STATE_COLOR = new Color(255,255,0);
+    int star=0;
     /**
      * Creates new form giveRatingPanel
      */
@@ -83,10 +84,15 @@ public class RatingPanel extends javax.swing.JPanel implements MouseListener {
         do{
             starLabel[i].setText(UIMethods.getStarString());
         }while(!starLabel[i++].equals(e.getComponent()) && i<5);//NOTE: Point of contention
-        
+        star = i;
         
     }
 
+    public int getStar() {
+        return star;
+    }
+
+    
     @Override
     public void mousePressed(MouseEvent e) {
         

@@ -7,7 +7,9 @@ package custom.components;
 
 
 import internal.BookedRooms;
+import java.awt.GridBagConstraints;
 import java.awt.event.ActionListener;
+import javax.swing.JButton;
 
 /**
  *
@@ -40,11 +42,29 @@ public class PastBookingListPanel extends javax.swing.JPanel {
         roomTypeLabel.setText(booking.getRoomType());
         
         if(type.equals(PREVIOUS)){
-            updateButton.setVisible(false);
-            updateButton.setEnabled(false);
+            remove(updateButton);
+            remove(cancelButton);
+            GridBagConstraints gbc = new GridBagConstraints();
+            ratingPanel = new RatingPanel();
+            gbc.gridx = 3;
+            gbc.gridy = 0;
+            gbc.weightx = 1.0;
+            gbc.weighty = 1.0;
+            gbc.insets = new java.awt.Insets(5, 10, 5, 10);
+            add(ratingPanel, gbc);
             
-            cancelButton.setVisible(false);
-            cancelButton.setEnabled(false);
+            submitButton = new JButton();
+            submitButton.setBackground(new java.awt.Color(59, 35, 59));
+            submitButton.setFont(new java.awt.Font("Lato Black", 0, 24)); // NOI18N
+            submitButton.setForeground(new java.awt.Color(255, 255, 255));
+            submitButton.setText("Modify");
+            submitButton.setContentAreaFilled(false);
+            submitButton.setOpaque(true);
+            
+            
+            gbc.gridx = 4;
+            add(submitButton, gbc);
+            
         }
         
     }
@@ -185,7 +205,8 @@ public class PastBookingListPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_cancelButtonActionPerformed
 
-
+    private RatingPanel ratingPanel;
+    private JButton submitButton;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton cancelButton;
     private javax.swing.JLabel checkInLabel;
