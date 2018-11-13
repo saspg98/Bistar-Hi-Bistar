@@ -81,7 +81,7 @@ public class HotelListItemPanel extends javax.swing.JPanel {
             availabilityLabel.setForeground(UNAVAILABLE_COLOR);
             availabilityLabel.setText("Unavailable");
         }
-        int[] types = des.getRoomTypes();
+        int[] types = des.getNumOfRoomTypes();
         double[] prices = des.getPrices();
         roomLinks = new JLabel[prices.length];
         

@@ -18,7 +18,7 @@ public class HotelDesc {
     public static final String[] ROOM_TYPES = {"Penthouse","Executive","Deluxe","Standard"};
     
     String hotelName;
-    int[] roomTypes;
+    int[] numOfRoomTypes;
     double[] prices;
     int stars;
     int numReviews;
@@ -34,7 +34,7 @@ public class HotelDesc {
     private static final String CURRENCY = "\u20B9";
     public HotelDesc(String hotelName, int[] roomType, double[] price, int stars, int numReviews, String description, String roomAmenities, String hotelAmenities, Rating rating, String adress) {
         this.hotelName = hotelName;
-        this.roomTypes = roomType;
+        this.numOfRoomTypes = roomType;
         this.prices = price;
         this.stars = stars;
         this.numReviews = numReviews;
@@ -57,8 +57,8 @@ public class HotelDesc {
         this.hotelName = hotelName;
     }
 
-    public void setRoomTypes(int[] roomTypes) {
-        this.roomTypes = roomTypes;
+    public void setNumOfRoomTypes(int[] numOfRoomTypes) {
+        this.numOfRoomTypes = numOfRoomTypes;
     }
 
     public void setPrices(double[] prices) {
@@ -99,8 +99,8 @@ public class HotelDesc {
         return hotelName;
     }
 
-    public int[] getRoomTypes() {
-        return roomTypes;
+    public int[] getNumOfRoomTypes() {
+        return numOfRoomTypes;
     }
     
     
@@ -113,7 +113,7 @@ public class HotelDesc {
                 break;
             }
         }System.out.println("If array out of bounds then type aint available");
-        if(roomTypes[index]>0)
+        if(numOfRoomTypes[index]>0)
             return true;
         
         return false;
