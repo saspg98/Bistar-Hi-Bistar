@@ -1767,11 +1767,7 @@ public class MainForm extends javax.swing.JFrame implements MouseListener {//Mou
                 price);//TODO: ADD SOMETHING FOR WATILIST!!
         thisBooking.setWaitlist(!des.isAvailable(type));
         guestRoomDialogPanel.setThisBooking(thisBooking);
-        if(!des.isAvailable()){
-            bookNowButton.setText("WAITLIST");
-            thisBooking.setWaitlist(true);
-            System.out.println("NOT SUPPORTED! BOOKING OBJECT DOESNT HAVE INFO ON WAITLIST!");
-        }
+
         refreshBookingUI();
         /*bookingConfirmationLinkLabel.setText(bc.getNumRooms() + " " + type + ", " + numOfGuests + " Guests");
         totalPriceLabel.setText(HotelDesc.getCost(type, bc.getNumRooms(), bc.getCheckIn(), bc.getCheckOut()) + "");
