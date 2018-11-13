@@ -29,6 +29,26 @@ public class GuestRoomDialogPanel extends javax.swing.JPanel {
         updateButton.addActionListener(a);
         cancelButton.addActionListener(a);
     }
+     
+     
+     public int getRooms(){
+        return (Integer)(guestRoomPanel.getRooms());
+    }
+    
+    public int getGuests(){
+        return (Integer)(guestRoomPanel.getGuests());
+    }
+    
+    public String getRoomType(){
+        return (String) (roomTypeCB.getSelectedItem());
+    }
+    
+    public void setRoomTypes(String[] types){
+        roomTypeCB.removeAllItems();
+        for(String type: types){
+            roomTypeCB.addItem(type);
+        }
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.

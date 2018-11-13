@@ -82,7 +82,7 @@ public class MainForm extends javax.swing.JFrame implements MouseListener {//Mou
         modifyBookingDialog = new javax.swing.JDialog();
         modifyDateDialogPanel1 = new custom.components.ModifyBookingDialogPanel();
         changeGuestRoomDialog = new javax.swing.JDialog();
-        guestRoomDialogPanel2 = new custom.components.GuestRoomDialogPanel();
+        guestRoomDialogPanel = new custom.components.GuestRoomDialogPanel();
         finalDialog = new javax.swing.JDialog();
         finalDialogPanel = new custom.components.FinalDialogPanel();
         sidebar = new javax.swing.JPanel();
@@ -247,12 +247,12 @@ public class MainForm extends javax.swing.JFrame implements MouseListener {//Mou
         changeGuestRoomDialog.setMinimumSize(new java.awt.Dimension(533, 173));
         changeGuestRoomDialog.getContentPane().setLayout(new java.awt.GridBagLayout());
 
-        guestRoomDialogPanel2.setMinimumSize(new java.awt.Dimension(579, 293));
+        guestRoomDialogPanel.setMinimumSize(new java.awt.Dimension(579, 293));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        changeGuestRoomDialog.getContentPane().add(guestRoomDialogPanel2, gridBagConstraints);
+        changeGuestRoomDialog.getContentPane().add(guestRoomDialogPanel, gridBagConstraints);
 
         finalDialog.setTitle("Confirm Booking- BISTAR HI BISTAR");
         finalDialog.setBackground(new java.awt.Color(25, 25, 25));
@@ -1404,7 +1404,7 @@ public class MainForm extends javax.swing.JFrame implements MouseListener {//Mou
         
         
         //setting the DAL for the dialogBox
-        dal = new DialogActionListener(guestRoomDialogPanel2,modifyDateDialogPanel1,finalDialogPanel);
+        dal = new DialogActionListener(guestRoomDialogPanel,modifyDateDialogPanel1,finalDialogPanel);
         changePasswordDialog.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
         changeGuestRoomDialog.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
         modifyBookingDialog.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
@@ -1467,7 +1467,7 @@ public class MainForm extends javax.swing.JFrame implements MouseListener {//Mou
     private javax.swing.JDialog finalDialog;
     private custom.components.FinalDialogPanel finalDialogPanel;
     private javax.swing.JButton goButton;
-    private custom.components.GuestRoomDialogPanel guestRoomDialogPanel2;
+    private custom.components.GuestRoomDialogPanel guestRoomDialogPanel;
     private javax.swing.JLabel headingLabel;
     private javax.swing.JPanel hotelDetailsOptionsBottomPanel;
     private javax.swing.JPanel hotelDetailsPanel;
@@ -1654,7 +1654,7 @@ public class MainForm extends javax.swing.JFrame implements MouseListener {//Mou
         totalPriceLabel.setText(des.getCost(type, bc.getNumRooms(), bc.getCheckIn(), bc.getCheckOut()) + "");
         descriptionTabbedPanel1.setDescription(des.getDescription(), des.getHotelAmenities(), des.getStars());
         
-        
+        guestRoomDialogPanel.setRoomTypes(des.getRoomTypes());
         thisBooking = new Booking(bc.getCheckIn(), bc.getCheckOut(), numOfGuests, 
                 bc.getNumRooms(), bc.getLocation(), bc.getHotelName(), type,
                 price);//TODO: ADD SOMETHING FOR WATILIST!!

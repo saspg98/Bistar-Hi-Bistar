@@ -168,7 +168,7 @@
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout"/>
       <SubComponents>
-        <Component class="custom.components.GuestRoomDialogPanel" name="guestRoomDialogPanel2">
+        <Component class="custom.components.GuestRoomDialogPanel" name="guestRoomDialogPanel">
           <Properties>
             <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
               <Dimension value="[579, 293]"/>
