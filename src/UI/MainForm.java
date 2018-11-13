@@ -308,6 +308,7 @@ public class MainForm extends javax.swing.JFrame implements MouseListener {//Mou
         finalDialog.setTitle("Confirm Booking- BISTAR HI BISTAR");
         finalDialog.setBackground(new java.awt.Color(25, 25, 25));
         finalDialog.setModalityType(java.awt.Dialog.ModalityType.APPLICATION_MODAL);
+        finalDialog.setMinimumSize(new java.awt.Dimension(865,905));
         finalDialog.getContentPane().setLayout(new java.awt.GridBagLayout());
 
         finalDialogPanel.setMinimumSize(new java.awt.Dimension(865, 905));
@@ -687,8 +688,10 @@ public class MainForm extends javax.swing.JFrame implements MouseListener {//Mou
         bookPanel.add(bookGuestRoomPanel, gridBagConstraints);
 
         showAvailableCheckBox.setFont(new java.awt.Font("Lato Black", 0, 22)); // NOI18N
+        showAvailableCheckBox.setForeground(new java.awt.Color(255, 255, 255));
         showAvailableCheckBox.setSelected(true);
         showAvailableCheckBox.setText("Show Only Available Rooms");
+        showAvailableCheckBox.setOpaque(false);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 4;
         gridBagConstraints.gridy = 4;
