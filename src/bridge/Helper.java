@@ -189,7 +189,7 @@ public class Helper {
             String s = "UPDATE dbo.userDetails SET FirstName =\'" + u.getFName() + "\',LastName =\'" + u.getLName() + "\',Address =\'" + u.getAddress() + "\',EmailID =\'" + u.getEmail() + "\',Mobile =\'" + u.getMobile() + "\',PinCode =\'" + u.getPinCode() + "\' WHERE Username =\'" + usr.getUsername() + "\'";
 
             query.getSt().executeUpdate(s);
-
+            usr = u;
         } catch (SQLException e) {
 
             closeConnection();
@@ -550,41 +550,15 @@ public class Helper {
           
     }
     
-    /*    public static ArrayList<Booking> updateBooking(Booking bk, boolean isWaitList){
+    public static ArrayList<Booking> updateBooking(Booking bk, boolean isWaitList){
     
     makeConnection();
     
-    String s = "UPDATE dbo.userDetails SET FirstName =\'" + u.getFName() + "\',LastName =\'" + u.getLName() + "\',Address =\'" + u.getAddress() + "\',EmailID =\'" + u.getEmail() + "\',Mobile =\'" + u.getMobile() + "\',PinCode =\'" + u.getPinCode() + "\' WHERE Username =\'" + usr.getUsername() + "\'";
-    
     try{
-    ResultSet rs = query.getSt().executeQuery(s);
-    
-    int HotelID ;
-    
-    while(rs.next()){
-    
-    b=new Booking();
-    
-    b.setBookingReference(rs.getInt("BookingReference"));
-    b.setCheckIn(rs.getDate("CheckInDate").toLocalDate());
-    b.setCheckOut(rs.getDate("CheckOutDate").toLocalDate());
-    b.setNumPeople(rs.getInt("NoOfPeople"));
-    b.setNumRooms(rs.getInt("NumberOfRooms"));
-    b.setPrice(rs.getInt("TotalPrice"));
-    b.setRoomType(rs.getString("RoomCategory"));
-    HotelID = rs.getInt("HotelID");
-    
-    s= "SELECT Name,City FROM dbo.HotelDetails WHERE HotelID ="+HotelID;
-    
-    ResultSet rs1 = query.getSt().executeQuery(s);
-    
-    b.setHotelName(rs1.getString("Name"));
-    b.setLocation(rs1.getString("City"));
-    
-    rs1.close();
-    
-    list.add(b);
-    
+    if(isWaitList==true)
+    {        
+        String s = "UPDATE dbo.ConfirmedBookings SET FirstName =\'" + u.getFName() + "\',LastName =\'" + u.getLName() + "\',Address =\'" + u.getAddress() + "\',EmailID =\'" + u.getEmail() + "\',Mobile =\'" + u.getMobile() + "\',PinCode =\'" + u.getPinCode() + "\' WHERE Username =\'" + usr.getUsername() + "\'";
+        
     }
     
     rs.close();
@@ -599,6 +573,5 @@ public class Helper {
     return list;
     
     }
-    */
     
 }
