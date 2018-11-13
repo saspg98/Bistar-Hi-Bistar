@@ -20,9 +20,13 @@ public class DescriptionTabbedPanel extends javax.swing.JPanel {
     public DescriptionTabbedPanel() {
         initComponents();
         //Changing Size of the Tabs!
-        JLabel lab = new JLabel();
+        JLabel lab = new JLabel("Description");
         lab.setPreferredSize(new Dimension(200, 30));
         jTabbedPane1.setTabComponentAt(0, lab);  // tab index, jLabel
+        lab.setText("Amenities");
+        jTabbedPane1.setTabComponentAt(1, lab);
+        lab.setText("Reviews");
+        jTabbedPane1.setTabComponentAt(2, lab);
     }
     
     public void setDescription(String des, String amen, int rating){

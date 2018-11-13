@@ -5,6 +5,9 @@
  */
 package internal;
 
+import custom.components.FinalDialogPanel;
+import static custom.components.FinalDialogPanel.F_CANCEL;
+import static custom.components.FinalDialogPanel.F_CONF;
 import custom.components.GuestRoomDialogPanel;
 import custom.components.ModifyBookingDialogPanel;
 import static custom.components.GuestRoomDialogPanel.G_UPDATE;
@@ -25,23 +28,18 @@ public class DialogActionListener implements ActionListener {
     
     GuestRoomDialogPanel guest;
     ModifyBookingDialogPanel book;
+    FinalDialogPanel fin;
 
-    public DialogActionListener(GuestRoomDialogPanel guest, ModifyBookingDialogPanel book) {
+    public DialogActionListener(GuestRoomDialogPanel guest, ModifyBookingDialogPanel book, FinalDialogPanel fin) {
         this.guest = guest;
         this.book = book;
+        this.fin = fin;
         
         this.guest.setActionListener(this);
         this.book.setActionListener(this);
+        this.fin.setActionListener(this);
     }
 
-
-    
-    
-    
-    
-    
-    
-    
     @Override
     public void actionPerformed(ActionEvent e) {
        switch(e.getActionCommand()){
@@ -68,6 +66,21 @@ public class DialogActionListener implements ActionListener {
                 //dispose dialog
                 
                ((JDialog)SwingUtilities.getAncestorOfClass(JDialog.class, guest)).dispose();//Add null check!
+               System.out.println("DO NULL CHECK");
+               break;
+               
+               
+            case F_CONF:
+                //update booking object>refresh details>dispose dialog
+                
+                
+                ((JDialog)SwingUtilities.getAncestorOfClass(JDialog.class, fin)).dispose();//Add null check!
+               System.out.println("DO NULL CHECK");
+               break;
+            case F_CANCEL:
+                //dispose dialog
+                
+               ((JDialog)SwingUtilities.getAncestorOfClass(JDialog.class, fin)).dispose();//Add null check!
                System.out.println("DO NULL CHECK");
                break;
        }
