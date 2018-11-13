@@ -200,18 +200,14 @@ public class Helper {
 
                 //Code repeated 4 times for different type of rooms
                 for (LocalDate d = bc.getCheckIn(); d.isBefore(bc.getCheckOut()) || d.equals(bc.getCheckOut()); d.plusDays(1)) {
-                    s = "SELECT SUM(NoOfRooms) FROM dbo.confirmedBookings "
+                    s = "SELECT SUM(NoOfRooms) AS sum FROM dbo.confirmedBookings "
                             + "WHERE HotelID=" + rs.getInt("HotelID")
                             + " AND RoomCategory='Penthouse' "
                             + "AND (CheckInDate<='" + d.toString() + "' AND CheckOutDate>='" + d.toString() + "')";
                     
-                    ResultSet rs1 = query.getSt().executeQuery(s);
+                    ResultSet rs1 = query.getSt2().executeQuery(s);
                     rs1.next();
-                    //README!! THE NEXT LINE WILL THROW AN ERROR!! THIS IS BECAUSE
-                    /*the two result sets(rs and rs1 are using the same Statement Object(returned by query.getSt())
-                    this is not permissible!! To do such a thing, either do everything using one resultSet and some other logic
-                    or create multiple Statement objects!!*/
-                    if (rs.getInt("Penthouse") - rs1.getInt("SUM(NoOfRooms)") < bc.getNumRooms()) {
+                    if (rs.getInt("Penthouse") - rs1.getInt("sum") < bc.getNumRooms()) {
                         availablePenthouse = false;
                     }
                 }
@@ -221,7 +217,7 @@ public class Helper {
                             + "AND RoomCategory='Executive' "
                             + "AND (CheckInDate<='" + d.toString() + "' AND CheckOutDate>='" + d.toString() + "')";
                     
-                    ResultSet rs1 = query.getSt().executeQuery(s);
+                    ResultSet rs1 = query.getSt2().executeQuery(s);
                     rs1.next();
                     if (rs.getInt("ExecutiveRooms") - rs1.getInt("SUM(NoOfRooms)") < bc.getNumRooms()) {
                         availableExecutive = false;
@@ -233,7 +229,7 @@ public class Helper {
                             + "AND RoomCategory='Standard' "
                             + "AND (CheckInDate<='" + d.toString() + "' AND CheckOutDate>='" + d.toString() + "')";
                     
-                    ResultSet rs1 = query.getSt().executeQuery(s);
+                    ResultSet rs1 = query.getSt2().executeQuery(s);
                     rs1.next();
                     if (rs.getInt("StandardRooms") - rs1.getInt("SUM(NoOfRooms)") < bc.getNumRooms()) {
                         availableStandard = false;
@@ -245,7 +241,7 @@ public class Helper {
                             + "AND RoomCategory='Deluxe' "
                             + "AND (CheckInDate<='" + d.toString() + "' AND CheckOutDate>='" + d.toString() + "')";
                     
-                    ResultSet rs1 = query.getSt().executeQuery(s);
+                    ResultSet rs1 = query.getSt2().executeQuery(s);
                     rs1.next();
                     if (rs.getInt("DeluxeRooms") - rs1.getInt("SUM(NoOfRooms)") < bc.getNumRooms()) {
                         availableDeluxe = false;

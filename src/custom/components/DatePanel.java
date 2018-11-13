@@ -50,7 +50,7 @@ public class DatePanel extends javax.swing.JPanel implements ItemListener {
 
     @Override
     public void itemStateChanged(ItemEvent e) {
-        if (yearCB.getSelectedIndex()>0 && monthCB.getSelectedIndex()>0 && dateCB.getSelectedIndex()>0 && !isChanging) {
+        if (yearCB.getSelectedIndex()>-1 && monthCB.getSelectedIndex()>-1 && dateCB.getSelectedIndex()>-1 && !isChanging) {
             
             //Checking basic calender constraints
             if (Integer.parseInt((String) dateCB.getSelectedItem()) > 28 && Month.valueOf((String) monthCB.getSelectedItem()).equals(Month.Feb)) {
@@ -70,9 +70,11 @@ public class DatePanel extends javax.swing.JPanel implements ItemListener {
                         dateCB.setSelectedIndex(dateCB.getItemCount() - 2);//setting date = 30   
                 }
             }
-
+            System.out.println("getDate gives " + getDate()+ ", minDate is " + minDate + 
+                    " , while getDate.isBefore is " +getDate().isBefore(minDate)  );
             //checking min and max date constraints
             if (getDate().isBefore(minDate)) {
+                System.out.println("OOPS less than minDate");
                 setDate(minDate);                
             }
             if (getDate().isAfter(maxDate)) {
@@ -120,8 +122,9 @@ public class DatePanel extends javax.swing.JPanel implements ItemListener {
         isChanging=true;
         dateCB.setSelectedIndex(date.getDayOfMonth()-1);
         monthCB.setSelectedIndex(date.getMonthValue()-1);
-        yearCB.setSelectedIndex(yearModel.indexOf(date.getYear()));
         isChanging=false;
+        yearCB.setSelectedIndex(yearModel.indexOf(date.getYear()));
+        
     }
 
     public void setMinDate(LocalDate minDate) {
@@ -147,8 +150,7 @@ public class DatePanel extends javax.swing.JPanel implements ItemListener {
              
              yearCB.addItem(String.valueOf(i));
              yearModel.add(i);
-         }
-         
+         }      
     }
     
 

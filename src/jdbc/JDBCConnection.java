@@ -17,6 +17,7 @@ public class JDBCConnection {
     
         private static Connection con;
         private static Statement st;
+        private static Statement st2;
 
     public static Connection getCon() {
         return con;
@@ -25,6 +26,12 @@ public class JDBCConnection {
     public static Statement getSt() {
         return st;
     }
+
+    public static Statement getSt2() {
+        return st2;
+    }
+    
+    
     
         
     
@@ -37,6 +44,8 @@ public class JDBCConnection {
                 con = DriverManager.getConnection("jdbc:sqlserver://172.16.48.87:1433;databaseName=OHBP;username=sa;password=sayrav123");
                 
                 st = con.createStatement();
+                
+                st2 = con.createStatement();
                 
                  }
                 catch(SQLException se)
