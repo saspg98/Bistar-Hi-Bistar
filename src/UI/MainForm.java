@@ -1731,7 +1731,7 @@ public class MainForm extends javax.swing.JFrame implements MouseListener {//Mou
         
         guestRoomDialogPanel.setRoomTypes(des.getRoomTypes());
         thisBooking = new Booking(bc.getCheckIn(), bc.getCheckOut(), numOfGuests, 
-                bc.getNumRooms(), bc.getLocation(), bc.getHotelName(), type,
+                bc.getNumRooms(), bc.getLocation(), des.getHotelName(), type,
                 price);//TODO: ADD SOMETHING FOR WATILIST!!
         guestRoomDialogPanel.setThisBooking(thisBooking);
         if(!des.isAvailable()){
@@ -1784,7 +1784,7 @@ public class MainForm extends javax.swing.JFrame implements MouseListener {//Mou
      LocalDate checkIn = checkInDatePanel.getDate();
      LocalDate checkOut = checkOutDatePanel.getDate();
      System.out.println("WARNING! CHOOSING ROOM TYPE Executive Room HERE, ALSO, SETTING HOTEL NAME \"Random\" here");
-     bc = new BookingConstraints("RANDOM", "Executive Room", price, r, loc, checkIn, checkOut);
+     bc = new BookingConstraints(price, r, loc, checkIn, checkOut);
     }
 
     private void setupLocations(String[] locStrings) {
