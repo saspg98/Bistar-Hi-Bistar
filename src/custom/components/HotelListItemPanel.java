@@ -17,9 +17,6 @@ import javax.swing.JLabel;
  *
  * @author Sarthak
  */
-
-
-
 /* The Design:
  * Pretty straightforward, the hotel name, price range, image are clickable and will lead the user to the hotel confirmation page
  * where they can choose their room type and proceed to checkout, clicking on a room type will lead to the same screen with the option
@@ -33,89 +30,80 @@ public class HotelListItemPanel extends javax.swing.JPanel {
     /**
      * Creates new form HotelListItemPanel
      */
-    
     private static final String CURRENCY = "\u20B9";
     private MouseListener mouseListener;
     private int index;
     private HotelDesc hotel;
-    
-    
+
     private JLabel[] roomLinks;
-    
-    
-    public void setMouseEventListener(MouseListener m){
+
+    public void setMouseEventListener(MouseListener m) {
         //reviewLinkLabel.addMouseListener(m); //IMP! create a review page for this!
         priceRangeLabel.addMouseListener(m);
         hotelNameLabel.addMouseListener(m);
         imageLabel.addMouseListener(m);
         mouseListener = m;
     }
-    
-    
-    
+
     //TODO: Main Constructor, merge with setDetails 
-    public HotelListItemPanel(HotelDesc des,MouseListener m, int index, boolean showAll) {
+    public HotelListItemPanel(HotelDesc des, MouseListener m, int index, boolean showAll) {
         initComponents();
         hotel = des;
         ratingLabel.setText("");
         setMouseEventListener(m);
-        this.index=index;
+        this.index = index;
 
-        
         setDetails(des, showAll);
     }
-    
-    public int getIndex(){
+
+    public int getIndex() {
         return index;
     }
+
     //TODO: Merge with constructor!!
-    public void setDetails(HotelDesc des, boolean showAll){
+    public void setDetails(HotelDesc des, boolean showAll) {
         hotelNameLabel.setText(des.getHotelName());
         priceRangeLabel.setText(des.getPriceRange());
         addressLabel.setText(des.getAddress());
         ratingLabel.setText(UIMethods.getRatingString(des.getStars()));
-        
+
         int[] types = des.getNumOfRoomTypes();
         double[] prices = des.getPrices();
         roomLinks = new JLabel[prices.length];
-        
+
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.gridwidth = GridBagConstraints.REMAINDER;
         gbc.anchor = GridBagConstraints.WEST;
-        
 
-        
-            for(int i=0;i<HotelDesc.ROOM_TYPES.length;i++){
-                if(types[i]>0){
-                    roomLinks[i] = new JLabel("<html>"+HotelDesc.ROOM_TYPES[i]+" - "+"<font color='#00c600'>"+CURRENCY+prices[i]+"</font>"+"</html>");
-                    roomLinks[i].setFont(mainFont); // NOI18N
-                    roomLinks[i].setForeground(textColor);
-                    roomLinks[i].setHorizontalAlignment(javax.swing.SwingConstants.LEADING);
-                    roomLinks[i].setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-                    roomLinks[i].setBorder(BorderFactory.createEmptyBorder(0, 0, 1, 0));
-                    roomLinks[i].setName("underline");
+        for (int i = 0; i < HotelDesc.ROOM_TYPES.length; i++) {
+            if (types[i] > 0) {
+                roomLinks[i] = new JLabel("<html>" + HotelDesc.ROOM_TYPES[i] + " - " + "<font color='#00c600'>" + CURRENCY + prices[i] + "</font>" + "</html>");
+                roomLinks[i].setFont(mainFont); // NOI18N
+                roomLinks[i].setForeground(textColor);
+                roomLinks[i].setHorizontalAlignment(javax.swing.SwingConstants.LEADING);
+                roomLinks[i].setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+                roomLinks[i].setBorder(BorderFactory.createEmptyBorder(0, 0, 1, 0));
+                roomLinks[i].setName("underline");
 
-                    roomLinks[i].addMouseListener(mouseListener);
-            
-                    roomListPanel.add(roomLinks[i],gbc);
-                } else if(showAll){
-                    roomLinks[i] = new JLabel("<html>"+HotelDesc.ROOM_TYPES[i]+" - "+"<font color='#00c600'>"+CURRENCY+prices[i]+"</font>"+"<font color='#787878'>(Unavailable)</font>s</html>");
-                    roomLinks[i].setFont(mainFont); // NOI18N
-                    roomLinks[i].setForeground(textColor);
-                    roomLinks[i].setHorizontalAlignment(javax.swing.SwingConstants.LEADING);
-                    roomLinks[i].setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-                    roomLinks[i].setBorder(BorderFactory.createEmptyBorder(0, 0, 1, 0));
-                    roomLinks[i].setName("underline");
+                roomLinks[i].addMouseListener(mouseListener);
 
-                    roomLinks[i].addMouseListener(mouseListener);
-            
-                    roomListPanel.add(roomLinks[i],gbc);
-                    
-                }
+                roomListPanel.add(roomLinks[i], gbc);
+            } else if (showAll) {
+                roomLinks[i] = new JLabel("<html>" + HotelDesc.ROOM_TYPES[i] + " - " + "<font color='#00c600'>" + CURRENCY + prices[i] + "</font>" + "<font color='#787878'>(Unavailable)</font>s</html>");
+                roomLinks[i].setFont(mainFont); // NOI18N
+                roomLinks[i].setForeground(textColor);
+                roomLinks[i].setHorizontalAlignment(javax.swing.SwingConstants.LEADING);
+                roomLinks[i].setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+                roomLinks[i].setBorder(BorderFactory.createEmptyBorder(0, 0, 1, 0));
+                roomLinks[i].setName("underline");
+
+                roomLinks[i].addMouseListener(mouseListener);
+
+                roomListPanel.add(roomLinks[i], gbc);
+
             }
+        }
     }
-    
-
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -223,12 +211,11 @@ public class HotelListItemPanel extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    
     private static final Font mainFont = new Font("Lato", 0, 24);
     private static final Color textColor = new Color(255, 255, 255);
-    private static final Color AVAILABLE_COLOR = new Color(0,198,0);
-    private static final Color UNAVAILABLE_COLOR = new Color(127,127,127);
-  
+    private static final Color AVAILABLE_COLOR = new Color(0, 198, 0);
+    private static final Color UNAVAILABLE_COLOR = new Color(127, 127, 127);
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel addressLabel;
@@ -245,5 +232,4 @@ public class HotelListItemPanel extends javax.swing.JPanel {
         return hotel;
     }
 
-    
 }

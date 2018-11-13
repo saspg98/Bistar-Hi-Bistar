@@ -5,7 +5,6 @@
  */
 package custom.components;
 
-
 import internal.Booking;
 import java.awt.Color;
 import java.awt.GridBagConstraints;
@@ -18,11 +17,10 @@ import javax.swing.JButton;
  */
 public class PastBookingListPanel extends javax.swing.JPanel {
 
-    
     public static final String WAIT_LIST = "wait";
-    public static final String CONFIRMED= "conf";
-    public static final String PREVIOUS= "previous";
-    
+    public static final String CONFIRMED = "conf";
+    public static final String PREVIOUS = "previous";
+
     /**
      * Creates new form PastBookingListPanel
      */
@@ -30,10 +28,10 @@ public class PastBookingListPanel extends javax.swing.JPanel {
     public PastBookingListPanel() {
         initComponents();
         System.out.println("Error Incomming: Empty Const of PastBookingListPanel Called!");
-        
+
     }
-    
-    public PastBookingListPanel(Booking booking, String type){
+
+    public PastBookingListPanel(Booking booking, String type) {
         initComponents();
         checkInLabel.setText(booking.getCheckIn().toString());
         checkOutLabel.setText(booking.getCheckIn().toString());
@@ -41,38 +39,45 @@ public class PastBookingListPanel extends javax.swing.JPanel {
         hotelNameLabel.setText(booking.getHotelName());
         roomLabel.setText(booking.getRoomType());
         roomTypeLabel.setText(booking.getRoomType());
-        
-        if(type.equals(PREVIOUS)){
-            remove(updateButton);
-            remove(cancelButton);
-            GridBagConstraints gbc = new GridBagConstraints();
-            ratingPanel = new RatingPanel();
-            gbc.gridx = 3;
-            gbc.gridy = 0;
-            gbc.weightx = 1.0;
-            gbc.weighty = 1.0;
-            gbc.insets = new java.awt.Insets(5, 10, 5, 10);
-            add(ratingPanel, gbc);
-            
-            submitButton = new JButton();
-            submitButton.setBackground(new java.awt.Color(59, 35, 59));
-            submitButton.setFont(new java.awt.Font("Lato Black", 0, 24)); // NOI18N
-            submitButton.setForeground(new java.awt.Color(255, 255, 255));
-            submitButton.setText("Modify");
-            submitButton.setContentAreaFilled(false);
-            submitButton.setOpaque(true);
-            
-            
-            gbc.gridx = 4;
-            add(submitButton, gbc);
-            
-        } else if(type.equals(WAIT_LIST)){
-            cancelButton.setText("Cancel Waitlist");
-            updateButton.setBackground(BOOK_COLOR);
-            updateButton.setText("Book Now");
-            updateButton.setActionCommand(BOOK_WAITLIST);
+
+        if (type.equals(PREVIOUS)) {
+            setStateToPrevious();
+
+        } else if (type.equals(WAIT_LIST)) {
+            setStateToWaitlist();
         }
-        
+
+    }
+
+    private void setStateToPrevious() {
+        remove(updateButton);
+        remove(cancelButton);
+        GridBagConstraints gbc = new GridBagConstraints();
+        ratingPanel = new RatingPanel();
+        gbc.gridx = 3;
+        gbc.gridy = 0;
+        gbc.weightx = 1.0;
+        gbc.weighty = 1.0;
+        gbc.insets = new java.awt.Insets(5, 10, 5, 10);
+        add(ratingPanel, gbc);
+
+        submitButton = new JButton();
+        submitButton.setBackground(new java.awt.Color(59, 35, 59));
+        submitButton.setFont(new java.awt.Font("Lato Black", 0, 24)); // NOI18N
+        submitButton.setForeground(new java.awt.Color(255, 255, 255));
+        submitButton.setText("Modify");
+        submitButton.setContentAreaFilled(false);
+        submitButton.setOpaque(true);
+
+        gbc.gridx = 4;
+        add(submitButton, gbc);
+    }
+
+    private void setStateToWaitlist() {
+        cancelButton.setText("Cancel Waitlist");
+        updateButton.setBackground(BOOK_COLOR);
+        updateButton.setText("Book Now");
+        updateButton.setActionCommand(BOOK_WAITLIST);
     }
     public final String BOOK_WAITLIST = "Book Wait List";
 
@@ -212,7 +217,7 @@ public class PastBookingListPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_cancelButtonActionPerformed
 
-    private static final Color BOOK_COLOR = new Color(0,140,0);
+    private static final Color BOOK_COLOR = new Color(0, 140, 0);
     private RatingPanel ratingPanel;
     private JButton submitButton;
     // Variables declaration - do not modify//GEN-BEGIN:variables
