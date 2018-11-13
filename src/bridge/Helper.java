@@ -396,7 +396,7 @@ public class Helper {
             
             makeConnection();
             
-            String s = "SELECT * FROM dbo.confirmedBookings WHERE CustomerID =\' AND CheckInDate>=CURDATE()"+usr.getCustomerID()+"\'";
+            String s = "SELECT * FROM dbo.confirmedBookings WHERE CustomerID ="+usr.getCustomerID()+" AND CheckInDate>=CURDATE()";
             
             try{ 
             ResultSet rs = query.getSt().executeQuery(s);
@@ -450,7 +450,7 @@ public class Helper {
             
             makeConnection();
             
-            String s = "SELECT * FROM dbo.inWaitingBookings WHERE CustomerID =\'"+usr.getCustomerID()+"\'";
+            String s = "SELECT * FROM dbo.inWaitingBookings WHERE CustomerID ="+usr.getCustomerID();
             
             try{ 
             ResultSet rs = query.getSt().executeQuery(s);
@@ -504,7 +504,7 @@ public class Helper {
             
             makeConnection();
             
-            String s = "SELECT * FROM dbo.ConfirmedBookings WHERE CustomerID =\'"+usr.getCustomerID()+"\' AND CheckInDate<CURDATE()";
+            String s = "SELECT * FROM dbo.ConfirmedBookings WHERE CustomerID ="+usr.getCustomerID()+" AND CheckInDate<CURDATE()";
             
             try{ 
             ResultSet rs = query.getSt().executeQuery(s);
@@ -549,5 +549,56 @@ public class Helper {
             return list;
           
     }
+    
+    /*    public static ArrayList<Booking> updateBooking(Booking bk, boolean isWaitList){
+    
+    makeConnection();
+    
+    String s = "UPDATE dbo.userDetails SET FirstName =\'" + u.getFName() + "\',LastName =\'" + u.getLName() + "\',Address =\'" + u.getAddress() + "\',EmailID =\'" + u.getEmail() + "\',Mobile =\'" + u.getMobile() + "\',PinCode =\'" + u.getPinCode() + "\' WHERE Username =\'" + usr.getUsername() + "\'";
+    
+    try{
+    ResultSet rs = query.getSt().executeQuery(s);
+    
+    int HotelID ;
+    
+    while(rs.next()){
+    
+    b=new Booking();
+    
+    b.setBookingReference(rs.getInt("BookingReference"));
+    b.setCheckIn(rs.getDate("CheckInDate").toLocalDate());
+    b.setCheckOut(rs.getDate("CheckOutDate").toLocalDate());
+    b.setNumPeople(rs.getInt("NoOfPeople"));
+    b.setNumRooms(rs.getInt("NumberOfRooms"));
+    b.setPrice(rs.getInt("TotalPrice"));
+    b.setRoomType(rs.getString("RoomCategory"));
+    HotelID = rs.getInt("HotelID");
+    
+    s= "SELECT Name,City FROM dbo.HotelDetails WHERE HotelID ="+HotelID;
+    
+    ResultSet rs1 = query.getSt().executeQuery(s);
+    
+    b.setHotelName(rs1.getString("Name"));
+    b.setLocation(rs1.getString("City"));
+    
+    rs1.close();
+    
+    list.add(b);
+    
+    }
+    
+    rs.close();
+    closeConnection();
+    
+    }catch(SQLException e)
+    {
+    closeConnection();
+    e.printStackTrace();
+    }
+    
+    return list;
+    
+    }
+    */
     
 }
