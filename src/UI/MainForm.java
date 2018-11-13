@@ -1785,7 +1785,18 @@ public class MainForm extends javax.swing.JFrame implements MouseListener {//Mou
     
     private void loadBookings(String type) {
         //dummycode
-        //getConfirmedBookingsFromDatabase
+        ArrayList<Booking> bookings;
+        if(type.equals(PastBookingListPanel.CONFIRMED))
+            //bookings =getConfirmedBookingsFromDatabase
+        ;
+        else if(type.equals(PastBookingListPanel.WAIT_LIST))
+            //bookings =getWaitListBookingsFromDatabase
+        ;
+        else if(type.equals(PastBookingListPanel.PREVIOUS))
+            //bookings =getPreviousBookingsFromDatabase
+        ;
+         
+        
         PastBookingListPanel[] list = UIMethods.createBookingListPanels(new Booking[1],type);
         
         GridBagConstraints gbc = new GridBagConstraints();
