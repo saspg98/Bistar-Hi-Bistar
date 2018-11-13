@@ -10,13 +10,13 @@ import java.time.LocalDate;
  */
 public class BookingConstraints {
     
-    LocalDate checkIn;
-    LocalDate checkOut;
-    double maxPrice;
-    int numRooms;
-    String location;
-    String hotelName;
-    String roomType;
+    private LocalDate checkIn;
+    private LocalDate checkOut;
+    private double maxPrice;
+    private int numRooms;
+    private String location;
+    private String hotelName;
+    private String roomType;
     
     public BookingConstraints(String hotelName, String roomType, double maxPrice, int numRooms, String location, LocalDate checkIn, LocalDate checkOut) {
         this.hotelName = hotelName;

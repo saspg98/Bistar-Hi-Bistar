@@ -12,13 +12,13 @@ import java.time.LocalDate;
  * @author Snehit
  */
 public class BookedRooms {
-    LocalDate checkIn;
-    LocalDate checkOut;
-    int numPeople;
-    int numRooms;
-    String location;
-    String hotelName;
-    String roomType;
+    private LocalDate checkIn;
+    private LocalDate checkOut;
+    private int numPeople;
+    private int numRooms;
+    private String location;
+    private String hotelName;
+    private String roomType;
     int price;
 
     public BookedRooms(LocalDate checkIn, LocalDate checkOut, int numPeople, int numRooms, String location, String hotelName, String roomType, int price) {

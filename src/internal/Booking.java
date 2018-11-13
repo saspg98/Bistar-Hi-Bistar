@@ -12,15 +12,15 @@ import java.time.LocalDate;
  * @author Snehit
  */
 public class Booking {
-    LocalDate checkIn;
-    LocalDate checkOut;
-    int numPeople;
-    int numRooms;
-    String location;
-    String hotelName;
-    String roomType;
-    int price;
-    boolean waitlist=false;
+    private LocalDate checkIn;
+    private LocalDate checkOut;
+    private int numPeople;
+    private int numRooms;
+    private String location;
+    private String hotelName;
+    private String roomType;
+    private int price;
+    private boolean waitlist=false;
 
     public Booking(LocalDate checkIn, LocalDate checkOut, int numPeople, int numRooms, String location, String hotelName, String roomType, int price) {
         this.checkIn = checkIn;
