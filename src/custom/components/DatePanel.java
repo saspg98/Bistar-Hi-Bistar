@@ -50,7 +50,8 @@ public class DatePanel extends javax.swing.JPanel implements ItemListener {
 
     @Override
     public void itemStateChanged(ItemEvent e) {
-        if (yearCB.getSelectedIndex()>-1 && monthCB.getSelectedIndex()>-1 && dateCB.getSelectedIndex()>-1 && !isChanging) {
+        if (yearCB.getSelectedIndex()>-1 && monthCB.getSelectedIndex()>-1 && dateCB.getSelectedIndex()>-1 
+                && !isChanging && e.getStateChange() == ItemEvent.SELECTED) {
             
             //Checking basic calender constraints
             if (Integer.parseInt((String) dateCB.getSelectedItem()) > 28 && Month.valueOf((String) monthCB.getSelectedItem()).equals(Month.Feb)) {
