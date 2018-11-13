@@ -47,24 +47,7 @@ public class HotelListItemPanel extends javax.swing.JPanel {
         imageLabel.addMouseListener(m);
         mouseListener = m;
     }
-    //CONSTRUCTOR ONLY USED FOR DRAG AND DROP IN NETBEANS
-    public HotelListItemPanel() {
-        System.out.println("CAUTION! NO ARGUMENT CONSTRUCTOR OF HotelListItemPanel CALLED!\n"
-                + "MOUSE LISTENER MAY NOT BE SET!!! EXPECT A NULL POINTER ERROR!! INDEX DEFAULTS TO 0");
-        initComponents();
-        
-        ratingLabel.setText("");
-                
-        //dummy code starts
-        String hotelName="Hotel Reshma";
-        String[] roomTypes={"Reshma Ka","Savita ka","Phuljadi ka","Lalu ka"};
-        double[] prices={3000,2500,1500,-200};
-        int stars=3;
-        //dummy code ends
-        hotel = new HotelDesc(hotelName,roomTypes,prices,stars,0,"RandomAss Desc","Wi-Fi");
-        
-        setDetails(new HotelDesc(hotelName,roomTypes,prices,stars,0,"RandomAss Desc","Wi-Fi"));
-    }
+    
     
     
     //TODO: Main Constructor, merge with setDetails 
