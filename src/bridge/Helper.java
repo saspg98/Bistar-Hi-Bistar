@@ -27,7 +27,7 @@ public class Helper {
     
     private static HotelDesc hotel;
     
-    private static ArrayList<HotelDesc> hotelList;
+    private static ArrayList<HotelDesc> hotelList ;
 
     private static void makeConnection() {
 
@@ -192,6 +192,9 @@ public class Helper {
             s = "SELECT * FROM dbo.hotelDetails WHERE City=\'"+ bc.getLocation()+"\'";
             
             ResultSet rs = query.getSt().executeQuery(s);
+            
+            hotel = new HotelDesc();
+            hotelList = new ArrayList();
             
             while (rs.next()) {
                 ArrayList<String> availableRoomTypes = new ArrayList();

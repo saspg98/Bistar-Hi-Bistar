@@ -158,6 +158,10 @@ public class HotelDesc {
     public static int getCost(String type, int rooms, LocalDate checkIn, LocalDate checkOut){
         return 3450;
     }
+
+    public HotelDesc() {
+        System.out.println("Empty Hotel created");
+    }
     
     
     
