@@ -20,8 +20,18 @@ public class Booking {
     private String hotelName;
     private String roomType;
     private int price;
+    private int bookingReference;
     private boolean waitlist=false;
 
+    public int getBookingReference() {
+        return bookingReference;
+    }
+
+    public void setBookingReference(int bookingReference) {
+        this.bookingReference = bookingReference;
+    }
+
+    
     public Booking(LocalDate checkIn, LocalDate checkOut, int numPeople, int numRooms, String location, String hotelName, String roomType, int price) {
         this.checkIn = checkIn;
         this.checkOut = checkOut;
