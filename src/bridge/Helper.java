@@ -5,7 +5,6 @@
  */
 package bridge;
 
-import com.sun.webkit.graphics.RenderTheme;
 import internal.User;
 import jdbc.*;
 import java.sql.*;
@@ -113,6 +112,7 @@ public class Helper {
                 usr.setMobile(rs.getString("Mobile"));
                 usr.setPinCode(rs.getInt("PinCode"));
                 usr.setUsername(u);
+                usr.setPassword(p);
             }
 
             rs.close();
@@ -129,6 +129,26 @@ public class Helper {
 
         return usr;
 
+    }
+
+    public static void changePassword(String s) {
+
+         makeConnection();
+        
+         try{
+           
+         String s1 = "UPDATE dbo.userCredential SET Password =\'" + s + "\' WHERE Username =\'" + usr.getUsername() + "\'";
+         
+         query.getSt().executeUpdate(s1);
+         
+         }catch (SQLException e) {
+
+            closeConnection();
+            e.printStackTrace();
+
+        }
+         
+         closeConnection();
     }
 
     // This method is used to save information entered by user into the database 
@@ -183,19 +203,21 @@ public class Helper {
     public static ArrayList<HotelDesc> searchAndReturnHotelList(BookingConstraints bc) {
 
         makeConnection();
+
         int count = 0;
+
         try {
             String s;
             s = "SELECT * FROM dbo.hotelDetails WHERE City=\'" + bc.getLocation() + "\'";
 
             ResultSet rs = query.getSt().executeQuery(s);
-            
+
             hotelList = new ArrayList();
 
             while (rs.next()) {
-                
+
                 hotel = new HotelDesc();
-             
+
                 ArrayList<String> availableRoomTypes = new ArrayList();
                 ArrayList<Integer> price = new ArrayList();
                 boolean availableExecutive = true, availablePenthouse = true, availableDeluxe = true, availableStandard = true;
@@ -217,6 +239,8 @@ public class Helper {
                         }
                     }
 
+                    rs1.close();
+
                 }
                 for (LocalDate d = bc.getCheckIn(); d.isBefore(bc.getCheckOut()) || d.equals(bc.getCheckOut()); d = d.plusDays(1)) {
                     s = "SELECT SUM(NoOfRooms) AS sum FROM dbo.confirmedBookings "
@@ -232,6 +256,8 @@ public class Helper {
                             availableExecutive = false;
                         }
                     }
+
+                    rs1.close();
                 }
 
                 for (LocalDate d = bc.getCheckIn(); d.isBefore(bc.getCheckOut()) || d.equals(bc.getCheckOut()); d = d.plusDays(1)) {
@@ -248,6 +274,8 @@ public class Helper {
                             availableStandard = false;
                         }
                     }
+
+                    rs1.close();
                 }
                 for (LocalDate d = bc.getCheckIn(); d.isBefore(bc.getCheckOut()) || d.equals(bc.getCheckOut()); d = d.plusDays(1)) {
                     s = "SELECT SUM(NoOfRooms) AS sum FROM dbo.confirmedBookings "
@@ -263,6 +291,8 @@ public class Helper {
                             availableDeluxe = false;
                         }
                     }
+
+                    rs1.close();
                 }
 
                 if (availablePenthouse == true) {
@@ -307,12 +337,15 @@ public class Helper {
 
                 }
             }
+
+            rs.close();
+            closeConnection();
+
         } catch (SQLException se) {
+
             closeConnection();
             se.printStackTrace();
         }
-
-        closeConnection();
 
         return hotelList;
     }

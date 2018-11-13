@@ -24,9 +24,6 @@ import internal.Booking;
 import internal.BookingConstraints;
 import internal.DialogActionListener;
 import java.awt.Dialog;
-import java.awt.Dimension;
-import java.awt.event.FocusEvent;
-import java.awt.event.FocusListener;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
@@ -161,7 +158,6 @@ public class MainForm extends javax.swing.JFrame implements MouseListener {//Mou
         changePasswordDialog.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         changePasswordDialog.setBackground(new java.awt.Color(204, 204, 204));
         changePasswordDialog.setMinimumSize(new java.awt.Dimension(638, 361));
-        changePasswordDialog.setPreferredSize(new java.awt.Dimension(658, 408));
         changePasswordDialog.getContentPane().setLayout(new java.awt.GridBagLayout());
 
         changePasswordOkButton.setFont(new java.awt.Font("Lato", 0, 30)); // NOI18N
@@ -252,7 +248,7 @@ public class MainForm extends javax.swing.JFrame implements MouseListener {//Mou
 
         errorOldPasswordLabel.setFont(new java.awt.Font("Lato", 0, 18)); // NOI18N
         errorOldPasswordLabel.setForeground(new java.awt.Color(255, 51, 51));
-        errorOldPasswordLabel.setText("*Old password same as new password");
+        errorOldPasswordLabel.setText("*Incorrect Old Password");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 3;
@@ -553,11 +549,6 @@ public class MainForm extends javax.swing.JFrame implements MouseListener {//Mou
 
         locationCB.setFont(new java.awt.Font("Lato", 0, 22)); // NOI18N
         locationCB.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Gondwa", "Thane", "Awadh" }));
-        locationCB.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                locationCBActionPerformed(evt);
-            }
-        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 5;
         gridBagConstraints.gridy = 1;
@@ -1275,10 +1266,6 @@ public class MainForm extends javax.swing.JFrame implements MouseListener {//Mou
         logout();
     }//GEN-LAST:event_logoutLinkLabelMouseClicked
 
-    private void locationCBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_locationCBActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_locationCBActionPerformed
-
     private void priceSliderStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_priceSliderStateChanged
         priceSpinner.setValue(priceSlider.getValue());
 
@@ -1428,6 +1415,35 @@ public class MainForm extends javax.swing.JFrame implements MouseListener {//Mou
 
     private void changePasswordOkButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_changePasswordOkButtonActionPerformed
         
+         errorOldPasswordLabel.setVisible(false);
+         errorPasswordLengthLabel.setVisible(false);
+         errorPasswordMatchLabel.setVisible(false);
+        
+        if(!new String(oldPasswordPF.getPassword()).equals(user.getPassword())){
+            
+            oldPasswordPF.setText("");
+            errorOldPasswordLabel.setVisible(true);
+            
+        }else if (!Verify.isValidPassword(newPasswordPF.getPassword())){
+            
+            newPasswordPF.setText("");
+            confirmNewPasswordPF.setText("");
+            errorPasswordLengthLabel.setVisible(true);
+            
+        }else if (!Verify.isValidConfirmPassword(newPasswordPF.getPassword(), confirmNewPasswordPF.getPassword())){
+            
+            confirmNewPasswordPF.setText("");
+            newPasswordPF.setText("");
+            errorPasswordMatchLabel.setVisible(true);
+            
+        }else{
+            
+            Helper.changePassword(new String(newPasswordPF.getPassword()));
+            user.setPassword(new String(newPasswordPF.getPassword()));
+            changePasswordDialog.dispose();
+            JOptionPane.showMessageDialog(null, "Password Changed Successfully!");
+            
+        }
     }//GEN-LAST:event_changePasswordOkButtonActionPerformed
 
     private void resetBgColor() {
