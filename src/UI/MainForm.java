@@ -162,11 +162,6 @@ public class MainForm extends javax.swing.JFrame implements MouseListener {//Mou
         changePasswordOkButton.setFont(new java.awt.Font("Lato", 0, 30)); // NOI18N
         changePasswordOkButton.setText("OK");
         changePasswordOkButton.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        changePasswordOkButton.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                changePasswordOkButtonMouseClicked(evt);
-            }
-        });
         changePasswordOkButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 changePasswordOkButtonActionPerformed(evt);
@@ -1329,14 +1324,6 @@ public class MainForm extends javax.swing.JFrame implements MouseListener {//Mou
         
         changePasswordDialog.setVisible(true);
     }//GEN-LAST:event_changePasswordButtonActionPerformed
-
-    private void changePasswordOkButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_changePasswordOkButtonMouseClicked
-        
-     /*  if(Arrays.equals(oldPasswordTF.getPassword().trim(), user.getPassword()))
-        {
-            Helper.updatePassword();
-        }else */
-    }//GEN-LAST:event_changePasswordOkButtonMouseClicked
 
     private void emailTFFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_emailTFFocusGained
         
