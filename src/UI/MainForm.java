@@ -155,7 +155,7 @@ public class MainForm extends javax.swing.JFrame implements MouseListener {//Mou
 
         changePasswordDialog.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         changePasswordDialog.setBackground(new java.awt.Color(204, 204, 204));
-        changePasswordDialog.setMinimumSize(new java.awt.Dimension(648, 383));
+        changePasswordDialog.setMinimumSize(new java.awt.Dimension(638, 361));
 
         changePasswordOkButton.setFont(new java.awt.Font("Lato", 0, 30)); // NOI18N
         changePasswordOkButton.setText("OK");
@@ -1253,10 +1253,6 @@ public class MainForm extends javax.swing.JFrame implements MouseListener {//Mou
     }//GEN-LAST:event_priceSpinnerStateChanged
 
     private void goButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_goButtonActionPerformed
-        //TODO: Get all the relevant details from the given fields and return array of HotelListItemPanel objects
-
-        HotelListItemPanel results[];
-
         //TODO: Uncoment!
         /*HotelDesc[] list = searchAndReturnHotelList(makeBookingConstraints());
         resultList = new HotelListItemPanel[list.length];
