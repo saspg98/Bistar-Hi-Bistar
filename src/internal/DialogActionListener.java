@@ -5,6 +5,7 @@
  */
 package internal;
 
+import bridge.Helper;
 import custom.components.FinalDialogPanel;
 import static custom.components.FinalDialogPanel.F_CANCEL;
 import static custom.components.FinalDialogPanel.F_CONF;
@@ -72,7 +73,9 @@ public class DialogActionListener implements ActionListener {
                
             case F_CONF:
                 //create booking object>>add to database>> dispose dialog
-                
+                //dummy
+                //replace with actual method
+                //Helper.book(fin.getBookingDetails());
                 
                 ((JDialog)SwingUtilities.getAncestorOfClass(JDialog.class, fin)).dispose();//Add null check!
                System.out.println("DO NULL CHECK");

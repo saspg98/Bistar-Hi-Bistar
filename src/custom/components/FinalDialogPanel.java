@@ -69,16 +69,16 @@ public class FinalDialogPanel extends javax.swing.JPanel implements ActionListen
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        PriceTF = new javax.swing.JTextField();
+        priceTF = new javax.swing.JTextField();
         hotelNameTF = new javax.swing.JTextField();
         guestsTF = new javax.swing.JTextField();
         roomsTF = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
-        HotelAddressTextArea = new javax.swing.JTextArea();
+        hotelAddressTextArea = new javax.swing.JTextArea();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        checkInDatePanel = new custom.components.DatePanel();
-        checkOutDatePanel = new custom.components.DatePanel();
+        checkInTF = new javax.swing.JTextField();
+        checkOutTF = new javax.swing.JTextField();
 
         setBackground(new java.awt.Color(0, 0, 0));
         setForeground(new java.awt.Color(255, 255, 255));
@@ -221,8 +221,8 @@ public class FinalDialogPanel extends javax.swing.JPanel implements ActionListen
         gridBagConstraints.insets = new java.awt.Insets(17, 17, 17, 17);
         add(jLabel5, gridBagConstraints);
 
-        PriceTF.setEditable(false);
-        PriceTF.setFont(new java.awt.Font("Lato", 0, 24)); // NOI18N
+        priceTF.setEditable(false);
+        priceTF.setFont(new java.awt.Font("Lato", 0, 24)); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 2;
@@ -230,7 +230,7 @@ public class FinalDialogPanel extends javax.swing.JPanel implements ActionListen
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.weightx = 3.0;
         gridBagConstraints.weighty = 1.0;
-        add(PriceTF, gridBagConstraints);
+        add(priceTF, gridBagConstraints);
 
         hotelNameTF.setEditable(false);
         hotelNameTF.setFont(new java.awt.Font("Lato", 0, 24)); // NOI18N
@@ -263,13 +263,13 @@ public class FinalDialogPanel extends javax.swing.JPanel implements ActionListen
         gridBagConstraints.weighty = 1.0;
         add(roomsTF, gridBagConstraints);
 
-        HotelAddressTextArea.setEditable(false);
-        HotelAddressTextArea.setColumns(20);
-        HotelAddressTextArea.setFont(new java.awt.Font("Lato Black", 0, 24)); // NOI18N
-        HotelAddressTextArea.setLineWrap(true);
-        HotelAddressTextArea.setRows(5);
-        HotelAddressTextArea.setWrapStyleWord(true);
-        jScrollPane1.setViewportView(HotelAddressTextArea);
+        hotelAddressTextArea.setEditable(false);
+        hotelAddressTextArea.setColumns(20);
+        hotelAddressTextArea.setFont(new java.awt.Font("Lato Black", 0, 24)); // NOI18N
+        hotelAddressTextArea.setLineWrap(true);
+        hotelAddressTextArea.setRows(5);
+        hotelAddressTextArea.setWrapStyleWord(true);
+        jScrollPane1.setViewportView(hotelAddressTextArea);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
@@ -305,25 +305,27 @@ public class FinalDialogPanel extends javax.swing.JPanel implements ActionListen
         gridBagConstraints.insets = new java.awt.Insets(17, 17, 17, 17);
         add(jLabel7, gridBagConstraints);
 
-        checkInDatePanel.setBackground(new java.awt.Color(204, 204, 204));
+        checkInTF.setEditable(false);
+        checkInTF.setFont(new java.awt.Font("Lato", 0, 24)); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 5;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
-        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.ipadx = 250;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.weightx = 3.0;
         gridBagConstraints.weighty = 1.0;
-        gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
-        add(checkInDatePanel, gridBagConstraints);
+        add(checkInTF, gridBagConstraints);
 
-        checkOutDatePanel.setBackground(new java.awt.Color(204, 204, 204));
+        checkOutTF.setEditable(false);
+        checkOutTF.setFont(new java.awt.Font("Lato", 0, 24)); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 6;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
-        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.ipadx = 250;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.weightx = 3.0;
         gridBagConstraints.weighty = 1.0;
-        gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
-        add(checkOutDatePanel, gridBagConstraints);
+        add(checkOutTF, gridBagConstraints);
     }// </editor-fold>//GEN-END:initComponents
 
     private void panCardNumberTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_panCardNumberTFActionPerformed
@@ -332,16 +334,15 @@ public class FinalDialogPanel extends javax.swing.JPanel implements ActionListen
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextArea HotelAddressTextArea;
-    private javax.swing.JTextField PriceTF;
     private javax.swing.JTextField adharCardNumberTF;
     private javax.swing.JRadioButton adharCardRB;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JButton cancelButton;
-    private custom.components.DatePanel checkInDatePanel;
-    private custom.components.DatePanel checkOutDatePanel;
+    private javax.swing.JTextField checkInTF;
+    private javax.swing.JTextField checkOutTF;
     private javax.swing.JButton confirmButton;
     private javax.swing.JTextField guestsTF;
+    private javax.swing.JTextArea hotelAddressTextArea;
     private javax.swing.JTextField hotelNameTF;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -353,6 +354,7 @@ public class FinalDialogPanel extends javax.swing.JPanel implements ActionListen
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField panCardNumberTF;
     private javax.swing.JRadioButton panCardRB;
+    private javax.swing.JTextField priceTF;
     private javax.swing.JTextField roomsTF;
     // End of variables declaration//GEN-END:variables
 
@@ -369,6 +371,15 @@ public class FinalDialogPanel extends javax.swing.JPanel implements ActionListen
     }
 
     private void updateComponents() {
-       
+       if(bookingDetails!= null){
+           hotelNameTF.setText(bookingDetails.getHotelName());
+           guestsTF.setText(bookingDetails.getNumPeople()+"");
+           //hotelAddressTextArea.setText(bookingDetails.g);//NOTE: is address really necessary?
+           priceTF.setText(bookingDetails.getPrice()+"");
+           roomsTF.setText(bookingDetails.getNumRooms()+"");
+           checkInTF.setText(bookingDetails.getCheckIn().toString());
+           checkOutTF.setText(bookingDetails.getCheckOut().toString());
+       }
+        
     }
 }

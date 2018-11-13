@@ -20,6 +20,7 @@ public class Booking {
     String hotelName;
     String roomType;
     int price;
+    boolean waitlist=false;
 
     public Booking(LocalDate checkIn, LocalDate checkOut, int numPeople, int numRooms, String location, String hotelName, String roomType, int price) {
         this.checkIn = checkIn;
@@ -96,5 +97,14 @@ public class Booking {
     public void setCheckOut(LocalDate checkOut) {
         this.checkOut = checkOut;
     }
+
+    public boolean isWaitlist() {
+        return waitlist;
+    }
+
+    public void setWaitlist(boolean waitlist) {
+        this.waitlist = waitlist;
+    }
+    
     
 }

@@ -40,13 +40,15 @@ public class MainForm extends javax.swing.JFrame implements MouseListener {//Mou
     User user;
     LoginForm loginScreen;
     HotelListItemPanel resultList[];
+    Booking thisBooking;
+    
+    private BookingConstraints bc;
+    private int numOfGuests;
+    
     private static final String STAR = "\u2605";
-    private int numOfRooms;
-    private int numOfGuest;
-    private LocalDate checkIn;
-    private LocalDate checkOut;
+
     private static long NUMBER_OF_FUTURE_YEARS=4;
-    DialogActionListener dal;
+    private DialogActionListener dal;
 
     /**
      * Creates new form Main
@@ -1218,8 +1220,9 @@ public class MainForm extends javax.swing.JFrame implements MouseListener {//Mou
     }//GEN-LAST:event_priceSpinnerStateChanged
 
     private void goButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_goButtonActionPerformed
-
-        ArrayList<HotelDesc> list = Helper.searchAndReturnHotelList(makeBookingConstraints());
+        makeBookingConstraints();
+        numOfGuests = bookGuestRoomPanel.getGuests();
+        ArrayList<HotelDesc> list = Helper.searchAndReturnHotelList(bc);
         resultList = new HotelListItemPanel[list.size()];
         for (int i = 0; i < list.size(); i++) {
         resultList[i] = new HotelListItemPanel(list.get(i), this, i);
@@ -1248,7 +1251,9 @@ public class MainForm extends javax.swing.JFrame implements MouseListener {//Mou
     }//GEN-LAST:event_goButtonActionPerformed
 
     private void bookNowButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bookNowButtonActionPerformed
-        // TODO add your handling code here:
+        finalDialogPanel.setBookingDetails(thisBooking);
+        finalDialog.setLocationRelativeTo(null);//TODO: Check if setting modality in netbeans works:3
+        finalDialog.setVisible(true);
     }//GEN-LAST:event_bookNowButtonActionPerformed
 
     private void backLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backLabelMouseClicked
@@ -1393,10 +1398,8 @@ public class MainForm extends javax.swing.JFrame implements MouseListener {//Mou
         roomScrollPane.getVerticalScrollBar().setUnitIncrement(15);
         backLabel.setText("\u2190");//setting the back button unicode
         
-        //setting the list of locations in locationCB
-        //dummy
-        //TODO: Uncomment
-        //setupLocations(getLocsFromHelper());//replace with actual method name
+        
+        setupLocations(Helper.distinctLocations());//replace with actual method name
 
         
         
@@ -1643,15 +1646,23 @@ public class MainForm extends javax.swing.JFrame implements MouseListener {//Mou
 
     private void loadHotel(HotelListItemPanel hotelListItemPanel, String type) {
         HotelDesc des = hotelListItemPanel.getHotelDesc();
+        int price = des.getCost(type, bc.getNumRooms(), bc.getCheckIn(), bc.getCheckOut());
         hotelNameLabel.setText(des.getHotelName());
         numReviewsLabel.setText(des.getNumReviews() + " reviews");//TODO: add commas- as in "3,245" instead of "3245"
         hotelDetailsRatingLabel.setText(UIMethods.getRatingString(des.getStars()));
-        bookingConfirmationLinkLabel.setText(numOfRooms + " " + type + ", " + numOfGuest + " Guests");
-        totalPriceLabel.setText(des.getCost(type, numOfRooms, checkIn, checkOut) + "");
+        bookingConfirmationLinkLabel.setText(bc.getNumRooms() + " " + type + ", " + numOfGuests + " Guests");
+        totalPriceLabel.setText(des.getCost(type, bc.getNumRooms(), bc.getCheckIn(), bc.getCheckOut()) + "");
         descriptionTabbedPanel1.setDescription(des.getDescription(), des.getHotelAmenities(), des.getStars());
+        
+        
+        thisBooking = new Booking(bc.getCheckIn(), bc.getCheckOut(), numOfGuests, 
+                bc.getNumRooms(), bc.getLocation(), bc.getHotelName(), type,
+                price);//TODO: ADD SOMETHING FOR WATILIST!!
         
         if(!des.isAvailable()){
             bookNowButton.setText("WAITLIST");
+            thisBooking.setWaitlist(true);
+            System.out.println("NOT SUPPORTED! BOOKING OBJECT DOESNT HAVE INFO ON WAITLIST!");
         }
 
     }
@@ -1677,7 +1688,7 @@ public class MainForm extends javax.swing.JFrame implements MouseListener {//Mou
         bookingListPanel.removeAll();
         bookingListPanel.revalidate();
         bookingListPanel.repaint();
-        for (int i = 0; i < resultList.length; i++) {
+        for (int i = 0; i < list.length; i++) {
             gbc.gridy = i;
             bookingListPanel.add(list[i], gbc);
         }
@@ -1687,21 +1698,22 @@ public class MainForm extends javax.swing.JFrame implements MouseListener {//Mou
         
     }
 
-    private BookingConstraints makeBookingConstraints() {
+    private void makeBookingConstraints() {
      double price = (Double)(priceSpinner.getValue());
      String loc =locationCB.getSelectedItem().toString();
-     int g = bookGuestRoomPanel.getGuests();
      int r = bookGuestRoomPanel.getRooms();
      LocalDate checkIn = checkInDatePanel.getDate();
      LocalDate checkOut = checkOutDatePanel.getDate();
      System.out.println("WARNING! CHOOSING ROOM TYPE Executive Room HERE, ALSO, SETTING HOTEL NAME \"Random\" here");
-     return new BookingConstraints("RANDOM", "Executive Room", price, r, loc, checkIn, checkOut);
+     bc = new BookingConstraints("RANDOM", "Executive Room", price, r, loc, checkIn, checkOut);
     }
 
     private void setupLocations(String[] locStrings) {
         locationCB.removeAllItems();
+        System.out.println("Setting Up Locations");
         for(String s: locStrings){
             locationCB.addItem(s);
+            System.out.println("Adding "+s);
         }
     }
 
