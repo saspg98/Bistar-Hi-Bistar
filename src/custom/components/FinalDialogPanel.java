@@ -5,7 +5,7 @@
  */
 package custom.components;
 
-import internal.BookedRooms;
+import internal.Booking;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -17,7 +17,7 @@ public class FinalDialogPanel extends javax.swing.JPanel implements ActionListen
     public static final String  F_CONF= "FINAL_UPDATE";
     public static final String  F_CANCEL= "FINAL_CANCEL";
     
-    private BookedRooms bookingDetails;
+    private Booking bookingDetails;
     
     /**
      * Creates new form BookNow
@@ -36,11 +36,11 @@ public class FinalDialogPanel extends javax.swing.JPanel implements ActionListen
         cancelButton.addActionListener(a);
     }
 
-    public BookedRooms getBookingDetails() {
+    public Booking getBookingDetails() {
         return bookingDetails;
     }
 
-    public void setBookingDetails(BookedRooms bookingDetails) {
+    public void setBookingDetails(Booking bookingDetails) {
         this.bookingDetails = bookingDetails;
         updateComponents();
     }

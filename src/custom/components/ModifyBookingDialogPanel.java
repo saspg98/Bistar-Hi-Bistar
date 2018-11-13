@@ -5,7 +5,7 @@
  */
 package custom.components;
 
-import internal.BookedRooms;
+import internal.Booking;
 import java.awt.event.ActionListener;
 
 /**
@@ -16,7 +16,7 @@ public class ModifyBookingDialogPanel extends javax.swing.JPanel {
 
     public static final String  B_UPDATE= "DATE_UPDATE";
     public static final String  B_CANCEL= "DATE_CANCEL";
-    private BookedRooms booking;
+    private Booking booking;
     /**
      * Creates new form GuestRoomDialogPanel
      */
@@ -32,7 +32,7 @@ public class ModifyBookingDialogPanel extends javax.swing.JPanel {
         cancelButton.addActionListener(a);
     }
 
-    public BookedRooms getBooking() {
+    public Booking getBooking() {
         return booking;
     }
 

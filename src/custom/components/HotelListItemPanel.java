@@ -56,7 +56,7 @@ public class HotelListItemPanel extends javax.swing.JPanel {
         hotel = des;
         ratingLabel.setText("");
         setMouseEventListener(m);
-       
+        this.index=index;
 
         
         setDetails(des);
@@ -69,9 +69,15 @@ public class HotelListItemPanel extends javax.swing.JPanel {
     public void setDetails(HotelDesc des){
         hotelNameLabel.setText(des.getHotelName());
         priceRangeLabel.setText(des.getPriceRange());
-        
+        addressLabel.setText(des.getAdress());
         ratingLabel.setText(UIMethods.getRatingString(des.getStars()));
-
+        if(des.isAvailable()){
+            availabilityLabel.setForeground(AVAILABLE_COLOR);
+            availabilityLabel.setText("Available");
+        } else{
+            availabilityLabel.setForeground(UNAVAILABLE_COLOR);
+            availabilityLabel.setText("Unavailable");
+        }
         String[] types = des.getRoomTypes();
         double[] prices = des.getPrices();
         roomLinks = new JLabel[prices.length];
@@ -91,9 +97,7 @@ public class HotelListItemPanel extends javax.swing.JPanel {
             roomLinks[i].setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
             roomLinks[i].setBorder(BorderFactory.createEmptyBorder(0, 0, 1, 0));
             roomLinks[i].setName("underline");
-            
-            
-            
+
             roomLinks[i].addMouseListener(mouseListener);
             
             roomListPanel.add(roomLinks[i],gbc);
@@ -114,6 +118,8 @@ public class HotelListItemPanel extends javax.swing.JPanel {
         reviewLinkLabel = new javax.swing.JLabel();
         centerPanel = new javax.swing.JPanel();
         roomListPanel = new javax.swing.JPanel();
+        addressLabel = new javax.swing.JLabel();
+        availabilityLabel = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(25, 25, 25));
         setBorder(javax.swing.BorderFactory.createMatteBorder(1, 0, 1, 0, new java.awt.Color(255, 255, 255)));
@@ -160,6 +166,14 @@ public class HotelListItemPanel extends javax.swing.JPanel {
         gridBagConstraints.fill = java.awt.GridBagConstraints.VERTICAL;
         centerPanel.add(roomListPanel, gridBagConstraints);
 
+        addressLabel.setFont(new java.awt.Font("Lato", 0, 24)); // NOI18N
+        addressLabel.setForeground(new java.awt.Color(255, 255, 255));
+        addressLabel.setText("Address");
+
+        availabilityLabel.setFont(new java.awt.Font("Lato", 0, 24)); // NOI18N
+        availabilityLabel.setForeground(new java.awt.Color(0, 198, 0));
+        availabilityLabel.setText("Available");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -176,7 +190,11 @@ public class HotelListItemPanel extends javax.swing.JPanel {
                         .addComponent(reviewLinkLabel)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(priceRangeLabel))
-                    .addComponent(centerPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(centerPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(addressLabel)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(availabilityLabel)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -186,6 +204,10 @@ public class HotelListItemPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(hotelNameLabel)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(addressLabel)
+                            .addComponent(availabilityLabel))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(centerPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addComponent(imageLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 277, Short.MAX_VALUE))
@@ -201,8 +223,13 @@ public class HotelListItemPanel extends javax.swing.JPanel {
     
     private static final Font mainFont = new Font("Lato", 0, 24);
     private static final Color textColor = new Color(255, 255, 255);
+    private static final Color AVAILABLE_COLOR = new Color(0,198,0);
+    private static final Color UNAVAILABLE_COLOR = new Color(127,127,127);
+  
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel addressLabel;
+    private javax.swing.JLabel availabilityLabel;
     private javax.swing.JPanel centerPanel;
     private javax.swing.JLabel hotelNameLabel;
     private javax.swing.JLabel imageLabel;

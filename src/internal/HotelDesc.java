@@ -26,6 +26,7 @@ public class HotelDesc {
     Rating rating;
     String adress;
     String city;
+    boolean available=true;
 
 
     private static final String CURRENCY = "\u20B9";
@@ -130,6 +131,14 @@ public class HotelDesc {
     
     public Rating getRating() {
         return rating;
+    }
+
+    public boolean isAvailable() {
+        return available;
+    }
+
+    public void setAvailable(boolean available) {
+        this.available = available;
     }
     
     

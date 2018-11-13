@@ -20,7 +20,7 @@ import javax.swing.JPanel;
 import verifyingTools.Verify;
 import bridge.Helper;
 import custom.components.PastBookingListPanel;
-import internal.BookedRooms;
+import internal.Booking;
 import internal.BookingConstraints;
 import internal.DialogActionListener;
 import java.awt.Dialog;
@@ -256,6 +256,8 @@ public class MainForm extends javax.swing.JFrame implements MouseListener {//Mou
         finalDialog.setBackground(new java.awt.Color(25, 25, 25));
         finalDialog.setModalityType(java.awt.Dialog.ModalityType.APPLICATION_MODAL);
         finalDialog.getContentPane().setLayout(new java.awt.GridBagLayout());
+
+        finalDialogPanel.setMinimumSize(new java.awt.Dimension(814, 821));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 1.0;
@@ -1647,6 +1649,10 @@ public class MainForm extends javax.swing.JFrame implements MouseListener {//Mou
         bookingConfirmationLinkLabel.setText(numOfRooms + " " + type + ", " + numOfGuest + " Guests");
         totalPriceLabel.setText(des.getCost(type, numOfRooms, checkIn, checkOut) + "");
         descriptionTabbedPanel1.setDescription(des.getDescription(), des.getHotelAmenities(), des.getStars());
+        
+        if(!des.isAvailable()){
+            bookNowButton.setText("WAITLIST");
+        }
 
     }
 
@@ -1658,7 +1664,7 @@ public class MainForm extends javax.swing.JFrame implements MouseListener {//Mou
     private void loadBookings(String type) {
         //dummycode
         //getConfirmedBookingsFromDatabase
-        PastBookingListPanel[] list = UIMethods.createBookingListPanels(new BookedRooms[1],type);
+        PastBookingListPanel[] list = UIMethods.createBookingListPanels(new Booking[1],type);
         
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.anchor = GridBagConstraints.FIRST_LINE_START;

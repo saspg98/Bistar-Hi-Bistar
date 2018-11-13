@@ -44,8 +44,8 @@ public class DialogActionListener implements ActionListener {
     public void actionPerformed(ActionEvent e) {
        switch(e.getActionCommand()){
            case B_UPDATE:
-               BookedRooms old =book.getBooking();
-               BookedRooms newR;//get from ModifyBookingPanel
+               Booking old =book.getBooking();
+               Booking newR;//get from ModifyBookingPanel
                 
                ((JDialog)SwingUtilities.getAncestorOfClass(JDialog.class, book)).dispose();//Add null check!
                System.out.println("DO NULL CHECK");

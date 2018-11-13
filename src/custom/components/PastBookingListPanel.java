@@ -6,7 +6,8 @@
 package custom.components;
 
 
-import internal.BookedRooms;
+import internal.Booking;
+import java.awt.Color;
 import java.awt.GridBagConstraints;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
@@ -32,7 +33,7 @@ public class PastBookingListPanel extends javax.swing.JPanel {
         
     }
     
-    public PastBookingListPanel(BookedRooms booking, String type){
+    public PastBookingListPanel(Booking booking, String type){
         initComponents();
         checkInLabel.setText(booking.getCheckIn().toString());
         checkOutLabel.setText(booking.getCheckIn().toString());
@@ -65,9 +66,15 @@ public class PastBookingListPanel extends javax.swing.JPanel {
             gbc.gridx = 4;
             add(submitButton, gbc);
             
+        } else if(type.equals(WAIT_LIST)){
+            cancelButton.setText("Cancel Waitlist");
+            updateButton.setBackground(BOOK_COLOR);
+            updateButton.setText("Book Now");
+            updateButton.setActionCommand(BOOK_WAITLIST);
         }
         
     }
+    public final String BOOK_WAITLIST = "Book Wait List";
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -96,7 +103,7 @@ public class PastBookingListPanel extends javax.swing.JPanel {
         hotelNameLabel.setForeground(new java.awt.Color(255, 255, 255));
         hotelNameLabel.setText("Hotel Name");
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridwidth = 3;
+        gridBagConstraints.gridwidth = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
         gridBagConstraints.weightx = 5.0;
         gridBagConstraints.weighty = 1.0;
@@ -205,6 +212,7 @@ public class PastBookingListPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_cancelButtonActionPerformed
 
+    private static final Color BOOK_COLOR = new Color(0,140,0);
     private RatingPanel ratingPanel;
     private JButton submitButton;
     // Variables declaration - do not modify//GEN-BEGIN:variables
