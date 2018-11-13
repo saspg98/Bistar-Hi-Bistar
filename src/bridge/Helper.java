@@ -188,7 +188,7 @@ public class Helper {
         
         try {
             String s;
-            s = "SELECT * FROM dbo.hotelDetails WHERE City="+ bc.getLocation();
+            s = "SELECT * FROM dbo.hotelDetails WHERE City=\'"+ bc.getLocation()+"\'";
             
             ResultSet rs = query.getSt().executeQuery(s);
             
@@ -200,8 +200,8 @@ public class Helper {
                 //Code repeated 4 times for different type of rooms
                 for (LocalDate d = bc.getCheckIn(); d.isBefore(bc.getCheckOut()) || d.equals(bc.getCheckOut()); d.plusDays(1)) {
                     s = "SELECT SUM(NoOfRooms) FROM dbo.confirmedBookings "
-                            + "WHERE hotelID=" + rs.getInt("HotelID ")
-                            + "AND RoomCategory='Penthouse' "
+                            + "WHERE HotelID=" + rs.getInt("HotelID")
+                            + " AND RoomCategory='Penthouse' "
                             + "AND (CheckInDate<='" + d.toString() + "' AND CheckOutDate>='" + d.toString() + "')";
                     
                     ResultSet rs1 = query.getSt().executeQuery(s);
