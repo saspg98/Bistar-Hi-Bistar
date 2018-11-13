@@ -5,6 +5,7 @@
  */
 package bridge;
 
+import internal.Booking;
 import internal.User;
 import jdbc.*;
 import java.sql.*;
@@ -387,6 +388,55 @@ public class Helper {
         return locationsArray;
     }
     
-    
-
+    public static ArrayList<Booking> confirmedBookings(){
+        
+            ArrayList<Booking> list = new ArrayList();
+            
+            Booking b;
+            
+            makeConnection();
+            
+            String s = "SELECT * FROM dbo.confirmedBookings WHERE CustomerID =\'"+usr.getCustomerID()+"\'";
+            
+            try{ 
+            ResultSet rs = query.getSt().executeQuery(s);
+            
+            int HotelID ;
+            
+            while(rs.next()){
+                
+                b=new Booking();
+                
+                b.setBookingReference(rs.getInt("BookingReference"));
+                b.setCheckIn(rs.getDate("CheckInDate").toLocalDate());
+                b.setCheckOut(rs.getDate("CheckOutDate").toLocalDate());
+                b.setNumPeople(rs.getInt("NoOfPeople"));
+                b.setNumRooms(rs.getInt("NumberOfRooms"));
+                b.setPrice(rs.getInt("TotalPrice"));
+                b.setRoomType(rs.getString("RoomCategory"));
+                HotelID = rs.getInt("HotelID");
+                
+                s= "SELECT Name,City FROM dbo.HotelDetails WHERE HotelID ="+HotelID;
+                
+                ResultSet rs1 = query.getSt().executeQuery(s);
+                
+                b.setHotelName("Name");
+                b.setLocation("City");
+                
+                list.add(b);
+                
+               }
+            
+            rs.close();
+            closeConnection();
+            
+            }catch(SQLException e)
+            {
+                closeConnection();
+                e.printStackTrace();
+            }
+            
+            return list;
+          
+    }
 }
