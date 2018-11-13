@@ -1293,9 +1293,12 @@ public class MainForm extends javax.swing.JFrame implements MouseListener {//Mou
         makeBookingConstraints();
         numOfGuests = bookGuestRoomPanel.getGuests();
         ArrayList<HotelDesc> list = Helper.searchAndReturnHotelList(bc);
+        System.out.println("\n\n\n\n\n");
+        
         resultList = new HotelListItemPanel[list.size()];
         for (int i = 0; i < list.size(); i++) {
-        resultList[i] = new HotelListItemPanel(list.get(i), this, i);
+            list.get(i).print();
+            resultList[i] = new HotelListItemPanel(list.get(i), this, i);
         }
         
         GridBagConstraints gbc = new GridBagConstraints();

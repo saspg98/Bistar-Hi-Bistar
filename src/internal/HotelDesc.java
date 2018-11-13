@@ -24,7 +24,7 @@ public class HotelDesc {
     String roomAmenities;
     String hotelAmenities;
     Rating rating;
-    String adress;
+    String address;
     String city;
     boolean available=true;
 
@@ -40,7 +40,7 @@ public class HotelDesc {
         this.roomAmenities = roomAmenities;
         this.hotelAmenities = hotelAmenities;
         this.rating=rating;
-        this.adress=adress;
+        this.address=adress;
     }
 
         public void setCity(String city) {
@@ -87,8 +87,8 @@ public class HotelDesc {
         this.rating = rating;
     }
 
-    public void setAdress(String adress) {
-        this.adress = adress;
+    public void setAddress(String address) {
+        this.address = address;
     }
     
     
@@ -125,8 +125,8 @@ public class HotelDesc {
         return hotelAmenities;
     }
     
-    public String getAdress() {
-        return adress;
+    public String getAddress() {
+        return address;
     }
     
     public Rating getRating() {
@@ -164,6 +164,11 @@ public class HotelDesc {
     }
     
     
-    
+    public void print(){
+        System.out.println("Printing Hotel Description!");
+        System.out.println(hotelName);
+        System.out.println(address);
+
+    }
     
 }

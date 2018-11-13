@@ -69,7 +69,7 @@ public class HotelListItemPanel extends javax.swing.JPanel {
     public void setDetails(HotelDesc des){
         hotelNameLabel.setText(des.getHotelName());
         priceRangeLabel.setText(des.getPriceRange());
-        addressLabel.setText(des.getAdress());
+        addressLabel.setText(des.getAddress());
         ratingLabel.setText(UIMethods.getRatingString(des.getStars()));
         if(des.isAvailable()){
             availabilityLabel.setForeground(AVAILABLE_COLOR);

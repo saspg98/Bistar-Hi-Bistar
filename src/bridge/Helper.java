@@ -285,7 +285,7 @@ public class Helper {
                 
                 if (availablePenthouse == true || availableDeluxe == true || availableStandard == true || availableExecutive == true) {
                     System.out.println("This is address"+rs.getString("Address"));
-                    hotel.setAdress(rs.getString("Address"));
+                    hotel.setAddress(rs.getString("Address"));
                     hotel.setDescription(rs.getString("Description"));
                     hotel.setRoomAmenities(rs.getString("RoomAmenities"));
                     hotel.setHotelAmenities(rs.getString("HotelAmenities"));
