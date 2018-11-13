@@ -19,6 +19,7 @@ import java.awt.event.ActionListener;
 import static custom.components.ModifyBookingDialogPanel.B_UPDATE;
 import static custom.components.ModifyBookingDialogPanel.B_CANCEL;
 import javax.swing.JDialog;
+import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 
 /**
@@ -75,17 +76,17 @@ public class DialogActionListener implements ActionListener {
                
                
             case F_CONF:
-                //create booking object>>add to database>> dispose dialog
+                //create booking object>>add to database>>display booking reference>> dispose dialog
                 //dummy
                 //replace with actual method
-                //Helper.book(fin.getBookingDetails());
-                
+                //String ref = Helper.book(fin.getBookingDetails());
+                //JOptionPane.showInternalMessageDialog(null, 
+                //        "Congratulations on your booking! Your booking reference is " + ref, "Booking Confirmed- EzyBook", JOptionPane.PLAIN_MESSAGE);
                 ((JDialog)SwingUtilities.getAncestorOfClass(JDialog.class, fin)).dispose();//Add null check!
                System.out.println("DO NULL CHECK");
                break;
             case F_CANCEL:
-                //dispose dialog
-                
+
                ((JDialog)SwingUtilities.getAncestorOfClass(JDialog.class, fin)).dispose();//Add null check!
                System.out.println("DO NULL CHECK");
                break;
