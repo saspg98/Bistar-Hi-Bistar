@@ -14,6 +14,7 @@ public class HotelDesc {
     
     //IMP! The database query has to sort the roomtypes of the hotel according to their prices in ASCENDING order
     //In the method,getPriceRange(), it is assumed that the lowest price is stored in prices[0], and the highest in prices[price.length-1]
+    //public static final String[] ROOM_TYPES = {"Penthouse","Executive"}
     
     String hotelName;
     String[] roomTypes;
@@ -168,7 +169,6 @@ public class HotelDesc {
         System.out.println("Printing Hotel Description!");
         System.out.println(hotelName);
         System.out.println(address);
-
     }
     
 }
