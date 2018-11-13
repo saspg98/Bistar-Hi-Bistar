@@ -223,7 +223,7 @@
         <Component class="custom.components.FinalDialogPanel" name="finalDialogPanel">
           <Properties>
             <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-              <Dimension value="[814, 821]"/>
+              <Dimension value="[865, 905]"/>
             </Property>
           </Properties>
           <Constraints>

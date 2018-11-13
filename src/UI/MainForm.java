@@ -310,7 +310,7 @@ public class MainForm extends javax.swing.JFrame implements MouseListener {//Mou
         finalDialog.setModalityType(java.awt.Dialog.ModalityType.APPLICATION_MODAL);
         finalDialog.getContentPane().setLayout(new java.awt.GridBagLayout());
 
-        finalDialogPanel.setMinimumSize(new java.awt.Dimension(814, 821));
+        finalDialogPanel.setMinimumSize(new java.awt.Dimension(865, 905));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 1.0;
