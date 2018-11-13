@@ -286,12 +286,15 @@ public class Helper {
                     hotel.setPrices(priceArray);
                     
                     hotelList.add(hotel);
+                    System.out.println("Pranek bc kaam kar");
                 }
             }
         } catch (SQLException se) {
             closeConnection();
             se.printStackTrace();
         }
+        
+        closeConnection();
        
         return hotelList;
     }

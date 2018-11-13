@@ -50,7 +50,8 @@ public class DatePanel extends javax.swing.JPanel implements ItemListener {
 
     @Override
     public void itemStateChanged(ItemEvent e) {
-        if (yearCB.getSelectedIndex()>-1 && monthCB.getSelectedIndex()>-1 && dateCB.getSelectedIndex()>-1 && !isChanging) {
+        if (yearCB.getSelectedIndex()>-1 && monthCB.getSelectedIndex()>-1 && dateCB.getSelectedIndex()>-1 
+                && !isChanging && e.getStateChange() == ItemEvent.SELECTED) {
             
             //Checking basic calender constraints
             if (Integer.parseInt((String) dateCB.getSelectedItem()) > 28 && Month.valueOf((String) monthCB.getSelectedItem()).equals(Month.Feb)) {
@@ -76,7 +77,7 @@ public class DatePanel extends javax.swing.JPanel implements ItemListener {
             if (getDate().isBefore(minDate)) {
                 System.out.println("OOPS less than minDate");
                 setDate(minDate);                
-            }
+            } else
             if (getDate().isAfter(maxDate)) {
                 setDate(maxDate);
             }
@@ -122,9 +123,9 @@ public class DatePanel extends javax.swing.JPanel implements ItemListener {
         isChanging=true;
         dateCB.setSelectedIndex(date.getDayOfMonth()-1);
         monthCB.setSelectedIndex(date.getMonthValue()-1);
-        isChanging=false;
+
         yearCB.setSelectedIndex(yearModel.indexOf(date.getYear()));
-        
+        isChanging=false;        
     }
 
     public void setMinDate(LocalDate minDate) {
@@ -144,13 +145,20 @@ public class DatePanel extends javax.swing.JPanel implements ItemListener {
     }
     
     private void updateYearModel(){
-         yearCB.removeAllItems();
+        System.out.println("Printing out the year Model, maxDate is " + maxDate + ", minDate is "+minDate);
+        yearCB.removeAllItems();
          yearModel.clear();
+         isChanging=true;
          for(int i = minDate.getYear();i<=maxDate.getYear();i++){
-             
+            System.out.println("Adding year "+ String.valueOf(i));
              yearCB.addItem(String.valueOf(i));
              yearModel.add(i);
-         }      
+             
+                 
+         }
+        isChanging=false;
+        setDate(minDate);
+        System.out.println("Year Model Updated!");
     }
     
 

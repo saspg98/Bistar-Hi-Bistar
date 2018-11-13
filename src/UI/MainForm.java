@@ -1480,10 +1480,10 @@ public class MainForm extends javax.swing.JFrame implements MouseListener {//Mou
         //setting up the date panels
         checkInDatePanel.setMinDate(LocalDate.now());
         checkInDatePanel.setMaxDate(LocalDate.now().plusYears(NUMBER_OF_FUTURE_YEARS));
-        checkInDatePanel.setDate(LocalDate.now());
+        
         checkOutDatePanel.setMinDate(LocalDate.now().plusDays(1));
         checkOutDatePanel.setMaxDate(LocalDate.now().plusYears(NUMBER_OF_FUTURE_YEARS).plusDays(1));
-        checkOutDatePanel.setDate(LocalDate.now().plusDays(1));
+
         
         //Personalizing
         personalize();
