@@ -1420,12 +1420,15 @@ public class MainForm extends javax.swing.JFrame implements MouseListener,
             switch(listTypeCB.getSelectedIndex()){
             
                 case 0:
+                    System.out.println("calling loadBookings for conf");
                     loadBookings(PastBookingListPanel.CONFIRMED);
                     break;
                 case 1:
+                    System.out.println("calling loadBookings for waitlist");
                     loadBookings(PastBookingListPanel.WAIT_LIST);
                     break;    
                 case 2:
+                    System.out.println("calling loadBookings for old");
                     loadBookings(PastBookingListPanel.PREVIOUS);
                     break;    
             }
@@ -1782,13 +1785,13 @@ public class MainForm extends javax.swing.JFrame implements MouseListener,
         
         
     }
-
+    
     private void loadBookings() {
         loadBookings(PastBookingListPanel.CONFIRMED);    
     }
     
     private void loadBookings(String type) {
-        //dummycode
+        System.out.println("Load booking has been called for " + type);
         ArrayList<Booking> bookings = new ArrayList();
         if(type.equals(PastBookingListPanel.CONFIRMED))
             bookings =Helper.confirmedBookings();
