@@ -7,6 +7,9 @@ import java.awt.Cursor;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.event.MouseListener;
+import java.util.Collection;
+import java.util.Map;
+import java.util.Set;
 import javax.swing.BorderFactory;
 import javax.swing.JLabel;
 
@@ -51,7 +54,7 @@ public class HotelListItemPanel extends javax.swing.JPanel {
     
     
     //TODO: Main Constructor, merge with setDetails 
-    public HotelListItemPanel(HotelDesc des,MouseListener m, int index) {
+    public HotelListItemPanel(HotelDesc des,MouseListener m, int index, boolean showAll) {
         initComponents();
         hotel = des;
         ratingLabel.setText("");
@@ -59,14 +62,14 @@ public class HotelListItemPanel extends javax.swing.JPanel {
         this.index=index;
 
         
-        setDetails(des);
+        setDetails(des, showAll);
     }
     
     public int getIndex(){
         return index;
     }
     //TODO: Merge with constructor!!
-    public void setDetails(HotelDesc des){
+    public void setDetails(HotelDesc des, boolean showAll){
         hotelNameLabel.setText(des.getHotelName());
         priceRangeLabel.setText(des.getPriceRange());
         addressLabel.setText(des.getAddress());
@@ -78,7 +81,7 @@ public class HotelListItemPanel extends javax.swing.JPanel {
             availabilityLabel.setForeground(UNAVAILABLE_COLOR);
             availabilityLabel.setText("Unavailable");
         }
-        String[] types = des.getRoomTypes();
+        int[] types = des.getRoomTypes();
         double[] prices = des.getPrices();
         roomLinks = new JLabel[prices.length];
         
@@ -88,20 +91,34 @@ public class HotelListItemPanel extends javax.swing.JPanel {
         
 
         
-        
-        for(int i=0;i<prices.length;i++){
-            roomLinks[i] = new JLabel("<html>"+types[i]+" - "+"<font color='#00c600'>"+CURRENCY+prices[i]+"</font>"+"</html>");
-            roomLinks[i].setFont(mainFont); // NOI18N
-            roomLinks[i].setForeground(textColor);
-            roomLinks[i].setHorizontalAlignment(javax.swing.SwingConstants.LEADING);
-            roomLinks[i].setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-            roomLinks[i].setBorder(BorderFactory.createEmptyBorder(0, 0, 1, 0));
-            roomLinks[i].setName("underline");
+            for(int i=0;i<HotelDesc.ROOM_TYPES.length;i++){
+                if(types[i]>0){
+                    roomLinks[i] = new JLabel("<html>"+HotelDesc.ROOM_TYPES[i]+" - "+"<font color='#00c600'>"+CURRENCY+prices[i]+"</font>"+"</html>");
+                    roomLinks[i].setFont(mainFont); // NOI18N
+                    roomLinks[i].setForeground(textColor);
+                    roomLinks[i].setHorizontalAlignment(javax.swing.SwingConstants.LEADING);
+                    roomLinks[i].setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+                    roomLinks[i].setBorder(BorderFactory.createEmptyBorder(0, 0, 1, 0));
+                    roomLinks[i].setName("underline");
 
-            roomLinks[i].addMouseListener(mouseListener);
+                    roomLinks[i].addMouseListener(mouseListener);
             
-            roomListPanel.add(roomLinks[i],gbc);
-        }
+                    roomListPanel.add(roomLinks[i],gbc);
+                } else if(showAll){
+                    roomLinks[i] = new JLabel("<html>"+HotelDesc.ROOM_TYPES[i]+" - "+"<font color='#00c600'>"+CURRENCY+prices[i]+"</font>"+"<font color='#787878'>(Unavailable)</font>s</html>");
+                    roomLinks[i].setFont(mainFont); // NOI18N
+                    roomLinks[i].setForeground(textColor);
+                    roomLinks[i].setHorizontalAlignment(javax.swing.SwingConstants.LEADING);
+                    roomLinks[i].setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+                    roomLinks[i].setBorder(BorderFactory.createEmptyBorder(0, 0, 1, 0));
+                    roomLinks[i].setName("underline");
+
+                    roomLinks[i].addMouseListener(mouseListener);
+            
+                    roomListPanel.add(roomLinks[i],gbc);
+                    
+                }
+            }
     }
     
 

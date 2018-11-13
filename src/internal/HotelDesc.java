@@ -4,6 +4,7 @@
 package internal;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 
 
 /**
@@ -14,10 +15,10 @@ public class HotelDesc {
     
     //IMP! The database query has to sort the roomtypes of the hotel according to their prices in ASCENDING order
     //In the method,getPriceRange(), it is assumed that the lowest price is stored in prices[0], and the highest in prices[price.length-1]
-    //public static final String[] ROOM_TYPES = {"Penthouse","Executive"}
+    public static final String[] ROOM_TYPES = {"Penthouse","Executive","Deluxe","Standard"};
     
     String hotelName;
-    String[] roomTypes;
+    int[] roomTypes;
     double[] prices;
     int stars;
     int numReviews;
@@ -31,7 +32,7 @@ public class HotelDesc {
 
 
     private static final String CURRENCY = "\u20B9";
-    public HotelDesc(String hotelName, String[] roomType, double[] price, int stars, int numReviews, String description, String roomAmenities, String hotelAmenities, Rating rating, String adress) {
+    public HotelDesc(String hotelName, int[] roomType, double[] price, int stars, int numReviews, String description, String roomAmenities, String hotelAmenities, Rating rating, String adress) {
         this.hotelName = hotelName;
         this.roomTypes = roomType;
         this.prices = price;
@@ -56,7 +57,7 @@ public class HotelDesc {
         this.hotelName = hotelName;
     }
 
-    public void setRoomTypes(String[] roomTypes) {
+    public void setRoomTypes(int[] roomTypes) {
         this.roomTypes = roomTypes;
     }
 
@@ -98,8 +99,24 @@ public class HotelDesc {
         return hotelName;
     }
 
-    public String[] getRoomTypes() {
+    public int[] getRoomTypes() {
         return roomTypes;
+    }
+    
+    
+    
+    public boolean isAvailable(String type){
+        int index=-1;
+        for(int i=0;i<ROOM_TYPES.length;i++){
+            if(ROOM_TYPES[i].equals(type)){
+                index = i;
+                break;
+            }
+        }System.out.println("If array out of bounds then type aint available");
+        if(roomTypes[index]>0)
+            return true;
+        
+        return false;
     }
 
     public double[] getPrices() {
