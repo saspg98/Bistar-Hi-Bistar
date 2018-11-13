@@ -1788,38 +1788,40 @@ public class MainForm extends javax.swing.JFrame implements MouseListener,
     
     private void loadBookings(String type) {
         //dummycode
-        ArrayList<Booking> bookings;
+        ArrayList<Booking> bookings = new ArrayList();
         if(type.equals(PastBookingListPanel.CONFIRMED))
-            //bookings =getConfirmedBookingsFromDatabase
-        ;
+            bookings =Helper.confirmedBookings();
+        
         else if(type.equals(PastBookingListPanel.WAIT_LIST))
-            //bookings =getWaitListBookingsFromDatabase
-        ;
+            bookings =Helper.waitlistBookings();
+        
         else if(type.equals(PastBookingListPanel.PREVIOUS))
-            //bookings =getPreviousBookingsFromDatabase
-        ;
+            bookings =Helper.oldBookings();
+        
          
-        
-        PastBookingListPanel[] list = UIMethods.createBookingListPanels(new Booking[1],type,this);
-        
-        GridBagConstraints gbc = new GridBagConstraints();
-        gbc.anchor = GridBagConstraints.FIRST_LINE_START;
-        gbc.fill = GridBagConstraints.HORIZONTAL;
-        gbc.gridx = 0;
-        gbc.gridy = 0;
-        gbc.weightx = 1.0;
-        gbc.weighty = 0.2;
-
-        bookingListPanel.removeAll();
-        bookingListPanel.revalidate();
-        bookingListPanel.repaint();
-        for (int i = 0; i < list.length; i++) {
-            gbc.gridy = i;
-            bookingListPanel.add(list[i], gbc);
+       
+        if (bookings.size()>0) {
+            PastBookingListPanel[] list = UIMethods.createBookingListPanels(bookings.toArray(new Booking[1]), type, this);
+            
+            GridBagConstraints gbc = new GridBagConstraints();
+            gbc.anchor = GridBagConstraints.FIRST_LINE_START;
+            gbc.fill = GridBagConstraints.HORIZONTAL;
+            gbc.gridx = 0;
+            gbc.gridy = 0;
+            gbc.weightx = 1.0;
+            gbc.weighty = 0.2;
+            
+            bookingListPanel.removeAll();
+            bookingListPanel.revalidate();
+            bookingListPanel.repaint();
+            for (int i = 0; i < list.length; i++) {
+                gbc.gridy = i;
+                bookingListPanel.add(list[i], gbc);
+            }
+            //TODO: see if revalidate() can/should be removed
+            bookingListPanel.revalidate();
+            bookingListPanel.repaint();
         }
-        //TODO: see if revalidate() can/should be removed
-        bookingListPanel.revalidate();
-        bookingListPanel.repaint();
         
     }
 
