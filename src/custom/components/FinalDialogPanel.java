@@ -5,6 +5,7 @@
  */
 package custom.components;
 
+import internal.BookedRooms;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -15,6 +16,8 @@ import java.awt.event.ActionListener;
 public class FinalDialogPanel extends javax.swing.JPanel implements ActionListener {
     public static final String  F_CONF= "FINAL_UPDATE";
     public static final String  F_CANCEL= "FINAL_CANCEL";
+    
+    private BookedRooms bookingDetails;
     
     /**
      * Creates new form BookNow
@@ -32,6 +35,17 @@ public class FinalDialogPanel extends javax.swing.JPanel implements ActionListen
         confirmButton.addActionListener(a);
         cancelButton.addActionListener(a);
     }
+
+    public BookedRooms getBookingDetails() {
+        return bookingDetails;
+    }
+
+    public void setBookingDetails(BookedRooms bookingDetails) {
+        this.bookingDetails = bookingDetails;
+        updateComponents();
+    }
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -352,5 +366,9 @@ public class FinalDialogPanel extends javax.swing.JPanel implements ActionListen
             adharCardNumberTF.setEnabled(false);
             panCardNumberTF.setEditable(true);
         }
+    }
+
+    private void updateComponents() {
+       
     }
 }

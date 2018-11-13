@@ -71,7 +71,7 @@ public class DialogActionListener implements ActionListener {
                
                
             case F_CONF:
-                //update booking object>refresh details>dispose dialog
+                //create booking object>>add to database>> dispose dialog
                 
                 
                 ((JDialog)SwingUtilities.getAncestorOfClass(JDialog.class, fin)).dispose();//Add null check!

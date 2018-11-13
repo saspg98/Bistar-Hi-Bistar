@@ -19,17 +19,27 @@ public class BookedRooms {
     String location;
     String hotelName;
     String roomType;
-    
-    public BookedRooms(String hotelName, String roomType, int numPeople, int numRooms, String location, LocalDate checkIn, LocalDate checkOut) {
-        
-        this.hotelName = hotelName;
-        this.roomType = roomType;
+    int price;
+
+    public BookedRooms(LocalDate checkIn, LocalDate checkOut, int numPeople, int numRooms, String location, String hotelName, String roomType, int price) {
+        this.checkIn = checkIn;
+        this.checkOut = checkOut;
         this.numPeople = numPeople;
         this.numRooms = numRooms;
         this.location = location;
-        this.checkIn = checkIn;
-        this.checkOut = checkOut;
+        this.hotelName = hotelName;
+        this.roomType = roomType;
+        this.price = price;
     }
+
+    public int getPrice() {
+        return price;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
+    }
+    
     
     public String getHotelName() {
         return hotelName;
