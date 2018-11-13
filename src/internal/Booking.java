@@ -115,6 +115,7 @@ public class Booking {
     public void setWaitlist(boolean waitlist) {
         this.waitlist = waitlist;
     }
-    
+ 
+    public Booking(){}
     
 }
