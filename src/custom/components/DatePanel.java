@@ -5,8 +5,6 @@
  */
 package custom.components;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.time.LocalDate;
@@ -145,12 +143,12 @@ public class DatePanel extends javax.swing.JPanel implements ItemListener {
     }
     
     private void updateYearModel(){
-        System.out.println("Printing out the year Model, maxDate is " + maxDate + ", minDate is "+minDate);
+        System.out.println("Updating yearModel, maxDate is " + maxDate + ", minDate is "+minDate);
         yearCB.removeAllItems();
          yearModel.clear();
          isChanging=true;
          for(int i = minDate.getYear();i<=maxDate.getYear();i++){
-            System.out.println("Adding year "+ String.valueOf(i));
+            //System.out.println("Adding year "+ String.valueOf(i));
              yearCB.addItem(String.valueOf(i));
              yearModel.add(i);
              
