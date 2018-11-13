@@ -197,55 +197,70 @@ public class Helper {
                 ArrayList<String> availableRoomTypes = new ArrayList();
                 ArrayList<Integer> price= new ArrayList();
                 boolean availableExecutive = true, availablePenthouse = true, availableDeluxe = true, availableStandard = true;
-
+                System.out.println("check in "+bc.getCheckIn()+", check out "+bc.getCheckOut() );
                 //Code repeated 4 times for different type of rooms
-                for (LocalDate d = bc.getCheckIn(); d.isBefore(bc.getCheckOut()) || d.equals(bc.getCheckOut()); d.plusDays(1)) {
+                for (LocalDate d = bc.getCheckIn(); d.isBefore(bc.getCheckOut()) || d.equals(bc.getCheckOut()); d = d.plusDays(1)) {
                     s = "SELECT SUM(NoOfRooms) AS sum FROM dbo.confirmedBookings "
                             + "WHERE HotelID=" + rs.getInt("HotelID")
-                            + " AND RoomCategory=\'Penthouse\' "
-                            + "AND CheckInDate<=\'" + d.toString() + "\' AND CheckOutDate>=\'" + d.toString() + "\'";
+                            + " AND RoomCategory =\'Penthouse\' "
+                            + "AND CheckInDate <=\'" + d.toString() + "\' AND CheckOutDate >=\'" + d.toString() + "\'";
                     
                     ResultSet rs1 = query.getSt2().executeQuery(s);
-                    rs1.next();
-                    if (rs.getInt("Penthouse") - rs1.getInt("sum") < bc.getNumRooms()) {
+                   
+                   if(!rs1.next())
+                    if (rs.getInt("Penthouse") - rs1.getInt("sum") < bc.getNumRooms()) 
                         availablePenthouse = false;
-                    }
+                    else
+                   
+                       if (rs.getInt("Penthouse") < bc.getNumRooms()) 
+                        availablePenthouse = false;
+                   
+                    
                 }
-                for (LocalDate d = bc.getCheckIn(); d.isBefore(bc.getCheckOut()) || d.equals(bc.getCheckOut()); d.plusDays(1)) {
+                for (LocalDate d = bc.getCheckIn(); d.isBefore(bc.getCheckOut()) || d.equals(bc.getCheckOut());d= d.plusDays(1)) {
                     s = "SELECT SUM(NoOfRooms) AS sum FROM dbo.confirmedBookings "
-                            + "WHERE hotelID=" + rs.getInt("HotelID")
-                            + " AND RoomCategory=\'Executive\' "
-                            + "AND CheckInDate<=\'" + d.toString() + "\' AND CheckOutDate>=\'" + d.toString() + "\'";
+                            + "WHERE hotelID =" + rs.getInt("HotelID")
+                            + " AND RoomCategory =\'Executive\' "
+                            + "AND CheckInDate <=\'" + d.toString() + "\' AND CheckOutDate>=\'" + d.toString() + "\'";
                     
                     ResultSet rs1 = query.getSt2().executeQuery(s);
-                    rs1.next();
-                    if (rs.getInt("ExecutiveRooms") - rs1.getInt("sum") < bc.getNumRooms()) {
+                    if(!rs1.next())
+                    if (rs.getInt("ExecutiveRooms") - rs1.getInt("sum") < bc.getNumRooms()) 
+                        availableExecutive = false;
+                    else
+                       
+                         if (rs.getInt("ExecutiveRooms") < bc.getNumRooms()) 
                         availableExecutive = false;
                     }
-                }
-                for (LocalDate d = bc.getCheckIn(); d.isBefore(bc.getCheckOut()) || d.equals(bc.getCheckOut()); d.plusDays(1)) {
+                
+                for (LocalDate d = bc.getCheckIn(); d.isBefore(bc.getCheckOut()) || d.equals(bc.getCheckOut());d= d.plusDays(1)) {
                     s = "SELECT SUM(NoOfRooms) AS sum FROM dbo.confirmedBookings "
                             + "WHERE hotelID=" + rs.getInt("HotelID")
                             + " AND RoomCategory=\'Standard\' "
                             + "AND CheckInDate<=\'" + d.toString() + "\' AND CheckOutDate>=\'" + d.toString() + "\'";
                     
                     ResultSet rs1 = query.getSt2().executeQuery(s);
-                    rs1.next();
-                    if (rs.getInt("StandardRooms") - rs1.getInt("sum)") < bc.getNumRooms()) {
+                    if(!rs1.next())
+                      
+                         if (rs.getInt("StandardRooms") - rs1.getInt("sum)") < bc.getNumRooms()) 
                         availableStandard = false;
-                    }
+                    else
+                        if (rs.getInt("StandardRooms")  < bc.getNumRooms()) 
+                        availableStandard = false;
                 }
-                for (LocalDate d = bc.getCheckIn(); d.isBefore(bc.getCheckOut()) || d.equals(bc.getCheckOut()); d.plusDays(1)) {
+                for (LocalDate d = bc.getCheckIn(); d.isBefore(bc.getCheckOut()) || d.equals(bc.getCheckOut());d= d.plusDays(1)) {
                     s = "SELECT SUM(NoOfRooms) AS sum FROM dbo.confirmedBookings "
                             + "WHERE hotelID=" + rs.getInt("HotelID")
                             + " AND RoomCategory=\'Deluxe\' "
                             + "AND CheckInDate<=\'" + d.toString() + "\' AND CheckOutDate>=\'" + d.toString() + "\'";
                     
                     ResultSet rs1 = query.getSt2().executeQuery(s);
-                    rs1.next();
-                    if (rs.getInt("DeluxeRooms") - rs1.getInt("sum") < bc.getNumRooms()) {
+                    if( !rs1.next())
+                    if (rs.getInt("DeluxeRooms") - rs1.getInt("sum") < bc.getNumRooms()) 
                         availableDeluxe = false;
-                    }
+                    else
+                        if (rs.getInt("DeluxeRooms") < bc.getNumRooms()) 
+                        availableDeluxe = false; 
                 }
                 
                 if (availablePenthouse == true) {
@@ -266,7 +281,8 @@ public class Helper {
                 }
                 
                 if (availablePenthouse == true || availableDeluxe == true || availableStandard == true || availableExecutive == true) {
-                    hotel.setAdress(rs.getString("Adress"));
+                    System.out.println("This is address"+rs.getString("Address"));
+                    hotel.setAdress(rs.getString("Address"));
                     hotel.setDescription(rs.getString("Description"));
                     hotel.setRoomAmenities(rs.getString("RoomAmenities"));
                     hotel.setHotelAmenities(rs.getString("HotelAmenities"));
@@ -286,7 +302,7 @@ public class Helper {
                     hotel.setPrices(priceArray);
                     
                     hotelList.add(hotel);
-                    System.out.println("Pranek bc kaam kar");
+                   
                 }
             }
         } catch (SQLException se) {
