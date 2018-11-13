@@ -26,6 +26,7 @@ import internal.DialogActionListener;
 import java.awt.Dialog;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
@@ -1224,7 +1225,7 @@ public class MainForm extends javax.swing.JFrame implements MouseListener,
         UIMethods.setSelectedPanelButton(myBookingsPanelButton, myBookingsLabel);
         isSelected[1] = true;
         
-        //loadBookings();
+        loadBookings();
     }//GEN-LAST:event_myBookingsPanelButtonMouseClicked
 
     private void bookHotelsPanelButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bookHotelsPanelButtonMouseClicked
@@ -1415,17 +1416,17 @@ public class MainForm extends javax.swing.JFrame implements MouseListener,
     }//GEN-LAST:event_bookingConfirmationLinkLabelMouseClicked
 
     private void listTypeCBItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_listTypeCBItemStateChanged
-        if(listTypeCB.getSelectedIndex()>0 && isSelected[1]){
+        if(evt.getStateChange() == ItemEvent.SELECTED && isSelected[1]){
             switch(listTypeCB.getSelectedIndex()){
             
                 case 0:
-                    //loadBookings(PastBookingListPanel.CONFIRMED);
+                    loadBookings(PastBookingListPanel.CONFIRMED);
                     break;
                 case 1:
-                    //loadBookings(PastBookingListPanel.WAIT_LIST);
+                    loadBookings(PastBookingListPanel.WAIT_LIST);
                     break;    
                 case 2:
-                    //loadBookings(PastBookingListPanel.PREVIOUS);
+                    loadBookings(PastBookingListPanel.PREVIOUS);
                     break;    
             }
         }
