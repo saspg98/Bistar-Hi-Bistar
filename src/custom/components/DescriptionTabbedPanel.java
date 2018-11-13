@@ -5,6 +5,9 @@
  */
 package custom.components;
 
+import java.awt.Dimension;
+import javax.swing.JLabel;
+
 /**
  *
  * @author Sarthak
@@ -16,6 +19,10 @@ public class DescriptionTabbedPanel extends javax.swing.JPanel {
      */
     public DescriptionTabbedPanel() {
         initComponents();
+        //Changing Size of the Tabs!
+        JLabel lab = new JLabel();
+        lab.setPreferredSize(new Dimension(200, 30));
+        jTabbedPane1.setTabComponentAt(0, lab);  // tab index, jLabel
     }
     
     public void setDescription(String des, String amen, int rating){
@@ -26,11 +33,8 @@ public class DescriptionTabbedPanel extends javax.swing.JPanel {
         
     }
 
-    //ADD THIS TO MAIN
-    /*  JLabel lab = new JLabel();
-    lab.setPreferredSize(new Dimension(200, 30));
-    jTabbedPane1.setTabComponentAt(0, lab);  // tab index, jLabel
-    @SuppressWarnings("unchecked")*/
+    
+    @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
         java.awt.GridBagConstraints gridBagConstraints;
