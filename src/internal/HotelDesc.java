@@ -25,8 +25,9 @@ public class HotelDesc {
     String hotelAmenities;
     Rating rating;
     String adress;
-    
-    
+    String city;
+
+
     private static final String CURRENCY = "\u20B9";
     public HotelDesc(String hotelName, String[] roomType, double[] price, int stars, int numReviews, String description, String roomAmenities, String hotelAmenities, Rating rating, String adress) {
         this.hotelName = hotelName;
@@ -40,6 +41,56 @@ public class HotelDesc {
         this.rating=rating;
         this.adress=adress;
     }
+
+        public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getCity() {
+        return city;
+    }
+    
+    public void setHotelName(String hotelName) {
+        this.hotelName = hotelName;
+    }
+
+    public void setRoomTypes(String[] roomTypes) {
+        this.roomTypes = roomTypes;
+    }
+
+    public void setPrices(double[] prices) {
+        this.prices = prices;
+    }
+
+    public void setStars(int stars) {
+        this.stars = stars;
+    }
+
+    public void setNumReviews(int numReviews) {
+        this.numReviews = numReviews;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void setRoomAmenities(String roomAmenities) {
+        this.roomAmenities = roomAmenities;
+    }
+
+    public void setHotelAmenities(String hotelAmenities) {
+        this.hotelAmenities = hotelAmenities;
+    }
+
+    public void setRating(Rating rating) {
+        this.rating = rating;
+    }
+
+    public void setAdress(String adress) {
+        this.adress = adress;
+    }
+    
+    
 
     public String getHotelName() {
         return hotelName;
