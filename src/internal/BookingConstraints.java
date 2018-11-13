@@ -15,18 +15,26 @@ public class BookingConstraints {
     private double maxPrice;
     private int numRooms;
     private String location;
+    private boolean showAll;
 
-    
-    public BookingConstraints(double maxPrice, int numRooms, String location, LocalDate checkIn, LocalDate checkOut) {
+    public BookingConstraints(LocalDate checkIn, LocalDate checkOut, double maxPrice, int numRooms, String location, boolean showAll) {
+        this.checkIn = checkIn;
+        this.checkOut = checkOut;
         this.maxPrice = maxPrice;
         this.numRooms = numRooms;
         this.location = location;
-        this.checkIn = checkIn;
-        this.checkOut = checkOut;
+        this.showAll = showAll;
     }
+
+    public boolean isShowAll() {
+        return showAll;
+    }
+
+    public void setShowAll(boolean showAll) {
+        this.showAll = showAll;
+    }
+
     
-
-
     
     public double getMaxPrice() {
         return maxPrice;

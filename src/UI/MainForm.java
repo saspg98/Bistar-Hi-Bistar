@@ -112,6 +112,7 @@ public class MainForm extends javax.swing.JFrame implements MouseListener {//Mou
         checkInDatePanel = new custom.components.DatePanel();
         checkOutDatePanel = new custom.components.DatePanel();
         bookGuestRoomPanel = new custom.components.GuestRoomPanel();
+        showAvailableCheckBox = new javax.swing.JCheckBox();
         myProfilePanel = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
@@ -684,6 +685,17 @@ public class MainForm extends javax.swing.JFrame implements MouseListener {//Mou
         gridBagConstraints.weighty = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         bookPanel.add(bookGuestRoomPanel, gridBagConstraints);
+
+        showAvailableCheckBox.setFont(new java.awt.Font("Lato Black", 0, 22)); // NOI18N
+        showAvailableCheckBox.setSelected(true);
+        showAvailableCheckBox.setText("Show Only Available Rooms");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 4;
+        gridBagConstraints.gridy = 4;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        bookPanel.add(showAvailableCheckBox, gridBagConstraints);
 
         mainPanel.add(bookPanel, "bookPanel");
 
@@ -1285,7 +1297,7 @@ public class MainForm extends javax.swing.JFrame implements MouseListener {//Mou
         resultList = new HotelListItemPanel[list.size()];
         for (int i = 0; i < list.size(); i++) {
       
-            resultList[i] = new HotelListItemPanel(list.get(i), this, i);
+            resultList[i] = new HotelListItemPanel(list.get(i), this, i,bc.isShowAll());
         }
         
         GridBagConstraints gbc = new GridBagConstraints();
@@ -1610,6 +1622,7 @@ public class MainForm extends javax.swing.JFrame implements MouseListener {//Mou
     private javax.swing.JPanel roomPanel;
     private javax.swing.JScrollPane roomScrollPane;
     private javax.swing.JPanel settingsPanelButton;
+    private javax.swing.JCheckBox showAvailableCheckBox;
     private javax.swing.JPanel sidebar;
     private javax.swing.JLabel titleLabel;
     private javax.swing.JPanel titlePanelMyBookings;
@@ -1736,22 +1749,23 @@ public class MainForm extends javax.swing.JFrame implements MouseListener {//Mou
 
     private void loadHotel(HotelListItemPanel hotelListItemPanel) {
         HotelDesc des = hotelListItemPanel.getHotelDesc();
-        loadHotel(hotelListItemPanel, des.getRoomTypes()[0]);
+        loadHotel(hotelListItemPanel,HotelDesc.ROOM_TYPES[0]);
     }
 
     private void loadHotel(HotelListItemPanel hotelListItemPanel, String type) {
         HotelDesc des = hotelListItemPanel.getHotelDesc();
-        int price = des.getCost(type, bc.getNumRooms(), bc.getCheckIn(), bc.getCheckOut());
+        int price = HotelDesc.getCost(type, bc.getNumRooms(), bc.getCheckIn(), bc.getCheckOut());
         hotelNameLabel.setText(des.getHotelName());
         numReviewsLabel.setText(des.getNumReviews() + " reviews");//TODO: add commas- as in "3,245" instead of "3245"
         hotelDetailsRatingLabel.setText(UIMethods.getRatingString(des.getStars()));
         descriptionTabbedPanel1.setDescription(des.getDescription(), des.getHotelAmenities(), des.getStars());
         
         
-        guestRoomDialogPanel.setRoomTypes(des.getRoomTypes());
+        guestRoomDialogPanel.setRoomTypes(HotelDesc.ROOM_TYPES);
         thisBooking = new Booking(bc.getCheckIn(), bc.getCheckOut(), numOfGuests, 
                 bc.getNumRooms(), bc.getLocation(), des.getHotelName(), type,
                 price);//TODO: ADD SOMETHING FOR WATILIST!!
+        thisBooking.setWaitlist(!des.isAvailable(type));
         guestRoomDialogPanel.setThisBooking(thisBooking);
         if(!des.isAvailable()){
             bookNowButton.setText("WAITLIST");
@@ -1803,7 +1817,8 @@ public class MainForm extends javax.swing.JFrame implements MouseListener {//Mou
      LocalDate checkIn = checkInDatePanel.getDate();
      LocalDate checkOut = checkOutDatePanel.getDate();
      System.out.println("WARNING! CHOOSING ROOM TYPE Executive Room HERE, ALSO, SETTING HOTEL NAME \"Random\" here");
-     bc = new BookingConstraints(price, r, loc, checkIn, checkOut);
+     boolean showAll = !showAvailableCheckBox.isSelected();
+     bc = new BookingConstraints(checkIn,checkOut,price,r,loc,showAll);
     }
 
     private void setupLocations(String[] locStrings) {
@@ -1820,6 +1835,10 @@ public class MainForm extends javax.swing.JFrame implements MouseListener {//Mou
         bookingConfirmationLinkLabel.setText(thisBooking.getNumRooms() + " " + thisBooking.getRoomType() + ", " + numOfGuests + " Guests");
         totalPriceLabel.setText(HotelDesc.getCost(thisBooking.getRoomType(), thisBooking.getNumRooms(), thisBooking.getCheckIn(), thisBooking.getCheckOut()) + "");
         dateLabel.setText("From "+thisBooking.getCheckIn().toString() + " to " + thisBooking.getCheckOut().toString());
+        if(thisBooking.isWaitlist())
+            bookNowButton.setText("Waitlist");
+        else
+            bookNowButton.setText("Book Now");
     }
 
     
