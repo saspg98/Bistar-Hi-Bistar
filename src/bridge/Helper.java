@@ -202,8 +202,8 @@ public class Helper {
                 for (LocalDate d = bc.getCheckIn(); d.isBefore(bc.getCheckOut()) || d.equals(bc.getCheckOut()); d.plusDays(1)) {
                     s = "SELECT SUM(NoOfRooms) AS sum FROM dbo.confirmedBookings "
                             + "WHERE HotelID=" + rs.getInt("HotelID")
-                            + " AND RoomCategory='Penthouse' "
-                            + "AND (CheckInDate<='" + d.toString() + "' AND CheckOutDate>='" + d.toString() + "')";
+                            + " AND RoomCategory=\'Penthouse\' "
+                            + "AND CheckInDate<=\'" + d.toString() + "\' AND CheckOutDate>=\'" + d.toString() + "\'";
                     
                     ResultSet rs1 = query.getSt2().executeQuery(s);
                     rs1.next();
@@ -215,7 +215,7 @@ public class Helper {
                     s = "SELECT SUM(NoOfRooms) AS sum FROM dbo.confirmedBookings "
                             + "WHERE hotelID=" + rs.getInt("HotelID")
                             + " AND RoomCategory=\'Executive\' "
-                            + "AND (CheckInDate<=\'" + d.toString() + "\' AND CheckOutDate>=\'" + d.toString() + "\')";
+                            + "AND CheckInDate<=\'" + d.toString() + "\' AND CheckOutDate>=\'" + d.toString() + "\'";
                     
                     ResultSet rs1 = query.getSt2().executeQuery(s);
                     rs1.next();
@@ -227,7 +227,7 @@ public class Helper {
                     s = "SELECT SUM(NoOfRooms) AS sum FROM dbo.confirmedBookings "
                             + "WHERE hotelID=" + rs.getInt("HotelID")
                             + " AND RoomCategory=\'Standard\' "
-                            + "AND (CheckInDate<=\'" + d.toString() + "\' AND CheckOutDate>=\'" + d.toString() + "\')";
+                            + "AND CheckInDate<=\'" + d.toString() + "\' AND CheckOutDate>=\'" + d.toString() + "\'";
                     
                     ResultSet rs1 = query.getSt2().executeQuery(s);
                     rs1.next();
@@ -239,7 +239,7 @@ public class Helper {
                     s = "SELECT SUM(NoOfRooms) AS sum FROM dbo.confirmedBookings "
                             + "WHERE hotelID=" + rs.getInt("HotelID")
                             + " AND RoomCategory=\'Deluxe\' "
-                            + "AND (CheckInDate<=\'" + d.toString() + "\' AND CheckOutDate>=\'" + d.toString() + "\')";
+                            + "AND CheckInDate<=\'" + d.toString() + "\' AND CheckOutDate>=\'" + d.toString() + "\'";
                     
                     ResultSet rs1 = query.getSt2().executeQuery(s);
                     rs1.next();
@@ -298,8 +298,8 @@ public class Helper {
     
     public static String[] distinctLocations(){
         
-        makeConnection();
         ArrayList<String> locations = new ArrayList();
+        makeConnection();
         try {
             String s;
             s = "SELECT DISTINCT City FROM dbo.hotelDetails";
@@ -320,4 +320,3 @@ public class Helper {
     }
 
 }
- 
