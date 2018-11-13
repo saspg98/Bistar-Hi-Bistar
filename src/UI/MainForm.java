@@ -1778,7 +1778,7 @@ public class MainForm extends javax.swing.JFrame implements MouseListener {//Mou
     }
 
     private void makeBookingConstraints() {
-     double price = (Double)(priceSpinner.getValue());
+     double price = (int)(priceSpinner.getValue());
      String loc =locationCB.getSelectedItem().toString();
      int r = bookGuestRoomPanel.getRooms();
      LocalDate checkIn = checkInDatePanel.getDate();
