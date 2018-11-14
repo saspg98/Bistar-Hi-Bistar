@@ -313,7 +313,7 @@ public class MainForm extends javax.swing.JFrame implements MouseListener,
         gridBagConstraints.weighty = 1.0;
         changeGuestRoomDialog.getContentPane().add(guestRoomDialogPanel, gridBagConstraints);
 
-        finalDialog.setTitle("Confirm Booking- BISTAR HI BISTAR");
+        finalDialog.setTitle("Confirm Booking- EZYBOOK");
         finalDialog.setBackground(new java.awt.Color(25, 25, 25));
         finalDialog.setModalityType(java.awt.Dialog.ModalityType.APPLICATION_MODAL);
         finalDialog.setMinimumSize(new java.awt.Dimension(865,905));
@@ -327,7 +327,7 @@ public class MainForm extends javax.swing.JFrame implements MouseListener,
         finalDialog.getContentPane().add(finalDialogPanel, gridBagConstraints);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("BISTAR HI BISTAR"); // NOI18N
+        setTitle("EZYBOOK"); // NOI18N
         setBackground(new java.awt.Color(25, 25, 25));
         getContentPane().setLayout(new java.awt.GridBagLayout());
 
