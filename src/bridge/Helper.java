@@ -472,6 +472,7 @@ public class Helper {
                 b.setNumRooms(rs.getInt("NoOfRooms"));
                 b.setPrice(rs.getInt("TotalPrice"));
                 b.setRoomType(rs.getString("RoomCategory"));
+                b.setWaitlist(true);
                 HotelID = rs.getInt("HotelID");
                 
                 s= "SELECT Name,City FROM dbo.HotelDetails WHERE HotelID ="+HotelID;
@@ -601,4 +602,28 @@ public class Helper {
         return -1;
     }
     
+    public static void cancelBooking(Booking bk){
+    
+        makeConnection();
+    
+        try{
+        if(bk.isWaitlist()==false)
+        {
+            String s = "DELETE FROM dbo.confirmedBookings WHERE BookingReference=\'" + bk.getBookingReference() +"\'";
+            query.getSt().executeUpdate(s);
+            
+        }
+        else
+        {
+            String s = "DELETE FROM dbo.isWaitingBookings WHERE BookingReference=\'" + bk.getBookingReference() +"\'";
+            query.getSt().executeUpdate(s);
+          
+        }
+        closeConnection();
+        }catch(SQLException e)
+        {
+        closeConnection();
+        e.printStackTrace();
+        }    
+    }
 }

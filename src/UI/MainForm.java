@@ -24,12 +24,14 @@ import custom.components.PastBookingListPanel;
 import internal.Booking;
 import internal.BookingConstraints;
 import internal.DialogActionListener;
+import java.awt.Component;
 import java.awt.Dialog;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import javax.swing.JButton;
 import javax.swing.JOptionPane;
 
 /**
@@ -140,8 +142,9 @@ public class MainForm extends javax.swing.JFrame implements MouseListener,
         pastBookingsPanel = new javax.swing.JPanel();
         titlePanelMyBookings = new javax.swing.JPanel();
         jLabel15 = new javax.swing.JLabel();
-        bookingListPanel = new javax.swing.JPanel();
         listTypeCB = new javax.swing.JComboBox<>();
+        bookingListScrollPane = new javax.swing.JScrollPane();
+        bookingListPanel = new javax.swing.JPanel();
         hotelDetailsPanel = new javax.swing.JPanel();
         hotelTitlePanel = new javax.swing.JPanel();
         hotelDetailsRatingLabel = new javax.swing.JLabel();
@@ -842,8 +845,8 @@ public class MainForm extends javax.swing.JFrame implements MouseListener,
                             .addComponent(emailTF)
                             .addComponent(mobileTF)
                             .addComponent(pinCodeTF, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(dobTF, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 641, Short.MAX_VALUE)
-                            .addComponent(addTF, javax.swing.GroupLayout.DEFAULT_SIZE, 641, Short.MAX_VALUE)
+                            .addComponent(dobTF, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 1000, Short.MAX_VALUE)
+                            .addComponent(addTF, javax.swing.GroupLayout.DEFAULT_SIZE, 1000, Short.MAX_VALUE)
                             .addComponent(fNameTF, javax.swing.GroupLayout.Alignment.LEADING))
                         .addGap(50, 50, 50))))
         );
@@ -885,7 +888,7 @@ public class MainForm extends javax.swing.JFrame implements MouseListener,
                 .addGroup(myProfilePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel12)
                     .addComponent(mobileTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 192, Short.MAX_VALUE)
                 .addGroup(myProfilePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(editButton)
                     .addComponent(changePasswordButton))
@@ -912,23 +915,12 @@ public class MainForm extends javax.swing.JFrame implements MouseListener,
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.gridwidth = 2;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTH;
-        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.PAGE_START;
+        gridBagConstraints.weightx = 2.0;
         gridBagConstraints.weighty = 1.0;
-        gridBagConstraints.insets = new java.awt.Insets(9, 9, 9, 9);
+        gridBagConstraints.insets = new java.awt.Insets(5, 9, 0, 9);
         pastBookingsPanel.add(titlePanelMyBookings, gridBagConstraints);
-
-        bookingListPanel.setBackground(new java.awt.Color(24, 24, 24));
-        bookingListPanel.setLayout(new java.awt.GridBagLayout());
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 2;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.ipadx = 1;
-        gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 14.0;
-        gridBagConstraints.insets = new java.awt.Insets(9, 9, 9, 9);
-        pastBookingsPanel.add(bookingListPanel, gridBagConstraints);
 
         listTypeCB.setFont(new java.awt.Font("Lato", 0, 26)); // NOI18N
         listTypeCB.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Confirmed Bookings", "Waiting List", "Previous Bookings" }));
@@ -940,9 +932,27 @@ public class MainForm extends javax.swing.JFrame implements MouseListener,
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.insets = new java.awt.Insets(19, 19, 19, 19);
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(9, 9, 0, 9);
         pastBookingsPanel.add(listTypeCB, gridBagConstraints);
+
+        bookingListScrollPane.setBorder(null);
+
+        bookingListPanel.setBackground(new java.awt.Color(23, 23, 23));
+        bookingListPanel.setLayout(new java.awt.GridBagLayout());
+        bookingListScrollPane.setViewportView(bookingListPanel);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 2.0;
+        gridBagConstraints.weighty = 7.0;
+        gridBagConstraints.insets = new java.awt.Insets(0, 9, 9, 9);
+        pastBookingsPanel.add(bookingListScrollPane, gridBagConstraints);
 
         mainPanel.add(pastBookingsPanel, "pastBookingsPanel");
 
@@ -975,7 +985,7 @@ public class MainForm extends javax.swing.JFrame implements MouseListener,
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(numReviewsLabel))
                     .addComponent(hotelNameLabel))
-                .addContainerGap(661, Short.MAX_VALUE))
+                .addContainerGap(1020, Short.MAX_VALUE))
         );
         hotelTitlePanelLayout.setVerticalGroup(
             hotelTitlePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1164,7 +1174,7 @@ public class MainForm extends javax.swing.JFrame implements MouseListener,
             backPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(backPanelLayout.createSequentialGroup()
                 .addComponent(backLabel)
-                .addGap(0, 934, Short.MAX_VALUE))
+                .addGap(0, 1293, Short.MAX_VALUE))
         );
         backPanelLayout.setVerticalGroup(
             backPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1555,6 +1565,7 @@ public class MainForm extends javax.swing.JFrame implements MouseListener,
     private javax.swing.JPanel bookPanel;
     private javax.swing.JLabel bookingConfirmationLinkLabel;
     private javax.swing.JPanel bookingListPanel;
+    private javax.swing.JScrollPane bookingListScrollPane;
     private javax.swing.JPanel bookingOptionsPanel;
     private javax.swing.JDialog changeGuestRoomDialog;
     private javax.swing.JButton changePasswordButton;
@@ -1857,13 +1868,39 @@ public class MainForm extends javax.swing.JFrame implements MouseListener,
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        Booking b = ((PastBookingListPanel)((JButton)e.getSource()).getParent()).getThisBooking();
         switch(e.getActionCommand()){
+             
+            
             case FinalDialogPanel.F_CONF:
                 refreshBookingUI();
                 ((CardLayout) mainPanel.getLayout()).show(mainPanel, "bookPanel");
                 break;
             //handle pastBookingListPanel buttons!!
+            case PastBookingListPanel.CANCEL_BOOKING:
+                System.out.println("Bhaiya bulawa aaya hai");
+               
+                b.print();
+                Helper.cancelBooking(b);
+                loadBookings(PastBookingListPanel.CONFIRMED);
+                break;
+            case PastBookingListPanel.MODIFY_BOOKING:
                 
+                b.print();
+                //call method with booking b
+                loadBookings(PastBookingListPanel.CONFIRMED);
+                break;
+            case PastBookingListPanel.BOOK_WAITLIST:
+                b.print();
+                //call method with booking b
+                loadBookings(PastBookingListPanel.WAIT_LIST);
+                break;
+                
+            case PastBookingListPanel.SUBMIT_RATING:
+                b.print();
+                //call method with booking b
+                loadBookings(PastBookingListPanel.PREVIOUS);
+                break;
             default:
                 //do nothing
                 break;

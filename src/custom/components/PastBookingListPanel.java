@@ -37,11 +37,18 @@ public class PastBookingListPanel extends javax.swing.JPanel {
 
     }
 
+    public Booking getThisBooking() {
+        return thisBooking;
+    }
+    
+    
+
     public PastBookingListPanel(Booking booking, String typeOfPanel, ActionListener a) {
         initComponents();
         thisBooking = booking;
         actionListener = a;
- 
+        updateButton.setActionCommand(MODIFY_BOOKING);
+        cancelButton.setActionCommand(CANCEL_BOOKING);
         
         checkInLabel.setText(booking.getCheckIn().toString());
         checkOutLabel.setText(booking.getCheckOut().toString());
@@ -86,8 +93,11 @@ public class PastBookingListPanel extends javax.swing.JPanel {
     }
     
     
-    public final String BOOK_WAITLIST = "Book Wait List";
-    public final String SUBMIT_RATING = "submit rating";
+    public static final String BOOK_WAITLIST = "Book Wait List";
+    public static final String SUBMIT_RATING = "submit rating";
+    public static final String MODIFY_BOOKING = "modify that shit";
+    public static final String CANCEL_BOOKING = "cancel them bitches";
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

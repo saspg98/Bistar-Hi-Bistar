@@ -834,8 +834,8 @@
                                   <Component id="emailTF" max="32767" attributes="0"/>
                                   <Component id="mobileTF" max="32767" attributes="0"/>
                                   <Component id="pinCodeTF" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="dobTF" alignment="0" pref="641" max="32767" attributes="0"/>
-                                  <Component id="addTF" alignment="1" pref="641" max="32767" attributes="0"/>
+                                  <Component id="dobTF" alignment="0" pref="1000" max="32767" attributes="0"/>
+                                  <Component id="addTF" alignment="1" pref="1000" max="32767" attributes="0"/>
                                   <Component id="fNameTF" alignment="0" max="32767" attributes="0"/>
                               </Group>
                               <EmptySpace min="50" pref="50" max="-2" attributes="0"/>
@@ -892,7 +892,7 @@
                           <Component id="jLabel12" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="mobileTF" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="38" max="32767" attributes="0"/>
+                      <EmptySpace pref="192" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="editButton" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="changePasswordButton" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -1146,7 +1146,7 @@
               </Properties>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
-                  <GridBagConstraints gridX="0" gridY="0" gridWidth="2" gridHeight="1" fill="0" ipadX="0" ipadY="0" insetsTop="9" insetsLeft="9" insetsBottom="9" insetsRight="9" anchor="11" weightX="1.0" weightY="1.0"/>
+                  <GridBagConstraints gridX="0" gridY="0" gridWidth="2" gridHeight="1" fill="2" ipadX="0" ipadY="0" insetsTop="5" insetsLeft="9" insetsBottom="0" insetsRight="9" anchor="19" weightX="2.0" weightY="1.0"/>
                 </Constraint>
               </Constraints>
 
@@ -1170,20 +1170,6 @@
                 </Component>
               </SubComponents>
             </Container>
-            <Container class="javax.swing.JPanel" name="bookingListPanel">
-              <Properties>
-                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="18" green="18" red="18" type="rgb"/>
-                </Property>
-              </Properties>
-              <Constraints>
-                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
-                  <GridBagConstraints gridX="0" gridY="2" gridWidth="1" gridHeight="1" fill="1" ipadX="1" ipadY="0" insetsTop="9" insetsLeft="9" insetsBottom="9" insetsRight="9" anchor="10" weightX="1.0" weightY="14.0"/>
-                </Constraint>
-              </Constraints>
-
-              <Layout class="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout"/>
-            </Container>
             <Component class="javax.swing.JComboBox" name="listTypeCB">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -1205,10 +1191,35 @@
               </AuxValues>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
-                  <GridBagConstraints gridX="0" gridY="1" gridWidth="1" gridHeight="1" fill="0" ipadX="0" ipadY="0" insetsTop="19" insetsLeft="19" insetsBottom="19" insetsRight="19" anchor="17" weightX="0.0" weightY="0.0"/>
+                  <GridBagConstraints gridX="0" gridY="1" gridWidth="1" gridHeight="1" fill="0" ipadX="0" ipadY="0" insetsTop="9" insetsLeft="9" insetsBottom="0" insetsRight="9" anchor="21" weightX="1.0" weightY="1.0"/>
                 </Constraint>
               </Constraints>
             </Component>
+            <Container class="javax.swing.JScrollPane" name="bookingListScrollPane">
+              <Properties>
+                <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                  <Border info="null"/>
+                </Property>
+              </Properties>
+              <Constraints>
+                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
+                  <GridBagConstraints gridX="0" gridY="2" gridWidth="2" gridHeight="1" fill="1" ipadX="0" ipadY="0" insetsTop="0" insetsLeft="9" insetsBottom="9" insetsRight="9" anchor="10" weightX="2.0" weightY="7.0"/>
+                </Constraint>
+              </Constraints>
+
+              <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+              <SubComponents>
+                <Container class="javax.swing.JPanel" name="bookingListPanel">
+                  <Properties>
+                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="17" green="17" red="17" type="rgb"/>
+                    </Property>
+                  </Properties>
+
+                  <Layout class="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout"/>
+                </Container>
+              </SubComponents>
+            </Container>
           </SubComponents>
         </Container>
         <Container class="javax.swing.JPanel" name="hotelDetailsPanel">
@@ -1250,7 +1261,7 @@
                               </Group>
                               <Component id="hotelNameLabel" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace pref="661" max="32767" attributes="0"/>
+                          <EmptySpace pref="1020" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -1511,7 +1522,7 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <Component id="backLabel" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="0" pref="934" max="32767" attributes="0"/>
+                          <EmptySpace min="0" pref="1293" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>

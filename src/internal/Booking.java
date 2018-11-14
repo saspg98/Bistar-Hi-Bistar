@@ -129,4 +129,8 @@ public class Booking {
  
     public Booking(){}
     
+    public void print(){
+        System.err.println(hotelName + roomType + numRooms);
+    }
+    
 }
