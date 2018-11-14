@@ -5,6 +5,8 @@
  */
 package internal;
 
+import java.time.LocalDate;
+
 /**
  *
  * @author Sarthak
@@ -12,7 +14,7 @@ package internal;
 public class User {
 
     private long customerID;
-    private String DOB;
+    private LocalDate DOB;
     private String fName;
     private String lName;
     private String username;
@@ -26,7 +28,7 @@ public class User {
         this.customerID = customerID;
     }
 
-    public void setDOB(String DOB) {
+    public void setDOB(LocalDate DOB) {
         this.DOB = DOB;
     }
 
@@ -66,7 +68,7 @@ public class User {
         return customerID;
     }
 
-    public String getDOB() {
+    public LocalDate getDOB() {
         return DOB;
     }
 

@@ -106,7 +106,7 @@ public class Helper {
             while (rs.next()) {
                 usr.setFName(rs.getString("FirstName"));
                 usr.setLName(rs.getString("LastName"));
-                usr.setDOB(rs.getString("DOB"));
+                usr.setDOB(rs.getDate("DOB").toLocalDate().plusDays(2));
                 usr.setAddress(rs.getString("Address"));
                 usr.setEmail(rs.getString("EmailID"));
                 usr.setCustomerID(rs.getLong("CustomerID"));
@@ -164,7 +164,7 @@ public class Helper {
 
             query.getSt().executeUpdate(s);
 
-            s = "INSERT INTO dbo.userDetails (FirstName,LastName,EmailID,Address,PinCode,Username,Mobile) VALUES (\'" + u.getFName() + "\',\'" + u.getLName() + "\',\'" + u.getEmail() + "\',\'" + u.getAddress() + "\'," + u.getPinCode() + ",\'" + u.getUsername() + "\'," + u.getMobile() + ")";
+            s = "INSERT INTO dbo.userDetails (FirstName,LastName,EmailID,Address,PinCode,Username,Mobile,DOB) VALUES (\'" + u.getFName() + "\',\'" + u.getLName() + "\',\'" + u.getEmail() + "\',\'" + u.getAddress() + "\'," + u.getPinCode() + ",\'" + u.getUsername() + "\'," + u.getMobile() + ", \'"+u.getDOB()+"\')";
 
             query.getSt().executeUpdate(s);
 
@@ -411,8 +411,8 @@ public class Helper {
                 //IMPORTANT!!!!! rs.getDate() gives a date two days previous to database storage
                 
                 b.setBookingReference(rs.getLong("BookingReference"));
-                b.setCheckIn(rs.getDate("CheckInDate").toLocalDate());
-                b.setCheckOut(rs.getDate("CheckOutDate").toLocalDate());
+                b.setCheckIn(rs.getDate("CheckInDate").toLocalDate().plusDays(2));
+                b.setCheckOut(rs.getDate("CheckOutDate").toLocalDate().plusDays(2));
                 b.setNumPeople(rs.getInt("NoOfPeople"));
                 b.setNumRooms(rs.getInt("NoOfRooms"));
                 b.setPrice(rs.getInt("TotalPrice"));
@@ -466,8 +466,8 @@ public class Helper {
                 b=new Booking();
                 
                 b.setBookingReference(rs.getLong("BookingReference"));
-                b.setCheckIn(rs.getDate("CheckInDate").toLocalDate());
-                b.setCheckOut(rs.getDate("CheckOutDate").toLocalDate());
+                b.setCheckIn(rs.getDate("CheckInDate").toLocalDate().plusDays(2));
+                b.setCheckOut(rs.getDate("CheckOutDate").toLocalDate().plusDays(2));
                 b.setNumPeople(rs.getInt("NoOfPeople"));
                 b.setNumRooms(rs.getInt("NoOfRooms"));
                 b.setPrice(rs.getInt("TotalPrice"));
@@ -522,8 +522,8 @@ public class Helper {
                 b=new Booking();
                 
                 b.setBookingReference(rs.getLong("BookingReference"));
-                b.setCheckIn(rs.getDate("CheckInDate").toLocalDate());
-                b.setCheckOut(rs.getDate("CheckOutDate").toLocalDate());
+                b.setCheckIn(rs.getDate("CheckInDate").toLocalDate().plusDays(2));
+                b.setCheckOut(rs.getDate("CheckOutDate").toLocalDate().plusDays(2));
                 b.setNumPeople(rs.getInt("NoOfPeople"));
                 b.setNumRooms(rs.getInt("NoOfRooms"));
                 b.setPrice(rs.getInt("TotalPrice"));
