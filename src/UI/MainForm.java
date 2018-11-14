@@ -1345,14 +1345,12 @@ public class MainForm extends javax.swing.JFrame implements MouseListener,
             emailTF.setEditable(true);
             addTF.setEditable(true);
             mobileTF.setEditable(true);
-            dobTF.setEditable(true);
             pinCodeTF.setEditable(true);
             fNameTF.setEnabled(true);
             lNameTF.setEnabled(true);
             emailTF.setEnabled(true);
             addTF.setEnabled(true);
             mobileTF.setEnabled(true);
-            dobTF.setEnabled(true);
             pinCodeTF.setEnabled(true);
             isEditing = true;
             editButton.setText("Save");
@@ -1521,10 +1519,10 @@ public class MainForm extends javax.swing.JFrame implements MouseListener,
         finalDialogPanel.addActionListener(this);
         
         //setting up the date panels
-        checkInDatePanel.setMinDate(LocalDate.now());
+        checkInDatePanel.setMinDate(LocalDate.now().plusDays(1));
         checkInDatePanel.setMaxDate(LocalDate.now().plusYears(NUMBER_OF_FUTURE_YEARS));
         
-        checkOutDatePanel.setMinDate(LocalDate.now().plusDays(1));
+        checkOutDatePanel.setMinDate(LocalDate.now().plusDays(2));
         checkOutDatePanel.setMaxDate(LocalDate.now().plusYears(NUMBER_OF_FUTURE_YEARS).plusDays(1));
 
         
@@ -1659,6 +1657,8 @@ public class MainForm extends javax.swing.JFrame implements MouseListener,
         addTF.setText(user.getAddress());
         mobileTF.setText(user.getMobile());
         pinCodeTF.setText(Integer.toString(user.getPinCode()));
+        dobTF.setText(user.getDOB().toString());
+        
     }
 
     private boolean saveDetails() {            // Method to change the details of the user in the database
