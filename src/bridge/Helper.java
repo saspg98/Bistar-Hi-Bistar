@@ -1,4 +1,4 @@
-/*
+ /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
@@ -109,7 +109,7 @@ public class Helper {
                 usr.setDOB(rs.getString("DOB"));
                 usr.setAddress(rs.getString("Address"));
                 usr.setEmail(rs.getString("EmailID"));
-                usr.setCustomerID(rs.getInt("CustomerID"));
+                usr.setCustomerID(rs.getLong("CustomerID"));
                 usr.setMobile(rs.getString("Mobile"));
                 usr.setPinCode(rs.getInt("PinCode"));
                 usr.setUsername(u);
@@ -344,6 +344,7 @@ public class Helper {
                     hotel.setHotelAmenities(rs.getString("HotelAmenities"));
                     hotel.setCity(rs.getString("City"));
                     hotel.setHotelName(rs.getString("Name"));
+                    hotel.setHotelID(rs.getInt("HotelID"));
                     hotel.setNumOfRoomTypes(new int[] {availablePenthouse,availableExecutive,availableDeluxe,availableStandard});
                     hotel.setPrices(new double[] {rs.getInt("PenthousePrice"),rs.getInt("ExecutiveRoomPrice"),rs.getInt("DeluxeRoomPrice"),rs.getInt("StandardRoomPrice")});
 
@@ -396,7 +397,7 @@ public class Helper {
             
             makeConnection();
             
-            String s = "SELECT * FROM dbo.confirmedBookings WHERE CustomerID ="+usr.getCustomerID()+" AND CheckInDate>=CURDATE()";
+            String s = "SELECT * FROM dbo.confirmedBookings WHERE CustomerID ="+usr.getCustomerID()+" AND CheckInDate>=CONVERT(DATE,GETDATE())";
             
             try{ 
             ResultSet rs = query.getSt().executeQuery(s);
@@ -407,18 +408,21 @@ public class Helper {
                 
                 b=new Booking();
                 
-                b.setBookingReference(rs.getInt("BookingReference"));
+                //IMPORTANT!!!!! rs.getDate() gives a date two days previous to database storage
+                
+                b.setBookingReference(rs.getLong("BookingReference"));
                 b.setCheckIn(rs.getDate("CheckInDate").toLocalDate());
                 b.setCheckOut(rs.getDate("CheckOutDate").toLocalDate());
                 b.setNumPeople(rs.getInt("NoOfPeople"));
-                b.setNumRooms(rs.getInt("NumberOfRooms"));
+                b.setNumRooms(rs.getInt("NoOfRooms"));
                 b.setPrice(rs.getInt("TotalPrice"));
                 b.setRoomType(rs.getString("RoomCategory"));
                 HotelID = rs.getInt("HotelID");
                 
                 s= "SELECT Name,City FROM dbo.HotelDetails WHERE HotelID ="+HotelID;
                 
-                ResultSet rs1 = query.getSt().executeQuery(s);
+                ResultSet rs1 = query.getSt2().executeQuery(s);
+                rs1.next();
                 
                 b.setHotelName(rs1.getString("Name"));
                 b.setLocation(rs1.getString("City"));
@@ -461,18 +465,19 @@ public class Helper {
                 
                 b=new Booking();
                 
-                b.setBookingReference(rs.getInt("BookingReference"));
+                b.setBookingReference(rs.getLong("BookingReference"));
                 b.setCheckIn(rs.getDate("CheckInDate").toLocalDate());
                 b.setCheckOut(rs.getDate("CheckOutDate").toLocalDate());
                 b.setNumPeople(rs.getInt("NoOfPeople"));
-                b.setNumRooms(rs.getInt("NumberOfRooms"));
+                b.setNumRooms(rs.getInt("NoOfRooms"));
                 b.setPrice(rs.getInt("TotalPrice"));
                 b.setRoomType(rs.getString("RoomCategory"));
                 HotelID = rs.getInt("HotelID");
                 
                 s= "SELECT Name,City FROM dbo.HotelDetails WHERE HotelID ="+HotelID;
                 
-                ResultSet rs1 = query.getSt().executeQuery(s);
+                ResultSet rs1 = query.getSt2().executeQuery(s);
+                rs1.next();
                 
                 b.setHotelName(rs1.getString("Name"));
                 b.setLocation(rs1.getString("City"));
@@ -504,7 +509,7 @@ public class Helper {
             
             makeConnection();
             
-            String s = "SELECT * FROM dbo.ConfirmedBookings WHERE CustomerID ="+usr.getCustomerID()+" AND CheckInDate<CURDATE()";
+            String s = "SELECT * FROM dbo.confirmedBookings WHERE CustomerID ="+usr.getCustomerID()+" AND CheckInDate<CONVERT(DATE,GETDATE())";
             
             try{ 
             ResultSet rs = query.getSt().executeQuery(s);
@@ -515,18 +520,19 @@ public class Helper {
                 
                 b=new Booking();
                 
-                b.setBookingReference(rs.getInt("BookingReference"));
+                b.setBookingReference(rs.getLong("BookingReference"));
                 b.setCheckIn(rs.getDate("CheckInDate").toLocalDate());
                 b.setCheckOut(rs.getDate("CheckOutDate").toLocalDate());
                 b.setNumPeople(rs.getInt("NoOfPeople"));
-                b.setNumRooms(rs.getInt("NumberOfRooms"));
+                b.setNumRooms(rs.getInt("NoOfRooms"));
                 b.setPrice(rs.getInt("TotalPrice"));
                 b.setRoomType(rs.getString("RoomCategory"));
                 HotelID = rs.getInt("HotelID");
                 
                 s= "SELECT Name,City FROM dbo.HotelDetails WHERE HotelID ="+HotelID;
                 
-                ResultSet rs1 = query.getSt().executeQuery(s);
+                ResultSet rs1 = query.getSt2().executeQuery(s);
+                rs1.next();
                 
                 b.setHotelName(rs1.getString("Name"));
                 b.setLocation(rs1.getString("City"));
@@ -550,28 +556,49 @@ public class Helper {
           
     }
     
-    public static ArrayList<Booking> updateBooking(Booking bk, boolean isWaitList){
+    public static long updateBooking(Booking bk){
     
-    makeConnection();
+        makeConnection();
     
-    try{
-    if(isWaitList==true)
-    {        
-        String s = "UPDATE dbo.ConfirmedBookings SET FirstName =\'" + u.getFName() + "\',LastName =\'" + u.getLName() + "\',Address =\'" + u.getAddress() + "\',EmailID =\'" + u.getEmail() + "\',Mobile =\'" + u.getMobile() + "\',PinCode =\'" + u.getPinCode() + "\' WHERE Username =\'" + usr.getUsername() + "\'";
+        try{
+        if(bk.isWaitlist()==false)
+        {
+            String s = "INSERT INTO dbo.confirmedBookings (CustomerID,HotelID,RoomCategory,CheckInDate,CheckOutDate,NoOfPeople,NoOfRooms,TotalPrice)"
+                        + "VALUES (" + usr.getCustomerID() + "," + bk.getHotelID() + ",\'" + bk.getRoomType() + "\',\'" + bk.getCheckIn() + "\',\'" + bk.getCheckOut() + "\'," + bk.getNumPeople() + "," + bk.getNumRooms() + "," + bk.getPrice() + ")";
+    
+            query.getSt().executeUpdate(s);
+            
+            s = "SELECT TOP 1 BookingReference FROM dbo.confirmedBookings ORDER BY BookingReference DESC";
+            ResultSet rs = query.getSt().executeQuery(s);
+            rs.next();
+            long ref = rs.getLong("BookingReference"); 
+            closeConnection();
+            return ref;
+        }
+        else
+        {
+            String s = "INSERT INTO dbo.inWaitingBookings (CustomerID,HotelID,RoomCategory,CheckInDate,CheckOutDate,NoOfPeople,NoOfRooms,TotalPrice)"
+                        + "VALUES (" + usr.getCustomerID() + "," + bk.getHotelID() + ",\'" + bk.getRoomType() + "\',\'" + bk.getCheckIn() + "\',\'" + bk.getCheckOut() + "\'," + bk.getNumPeople() + "," + bk.getNumRooms() + "," + bk.getPrice() + ")";
+            
+            query.getSt().executeUpdate(s);
+            
+            s = "SELECT TOP 1 BookingReference FROM dbo.inWaitingBookings ORDER BY BookingReference DESC";
+            ResultSet rs = query.getSt().executeQuery(s);
+            rs.next();
+            long ref = rs.getLong("BookingReference"); 
+            closeConnection();
+            return ref;
+        }
         
-    }
+        
     
-    rs.close();
-    closeConnection();
-    
-    }catch(SQLException e)
-    {
-    closeConnection();
-    e.printStackTrace();
-    }
-    
-    return list;
-    
+        }catch(SQLException e)
+        {
+        closeConnection();
+        e.printStackTrace();
+        }    
+        System.err.println("Returning Bad booking ref!");
+        return -1;
     }
     
 }

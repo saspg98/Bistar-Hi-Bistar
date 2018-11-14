@@ -28,7 +28,7 @@ public class GuestRoomDialogPanel extends javax.swing.JPanel {
         cancelButton.setActionCommand(G_CANCEL);
     }
     
-     public void setActionListener(ActionListener a){
+     public void addActionListener(ActionListener a){
         updateButton.addActionListener(a);
         cancelButton.addActionListener(a);
     }

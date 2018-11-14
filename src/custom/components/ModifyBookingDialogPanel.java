@@ -27,7 +27,7 @@ public class ModifyBookingDialogPanel extends javax.swing.JPanel {
     }
     
     
-    public void setActionListener(ActionListener a){
+    public void addActionListener(ActionListener a){
         updateButton.addActionListener(a);
         cancelButton.addActionListener(a);
     }

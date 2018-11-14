@@ -31,7 +31,7 @@ public class FinalDialogPanel extends javax.swing.JPanel implements ActionListen
         cancelButton.setActionCommand(F_CANCEL);
     }
     
-    public void setActionListener(ActionListener a){
+    public void addActionListener(ActionListener a){
         confirmButton.addActionListener(a);
         cancelButton.addActionListener(a);
     }

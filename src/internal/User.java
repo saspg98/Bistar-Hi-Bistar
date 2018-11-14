@@ -11,7 +11,7 @@ package internal;
  */
 public class User {
 
-    private int customerID;
+    private long customerID;
     private String DOB;
     private String fName;
     private String lName;
@@ -22,7 +22,7 @@ public class User {
     private String mobile;
     private int pinCode;
 
-    public void setCustomerID(int customerID) {
+    public void setCustomerID(long customerID) {
         this.customerID = customerID;
     }
 
@@ -62,7 +62,7 @@ public class User {
         this.username = username;
     }
 
-    public int getCustomerID() {
+    public long getCustomerID() {
         return customerID;
     }
 

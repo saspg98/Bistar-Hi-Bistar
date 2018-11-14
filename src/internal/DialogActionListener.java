@@ -37,9 +37,9 @@ public class DialogActionListener implements ActionListener {
         this.book = book;
         this.fin = fin;
         
-        this.guest.setActionListener(this);
-        this.book.setActionListener(this);
-        this.fin.setActionListener(this);
+        this.guest.addActionListener(this);
+        this.book.addActionListener(this);
+        this.fin.addActionListener(this);
     }
 
     @Override
@@ -77,12 +77,19 @@ public class DialogActionListener implements ActionListener {
                
             case F_CONF:
                 //create booking object>>add to database>>display booking reference>> dispose dialog
-                //dummy
+                
                 //replace with actual method
-                //String ref = Helper.book(fin.getBookingDetails());
-                //JOptionPane.showInternalMessageDialog(null, 
-                //        "Congratulations on your booking! Your booking reference is #" + ref, "Booking Confirmed- EzyBook", JOptionPane.PLAIN_MESSAGE);
-                ((JDialog)SwingUtilities.getAncestorOfClass(JDialog.class, fin)).dispose();//Add null check!
+                long ref = Helper.updateBooking(fin.getBookingDetails());
+                if(ref>0)
+                JOptionPane.showMessageDialog(null, 
+                        "Congratulations on your booking! Your booking reference is #" + ref, "Booking Confirmed- EzyBook", JOptionPane.PLAIN_MESSAGE);
+                
+                else 
+                JOptionPane.showMessageDialog(null, 
+                        "There was some problem in the server. Please try again later", "Booking Confirmed- EzyBook", JOptionPane.PLAIN_MESSAGE);
+                
+                
+               ((JDialog)SwingUtilities.getAncestorOfClass(JDialog.class, fin)).dispose();//Add null check!
                System.out.println("DO NULL CHECK");
                break;
             case F_CANCEL:

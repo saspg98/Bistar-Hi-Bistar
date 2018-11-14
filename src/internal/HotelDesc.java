@@ -28,6 +28,15 @@ public class HotelDesc {
     Rating rating;
     String address;
     String city;
+    int hotelID;
+
+    public void setHotelID(int hotelID) {
+        this.hotelID = hotelID;
+    }
+
+    public int getHotelID() {
+        return hotelID;
+    }
 
 
 

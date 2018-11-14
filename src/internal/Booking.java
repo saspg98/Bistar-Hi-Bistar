@@ -20,14 +20,25 @@ public class Booking {
     private String hotelName;
     private String roomType;
     private int price;
-    private int bookingReference;
+    private long bookingReference;
     private boolean waitlist=false;
+    private int hotelID;
 
-    public int getBookingReference() {
+    public void setHotelID(int hotelID) {
+        this.hotelID = hotelID;
+    }
+
+    public int getHotelID() {
+        return hotelID;
+    }
+
+    public long getBookingReference() {
         return bookingReference;
     }
 
-    public void setBookingReference(int bookingReference) {
+    
+
+    public void setBookingReference(long bookingReference) {
         this.bookingReference = bookingReference;
     }
 

@@ -44,10 +44,10 @@ public class PastBookingListPanel extends javax.swing.JPanel {
  
         
         checkInLabel.setText(booking.getCheckIn().toString());
-        checkOutLabel.setText(booking.getCheckIn().toString());
-        guestLabel.setText(String.valueOf(booking.getNumPeople()));
+        checkOutLabel.setText(booking.getCheckOut().toString());
+        guestLabel.setText(String.valueOf(booking.getNumPeople())+" Guests");
         hotelNameLabel.setText(booking.getHotelName() + "(#"+booking.getBookingReference()+")");
-        roomLabel.setText(booking.getRoomType());
+        roomLabel.setText(booking.getNumRooms()+" Rooms");
         roomTypeLabel.setText(booking.getRoomType());
         
         updateButton.addActionListener(actionListener);
