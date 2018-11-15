@@ -573,7 +573,10 @@ public class Helper {
             ResultSet rs = query.getSt().executeQuery(s);
             rs.next();
             long ref = rs.getLong("BookingReference"); 
+            
+            rs.close();
             closeConnection();
+            
             return ref;
         }
         else
@@ -587,18 +590,19 @@ public class Helper {
             ResultSet rs = query.getSt().executeQuery(s);
             rs.next();
             long ref = rs.getLong("BookingReference"); 
+            
+            rs.close();
             closeConnection();
+            
             return ref;
         }
         
-        
-    
         }catch(SQLException e)
         {
         closeConnection();
         e.printStackTrace();
         }    
-        System.err.println("Returning Bad booking ref!");
+       
         return -1;
     }
     

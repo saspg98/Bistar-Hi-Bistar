@@ -49,7 +49,6 @@ public class SignUpForm extends javax.swing.JFrame {
         signupSuccessfulDialog = new javax.swing.JDialog();
         jLabel11 = new javax.swing.JLabel();
         outerPanel = new javax.swing.JPanel();
-        scrollPane = new javax.swing.JScrollPane();
         container = new javax.swing.JPanel();
         titlePane = new javax.swing.JPanel();
         titleLabel = new javax.swing.JLabel();
@@ -63,7 +62,6 @@ public class SignUpForm extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         addressTextArea = new javax.swing.JTextArea();
         centerBottomPanel = new javax.swing.JPanel();
-        signUpButton = new javax.swing.JButton();
         confirmPasswordPF = new javax.swing.JPasswordField();
         jLabel1 = new javax.swing.JLabel();
         lNameTF = new javax.swing.JTextField();
@@ -83,6 +81,7 @@ public class SignUpForm extends javax.swing.JFrame {
         mobileNumberTF = new javax.swing.JTextField();
         errorMobileNumberLabel = new javax.swing.JLabel();
         errorEmailIDLabel = new javax.swing.JLabel();
+        signUpButton = new javax.swing.JButton();
 
         signupSuccessfulDialog.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         signupSuccessfulDialog.setTitle("Sign Up- BISTAR HI BISTAR");
@@ -106,7 +105,6 @@ public class SignUpForm extends javax.swing.JFrame {
         outerPanel.setLayout(new java.awt.GridBagLayout());
 
         container.setBackground(new java.awt.Color(204, 204, 204));
-        container.setLayout(new java.awt.GridBagLayout());
 
         titlePane.setBackground(new java.awt.Color(204, 204, 204));
         titlePane.setLayout(new java.awt.GridBagLayout());
@@ -118,105 +116,110 @@ public class SignUpForm extends javax.swing.JFrame {
         gridBagConstraints.gridy = 0;
         titlePane.add(titleLabel, gridBagConstraints);
 
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridwidth = 2;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.weightx = 4.0;
-        gridBagConstraints.weighty = 2.0;
-        gridBagConstraints.insets = new java.awt.Insets(20, 0, 20, 0);
-        container.add(titlePane, gridBagConstraints);
-
         jLabel2.setFont(new java.awt.Font("Lato Black", 0, 24)); // NOI18N
         jLabel2.setText("First Name");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
-        gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 1.0;
-        gridBagConstraints.insets = new java.awt.Insets(17, 17, 17, 17);
-        container.add(jLabel2, gridBagConstraints);
 
         jLabel3.setFont(new java.awt.Font("Lato Black", 0, 24)); // NOI18N
         jLabel3.setText("DOB");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 4;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
-        gridBagConstraints.insets = new java.awt.Insets(17, 17, 17, 17);
-        container.add(jLabel3, gridBagConstraints);
 
         jLabel4.setFont(new java.awt.Font("Lato Black", 0, 24)); // NOI18N
         jLabel4.setText("Password");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 5;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
-        gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 1.0;
-        gridBagConstraints.insets = new java.awt.Insets(17, 17, 17, 17);
-        container.add(jLabel4, gridBagConstraints);
 
         usernameTF.setFont(new java.awt.Font("Lato", 0, 24)); // NOI18N
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 3;
-        gridBagConstraints.ipadx = 350;
-        gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 1.0;
-        container.add(usernameTF, gridBagConstraints);
+        usernameTF.setNextFocusableComponent(datePanel1);
 
         jLabel5.setFont(new java.awt.Font("Lato Black", 0, 24)); // NOI18N
         jLabel5.setText("Mobile number");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 10;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
-        gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 1.0;
-        gridBagConstraints.insets = new java.awt.Insets(17, 17, 17, 17);
-        container.add(jLabel5, gridBagConstraints);
 
         jLabel6.setFont(new java.awt.Font("Lato Black", 0, 24)); // NOI18N
         jLabel6.setText("Email Address");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 7;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
-        gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 1.0;
-        gridBagConstraints.insets = new java.awt.Insets(17, 17, 17, 17);
-        container.add(jLabel6, gridBagConstraints);
 
         pinCodeTF.setFont(new java.awt.Font("Lato", 0, 24)); // NOI18N
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 9;
-        gridBagConstraints.ipadx = 350;
-        gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 1.0;
-        container.add(pinCodeTF, gridBagConstraints);
+        pinCodeTF.setNextFocusableComponent(mobileNumberTF);
 
         addressTextArea.setColumns(5);
         addressTextArea.setFont(new java.awt.Font("Lato", 0, 22)); // NOI18N
         addressTextArea.setLineWrap(true);
         addressTextArea.setRows(5);
         addressTextArea.setWrapStyleWord(true);
+        addressTextArea.setNextFocusableComponent(pinCodeTF);
         jScrollPane1.setViewportView(addressTextArea);
-
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 8;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.VERTICAL;
-        gridBagConstraints.ipadx = 254;
-        gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 2.0;
-        container.add(jScrollPane1, gridBagConstraints);
 
         centerBottomPanel.setBackground(new java.awt.Color(204, 204, 204));
         centerBottomPanel.setLayout(new java.awt.GridBagLayout());
+
+        confirmPasswordPF.setFont(new java.awt.Font("Lato Black", 0, 24)); // NOI18N
+        confirmPasswordPF.setNextFocusableComponent(emailTF);
+
+        jLabel1.setFont(new java.awt.Font("Lato Black", 0, 24)); // NOI18N
+        jLabel1.setText("Last Name");
+
+        lNameTF.setFont(new java.awt.Font("Lato", 0, 24)); // NOI18N
+        lNameTF.setNextFocusableComponent(usernameTF);
+
+        fNameTF.setFont(new java.awt.Font("Lato", 0, 24)); // NOI18N
+        fNameTF.setMinimumSize(new java.awt.Dimension(6, 35));
+        fNameTF.setNextFocusableComponent(lNameTF);
+        fNameTF.setPreferredSize(new java.awt.Dimension(6, 35));
+
+        jLabel7.setFont(new java.awt.Font("Lato Black", 0, 24)); // NOI18N
+        jLabel7.setText("Confirm Password");
+
+        passwordPF.setFont(new java.awt.Font("Lato Black", 0, 24)); // NOI18N
+        passwordPF.setNextFocusableComponent(confirmPasswordPF);
+
+        jLabel8.setFont(new java.awt.Font("Lato Black", 0, 24)); // NOI18N
+        jLabel8.setText("Address");
+
+        emailTF.setFont(new java.awt.Font("Lato", 0, 24)); // NOI18N
+        emailTF.setNextFocusableComponent(addressTextArea);
+
+        datePanel1.setBackground(new java.awt.Color(204, 204, 204));
+        datePanel1.setNextFocusableComponent(passwordPF);
+
+        jLabel9.setFont(new java.awt.Font("Lato Black", 0, 24)); // NOI18N
+        jLabel9.setText("Username");
+
+        errorPasswordMatchLabel.setFont(new java.awt.Font("Lato", 0, 18)); // NOI18N
+        errorPasswordMatchLabel.setForeground(new java.awt.Color(255, 51, 51));
+        errorPasswordMatchLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        errorPasswordMatchLabel.setText("*Passwords do not match");
+
+        errorPinCodeLabel.setFont(new java.awt.Font("Lato", 0, 18)); // NOI18N
+        errorPinCodeLabel.setForeground(new java.awt.Color(255, 51, 51));
+        errorPinCodeLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        errorPinCodeLabel.setText("*Invalid pincode");
+
+        errorPasswordLabel.setFont(new java.awt.Font("Lato", 0, 18)); // NOI18N
+        errorPasswordLabel.setForeground(new java.awt.Color(255, 51, 51));
+        errorPasswordLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        errorPasswordLabel.setText("*Password must be greater than 8 characters");
+
+        errorUsernameLabel.setFont(new java.awt.Font("Lato", 0, 18)); // NOI18N
+        errorUsernameLabel.setForeground(new java.awt.Color(255, 51, 51));
+        errorUsernameLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        errorUsernameLabel.setText("*Username already exists");
+
+        errorEmptyField.setFont(new java.awt.Font("Lato", 0, 18)); // NOI18N
+        errorEmptyField.setForeground(new java.awt.Color(255, 51, 51));
+        errorEmptyField.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        errorEmptyField.setText("*All fields are compulsory");
+
+        jLabel10.setFont(new java.awt.Font("Lato Black", 0, 24)); // NOI18N
+        jLabel10.setText("Pincode");
+
+        mobileNumberTF.setFont(new java.awt.Font("Lato", 0, 24)); // NOI18N
+        mobileNumberTF.setNextFocusableComponent(signUpButton);
+
+        errorMobileNumberLabel.setFont(new java.awt.Font("Lato", 0, 18)); // NOI18N
+        errorMobileNumberLabel.setForeground(new java.awt.Color(255, 51, 51));
+        errorMobileNumberLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        errorMobileNumberLabel.setText("*Invalid Mobile Number");
+
+        errorEmailIDLabel.setFont(new java.awt.Font("Lato", 0, 18)); // NOI18N
+        errorEmailIDLabel.setForeground(new java.awt.Color(255, 51, 51));
+        errorEmailIDLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        errorEmailIDLabel.setText("*Invalid Email ID");
 
         signUpButton.setFont(new java.awt.Font("Lato", 0, 30)); // NOI18N
         signUpButton.setText("Sign Up");
@@ -225,221 +228,157 @@ public class SignUpForm extends javax.swing.JFrame {
                 signUpButtonActionPerformed(evt);
             }
         });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 0;
-        centerBottomPanel.add(signUpButton, gridBagConstraints);
 
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 12;
-        gridBagConstraints.gridwidth = 2;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.ipadx = 1;
-        gridBagConstraints.weightx = 4.0;
-        gridBagConstraints.weighty = 1.0;
-        gridBagConstraints.insets = new java.awt.Insets(20, 0, 20, 0);
-        container.add(centerBottomPanel, gridBagConstraints);
+        javax.swing.GroupLayout containerLayout = new javax.swing.GroupLayout(container);
+        container.setLayout(containerLayout);
+        containerLayout.setHorizontalGroup(
+            containerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(containerLayout.createSequentialGroup()
+                .addGroup(containerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(titlePane, javax.swing.GroupLayout.PREFERRED_SIZE, 656, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(containerLayout.createSequentialGroup()
+                        .addGap(29, 29, 29)
+                        .addComponent(jLabel3)
+                        .addGap(264, 264, 264)
+                        .addComponent(datePanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(errorPasswordLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 656, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(containerLayout.createSequentialGroup()
+                        .addGap(226, 226, 226)
+                        .addComponent(errorUsernameLabel))
+                    .addComponent(errorMobileNumberLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 656, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(errorEmptyField, javax.swing.GroupLayout.PREFERRED_SIZE, 656, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(errorEmailIDLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 656, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(centerBottomPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 656, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(containerLayout.createSequentialGroup()
+                        .addGap(26, 26, 26)
+                        .addGroup(containerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel7)
+                            .addComponent(jLabel6)
+                            .addComponent(jLabel8)
+                            .addComponent(jLabel10))
+                        .addGap(47, 47, 47)
+                        .addGroup(containerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(pinCodeTF, javax.swing.GroupLayout.DEFAULT_SIZE, 375, Short.MAX_VALUE)
+                            .addComponent(emailTF, javax.swing.GroupLayout.DEFAULT_SIZE, 375, Short.MAX_VALUE)
+                            .addComponent(confirmPasswordPF, javax.swing.GroupLayout.DEFAULT_SIZE, 375, Short.MAX_VALUE)
+                            .addComponent(passwordPF, javax.swing.GroupLayout.DEFAULT_SIZE, 375, Short.MAX_VALUE)
+                            .addComponent(jScrollPane1)))
+                    .addGroup(containerLayout.createSequentialGroup()
+                        .addGap(26, 26, 26)
+                        .addComponent(jLabel5)
+                        .addGap(81, 81, 81)
+                        .addGroup(containerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(mobileNumberTF, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(errorPinCodeLabel))))
+                .addGap(0, 16, Short.MAX_VALUE))
+            .addGroup(containerLayout.createSequentialGroup()
+                .addGap(26, 26, 26)
+                .addGroup(containerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(containerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, containerLayout.createSequentialGroup()
+                            .addComponent(jLabel2)
+                            .addGap(128, 128, 128))
+                        .addGroup(containerLayout.createSequentialGroup()
+                            .addComponent(jLabel1)
+                            .addGap(132, 132, 132)))
+                    .addGroup(containerLayout.createSequentialGroup()
+                        .addComponent(jLabel9)
+                        .addGap(137, 137, 137)))
+                .addGroup(containerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(lNameTF, javax.swing.GroupLayout.DEFAULT_SIZE, 375, Short.MAX_VALUE)
+                    .addComponent(fNameTF, javax.swing.GroupLayout.DEFAULT_SIZE, 375, Short.MAX_VALUE)
+                    .addComponent(usernameTF))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, containerLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(signUpButton)
+                .addGap(264, 264, 264))
+            .addComponent(errorPasswordMatchLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        containerLayout.setVerticalGroup(
+            containerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(containerLayout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addComponent(titlePane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(containerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(containerLayout.createSequentialGroup()
+                        .addGap(40, 40, 40)
+                        .addComponent(jLabel2))
+                    .addGroup(containerLayout.createSequentialGroup()
+                        .addGap(38, 38, 38)
+                        .addComponent(fNameTF, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(25, 25, 25)
+                .addGroup(containerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(containerLayout.createSequentialGroup()
+                        .addGap(3, 3, 3)
+                        .addComponent(jLabel1))
+                    .addComponent(lNameTF, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(25, 25, 25)
+                .addGroup(containerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(containerLayout.createSequentialGroup()
+                        .addGap(3, 3, 3)
+                        .addComponent(jLabel9))
+                    .addComponent(usernameTF, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(25, 25, 25)
+                .addGroup(containerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(containerLayout.createSequentialGroup()
+                        .addGap(3, 3, 3)
+                        .addComponent(jLabel3))
+                    .addComponent(datePanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(25, 25, 25)
+                .addGroup(containerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(containerLayout.createSequentialGroup()
+                        .addGap(3, 3, 3)
+                        .addComponent(jLabel4))
+                    .addComponent(passwordPF, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(25, 25, 25)
+                .addGroup(containerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(containerLayout.createSequentialGroup()
+                        .addGap(3, 3, 3)
+                        .addComponent(jLabel7))
+                    .addComponent(confirmPasswordPF, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(25, 25, 25)
+                .addGroup(containerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(containerLayout.createSequentialGroup()
+                        .addGap(3, 3, 3)
+                        .addComponent(jLabel6))
+                    .addComponent(emailTF, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(containerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(containerLayout.createSequentialGroup()
+                        .addGap(55, 55, 55)
+                        .addComponent(jLabel8))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(containerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(containerLayout.createSequentialGroup()
+                        .addGap(3, 3, 3)
+                        .addComponent(jLabel10))
+                    .addComponent(pinCodeTF, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(25, 25, 25)
+                .addGroup(containerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(containerLayout.createSequentialGroup()
+                        .addGap(3, 3, 3)
+                        .addComponent(jLabel5))
+                    .addComponent(mobileNumberTF, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(39, 39, 39)
+                .addGroup(containerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(errorPasswordLabel)
+                    .addComponent(errorUsernameLabel)
+                    .addComponent(errorMobileNumberLabel)
+                    .addComponent(errorEmptyField)
+                    .addComponent(errorPinCodeLabel)
+                    .addComponent(errorPasswordMatchLabel)
+                    .addComponent(errorEmailIDLabel))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(centerBottomPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(signUpButton)
+                .addContainerGap(33, Short.MAX_VALUE))
+        );
 
-        confirmPasswordPF.setFont(new java.awt.Font("Lato Black", 0, 24)); // NOI18N
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 6;
-        gridBagConstraints.ipadx = 350;
-        gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 1.0;
-        container.add(confirmPasswordPF, gridBagConstraints);
-
-        jLabel1.setFont(new java.awt.Font("Lato Black", 0, 24)); // NOI18N
-        jLabel1.setText("Last Name");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 2;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
-        gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 1.0;
-        gridBagConstraints.insets = new java.awt.Insets(17, 17, 17, 17);
-        container.add(jLabel1, gridBagConstraints);
-
-        lNameTF.setFont(new java.awt.Font("Lato", 0, 24)); // NOI18N
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 2;
-        gridBagConstraints.ipadx = 350;
-        gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 1.0;
-        container.add(lNameTF, gridBagConstraints);
-
-        fNameTF.setFont(new java.awt.Font("Lato", 0, 24)); // NOI18N
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.ipadx = 350;
-        gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 1.0;
-        container.add(fNameTF, gridBagConstraints);
-
-        jLabel7.setFont(new java.awt.Font("Lato Black", 0, 24)); // NOI18N
-        jLabel7.setText("Confirm Password");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 6;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
-        gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 1.0;
-        gridBagConstraints.insets = new java.awt.Insets(17, 17, 17, 17);
-        container.add(jLabel7, gridBagConstraints);
-
-        passwordPF.setFont(new java.awt.Font("Lato Black", 0, 24)); // NOI18N
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 5;
-        gridBagConstraints.ipadx = 350;
-        gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 1.0;
-        container.add(passwordPF, gridBagConstraints);
-
-        jLabel8.setFont(new java.awt.Font("Lato Black", 0, 24)); // NOI18N
-        jLabel8.setText("Address");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 8;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
-        gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 1.0;
-        gridBagConstraints.insets = new java.awt.Insets(17, 17, 17, 17);
-        container.add(jLabel8, gridBagConstraints);
-
-        emailTF.setFont(new java.awt.Font("Lato", 0, 24)); // NOI18N
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 7;
-        gridBagConstraints.ipadx = 350;
-        gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 1.0;
-        container.add(emailTF, gridBagConstraints);
-
-        datePanel1.setBackground(new java.awt.Color(204, 204, 204));
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 4;
-        gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 1.0;
-        container.add(datePanel1, gridBagConstraints);
-
-        jLabel9.setFont(new java.awt.Font("Lato Black", 0, 24)); // NOI18N
-        jLabel9.setText("Username");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 3;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
-        gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 1.0;
-        gridBagConstraints.insets = new java.awt.Insets(17, 17, 17, 17);
-        container.add(jLabel9, gridBagConstraints);
-
-        errorPasswordMatchLabel.setFont(new java.awt.Font("Lato", 0, 18)); // NOI18N
-        errorPasswordMatchLabel.setForeground(new java.awt.Color(255, 51, 51));
-        errorPasswordMatchLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        errorPasswordMatchLabel.setText("*Passwords do not match");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 11;
-        gridBagConstraints.gridwidth = 2;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        container.add(errorPasswordMatchLabel, gridBagConstraints);
-
-        errorPinCodeLabel.setFont(new java.awt.Font("Lato", 0, 18)); // NOI18N
-        errorPinCodeLabel.setForeground(new java.awt.Color(255, 51, 51));
-        errorPinCodeLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        errorPinCodeLabel.setText("*Invalid pincode");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 11;
-        gridBagConstraints.gridwidth = 2;
-        container.add(errorPinCodeLabel, gridBagConstraints);
-
-        errorPasswordLabel.setFont(new java.awt.Font("Lato", 0, 18)); // NOI18N
-        errorPasswordLabel.setForeground(new java.awt.Color(255, 51, 51));
-        errorPasswordLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        errorPasswordLabel.setText("*Password must be greater than 8 characters");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 11;
-        gridBagConstraints.gridwidth = 2;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
-        container.add(errorPasswordLabel, gridBagConstraints);
-
-        errorUsernameLabel.setFont(new java.awt.Font("Lato", 0, 18)); // NOI18N
-        errorUsernameLabel.setForeground(new java.awt.Color(255, 51, 51));
-        errorUsernameLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        errorUsernameLabel.setText("*Username already exists");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 11;
-        gridBagConstraints.gridwidth = 2;
-        container.add(errorUsernameLabel, gridBagConstraints);
-
-        errorEmptyField.setFont(new java.awt.Font("Lato", 0, 18)); // NOI18N
-        errorEmptyField.setForeground(new java.awt.Color(255, 51, 51));
-        errorEmptyField.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        errorEmptyField.setText("*All fields are compulsory");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 11;
-        gridBagConstraints.gridwidth = 2;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        container.add(errorEmptyField, gridBagConstraints);
-
-        jLabel10.setFont(new java.awt.Font("Lato Black", 0, 24)); // NOI18N
-        jLabel10.setText("Pincode");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 9;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
-        gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 1.0;
-        gridBagConstraints.insets = new java.awt.Insets(17, 17, 17, 17);
-        container.add(jLabel10, gridBagConstraints);
-
-        mobileNumberTF.setFont(new java.awt.Font("Lato", 0, 24)); // NOI18N
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 10;
-        gridBagConstraints.ipadx = 350;
-        gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 1.0;
-        container.add(mobileNumberTF, gridBagConstraints);
-
-        errorMobileNumberLabel.setFont(new java.awt.Font("Lato", 0, 18)); // NOI18N
-        errorMobileNumberLabel.setForeground(new java.awt.Color(255, 51, 51));
-        errorMobileNumberLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        errorMobileNumberLabel.setText("*Invalid Mobile Number");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 11;
-        gridBagConstraints.gridwidth = 2;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        container.add(errorMobileNumberLabel, gridBagConstraints);
-
-        errorEmailIDLabel.setFont(new java.awt.Font("Lato", 0, 18)); // NOI18N
-        errorEmailIDLabel.setForeground(new java.awt.Color(255, 51, 51));
-        errorEmailIDLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        errorEmailIDLabel.setText("*Invalid Email ID");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 11;
-        gridBagConstraints.gridwidth = 2;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        container.add(errorEmailIDLabel, gridBagConstraints);
-
-        scrollPane.setViewportView(container);
-
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.ipadx = 72;
-        gridBagConstraints.ipady = 24;
-        outerPanel.add(scrollPane, gridBagConstraints);
+        outerPanel.add(container, new java.awt.GridBagConstraints());
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -449,7 +388,7 @@ public class SignUpForm extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(outerPanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 855, Short.MAX_VALUE)
+            .addComponent(outerPanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 863, Short.MAX_VALUE)
         );
 
         pack();
@@ -571,7 +510,6 @@ public class SignUpForm extends javax.swing.JFrame {
     private javax.swing.JPanel outerPanel;
     private javax.swing.JPasswordField passwordPF;
     private javax.swing.JTextField pinCodeTF;
-    private javax.swing.JScrollPane scrollPane;
     private javax.swing.JButton signUpButton;
     private javax.swing.JDialog signupSuccessfulDialog;
     private javax.swing.JLabel titleLabel;

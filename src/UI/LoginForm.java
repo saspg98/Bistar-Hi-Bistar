@@ -197,12 +197,12 @@ public class LoginForm extends javax.swing.JFrame {
     }//GEN-LAST:event_signUpLinkLabelMouseExited
 
     private void signInButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signInButtonActionPerformed
-        // TODO add your handling code here:
+       
         
         String u = userTF.getText().trim();
         String p = new String(passPF.getPassword());
         passPF.setText("");
-        //TODO: Check password
+     
         User usr = Helper.verifyAndReturnUserInfo(u, p);
         
         if (usr != null) {
