@@ -1,7 +1,3 @@
-/*
-BE VERY CAREFUL OF CHANGING THE PANEL NAMES IN MAIN PANEL
-CARD LAYOUT USES THESE NAMES TO CALL THE PANEL
- */
 package UI;
 
 import custom.components.HotelListItemPanel;
@@ -39,25 +35,23 @@ import javax.swing.JOptionPane;
  * @author Sarthak
  */
 public class MainForm extends javax.swing.JFrame implements MouseListener,
-        ActionListener{//Mouse Listener for the mouse events in HotelListItemPanel, ActionListener for button clicks in PastBookingListPanel
+        ActionListener {//Mouse Listener for the mouse events in HotelListItemPanel, ActionListener for button clicks in PastBookingListPanel
 
-    User user;
-    LoginForm loginScreen;
-    HotelListItemPanel resultList[];
-    Booking thisBooking;
-    
+    private final User user;
+    private final LoginForm loginScreen;
+    private HotelListItemPanel resultList[];
+    private Booking thisBooking;
+
     private BookingConstraints bc;
     private int numOfGuests;
-    
+
     private static final String STAR = "\u2605";
 
-    private static long NUMBER_OF_FUTURE_YEARS=4;
-    private DialogActionListener dal;
+    private static long NUMBER_OF_FUTURE_YEARS = 4;
 
     /**
      * Creates new form Main
      */
-
     public MainForm(User user, LoginForm l) {
         this.user = user;
         initComponents();
@@ -1208,7 +1202,7 @@ public class MainForm extends javax.swing.JFrame implements MouseListener,
         resetBgColor();
         UIMethods.setSelectedPanelButton(myBookingsPanelButton, myBookingsLabel);
         isSelected[1] = true;
-        
+
         loadBookings();
     }//GEN-LAST:event_myBookingsPanelButtonMouseClicked
 
@@ -1280,44 +1274,17 @@ public class MainForm extends javax.swing.JFrame implements MouseListener,
     }//GEN-LAST:event_priceSpinnerStateChanged
 
     private void goButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_goButtonActionPerformed
+        LocalDate checkIn = checkInDatePanel.getDate();
+        LocalDate checkOut = checkOutDatePanel.getDate();
+        if (!checkOut.isAfter(checkIn)) {
+            JOptionPane.showMessageDialog(null, 
+                    "You can only check out AFTER you check in to the hotel", "Error",JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        
         loadHotels();
 
     }//GEN-LAST:event_goButtonActionPerformed
-
-    public void loadHotels() {
-        refreshBookingUI();
-        makeBookingConstraints();
-        numOfGuests = bookGuestRoomPanel.getGuests();
-        ArrayList<HotelDesc> list = Helper.searchAndReturnHotelList(bc);
-        
-        
-        resultList = UIMethods.createHotelListItemPanels(list, this, bc.getMaxPrice(), bc.isShowAll());
-        
-        GridBagConstraints gbc = new GridBagConstraints();
-        gbc.anchor = GridBagConstraints.FIRST_LINE_START;
-        gbc.fill = GridBagConstraints.HORIZONTAL;
-        gbc.gridx = 0;
-        gbc.gridy = 0;
-        gbc.weightx = 1.0;
-        gbc.weighty = 0.3;
-        
-        if(resultList.length>0)
-            for (int i = 0; i < resultList.length; i++) {
-                gbc.gridy = i;
-                roomListPanel.add(resultList[i], gbc);
-            }
-        else {
-            JLabel noResulLabel = new JLabel();
-            noResulLabel.setFont(new java.awt.Font("Lato Black", 0, 22)); // NOI18N
-            noResulLabel.setForeground(Color.WHITE);
-            noResulLabel.setText("Sorry, no hotels are available with the currently selected options. Try changing them");
-            roomListPanel.add(noResulLabel,gbc);
-        }
-        
-        //TODO: see if revalidate() can/should be removed
-        roomListPanel.revalidate();
-        roomListPanel.repaint();
-    }
 
     private void bookNowButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bookNowButtonActionPerformed
         finalDialogPanel.setBookingDetails(thisBooking);
@@ -1376,37 +1343,37 @@ public class MainForm extends javax.swing.JFrame implements MouseListener,
 
     private void changePasswordButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_changePasswordButtonActionPerformed
         changePasswordDialog.setLocationRelativeTo(null);
-        
+
         changePasswordDialog.setVisible(true);
     }//GEN-LAST:event_changePasswordButtonActionPerformed
 
     private void emailTFFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_emailTFFocusGained
-        
-            emailTF.setForeground(Color.BLACK);
-            emailTF.setText("");
+
+        emailTF.setForeground(Color.BLACK);
+        emailTF.setText("");
     }//GEN-LAST:event_emailTFFocusGained
 
     private void mobileTFFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_mobileTFFocusGained
-        
-            mobileTF.setForeground(Color.BLACK);
-            mobileTF.setText("");
+
+        mobileTF.setForeground(Color.BLACK);
+        mobileTF.setText("");
     }//GEN-LAST:event_mobileTFFocusGained
 
     private void pinCodeTFFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_pinCodeTFFocusGained
-        
-            pinCodeTF.setForeground(Color.BLACK);
-            pinCodeTF.setText("");
+
+        pinCodeTF.setForeground(Color.BLACK);
+        pinCodeTF.setText("");
     }//GEN-LAST:event_pinCodeTFFocusGained
 
     private void bookingConfirmationLinkLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bookingConfirmationLinkLabelMouseClicked
-            changeGuestRoomDialog.setLocationRelativeTo(null);
-            changeGuestRoomDialog.setVisible(true);
+        changeGuestRoomDialog.setLocationRelativeTo(null);
+        changeGuestRoomDialog.setVisible(true);
     }//GEN-LAST:event_bookingConfirmationLinkLabelMouseClicked
 
     private void listTypeCBItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_listTypeCBItemStateChanged
-        if(evt.getStateChange() == ItemEvent.SELECTED && isSelected[1]){
-            switch(listTypeCB.getSelectedIndex()){
-            
+        if (evt.getStateChange() == ItemEvent.SELECTED && isSelected[1]) {
+            switch (listTypeCB.getSelectedIndex()) {
+
                 case 0:
                     System.out.println("calling loadBookings for conf");
                     loadBookings(PastBookingListPanel.CONFIRMED);
@@ -1414,45 +1381,45 @@ public class MainForm extends javax.swing.JFrame implements MouseListener,
                 case 1:
                     System.out.println("calling loadBookings for waitlist");
                     loadBookings(PastBookingListPanel.WAIT_LIST);
-                    break;    
+                    break;
                 case 2:
                     System.out.println("calling loadBookings for old");
                     loadBookings(PastBookingListPanel.PREVIOUS);
-                    break;    
+                    break;
             }
         }
     }//GEN-LAST:event_listTypeCBItemStateChanged
 
     private void changePasswordOkButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_changePasswordOkButtonActionPerformed
-        
-         errorOldPasswordLabel.setVisible(false);
-         errorPasswordLengthLabel.setVisible(false);
-         errorPasswordMatchLabel.setVisible(false);
-        
-        if(!new String(oldPasswordPF.getPassword()).equals(user.getPassword())){
-            
+
+        errorOldPasswordLabel.setVisible(false);
+        errorPasswordLengthLabel.setVisible(false);
+        errorPasswordMatchLabel.setVisible(false);
+
+        if (!new String(oldPasswordPF.getPassword()).equals(user.getPassword())) {
+
             oldPasswordPF.setText("");
             errorOldPasswordLabel.setVisible(true);
-            
-        }else if (!Verify.isValidPassword(newPasswordPF.getPassword())){
-            
+
+        } else if (!Verify.isValidPassword(newPasswordPF.getPassword())) {
+
             newPasswordPF.setText("");
             confirmNewPasswordPF.setText("");
             errorPasswordLengthLabel.setVisible(true);
-            
-        }else if (!Verify.isValidConfirmPassword(newPasswordPF.getPassword(), confirmNewPasswordPF.getPassword())){
-            
+
+        } else if (!Verify.isValidConfirmPassword(newPasswordPF.getPassword(), confirmNewPasswordPF.getPassword())) {
+
             confirmNewPasswordPF.setText("");
             newPasswordPF.setText("");
             errorPasswordMatchLabel.setVisible(true);
-            
-        }else{
-            
+
+        } else {
+
             Helper.changePassword(new String(newPasswordPF.getPassword()));
             user.setPassword(new String(newPasswordPF.getPassword()));
             changePasswordDialog.dispose();
             JOptionPane.showMessageDialog(null, "Password Changed Successfully!");
-            
+
         }
     }//GEN-LAST:event_changePasswordOkButtonActionPerformed
 
@@ -1482,43 +1449,38 @@ public class MainForm extends javax.swing.JFrame implements MouseListener,
         resetBgColor();
         UIMethods.setSelectedPanelButton(bookHotelsPanelButton, bookHotelsLabel);
         isSelected[0] = true;
-        
+
         bookHotelsPanelButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         myBookingsPanelButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         settingsPanelButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         roomScrollPane.getVerticalScrollBar().setUnitIncrement(15);
+        bookingListScrollPane.getVerticalScrollBar().setUnitIncrement(15);
         backLabel.setText("\u2190");//setting the back button unicode
-        
+
         //Setting error labels invisible
         errorOldPasswordLabel.setVisible(false);
         errorPasswordLengthLabel.setVisible(false);
         errorPasswordMatchLabel.setVisible(false);
-        
-        
-        
-        setupLocations(Helper.distinctLocations());//replace with actual method name
 
-        
-        
+        setupLocations(Helper.distinctLocations());
+
         //setting the DAL for the dialogBox
-        dal = new DialogActionListener(guestRoomDialogPanel,modifyDateDialogPanel1,finalDialogPanel);
+        DialogActionListener dal = new DialogActionListener(guestRoomDialogPanel, modifyDateDialogPanel1, finalDialogPanel);
         guestRoomDialogPanel.setMainFormReference(this);
         changePasswordDialog.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
         changeGuestRoomDialog.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
         modifyBookingDialog.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
-        
-        
+
         //for setting the page to return to the starting page
         finalDialogPanel.addActionListener(this);
-        
+
         //setting up the date panels
         checkInDatePanel.setMinDate(LocalDate.now().plusDays(1));
         checkInDatePanel.setMaxDate(LocalDate.now().plusYears(NUMBER_OF_FUTURE_YEARS));
-        
+
         checkOutDatePanel.setMinDate(LocalDate.now().plusDays(2));
         checkOutDatePanel.setMaxDate(LocalDate.now().plusYears(NUMBER_OF_FUTURE_YEARS).plusDays(1));
 
-        
         //Personalizing
         personalize();
 
@@ -1650,7 +1612,7 @@ public class MainForm extends javax.swing.JFrame implements MouseListener,
         mobileTF.setText(user.getMobile());
         pinCodeTF.setText(Integer.toString(user.getPinCode()));
         dobTF.setText(user.getDOB().toString());
-        
+
     }
 
     private boolean saveDetails() {            // Method to change the details of the user in the database
@@ -1696,7 +1658,7 @@ public class MainForm extends javax.swing.JFrame implements MouseListener,
             return false;
 
         } catch (Exception e) {
-            
+
             e.printStackTrace();
             return false;
         }
@@ -1727,12 +1689,10 @@ public class MainForm extends javax.swing.JFrame implements MouseListener,
 
     @Override
     public void mousePressed(MouseEvent e) {
-
     }
 
     @Override
     public void mouseReleased(MouseEvent e) {
-
     }
 
     @Override
@@ -1753,8 +1713,8 @@ public class MainForm extends javax.swing.JFrame implements MouseListener,
     }
 
     private void loadHotelDetails(HotelListItemPanel hotelListItemPanel) {
-        
-        loadHotelDetails(hotelListItemPanel,HotelDesc.ROOM_TYPES[0]);
+
+        loadHotelDetails(hotelListItemPanel, HotelDesc.ROOM_TYPES[0]);
     }
 
     private void loadHotelDetails(HotelListItemPanel hotelListItemPanel, String type) {
@@ -1764,10 +1724,9 @@ public class MainForm extends javax.swing.JFrame implements MouseListener,
         numReviewsLabel.setText(des.getNumReviews() + " reviews");//TODO: add commas- as in "3,245" instead of "3245"
         hotelDetailsRatingLabel.setText(UIMethods.getRatingString(des.getStars()));
         descriptionTabbedPanel1.setDescription(des.getDescription(), des.getHotelAmenities(), des.getStars());
-        
-        
+
         guestRoomDialogPanel.setRoomTypes(HotelDesc.ROOM_TYPES);
-        thisBooking = new Booking(bc.getCheckIn(), bc.getCheckOut(), numOfGuests, 
+        thisBooking = new Booking(bc.getCheckIn(), bc.getCheckOut(),numOfGuests ,
                 bc.getNumRooms(), bc.getLocation(), des.getHotelName(), type,
                 price);//TODO: ADD SOMETHING FOR WATILIST!!
         thisBooking.setWaitlist(!des.isRoomTypeAvailable(type));
@@ -1778,32 +1737,29 @@ public class MainForm extends javax.swing.JFrame implements MouseListener,
         /*bookingConfirmationLinkLabel.setText(bc.getNumRooms() + " " + type + ", " + numOfGuests + " Guests");
         totalPriceLabel.setText(HotelDesc.getCost(type, bc.getNumRooms(), bc.getCheckIn(), bc.getCheckOut()) + "");
         dateLabel.setText("From "+bc.getCheckIn().toString() + " to " + bc.getCheckOut().toString());*/
-        
-        
+
     }
-    
+
     private void loadBookings() {
-        loadBookings(PastBookingListPanel.CONFIRMED);    
+        loadBookings(PastBookingListPanel.CONFIRMED);
     }
-    
+
     private void loadBookings(String type) {
         bookingListPanel.removeAll();
         bookingListPanel.revalidate();
         bookingListPanel.repaint();
         System.out.println("Load booking has been called for " + type);
         ArrayList<Booking> bookings = new ArrayList();
-        if(type.equals(PastBookingListPanel.CONFIRMED))
-            bookings =Helper.confirmedBookings();
-        
-        else if(type.equals(PastBookingListPanel.WAIT_LIST))
-            bookings =Helper.waitlistBookings();
-        
-        else if(type.equals(PastBookingListPanel.PREVIOUS))
-            bookings =Helper.oldBookings();
-        System.err.println("Size of array is as follows  "+bookings.size());
-         
-       
-        if (bookings.size()>0) {
+        if (type.equals(PastBookingListPanel.CONFIRMED)) {
+            bookings = Helper.confirmedBookings();
+        } else if (type.equals(PastBookingListPanel.WAIT_LIST)) {
+            bookings = Helper.waitlistBookings();
+        } else if (type.equals(PastBookingListPanel.PREVIOUS)) {
+            bookings = Helper.oldBookings();
+        }
+        System.err.println("Size of array is as follows  " + bookings.size());
+
+        if (bookings.size() > 0) {
             PastBookingListPanel[] list = UIMethods.createBookingListPanels(bookings.toArray(new Booking[1]), type, this);
             System.out.println("size of bkingListPanel is " + list.length);
             GridBagConstraints gbc = new GridBagConstraints();
@@ -1813,8 +1769,7 @@ public class MainForm extends javax.swing.JFrame implements MouseListener,
             gbc.gridy = 0;
             gbc.weightx = 1.0;
             gbc.weighty = 0.2;
-            
-            
+
             for (int i = 0; i < list.length; i++) {
                 gbc.gridy = i;
                 bookingListPanel.add(list[i], gbc);
@@ -1824,72 +1779,74 @@ public class MainForm extends javax.swing.JFrame implements MouseListener,
             bookingListPanel.repaint();
             System.out.println("No of comps in bookingListPanel is " + bookingListPanel.getComponents().length);
         }
-        
+
     }
 
     private void makeBookingConstraints() {
-     double price = 30000;//(int)(priceSpinner.getValue());
-     String loc =locationCB.getSelectedItem().toString();
-     int r = bookGuestRoomPanel.getRooms();
-     LocalDate checkIn = checkInDatePanel.getDate();
-     LocalDate checkOut = checkOutDatePanel.getDate();
-     
-     boolean showAll = !showAvailableCheckBox.isSelected();
-     bc = new BookingConstraints(checkIn,checkOut,price,r,loc,showAll);
+        LocalDate checkIn = checkInDatePanel.getDate();
+        LocalDate checkOut = checkOutDatePanel.getDate();    
+        double price = 30000;//(int)(priceSpinner.getValue());
+        String loc = locationCB.getSelectedItem().toString();
+        int r = bookGuestRoomPanel.getRooms();
+        
+
+        boolean showAll = !showAvailableCheckBox.isSelected();
+        bc = new BookingConstraints(checkIn, checkOut, price, r, loc, showAll);
     }
 
     private void setupLocations(String[] locStrings) {
         locationCB.removeAllItems();
-        
-        for(String s: locStrings){
+
+        for (String s : locStrings) {
             locationCB.addItem(s);
-           
+
         }
     }
+
     //IMP! TO be called everytime after booking is changed!
-    public void refreshHotelDetailsUI(){
+    public void refreshHotelDetailsUI() {
         numOfGuests = thisBooking.getNumPeople();
         bookingConfirmationLinkLabel.setText(thisBooking.getNumRooms() + " " + thisBooking.getRoomType() + ", " + numOfGuests + " Guests");
         totalPriceLabel.setText(HotelListItemPanel.CURRENCY + HotelDesc.getCost(thisBooking.getRoomType(), thisBooking.getNumRooms(), thisBooking.getCheckIn(), thisBooking.getCheckOut()));
-        dateLabel.setText("From "+thisBooking.getCheckIn().toString() + " to " + thisBooking.getCheckOut().toString());
+        dateLabel.setText("From " + thisBooking.getCheckIn().toString() + " to " + thisBooking.getCheckOut().toString());
         //TODO! CHECK IF HOTEL TYPE IS WAITLISTED
-        
-        if(thisBooking.isWaitlist())
+
+        if (thisBooking.isWaitlist()) {
             bookNowButton.setText("Waitlist");
-        else
+        } else {
             bookNowButton.setText("Book Now");
+        }
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        
-        switch(e.getActionCommand()){
-             
-            
+
+        switch (e.getActionCommand()) {
+
             case FinalDialogPanel.F_CONF:
                 refreshBookingUI();
                 ((CardLayout) mainPanel.getLayout()).show(mainPanel, "bookPanel");
                 break;
             //handle pastBookingListPanel buttons!!
             case PastBookingListPanel.CANCEL_BOOKING:
-                Booking b = ((PastBookingListPanel)((JButton)e.getSource()).getParent()).getThisBooking();              
+                Booking b = ((PastBookingListPanel) ((JButton) e.getSource()).getParent()).getThisBooking();
                 b.print();
                 Helper.cancelBooking(b);
                 loadBookings(PastBookingListPanel.CONFIRMED);
                 break;
             case PastBookingListPanel.MODIFY_BOOKING:
-                Booking b2 = ((PastBookingListPanel)((JButton)e.getSource()).getParent()).getThisBooking();
+                Booking b2 = ((PastBookingListPanel) ((JButton) e.getSource()).getParent()).getThisBooking();
                 b2.print();
                 //call method with booking b
                 break;
             case PastBookingListPanel.BOOK_WAITLIST:
-                Booking b3 = ((PastBookingListPanel)((JButton)e.getSource()).getParent()).getThisBooking();
+                Booking b3 = ((PastBookingListPanel) ((JButton) e.getSource()).getParent()).getThisBooking();
                 b3.print();
                 //call method with booking b
                 break;
-                
+
             case PastBookingListPanel.SUBMIT_RATING:
-                Booking b4 = ((PastBookingListPanel)((JButton)e.getSource()).getParent()).getThisBooking();
+                Booking b4 = ((PastBookingListPanel) ((JButton) e.getSource()).getParent()).getThisBooking();
                 b4.print();
                 //call method with booking b
                 break;
@@ -1898,13 +1855,44 @@ public class MainForm extends javax.swing.JFrame implements MouseListener,
                 break;
         }
     }
-    
-    public void refreshBookingUI(){
+
+    public void refreshBookingUI() {
         roomListPanel.removeAll();
         roomListPanel.revalidate();
         roomListPanel.repaint();
     }
-    
-  
-    
+
+    public void loadHotels() {
+        refreshBookingUI();
+        makeBookingConstraints();
+        numOfGuests = bookGuestRoomPanel.getGuests();
+        ArrayList<HotelDesc> list = Helper.searchAndReturnHotelList(bc);
+
+        resultList = UIMethods.createHotelListItemPanels(list, this, bc.getMaxPrice(), bc.isShowAll());
+
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.anchor = GridBagConstraints.FIRST_LINE_START;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        gbc.weightx = 1.0;
+        gbc.weighty = 0.3;
+
+        if (resultList.length > 0) {
+            for (int i = 0; i < resultList.length; i++) {
+                gbc.gridy = i;
+                roomListPanel.add(resultList[i], gbc);
+            }
+        } else {
+            JLabel noResulLabel = new JLabel();
+            noResulLabel.setFont(new java.awt.Font("Lato Black", 0, 22)); // NOI18N
+            noResulLabel.setForeground(Color.WHITE);
+            noResulLabel.setText("Sorry, no hotels are available with the currently selected options. Try changing them");
+            roomListPanel.add(noResulLabel, gbc);
+        }
+
+        //TODO: see if revalidate() can/should be removed
+        roomListPanel.revalidate();
+        roomListPanel.repaint();
+    }
 }

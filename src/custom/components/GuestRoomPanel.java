@@ -5,6 +5,9 @@
  */
 package custom.components;
 
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
+
 /**
  *
  * @author Sarthak
@@ -14,8 +17,25 @@ public class GuestRoomPanel extends javax.swing.JPanel {
     /**
      * Creates new form GuestRoomPanel
      */
+    
+    private int minRooms =0;
+    public final int GUESTS_PER_ROOM=3;
+    
     public GuestRoomPanel() {
         initComponents();
+        roomSpinner.getModel().addChangeListener((ChangeEvent e) -> {
+            if(getRooms()<minRooms)
+                setRooms(minRooms);
+        });
+        guestSpinner.getModel().addChangeListener(new ChangeListener() {
+            @Override
+            public void stateChanged(ChangeEvent e) {
+                if(getRooms()<getGuests()*GUESTS_PER_ROOM)
+                        minRooms=getGuests()*GUESTS_PER_ROOM;
+                        setRooms(minRooms);
+                    }
+        });
+        
     }
 
     public int getRooms(){
@@ -27,6 +47,7 @@ public class GuestRoomPanel extends javax.swing.JPanel {
     }
     public void setRooms(int i){
         roomSpinner.setValue(i);
+        
     }
     
     public void setGuests(int i){
@@ -99,7 +120,7 @@ public class GuestRoomPanel extends javax.swing.JPanel {
         roomPanel.add(jLabel16, gridBagConstraints);
 
         roomSpinner.setFont(new java.awt.Font("Lato", 0, 22)); // NOI18N
-        roomSpinner.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1));
+        roomSpinner.setModel(new javax.swing.SpinnerNumberModel());
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 0;

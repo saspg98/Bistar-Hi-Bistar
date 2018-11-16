@@ -23,34 +23,30 @@ public class DescriptionTabbedPanel extends javax.swing.JPanel {
         JLabel lab = new JLabel("Description");
         lab.setPreferredSize(new Dimension(200, 30));
         lab.setFont(new java.awt.Font("Lato Black", 0, 36)); // NOI18N
-
         jTabbedPane1.setTabComponentAt(0, lab);  // tab index, jLabel
+        
         JLabel lab2 = new JLabel();
         lab2.setPreferredSize(new Dimension(200, 30));
         lab2.setFont(new java.awt.Font("Lato Black", 0, 36)); // NOI18N
-
         lab2.setText("Amenities");
         jTabbedPane1.setTabComponentAt(1, lab2);
+        
         JLabel lab3 = new JLabel();
         lab3.setPreferredSize(new Dimension(200, 30));
         lab3.setFont(new java.awt.Font("Lato Black", 0, 36)); // NOI18N
-
         lab3.setText("Reviews");
         jTabbedPane1.setTabComponentAt(2, lab3);
-        
-        
-        
+
     }
-    
-    public void setDescription(String des, String amen, int rating){
+
+    public void setDescription(String des, String amen, int rating) {
         descriptionTextArea.setText(des);
         amenitiesTA.setText(amen);
         //add support for rating
         //dummy
-        
+
     }
 
-    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {

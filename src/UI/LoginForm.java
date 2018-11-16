@@ -223,7 +223,7 @@ public class LoginForm extends javax.swing.JFrame {
                                //UPDATE: passing this as a parameter to the PortalForm, becareful of using dispose()           
     }
     private void signUpLinkLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_signUpLinkLabelMouseClicked
-        // TODO add your handling code here:
+        
         SignUpForm s = new SignUpForm();
         s.setLocationRelativeTo(null);//This command centers the window on the main monitor
         s.setExtendedState(JFrame.MAXIMIZED_BOTH);
