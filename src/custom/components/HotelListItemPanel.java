@@ -60,7 +60,8 @@ public class HotelListItemPanel extends javax.swing.JPanel {
         hotelNameLabel.setText(des.getHotelName());
         priceRangeLabel.setText(des.getPriceRange());
         addressLabel.setText(des.getAddress());
-        ratingLabel.setText(UIMethods.getRatingString(des.getStars()));
+        ratingLabel.setText(UIMethods.getRatingString((int)(des.getRating().getOverallRating())));
+        System.err.println("Rating of "+des.getHotelName()+", is "+ratingLabel.getText());
 
         int[] types = des.getNumOfRoomTypes();
         double[] prices = des.getPrices();

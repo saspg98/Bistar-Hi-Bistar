@@ -26,9 +26,62 @@ public class Rating {
         this.terribleCount = terribleCount;
         this.reviewCount = reviewCount;
     }
+
+    public int getReviewCount() {
+        return reviewCount;
+    }
+
+    public void setReviewCount(int reviewCount) {
+        this.reviewCount = reviewCount;
+    }
+
+    public int getExcellentCount() {
+        return excellentCount;
+    }
+
+    public void setExcellentCount(int excellentCount) {
+        this.excellentCount = excellentCount;
+    }
+
+    public int getVeryGoodCount() {
+        return veryGoodCount;
+    }
+
+    public void setVeryGoodCount(int veryGoodCount) {
+        this.veryGoodCount = veryGoodCount;
+    }
+
+    public int getAverageCount() {
+        return averageCount;
+    }
+
+    public void setAverageCount(int averageCount) {
+        this.averageCount = averageCount;
+    }
+
+    public int getPoorCount() {
+        return poorCount;
+    }
+
+    public void setPoorCount(int poorCount) {
+        this.poorCount = poorCount;
+    }
+
+    public int getTerribleCount() {
+        return terribleCount;
+    }
+
+    public void setTerribleCount(int terribleCount) {
+        this.terribleCount = terribleCount;
+    }
     
-    public double getRating() {
-        int r=(5*excellentCount+4*veryGoodCount+3*averageCount+2*poorCount+1*terribleCount)/reviewCount;
+    
+    
+    public double getOverallRating() {
+        double r=(5.0*excellentCount+4.0*veryGoodCount+3.0*averageCount+2.0*poorCount+1.0*terribleCount)/(
+        terribleCount+excellentCount+veryGoodCount+averageCount+poorCount);
+        
+        System.err.println("OverAll Rating is " +  r);
         return r;
     }
 }

@@ -23,6 +23,18 @@ public class Booking {
     private long bookingReference;
     private boolean waitlist=false;
     private int hotelID;
+    
+    private HotelDesc hotel;
+
+    public HotelDesc getHotel() {
+        return hotel;
+    }
+
+    public void setHotel(HotelDesc hotel) {
+        this.hotel = hotel;
+    }
+    
+    
 
     public void setHotelID(int hotelID) {
         this.hotelID = hotelID;

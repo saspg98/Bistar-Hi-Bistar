@@ -97,7 +97,7 @@ public class SignUpForm extends javax.swing.JFrame {
         signupSuccessfulDialog.getContentPane().add(jLabel11, gridBagConstraints);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Sign Up - BISTAR HI BISTAR");
+        setTitle("Sign Up - EzyBook");
         setBackground(new java.awt.Color(255, 255, 255));
 
         outerPanel.setBackground(new java.awt.Color(59, 35, 59));
@@ -375,7 +375,7 @@ public class SignUpForm extends javax.swing.JFrame {
                 .addComponent(centerBottomPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(signUpButton)
-                .addContainerGap(33, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         outerPanel.add(container, new java.awt.GridBagConstraints());
@@ -388,7 +388,7 @@ public class SignUpForm extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(outerPanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 863, Short.MAX_VALUE)
+            .addComponent(outerPanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 863, Short.MAX_VALUE)
         );
 
         pack();

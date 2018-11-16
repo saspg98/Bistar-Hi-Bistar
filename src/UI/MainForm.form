@@ -240,7 +240,7 @@
   </NonVisualComponents>
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="3"/>
-    <Property name="title" type="java.lang.String" value="BISTAR HI BISTAR" noResource="true"/>
+    <Property name="title" type="java.lang.String" value="EzyBook" noResource="true"/>
     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
       <Color blue="19" green="19" red="19" type="rgb"/>
     </Property>

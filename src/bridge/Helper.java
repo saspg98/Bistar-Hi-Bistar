@@ -11,6 +11,7 @@ import jdbc.*;
 import java.sql.*;
 import internal.HotelDesc;
 import internal.BookingConstraints;
+import internal.Rating;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -348,6 +349,10 @@ public class Helper {
                     hotel.setNumOfRoomTypes(new int[] {availablePenthouse,availableExecutive,availableDeluxe,availableStandard});
                     hotel.setPrices(new double[] {rs.getInt("PenthousePrice"),rs.getInt("ExecutiveRoomPrice"),rs.getInt("DeluxeRoomPrice"),rs.getInt("StandardRoomPrice")});
 
+                    Rating r = new Rating(rs.getInt("ExcellentCount"),rs.getInt("VeryGoodCount"),
+                    rs.getInt("AvgCount"),rs.getInt("PoorCount"),rs.getInt("TerribleCount"),
+                    rs.getInt("ReviewCount"));
+                    hotel.setRating(r);
                     hotelList.add(hotel);
 
                 }

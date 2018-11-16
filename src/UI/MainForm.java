@@ -320,7 +320,7 @@ public class MainForm extends javax.swing.JFrame implements MouseListener,
         finalDialog.getContentPane().add(finalDialogPanel, gridBagConstraints);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("BISTAR HI BISTAR"); // NOI18N
+        setTitle("EzyBook"); // NOI18N
         setBackground(new java.awt.Color(25, 25, 25));
         getContentPane().setLayout(new java.awt.GridBagLayout());
 
@@ -1274,6 +1274,7 @@ public class MainForm extends javax.swing.JFrame implements MouseListener,
     }//GEN-LAST:event_priceSpinnerStateChanged
 
     private void goButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_goButtonActionPerformed
+        refreshBookingUI();
         LocalDate checkIn = checkInDatePanel.getDate();
         LocalDate checkOut = checkOutDatePanel.getDate();
         if (!checkOut.isAfter(checkIn)) {
@@ -1719,16 +1720,17 @@ public class MainForm extends javax.swing.JFrame implements MouseListener,
 
     private void loadHotelDetails(HotelListItemPanel hotelListItemPanel, String type) {
         HotelDesc des = hotelListItemPanel.getHotelDesc();
-        int price = HotelDesc.getCost(type, bc.getNumRooms(), bc.getCheckIn(), bc.getCheckOut());
+        double price = des.getCost(type, bc.getNumRooms(), bc.getCheckIn(), bc.getCheckOut());
         hotelNameLabel.setText(des.getHotelName());
         numReviewsLabel.setText(des.getNumReviews() + " reviews");//TODO: add commas- as in "3,245" instead of "3245"
-        hotelDetailsRatingLabel.setText(UIMethods.getRatingString(des.getStars()));
-        descriptionTabbedPanel1.setDescription(des.getDescription(), des.getHotelAmenities(), des.getStars());
+        hotelDetailsRatingLabel.setText(UIMethods.getRatingString((int)(des.getRating().getOverallRating())));
+        descriptionTabbedPanel1.setDescription(des.getDescription(), des.getHotelAmenities(), des.getRating());
 
         guestRoomDialogPanel.setRoomTypes(HotelDesc.ROOM_TYPES);
         thisBooking = new Booking(bc.getCheckIn(), bc.getCheckOut(),numOfGuests ,
                 bc.getNumRooms(), bc.getLocation(), des.getHotelName(), type,
-                price);//TODO: ADD SOMETHING FOR WATILIST!!
+                (int)price);//TODO: ADD SOMETHING FOR WATILIST!!
+        thisBooking.setHotel(des);
         thisBooking.setWaitlist(!des.isRoomTypeAvailable(type));
         thisBooking.setHotelID(des.getHotelID());
         guestRoomDialogPanel.setThisBooking(thisBooking);
@@ -1807,7 +1809,7 @@ public class MainForm extends javax.swing.JFrame implements MouseListener,
     public void refreshHotelDetailsUI() {
         numOfGuests = thisBooking.getNumPeople();
         bookingConfirmationLinkLabel.setText(thisBooking.getNumRooms() + " " + thisBooking.getRoomType() + ", " + numOfGuests + " Guests");
-        totalPriceLabel.setText(HotelListItemPanel.CURRENCY + HotelDesc.getCost(thisBooking.getRoomType(), thisBooking.getNumRooms(), thisBooking.getCheckIn(), thisBooking.getCheckOut()));
+        totalPriceLabel.setText(HotelListItemPanel.CURRENCY + thisBooking.getHotel().getCost(thisBooking.getRoomType(), thisBooking.getNumRooms(), thisBooking.getCheckIn(), thisBooking.getCheckOut()));
         dateLabel.setText("From " + thisBooking.getCheckIn().toString() + " to " + thisBooking.getCheckOut().toString());
         //TODO! CHECK IF HOTEL TYPE IS WAITLISTED
 
@@ -1816,6 +1818,8 @@ public class MainForm extends javax.swing.JFrame implements MouseListener,
         } else {
             bookNowButton.setText("Book Now");
         }
+        
+        
     }
 
     @Override
@@ -1863,7 +1867,7 @@ public class MainForm extends javax.swing.JFrame implements MouseListener,
     }
 
     public void loadHotels() {
-        refreshBookingUI();
+        
         makeBookingConstraints();
         numOfGuests = bookGuestRoomPanel.getGuests();
         ArrayList<HotelDesc> list = Helper.searchAndReturnHotelList(bc);

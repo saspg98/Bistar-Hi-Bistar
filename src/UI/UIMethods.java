@@ -79,7 +79,7 @@ public class UIMethods {
     
     public static String getRatingString(int stars){
         StringBuilder s = new StringBuilder();
-        
+        System.err.println("Number of stars are "+stars);
         for(int i=0;i<stars;i++)
             s.append(STAR);
         for(int i=stars;i<5;i++)

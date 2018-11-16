@@ -20,7 +20,6 @@ public class HotelDesc {
     String hotelName;
     int[] numOfRoomTypes;
     double[] prices;
-    int stars;
     int numReviews;
     String description;
     String roomAmenities;
@@ -29,7 +28,7 @@ public class HotelDesc {
     String address;
     String city;
     int hotelID;
-
+    private static final String CURRENCY = "\u20B9";
     public void setHotelID(int hotelID) {
         this.hotelID = hotelID;
     }
@@ -38,14 +37,13 @@ public class HotelDesc {
         return hotelID;
     }
 
+    
 
-
-    private static final String CURRENCY = "\u20B9";
-    public HotelDesc(String hotelName, int[] roomType, double[] price, int stars, int numReviews, String description, String roomAmenities, String hotelAmenities, Rating rating, String adress) {
+    
+    public HotelDesc(String hotelName, int[] roomType, double[] price, int numReviews, String description, String roomAmenities, String hotelAmenities, Rating rating, String adress) {
         this.hotelName = hotelName;
         this.numOfRoomTypes = roomType;
         this.prices = price;
-        this.stars = stars;
         this.numReviews = numReviews;
         this.description = description;
         this.roomAmenities = roomAmenities;
@@ -74,9 +72,6 @@ public class HotelDesc {
         this.prices = prices;
     }
 
-    public void setStars(int stars) {
-        this.stars = stars;
-    }
 
     public void setNumReviews(int numReviews) {
         this.numReviews = numReviews;
@@ -144,9 +139,7 @@ public class HotelDesc {
         return prices;
     }
 
-    public int getStars() {
-        return stars;
-    }
+
 
     public int getNumReviews() {
         return numReviews;
@@ -186,8 +179,13 @@ public class HotelDesc {
     
     
     //TODO: COMPLETE METHOD! DUMMY BODY
-    public static int getCost(String type, int rooms, LocalDate checkIn, LocalDate checkOut){
-        return 3450;
+    public double getCost(String type, int rooms, LocalDate checkIn, LocalDate checkOut){
+        for (int i = 0; i < ROOM_TYPES.length; i++) {
+            if(type.equals(ROOM_TYPES[i])){
+                return rooms*prices[i]*(checkOut.toEpochDay()-checkIn.toEpochDay());
+            }
+        }
+        return 0;
     }
 
     public HotelDesc() {

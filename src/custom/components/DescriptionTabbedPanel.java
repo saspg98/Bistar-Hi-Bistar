@@ -5,6 +5,7 @@
  */
 package custom.components;
 
+import internal.Rating;
 import java.awt.Dimension;
 import javax.swing.JLabel;
 
@@ -39,11 +40,19 @@ public class DescriptionTabbedPanel extends javax.swing.JPanel {
 
     }
 
-    public void setDescription(String des, String amen, int rating) {
+    public void setDescription(String des, String amen, Rating rating) {
         descriptionTextArea.setText(des);
         amenitiesTA.setText(amen);
         //add support for rating
         //dummy
+        
+        
+        overallRatingLabel.setText("Rating("+String.format("%,.1f",rating.getOverallRating())+")");
+        ratingDistributionLabel.setText("Excellent("+rating.getExcellentCount()+
+                "),Very Good("+rating.getVeryGoodCount()+
+                "),Average("+rating.getAverageCount()+
+                "),Poor("+rating.getPoorCount()+
+                "),Terrible("+rating.getTerribleCount()+")");
 
     }
 
@@ -165,8 +174,8 @@ public class DescriptionTabbedPanel extends javax.swing.JPanel {
             reviewsTabPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(reviewsTabPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(reviewsPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 837, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(542, Short.MAX_VALUE))
+                .addComponent(reviewsPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 1364, Short.MAX_VALUE)
+                .addContainerGap())
         );
         reviewsTabPanelLayout.setVerticalGroup(
             reviewsTabPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
