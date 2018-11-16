@@ -23,9 +23,13 @@ public class DescriptionTabbedPanel extends javax.swing.JPanel {
         JLabel lab = new JLabel("Description");
         lab.setPreferredSize(new Dimension(200, 30));
         jTabbedPane1.setTabComponentAt(0, lab);  // tab index, jLabel
-        lab.setText("Amenities");
+        JLabel lab2 = new JLabel();
+        lab2.setPreferredSize(new Dimension(200, 30));
+        lab2.setText("Amenities");
         jTabbedPane1.setTabComponentAt(1, lab);
-        lab.setText("Reviews");
+        JLabel lab3 = new JLabel();
+        lab3.setPreferredSize(new Dimension(200, 30));
+        lab3.setText("Reviews");
         jTabbedPane1.setTabComponentAt(2, lab);
     }
     

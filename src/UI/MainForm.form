@@ -187,7 +187,7 @@
     <Container class="javax.swing.JDialog" name="changeGuestRoomDialog">
       <Properties>
         <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-          <Dimension value="[533, 173]"/>
+          <Dimension value="[648, 293]"/>
         </Property>
       </Properties>
 
@@ -558,7 +558,7 @@
                 </Constraint>
               </Constraints>
             </Component>
-            <Component class="javax.swing.JLabel" name="jLabel10">
+            <Component class="javax.swing.JLabel" name="priceInputLabel">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Lato Black" size="22" style="0"/>

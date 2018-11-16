@@ -63,7 +63,11 @@ public class DialogActionListener implements ActionListener {
                 temp.setNumPeople(guest.getGuests());
                 temp.setNumRooms(guest.getRooms());
                 temp.setRoomType(guest.getRoomType());
+                //TODO! Check if new Booking can be confirmed or should be watilisted
+                //Helper.checkWaitList(temp);
                 System.out.println("Warning refresh required!");
+                //TODO: change this to refresh ui from Screen Manager!!
+                guest.getMainFormReference().refreshHotelDetailsUI();
                 ((JDialog)SwingUtilities.getAncestorOfClass(JDialog.class, guest)).dispose();//Add null check!
                System.out.println("DO NULL CHECK");
                break;

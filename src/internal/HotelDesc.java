@@ -114,18 +114,30 @@ public class HotelDesc {
     
     
     
-    public boolean isAvailable(String type){
+    public boolean isRoomTypeAvailable(String type){
         int index=-1;
         for(int i=0;i<ROOM_TYPES.length;i++){
             if(ROOM_TYPES[i].equals(type)){
                 index = i;
                 break;
             }
-        }System.out.println("If array out of bounds then type aint available");
+        }//System.out.println("If array out of bounds then type aint available");
         if(numOfRoomTypes[index]>0)
             return true;
         
         return false;
+    }
+    
+    
+    public boolean isHotelAvailable(){
+        int sum=0;
+        for(int i=0;i<ROOM_TYPES.length;i++){
+            sum += numOfRoomTypes[i];
+        }
+        if(sum>0)
+            return true;
+        else 
+            return false;
     }
 
     public double[] getPrices() {

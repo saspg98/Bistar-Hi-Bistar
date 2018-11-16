@@ -5,6 +5,7 @@
  */
 package custom.components;
 
+import UI.MainForm;
 import internal.Booking;
 import java.awt.event.ActionListener;
 
@@ -18,6 +19,8 @@ public class GuestRoomDialogPanel extends javax.swing.JPanel {
     public static final String  G_CANCEL= "GUEST_CANCEL";
     
     private Booking thisBooking;
+    //IMP! remove this !! USE SCREEN/FRAME MANAGER INSTEAD!!
+    private MainForm mainFormReference;
     
     /**
      * Creates new form GuestRoomDialogPanel
@@ -27,10 +30,23 @@ public class GuestRoomDialogPanel extends javax.swing.JPanel {
         updateButton.setActionCommand(G_UPDATE);
         cancelButton.setActionCommand(G_CANCEL);
     }
+
+    //IMP! remove this !! USE SCREEN/FRAME MANAGER INSTEAD!!
+    public MainForm getMainFormReference() {
+        return mainFormReference;
+    }
+    
+    
     
      public void addActionListener(ActionListener a){
         updateButton.addActionListener(a);
         cancelButton.addActionListener(a);
+        
+    }
+
+    public void setMainFormReference(MainForm a) {
+        //IMP! remove this!!USE SCREEN/FRAME MANAGER INSTEAD!!
+        mainFormReference =  a;
     }
      
      

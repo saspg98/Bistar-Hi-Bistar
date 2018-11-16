@@ -1,6 +1,7 @@
 package custom.components;
 
 import UI.UIMethods;
+import com.sun.corba.se.impl.logging.ORBUtilSystemException;
 import internal.HotelDesc;
 import java.awt.Color;
 import java.awt.Cursor;
@@ -30,11 +31,10 @@ public class HotelListItemPanel extends javax.swing.JPanel {
     /**
      * Creates new form HotelListItemPanel
      */
-    private static final String CURRENCY = "\u20B9";
+    public static final String CURRENCY = "\u20B9";
     private MouseListener mouseListener;
-    private int index;
-    private HotelDesc hotel;
-
+    private final HotelDesc hotel;
+    private static final String UNAVAILABEL_STRING = "<font color='#787878'>(Unavailable)</font>";
     private JLabel[] roomLinks;
 
     public void setMouseEventListener(MouseListener m) {
@@ -46,22 +46,17 @@ public class HotelListItemPanel extends javax.swing.JPanel {
     }
 
     //TODO: Main Constructor, merge with setDetails 
-    public HotelListItemPanel(HotelDesc des, MouseListener m, int index, boolean showAll) {
+    public HotelListItemPanel(HotelDesc des, MouseListener m, double priceConstraint,boolean showAll) {
         initComponents();
         hotel = des;
         ratingLabel.setText("");
         setMouseEventListener(m);
-        this.index = index;
 
-        setDetails(des, showAll);
-    }
-
-    public int getIndex() {
-        return index;
+        setDetails(des, showAll, priceConstraint);
     }
 
     //TODO: Merge with constructor!!
-    public void setDetails(HotelDesc des, boolean showAll) {
+    public void setDetails(HotelDesc des, boolean showAll, double priceConstraint) {
         hotelNameLabel.setText(des.getHotelName());
         priceRangeLabel.setText(des.getPriceRange());
         addressLabel.setText(des.getAddress());
@@ -76,32 +71,26 @@ public class HotelListItemPanel extends javax.swing.JPanel {
         gbc.anchor = GridBagConstraints.WEST;
 
         for (int i = 0; i < HotelDesc.ROOM_TYPES.length; i++) {
-            if (types[i] > 0) {
-                roomLinks[i] = new JLabel("<html>" + HotelDesc.ROOM_TYPES[i] + " - " + "<font color='#00c600'>" + CURRENCY + prices[i] + "</font>" + "</html>");
-                roomLinks[i].setFont(mainFont); // NOI18N
-                roomLinks[i].setForeground(textColor);
-                roomLinks[i].setHorizontalAlignment(javax.swing.SwingConstants.LEADING);
-                roomLinks[i].setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-                roomLinks[i].setBorder(BorderFactory.createEmptyBorder(0, 0, 1, 0));
-                roomLinks[i].setName("underline");
-
-                roomLinks[i].addMouseListener(mouseListener);
-
-                roomListPanel.add(roomLinks[i], gbc);
-            } else if (showAll) {
-                roomLinks[i] = new JLabel("<html>" + HotelDesc.ROOM_TYPES[i] + " - " + "<font color='#00c600'>" + CURRENCY + prices[i] + "</font>" + "<font color='#787878'>(Unavailable)</font>s</html>");
-                roomLinks[i].setFont(mainFont); // NOI18N
-                roomLinks[i].setForeground(textColor);
-                roomLinks[i].setHorizontalAlignment(javax.swing.SwingConstants.LEADING);
-                roomLinks[i].setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-                roomLinks[i].setBorder(BorderFactory.createEmptyBorder(0, 0, 1, 0));
-                roomLinks[i].setName("underline");
-
-                roomLinks[i].addMouseListener(mouseListener);
-
-                roomListPanel.add(roomLinks[i], gbc);
-
+            if(prices[i]>priceConstraint)
+                continue;
+            if (!showAll && types[i] <= 0) {
+                continue;
             }
+            if(types[i]>0)//room type is available
+                 roomLinks[i] = new JLabel("<html>" + HotelDesc.ROOM_TYPES[i] + " - " + "<font color='#00c600'>" + CURRENCY + prices[i] + "</font>" + "</html>");
+            else//room type is unavailable
+                 roomLinks[i] = new JLabel("<html>" + HotelDesc.ROOM_TYPES[i] + " - " + "<font color='#00c600'>" + CURRENCY + prices[i] + "</font>" + UNAVAILABEL_STRING + "</html>");
+            roomLinks[i].setFont(mainFont); // NOI18N
+            roomLinks[i].setForeground(textColor);
+            roomLinks[i].setHorizontalAlignment(javax.swing.SwingConstants.LEADING);
+            roomLinks[i].setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+            roomLinks[i].setBorder(BorderFactory.createEmptyBorder(0, 0, 1, 0));
+            roomLinks[i].setName("underline");
+
+            roomLinks[i].addMouseListener(mouseListener);
+
+            roomListPanel.add(roomLinks[i], gbc);
+
         }
     }
 

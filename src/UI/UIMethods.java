@@ -5,14 +5,18 @@
  */
 package UI;
 
+import custom.components.HotelListItemPanel;
 import custom.components.PastBookingListPanel;
 import internal.Booking;
+import internal.HotelDesc;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseListener;
 import java.awt.font.TextAttribute;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -99,5 +103,31 @@ public class UIMethods {
             itemPanels[i] = new PastBookingListPanel(items[i], type, actionListener);
         }
         return itemPanels;
+    }
+
+    public static HotelListItemPanel[] createHotelListItemPanels(ArrayList<HotelDesc> hotels, MouseListener m,double priceConstraint ,boolean showAll ){
+        for(int i=0;i<hotels.size();i++){
+            
+        }
+        
+        Iterator itr = hotels.iterator(); 
+        while (itr.hasNext()) 
+        { 
+            HotelDesc hotel= (HotelDesc)itr.next();
+            if(!hotel.isHotelAvailable())
+                itr.remove();//remove hotel if no rooms are available at all
+            else if(hotel.getPrices()[3]>priceConstraint){
+                itr.remove();//remove hotel if the least expensive room is more expensive than the max price
+            }
+        } 
+        
+        
+        HotelListItemPanel[] resultList = new HotelListItemPanel[hotels.size()];
+        for (int i = 0; i < hotels.size(); i++) {
+      
+            resultList[i] = new HotelListItemPanel(hotels.get(i), m,priceConstraint,showAll);
+        }
+        
+        return resultList;
     }
 }
