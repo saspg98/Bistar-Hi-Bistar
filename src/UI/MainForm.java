@@ -159,7 +159,6 @@ public class MainForm extends javax.swing.JFrame implements MouseListener,
         bookingConfirmationLinkLabel = new javax.swing.JLabel();
         dateLabel = new javax.swing.JLabel();
         descriptionPanel = new javax.swing.JPanel();
-        headingLabel = new javax.swing.JLabel();
         descriptionTabbedPanel1 = new custom.components.DescriptionTabbedPanel();
         backPanel = new javax.swing.JPanel();
         backLabel = new javax.swing.JLabel();
@@ -1120,21 +1119,6 @@ public class MainForm extends javax.swing.JFrame implements MouseListener,
 
         descriptionPanel.setBackground(new java.awt.Color(25, 25, 25));
         descriptionPanel.setLayout(new java.awt.GridBagLayout());
-
-        headingLabel.setFont(new java.awt.Font("Lato Black", 0, 36)); // NOI18N
-        headingLabel.setForeground(new java.awt.Color(255, 255, 255));
-        headingLabel.setText("About");
-        headingLabel.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        headingLabel.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(59, 35, 59)));
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridwidth = 2;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.weightx = 2.0;
-        gridBagConstraints.weighty = 1.0;
-        descriptionPanel.add(headingLabel, gridBagConstraints);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
@@ -1595,7 +1579,6 @@ public class MainForm extends javax.swing.JFrame implements MouseListener,
     private custom.components.FinalDialogPanel finalDialogPanel;
     private javax.swing.JButton goButton;
     private custom.components.GuestRoomDialogPanel guestRoomDialogPanel;
-    private javax.swing.JLabel headingLabel;
     private javax.swing.JPanel hotelDetailsOptionsBottomPanel;
     private javax.swing.JPanel hotelDetailsPanel;
     private javax.swing.JLabel hotelDetailsRatingLabel;
