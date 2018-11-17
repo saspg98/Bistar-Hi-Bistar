@@ -46,17 +46,17 @@ public class FinalDialogPanel extends javax.swing.JPanel implements ActionListen
         updateComponents();
     }
 
-    public long getAdharCardNumber() {
+    public String getAdharCardNumber() {
        
         if(adharCardRB.isSelected())
-            return Long.parseLong(adharCardNumberTF.getText());
-        else return -1;
+            return adharCardNumberTF.getText();
+        else return "NA";
     }
 
-    public long getPanCardNumber() {
+    public String getPanCardNumber() {
         if(panCardRB.isSelected())
-            return Long.parseLong(panCardNumberTF.getText());
-        else return -1;
+            return panCardNumberTF.getText();
+        else return "NA";
     }
     
     

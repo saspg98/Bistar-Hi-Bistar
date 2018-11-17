@@ -57,12 +57,15 @@ public class Verify {
             
     }
      
-     public static boolean isValidConfirmPassword(char s1[],char s2[]){ 
-        
-       if( Arrays.equals(s1, s2)) return true;
-       
+     public static boolean isValidConfirmPassword(char s1[],char s2[]){
+       if( Arrays.equals(s1, s2)) return true;       
        return false;
     
+    }
+
+    public static boolean isValidAdhar(String a) {
+        //if((a.length()))
+        return false;
     }
 
 }

@@ -21,6 +21,7 @@ import static custom.components.ModifyBookingDialogPanel.B_CANCEL;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
+import verifyingTools.Verify;
 
 /**
  *
@@ -80,33 +81,34 @@ public class DialogActionListener implements ActionListener {
 
             case F_CONF:
                 //create booking object>>add to database>>display booking reference>> dispose dialog
-                long a = -1,
-                 p = -1;
+                String a = "NA",
+                 p = "NA";
+
+                a = fin.getAdharCardNumber();
+                p = fin.getPanCardNumber();
+
                 try {
-                    a = fin.getAdharCardNumber();
-                    p = fin.getPanCardNumber();
+                    if (a.equals("NA") && Verify.isValidPinCode(p) || p.equals("NA") && Verify.isValidAdhar(a)) {
+                        System.err.println("adhaar is " + a + ", pan is " + p);
+                        long ref = Helper.updateBooking(fin.getBookingDetails());
+                        if (ref > 0) {
+                            JOptionPane.showMessageDialog(null,
+                                    "Congratulations on your booking! Your booking reference is #" + ref, "Booking Confirmed- EzyBook", JOptionPane.PLAIN_MESSAGE);
+                        } else {
+                            JOptionPane.showMessageDialog(null,
+                                    "There was some problem in the server. Please try again later", "Booking Confirmed- EzyBook", JOptionPane.PLAIN_MESSAGE);
+                        }
 
-                } catch (NumberFormatException exception) {
-                    JOptionPane.showMessageDialog(null, "Please enter a vaild Adhaar or Pan number",
-                            "Invalid Pan or Adhaar number", JOptionPane.ERROR_MESSAGE);
-                }
-                if (a == -1 && p > 10000 || p == -1 && a > 100000000000L) {
-                    System.err.println("adhaar is " + a+", pan is " + p);
-                    long ref = Helper.updateBooking(fin.getBookingDetails());
-                    if (ref > 0) {
-                        JOptionPane.showMessageDialog(null,
-                                "Congratulations on your booking! Your booking reference is #" + ref, "Booking Confirmed- EzyBook", JOptionPane.PLAIN_MESSAGE);
+                        ((JDialog) SwingUtilities.getAncestorOfClass(JDialog.class, fin)).dispose();//Add null check!
                     } else {
-                        JOptionPane.showMessageDialog(null,
-                                "There was some problem in the server. Please try again later", "Booking Confirmed- EzyBook", JOptionPane.PLAIN_MESSAGE);
+                        JOptionPane.showMessageDialog(null, "Please enter a vaild Adhaar or Pan number",
+                                "Invalid Pan or Adhaar number", JOptionPane.ERROR_MESSAGE);
                     }
-
-                    ((JDialog) SwingUtilities.getAncestorOfClass(JDialog.class, fin)).dispose();//Add null check!
-                } else {
+                } catch (NumberFormatException numberFormatException) {
                     JOptionPane.showMessageDialog(null, "Please enter a vaild Adhaar or Pan number",
                             "Invalid Pan or Adhaar number", JOptionPane.ERROR_MESSAGE);
+
                 }
-                
 
                 break;
             case F_CANCEL:
