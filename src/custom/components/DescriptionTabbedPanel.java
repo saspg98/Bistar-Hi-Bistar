@@ -53,7 +53,12 @@ public class DescriptionTabbedPanel extends javax.swing.JPanel {
                 "),Average("+rating.getAverageCount()+
                 "),Poor("+rating.getPoorCount()+
                 "),Terrible("+rating.getTerribleCount()+")");
-
+       
+        jTabbedPane1.setSelectedIndex(0);
+    }
+    
+    public void setSelectedTab(int i){
+        jTabbedPane1.setSelectedIndex(i);
     }
 
     @SuppressWarnings("unchecked")

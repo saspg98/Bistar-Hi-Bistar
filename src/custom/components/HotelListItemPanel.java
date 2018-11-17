@@ -8,9 +8,6 @@ import java.awt.Cursor;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.event.MouseListener;
-import java.util.Collection;
-import java.util.Map;
-import java.util.Set;
 import javax.swing.BorderFactory;
 import javax.swing.JLabel;
 
@@ -22,9 +19,6 @@ import javax.swing.JLabel;
  * Pretty straightforward, the hotel name, price range, image are clickable and will lead the user to the hotel confirmation page
  * where they can choose their room type and proceed to checkout, clicking on a room type will lead to the same screen with the option
  * already selected. See reviews will load a hotel review page where the user can write their own reviews
- *
- * TODO: Fix bug:When a new line is added to the typeLabel, the size of the panel doesn't change, but it does when a new
- * line is added to the priceLabel
  */
 public class HotelListItemPanel extends javax.swing.JPanel {
 
@@ -38,31 +32,31 @@ public class HotelListItemPanel extends javax.swing.JPanel {
     private JLabel[] roomLinks;
 
     public void setMouseEventListener(MouseListener m) {
-        //reviewLinkLabel.addMouseListener(m); //IMP! create a review page for this!
+        
         priceRangeLabel.addMouseListener(m);
         hotelNameLabel.addMouseListener(m);
         imageLabel.addMouseListener(m);
+        
         mouseListener = m;
     }
-
-    //TODO: Main Constructor, merge with setDetails 
+ 
     public HotelListItemPanel(HotelDesc des, MouseListener m, double priceConstraint,boolean showAll) {
         initComponents();
         hotel = des;
         ratingLabel.setText("");
         setMouseEventListener(m);
-
-        setDetails(des, showAll, priceConstraint);
-    }
-
-    //TODO: Merge with constructor!!
-    public void setDetails(HotelDesc des, boolean showAll, double priceConstraint) {
+        
+        
         hotelNameLabel.setText(des.getHotelName());
         priceRangeLabel.setText(des.getPriceRange());
         addressLabel.setText(des.getAddress());
         ratingLabel.setText(UIMethods.getRatingString((int)(des.getRating().getOverallRating())));
-        System.err.println("Rating of "+des.getHotelName()+", is "+ratingLabel.getText());
+       
+        setRoomTypesDisplay(des, showAll, priceConstraint);
+    }
 
+    public void setRoomTypesDisplay(HotelDesc des, boolean showAll, double priceConstraint) {
+        
         int[] types = des.getNumOfRoomTypes();
         double[] prices = des.getPrices();
         roomLinks = new JLabel[prices.length];
@@ -87,11 +81,8 @@ public class HotelListItemPanel extends javax.swing.JPanel {
             roomLinks[i].setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
             roomLinks[i].setBorder(BorderFactory.createEmptyBorder(0, 0, 1, 0));
             roomLinks[i].setName("underline");
-
             roomLinks[i].addMouseListener(mouseListener);
-
             roomListPanel.add(roomLinks[i], gbc);
-
         }
     }
 
@@ -104,7 +95,6 @@ public class HotelListItemPanel extends javax.swing.JPanel {
         hotelNameLabel = new javax.swing.JLabel();
         ratingLabel = new javax.swing.JLabel();
         priceRangeLabel = new javax.swing.JLabel();
-        reviewLinkLabel = new javax.swing.JLabel();
         centerPanel = new javax.swing.JPanel();
         roomListPanel = new javax.swing.JPanel();
         addressLabel = new javax.swing.JLabel();
@@ -137,14 +127,6 @@ public class HotelListItemPanel extends javax.swing.JPanel {
         priceRangeLabel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         priceRangeLabel.setName("underline"); // NOI18N
 
-        reviewLinkLabel.setBackground(new java.awt.Color(255, 255, 255));
-        reviewLinkLabel.setFont(new java.awt.Font("Lato", 0, 24)); // NOI18N
-        reviewLinkLabel.setForeground(new java.awt.Color(255, 255, 255));
-        reviewLinkLabel.setText("See reviews");
-        reviewLinkLabel.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 1, 0));
-        reviewLinkLabel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        reviewLinkLabel.setName("underline"); // NOI18N
-
         centerPanel.setBackground(new java.awt.Color(25, 25, 25));
         centerPanel.setLayout(new java.awt.GridBagLayout());
 
@@ -170,8 +152,6 @@ public class HotelListItemPanel extends javax.swing.JPanel {
                     .addComponent(hotelNameLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 550, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(ratingLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(reviewLinkLabel)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(priceRangeLabel))
                     .addComponent(centerPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -191,11 +171,10 @@ public class HotelListItemPanel extends javax.swing.JPanel {
                         .addComponent(addressLabel)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(centerPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(imageLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 277, Short.MAX_VALUE))
+                    .addComponent(imageLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 279, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(ratingLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(reviewLinkLabel)
                     .addComponent(priceRangeLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
@@ -214,7 +193,6 @@ public class HotelListItemPanel extends javax.swing.JPanel {
     private javax.swing.JLabel imageLabel;
     private javax.swing.JLabel priceRangeLabel;
     private javax.swing.JLabel ratingLabel;
-    private javax.swing.JLabel reviewLinkLabel;
     private javax.swing.JPanel roomListPanel;
     // End of variables declaration//GEN-END:variables
 

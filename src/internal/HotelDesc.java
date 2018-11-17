@@ -1,6 +1,3 @@
-/*
- * TODO: Add reviews!
- */
 package internal;
 
 import java.time.LocalDate;
@@ -13,8 +10,7 @@ import java.util.ArrayList;
  */
 public class HotelDesc {
     
-    //IMP! The database query has to sort the roomtypes of the hotel according to their prices in ASCENDING order
-    //In the method,getPriceRange(), it is assumed that the lowest price is stored in prices[0], and the highest in prices[price.length-1]
+    
     public static final String[] ROOM_TYPES = {"Penthouse","Executive","Deluxe","Standard"};
     
     String hotelName;
@@ -172,13 +168,13 @@ public class HotelDesc {
     public String getPriceRange() {
         //TODO: Pretty print all currency(upto two decimal places)
         if(prices.length>1)
-            return CURRENCY + prices[0]+"-"+CURRENCY+prices[prices.length-1];
+            return CURRENCY + prices[prices.length-1]+"-"+CURRENCY+prices[0];
         else
             return CURRENCY+String.valueOf(prices[0]);
     }
     
     
-    //TODO: COMPLETE METHOD! DUMMY BODY
+
     public double getCost(String type, int rooms, LocalDate checkIn, LocalDate checkOut){
         for (int i = 0; i < ROOM_TYPES.length; i++) {
             if(type.equals(ROOM_TYPES[i])){

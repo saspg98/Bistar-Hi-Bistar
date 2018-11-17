@@ -430,7 +430,7 @@ public class Helper {
                 rs1.next();
                 
                 b.setHotelName(rs1.getString("Name"));
-                b.setLocation(rs1.getString("City"));
+                b.setAddress(rs1.getString("City"));
                 
                 rs1.close();
                 
@@ -486,7 +486,7 @@ public class Helper {
                 rs1.next();
                 
                 b.setHotelName(rs1.getString("Name"));
-                b.setLocation(rs1.getString("City"));
+                b.setAddress(rs1.getString("City"));
                 
                 rs1.close();
                 
@@ -541,7 +541,7 @@ public class Helper {
                 rs1.next();
                 
                 b.setHotelName(rs1.getString("Name"));
-                b.setLocation(rs1.getString("City"));
+                b.setAddress(rs1.getString("City"));
                 
                 rs1.close();
                 

@@ -8,6 +8,7 @@ package custom.components;
 import internal.Booking;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.JTextField;
 
 /**
  *
@@ -44,6 +45,21 @@ public class FinalDialogPanel extends javax.swing.JPanel implements ActionListen
         this.bookingDetails = bookingDetails;
         updateComponents();
     }
+
+    public long getAdharCardNumber() {
+       
+        if(adharCardRB.isSelected())
+            return Long.parseLong(adharCardNumberTF.getText());
+        else return -1;
+    }
+
+    public long getPanCardNumber() {
+        if(panCardRB.isSelected())
+            return Long.parseLong(panCardNumberTF.getText());
+        else return -1;
+    }
+    
+    
     
     
 
@@ -141,11 +157,6 @@ public class FinalDialogPanel extends javax.swing.JPanel implements ActionListen
 
         panCardNumberTF.setFont(new java.awt.Font("Lato", 0, 24)); // NOI18N
         panCardNumberTF.setEnabled(false);
-        panCardNumberTF.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                panCardNumberTFActionPerformed(evt);
-            }
-        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 8;
@@ -328,10 +339,6 @@ public class FinalDialogPanel extends javax.swing.JPanel implements ActionListen
         add(checkOutTF, gridBagConstraints);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void panCardNumberTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_panCardNumberTFActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_panCardNumberTFActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField adharCardNumberTF;
@@ -362,11 +369,14 @@ public class FinalDialogPanel extends javax.swing.JPanel implements ActionListen
     public void actionPerformed(ActionEvent e) {
         if(adharCardRB.isSelected()){
             adharCardNumberTF.setEnabled(true);
-            panCardNumberTF.setEditable(false);
+            panCardNumberTF.setText("");
+            panCardNumberTF.setEnabled(false);
+            
         }
         if(panCardRB.isSelected()){
             adharCardNumberTF.setEnabled(false);
-            panCardNumberTF.setEditable(true);
+            panCardNumberTF.setEnabled(true);
+            adharCardNumberTF.setText("");
         }
     }
 
@@ -374,11 +384,13 @@ public class FinalDialogPanel extends javax.swing.JPanel implements ActionListen
        if(bookingDetails!= null){
            hotelNameTF.setText(bookingDetails.getHotelName());
            guestsTF.setText(bookingDetails.getNumPeople()+"");
-           //hotelAddressTextArea.setText(bookingDetails.g);//NOTE: is address really necessary?
+           hotelAddressTextArea.setText(bookingDetails.getAddress());//NOTE: is address really necessary?
            priceTF.setText(bookingDetails.getPrice()+"");
            roomsTF.setText(bookingDetails.getNumRooms()+"");
            checkInTF.setText(bookingDetails.getCheckIn().toString());
            checkOutTF.setText(bookingDetails.getCheckOut().toString());
+           adharCardNumberTF.setText("");
+           panCardNumberTF.setText("");
        }
         
     }

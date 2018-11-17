@@ -188,12 +188,12 @@ public class LoginForm extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void signUpLinkLabelMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_signUpLinkLabelMouseEntered
-        // TODO add your handling code here
+     
         UIMethods.underline(signUpLinkLabel);
     }//GEN-LAST:event_signUpLinkLabelMouseEntered
 
     private void signUpLinkLabelMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_signUpLinkLabelMouseExited
-        // TODO add your handling code here:
+       
         UIMethods.removeUnderline(signUpLinkLabel);
     }//GEN-LAST:event_signUpLinkLabelMouseExited
 

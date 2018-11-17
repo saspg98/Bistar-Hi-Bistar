@@ -16,6 +16,7 @@ public class BookingConstraints {
     private int numRooms;
     private String location;
     private boolean showAll;
+    private int numGuests;
 
     public BookingConstraints(LocalDate checkIn, LocalDate checkOut, double maxPrice, int numRooms, String location, boolean showAll) {
         this.checkIn = checkIn;
@@ -30,6 +31,14 @@ public class BookingConstraints {
         return showAll;
     }
 
+    public int getNumGuests() {
+        return numGuests;
+    }
+
+    public void setNumGuests(int numGuests) {
+        this.numGuests = numGuests;
+    }
+    
     public void setShowAll(boolean showAll) {
         this.showAll = showAll;
     }

@@ -17,11 +17,12 @@ import java.awt.Color;
  * @author Sarthak
  */
 public class RatingPanel extends javax.swing.JPanel implements MouseListener {
-    JLabel starLabel[] = new JLabel[5];
-    boolean emptyState=true;
-    static final Color EMPTY_STATE_COLOR = new Color(242, 242, 96);
-    static final Color NORMAL_STATE_COLOR = new Color(255,255,0);
-    int star=0;
+    private JLabel starLabel[] = new JLabel[5];
+    private boolean emptyState=true;
+    private static final Color EMPTY_STATE_COLOR = new Color(242, 242, 96);
+    private static final Color NORMAL_STATE_COLOR = new Color(255,255,0);
+    private int star=0;
+    private boolean enabled=true;
     /**
      * Creates new form giveRatingPanel
      */
@@ -31,6 +32,18 @@ public class RatingPanel extends javax.swing.JPanel implements MouseListener {
         
         
     }
+
+    @Override
+    public boolean isEnabled() {
+        return enabled;
+    }
+
+    @Override
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
+    }
+    
+    
     
     
     private void setup(){
@@ -72,19 +85,21 @@ public class RatingPanel extends javax.swing.JPanel implements MouseListener {
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        if(emptyState){
-            emptyState=false;
-            for(JLabel star: starLabel){
-            star.setForeground(NORMAL_STATE_COLOR);
+        if (enabled) {
+            if (emptyState) {
+                emptyState = false;
+                for (JLabel tmpStar : starLabel) {
+                    tmpStar.setForeground(NORMAL_STATE_COLOR);
+                }
             }
+            
+            refreshRating();
+            int i = 0;
+            do {
+                starLabel[i].setText(UIMethods.getStarString());
+            } while (!starLabel[i++].equals(e.getComponent()) && i < 5);//NOTE: Point of contention
+            star = i;
         }
-        
-        refreshRating();
-        int i=0;
-        do{
-            starLabel[i].setText(UIMethods.getStarString());
-        }while(!starLabel[i++].equals(e.getComponent()) && i<5);//NOTE: Point of contention
-        star = i;
         
     }
 
@@ -92,6 +107,14 @@ public class RatingPanel extends javax.swing.JPanel implements MouseListener {
         return star;
     }
 
+    public void setStar(int s){
+        star = s;
+        refreshRating();
+        
+        for(int i=0;i<star&&i<5;i++)
+            starLabel[i].setText(UIMethods.getStarString());
+        
+        }
     
     @Override
     public void mousePressed(MouseEvent e) {
@@ -105,12 +128,14 @@ public class RatingPanel extends javax.swing.JPanel implements MouseListener {
 
     @Override
     public void mouseEntered(MouseEvent e) {
-        if(emptyState){
-            refreshRating();
-            int i=0;
-            do{
-                starLabel[i].setText(UIMethods.getStarString());
-            }while(!starLabel[i++].equals(e.getComponent()) && i<5);//NOTE: Point of contention
+        if (enabled) {
+            if (emptyState) {
+                refreshRating();
+                int i = 0;
+                do {
+                    starLabel[i].setText(UIMethods.getStarString());
+                } while (!starLabel[i++].equals(e.getComponent()) && i < 5);//NOTE: Point of contention
+            }
         }
     }
 

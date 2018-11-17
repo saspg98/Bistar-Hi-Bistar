@@ -17,6 +17,7 @@ public class Rating {
     public int averageCount;
     public int poorCount;
     public int terribleCount;
+    public int totalRatingCount;
     
     public Rating(int excellentCount, int veryGoodCount, int averageCount, int poorCount, int terribleCount, int reviewCount) {
         this.excellentCount = excellentCount;
@@ -25,6 +26,7 @@ public class Rating {
         this.poorCount = poorCount;
         this.terribleCount = terribleCount;
         this.reviewCount = reviewCount;
+        totalRatingCount = excellentCount+veryGoodCount+averageCount+poorCount+terribleCount;
     }
 
     public int getReviewCount() {
@@ -74,14 +76,15 @@ public class Rating {
     public void setTerribleCount(int terribleCount) {
         this.terribleCount = terribleCount;
     }
-    
+
+    public int getTotalRatingCount() {
+        return totalRatingCount;
+    }
     
     
     public double getOverallRating() {
         double r=(5.0*excellentCount+4.0*veryGoodCount+3.0*averageCount+2.0*poorCount+1.0*terribleCount)/(
-        terribleCount+excellentCount+veryGoodCount+averageCount+poorCount);
-        
-        System.err.println("OverAll Rating is " +  r);
+        totalRatingCount);
         return r;
     }
 }

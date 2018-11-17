@@ -16,7 +16,7 @@ public class Booking {
     private LocalDate checkOut;
     private int numPeople;
     private int numRooms;
-    private String location;
+    private String address;
     private String hotelName;
     private String roomType;
     private int price;
@@ -60,7 +60,7 @@ public class Booking {
         this.checkOut = checkOut;
         this.numPeople = numPeople;
         this.numRooms = numRooms;
-        this.location = location;
+        this.address = location;
         this.hotelName = hotelName;
         this.roomType = roomType;
         this.price = price;
@@ -87,8 +87,8 @@ public class Booking {
         return numPeople;
     }
 
-    public String getLocation() {
-        return location;
+    public String getAddress() {
+        return address;
     }
     
     public int getNumRooms() {
@@ -115,8 +115,8 @@ public class Booking {
         this.numPeople = numPeople;
     }
 
-    public void setLocation(String location) {
-        this.location = location;
+    public void setAddress(String address) {
+        this.address = address;
     }
     
     public void setNumRooms(int numRooms) {

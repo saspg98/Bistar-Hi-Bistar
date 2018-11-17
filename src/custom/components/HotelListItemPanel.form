@@ -36,8 +36,6 @@
                   <Component id="hotelNameLabel" pref="550" max="32767" attributes="0"/>
                   <Group type="102" alignment="0" attributes="0">
                       <Component id="ratingLabel" min="-2" pref="170" max="-2" attributes="0"/>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="reviewLinkLabel" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
                       <Component id="priceRangeLabel" min="-2" max="-2" attributes="0"/>
                   </Group>
@@ -63,12 +61,11 @@
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="centerPanel" max="32767" attributes="0"/>
                   </Group>
-                  <Component id="imageLabel" pref="277" max="32767" attributes="0"/>
+                  <Component id="imageLabel" pref="279" max="32767" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="ratingLabel" alignment="3" min="-2" pref="28" max="-2" attributes="0"/>
-                  <Component id="reviewLinkLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="priceRangeLabel" alignment="3" min="-2" pref="28" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
@@ -136,29 +133,6 @@
           <Color blue="0" green="c6" red="0" type="rgb"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Rs.300-500"/>
-        <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-          <Color id="Hand Cursor"/>
-        </Property>
-        <Property name="name" type="java.lang.String" value="underline" noResource="true"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JLabel" name="reviewLinkLabel">
-      <Properties>
-        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="ff" green="ff" red="ff" type="rgb"/>
-        </Property>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Lato" size="24" style="0"/>
-        </Property>
-        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="ff" green="ff" red="ff" type="rgb"/>
-        </Property>
-        <Property name="text" type="java.lang.String" value="See reviews"/>
-        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-          <Border info="org.netbeans.modules.form.compat2.border.EmptyBorderInfo">
-            <EmptyBorder bottom="1" left="0" right="0" top="0"/>
-          </Border>
-        </Property>
         <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
           <Color id="Hand Cursor"/>
         </Property>

@@ -28,14 +28,7 @@ public class PastBookingListPanel extends javax.swing.JPanel {
     /**
      * Creates new form PastBookingListPanel
      */
-    //DELETE THIS CONSTRUCTOR
-    public PastBookingListPanel() {
-        initComponents();
-        System.out.println("Error Incomming: Empty Const of PastBookingListPanel Called! Setting thisBooking to null");
-        thisBooking = null;
-        actionListener = null;
 
-    }
 
     public Booking getThisBooking() {
         return thisBooking;
@@ -83,6 +76,14 @@ public class PastBookingListPanel extends javax.swing.JPanel {
 
         updateButton.setText("Submit");
         updateButton.setActionCommand(SUBMIT_RATING);
+        
+        //TODO: Uncomment the code below, requires thisBooking and confBooking table to add a rating field
+        
+        /*if(thisBooking.getRating()>0){
+        ratingPanel.setStar(thisBooking.getRating());
+        ratingPanel.setEnabled(false);
+        updateButton.setEnabled(false);
+        }*/
     }
 
     private void setStateToWaitlist() {
@@ -91,12 +92,23 @@ public class PastBookingListPanel extends javax.swing.JPanel {
         updateButton.setText("Book Now");
         updateButton.setActionCommand(BOOK_WAITLIST);
     }
+
+    public void setRatingPanelEnabled(boolean val) {
+        ratingPanel.setEnabled(val);
+    }
+
+    public int getRatingPanelStars(){
+        return ratingPanel.getStar();
+    }
+
+    
+    
     
     
     public static final String BOOK_WAITLIST = "Book Wait List";
     public static final String SUBMIT_RATING = "submit rating";
-    public static final String MODIFY_BOOKING = "modify that shit";
-    public static final String CANCEL_BOOKING = "cancel them bitches";
+    public static final String MODIFY_BOOKING = "modify that";
+    public static final String CANCEL_BOOKING = "cancel them";
     
     /**
      * This method is called from within the constructor to initialize the form.
