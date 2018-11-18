@@ -668,6 +668,8 @@ public class Helper {
 
             }
             
+            rs.close();
+            
             closeConnection();
             
             return available >= bk.getNumRooms();
@@ -677,6 +679,51 @@ public class Helper {
             closeConnection();
             e.printStackTrace();
         }
+        return false;
+    }
+    
+    public static boolean modifyBooking(Booking bk) {
+           
+        makeConnection();
+
+        try {
+            String s = "SELECT * FROM dbo.confirmedBookings WHERE BookingReference=\'" + bk.getBookingReference() + "\'";
+            ResultSet rs = query.getSt().executeQuery(s);
+            rs.next();
+
+            int oldNumRooms = rs.getInt("NoOfRooms");
+      
+            rs.close();
+            
+            s = "UPDATE dbo.confirmedBookings"
+                    + "SET NoOfRooms=0 "
+                    + "WHERE BookingReference=\'" + bk.getBookingReference() + "\'";
+            query.getSt2().executeUpdate(s);
+        
+        if(checkBookingPossibility(bk))
+        {
+            s = "UPDATE dbo.confirmedBookings"
+                    + "SET CustomerID=" + usr.getCustomerID() + ",HotelID=" + bk.getHotelID() + ",RoomCategory=\'" + bk.getRoomType() + "\',CheckInDate=\'" + bk.getCheckIn() + "\',CheckOutDate=\'" + bk.getCheckOut() + "\',NoOfPeople=" + bk.getNumPeople() + ",NoOfRooms=" + bk.getNumRooms() +",TotalPrice=" + bk.getPrice()
+                    + "WHERE BookingReference=\'" + bk.getBookingReference() + "\'";
+            query.getSt2().executeUpdate(s);
+            closeConnection();
+            return true;
+        }
+        else
+        {
+            s = "UPDATE dbo.confirmedBookings"
+                    + "SET NoOfRooms=" + oldNumRooms + " "
+                    + "WHERE BookingReference=\'" + bk.getBookingReference() + "\'";
+            query.getSt2().executeUpdate(s);
+            return false;
+        }
+        
+
+        } catch (SQLException e) {
+            closeConnection();
+            e.printStackTrace();
+        }
+        
         return false;
     }
 }
