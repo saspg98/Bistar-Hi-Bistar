@@ -64,8 +64,14 @@ public class Verify {
     }
 
     public static boolean isValidAdhar(String a) {
-        //if((a.length()))
+        if(a.length()==12)
+            return true;
         return false;
     }
 
+    
+    public static boolean isValidPan(String p) {
+ //@saspg bhar de plij
+        return false;
+    }
 }
