@@ -215,13 +215,14 @@ public class Helper {
             ResultSet rs = query.getSt().executeQuery(s);
 
             hotelList = new ArrayList();
+           
 
             while (rs.next()) {
 
                 HotelDesc hotel = new HotelDesc();
 
                 int availableExecutive = rs.getInt("ExecutiveRooms"), availablePenthouse = rs.getInt("Penthouse"), availableDeluxe = rs.getInt("DeluxeRooms"), availableStandard = rs.getInt("StandardRooms");
-
+        
                 //Code repeated 4 times for different type of rooms
                 //First type - START HERE
                 for (LocalDate d = bc.getCheckIn(); d.isBefore(bc.getCheckOut()) || d.equals(bc.getCheckOut()); d = d.plusDays(1)) {
@@ -230,10 +231,13 @@ public class Helper {
                             + " WHERE HotelID=" + rs.getInt("HotelID")
                             + " AND RoomCategory =\'Penthouse\' "
                             + " AND CheckInDate <=\'" + d.toString() + "\' AND CheckOutDate >=\'" + d.toString() + "\'";
+                    
 
                     ResultSet rs1 = query.getSt2().executeQuery(s);
+                    
 
-                    if (!rs1.next()) {
+                    if (rs1.next()) {
+                        
                         if (rs.getInt("Penthouse") - rs1.getInt("sum") < bc.getNumRooms()) {
 
                             availablePenthouse = 0;
@@ -261,7 +265,7 @@ public class Helper {
 
                     ResultSet rs1 = query.getSt2().executeQuery(s);
 
-                    if (!rs1.next()) {
+                    if (rs1.next()) {
                         if (rs.getInt("ExecutiveRooms") - rs1.getInt("sum") < bc.getNumRooms()) {
 
                             availableExecutive = 0;
@@ -282,13 +286,13 @@ public class Helper {
                 for (LocalDate d = bc.getCheckIn(); d.isBefore(bc.getCheckOut()) || d.equals(bc.getCheckOut()); d = d.plusDays(1)) {
 
                     s = "SELECT SUM(NoOfRooms) AS sum FROM dbo.confirmedBookings "
-                            + " WHERE hotelID=" + rs.getInt("HotelID")
+                            + " WHERE HotelID=" + rs.getInt("HotelID")
                             + " AND RoomCategory=\'Standard\' "
                             + " AND CheckInDate<=\'" + d.toString() + "\' AND CheckOutDate>=\'" + d.toString() + "\'";
 
                     ResultSet rs1 = query.getSt2().executeQuery(s);
 
-                    if (!rs1.next()) {
+                    if (rs1.next()) {
                         if (rs.getInt("StandardRooms") - rs1.getInt("sum") < bc.getNumRooms()) {
 
                             availableStandard = 0;
@@ -315,7 +319,7 @@ public class Helper {
 
                     ResultSet rs1 = query.getSt2().executeQuery(s);
 
-                    if (!rs1.next()) {
+                    if (rs1.next()) {
                         if (rs.getInt("DeluxeRooms") - rs1.getInt("sum") < bc.getNumRooms()) {
 
                             availableDeluxe = 0;
@@ -452,7 +456,7 @@ public class Helper {
 
         makeConnection();
 
-        String s = "SELECT * FROM dbo.inWaitingBookings WHERE CustomerID =" + usr.getCustomerID();
+        String s = "SELECT * FROM dbo.isWaitingBookings WHERE CustomerID =" + usr.getCustomerID();
 
         try {
             ResultSet rs = query.getSt().executeQuery(s);
@@ -574,12 +578,12 @@ public class Helper {
 
                 return ref;
             } else {
-                String s = "INSERT INTO dbo.inWaitingBookings (CustomerID,HotelID,RoomCategory,CheckInDate,CheckOutDate,NoOfPeople,NoOfRooms,TotalPrice)"
+                String s = "INSERT INTO dbo.isWaitingBookings (CustomerID,HotelID,RoomCategory,CheckInDate,CheckOutDate,NoOfPeople,NoOfRooms,TotalPrice)"
                         + "VALUES (" + usr.getCustomerID() + "," + bk.getHotelID() + ",\'" + bk.getRoomType() + "\',\'" + bk.getCheckIn() + "\',\'" + bk.getCheckOut() + "\'," + bk.getNumPeople() + "," + bk.getNumRooms() + "," + bk.getPrice() + ")";
 
                 query.getSt().executeUpdate(s);
 
-                s = "SELECT TOP 1 BookingReference FROM dbo.inWaitingBookings ORDER BY BookingReference DESC";
+                s = "SELECT TOP 1 BookingReference FROM dbo.isWaitingBookings ORDER BY BookingReference DESC";
                 ResultSet rs = query.getSt().executeQuery(s);
                 rs.next();
                 long ref = rs.getLong("BookingReference");
@@ -650,7 +654,7 @@ public class Helper {
 
                 ResultSet rs1 = query.getSt2().executeQuery(s);
 
-                if (!rs1.next()) {
+                if (rs1.next()) {
                     if (rs.getInt(roomType) - rs1.getInt("sum") < bk.getNumRooms()) {
                         available = 0;
                         break;
@@ -671,7 +675,7 @@ public class Helper {
             rs.close();
           
             closeConnection();
-
+            System.err.println("available :"+available+", bk.get is "+bk.getNumRooms());
             return available >= bk.getNumRooms();
 
         } catch (SQLException e) {

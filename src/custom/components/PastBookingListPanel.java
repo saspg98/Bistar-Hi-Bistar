@@ -99,8 +99,10 @@ public class PastBookingListPanel extends javax.swing.JPanel {
         updateButton.setBackground(BOOK_COLOR);
         updateButton.setText("Book Now");
         updateButton.setActionCommand(BOOK_WAITLIST);
-        if(!Helper.checkBookingPossibility(thisBooking))
+        if(!Helper.checkBookingPossibility(thisBooking)){
+            System.err.println("check booking possibility return false");
             this.remove(updateButton);
+        }
     }
 
     public void setRatingPanelEnabled(boolean val) {

@@ -46,7 +46,6 @@ public class MainForm extends javax.swing.JFrame implements MouseListener,
 
     private BookingConstraints bc;
 
-
     private static final String STAR = "\u2605";
 
     private static long NUMBER_OF_FUTURE_YEARS = 4;
@@ -1189,7 +1188,6 @@ public class MainForm extends javax.swing.JFrame implements MouseListener,
     }// </editor-fold>//GEN-END:initComponents
 
     private void settingsPanelButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_settingsPanelButtonMouseClicked
-      
 
         personalize();
         ((CardLayout) mainPanel.getLayout()).show(mainPanel, "settingsPanel");
@@ -1205,10 +1203,10 @@ public class MainForm extends javax.swing.JFrame implements MouseListener,
         resetBgColor();
         UIMethods.setSelectedPanelButton(myBookingsPanelButton, myBookingsLabel);
         isSelected[1] = true;
-        
+
         listTypeCB.setSelectedIndex(0);
         loadBookingList();
-        
+
     }//GEN-LAST:event_myBookingsPanelButtonMouseClicked
 
     private void bookHotelsPanelButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bookHotelsPanelButtonMouseClicked
@@ -1220,7 +1218,7 @@ public class MainForm extends javax.swing.JFrame implements MouseListener,
     }//GEN-LAST:event_bookHotelsPanelButtonMouseClicked
 
     private void bookHotelsPanelButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bookHotelsPanelButtonMouseEntered
-       
+
         if (!isSelected[0]) {
             UIMethods.setHoveredPanelButton(bookHotelsPanelButton, true);
         }
@@ -1283,11 +1281,11 @@ public class MainForm extends javax.swing.JFrame implements MouseListener,
         LocalDate checkIn = checkInDatePanel.getDate();
         LocalDate checkOut = checkOutDatePanel.getDate();
         if (!checkOut.isAfter(checkIn)) {
-            JOptionPane.showMessageDialog(null, 
-                    "You can only check out AFTER you check in to the hotel", "Error",JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null,
+                    "You can only check out AFTER you check in to the hotel", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
-        
+
         loadHotelList();
 
     }//GEN-LAST:event_goButtonActionPerformed
@@ -1381,7 +1379,7 @@ public class MainForm extends javax.swing.JFrame implements MouseListener,
             switch (listTypeCB.getSelectedIndex()) {
 
                 case 0:
-                    
+
                     loadBookingList(PastBookingListPanel.CONFIRMED);
                     break;
                 case 1:
@@ -1389,7 +1387,7 @@ public class MainForm extends javax.swing.JFrame implements MouseListener,
                     loadBookingList(PastBookingListPanel.WAIT_LIST);
                     break;
                 case 2:
-                    
+
                     loadBookingList(PastBookingListPanel.PREVIOUS);
                     break;
             }
@@ -1477,7 +1475,7 @@ public class MainForm extends javax.swing.JFrame implements MouseListener,
         changePasswordDialog.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
         changeGuestRoomDialog.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
         modifyBookingDialog.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
-        
+
         //setting the rooms in the guestRoomDialogBoxes
         guestRoomDialogPanel.setRoomTypes(HotelDesc.ROOM_TYPES);
 
@@ -1607,7 +1605,7 @@ public class MainForm extends javax.swing.JFrame implements MouseListener,
     // End of variables declaration//GEN-END:variables
 
     private void logout() {
-     
+
         loginScreen.setVisible(true);
         loginScreen.setEnabled(true);
         this.dispose();
@@ -1732,12 +1730,12 @@ public class MainForm extends javax.swing.JFrame implements MouseListener,
         double price = des.getCost(type, bc.getNumRooms(), bc.getCheckIn(), bc.getCheckOut());
         hotelNameLabel.setText(des.getHotelName());
         numReviewsLabel.setText(des.getRating().getTotalRatingCount() + " reviews");
-        hotelDetailsRatingLabel.setText(UIMethods.getRatingString((int)(des.getRating().getOverallRating())));
+        hotelDetailsRatingLabel.setText(UIMethods.getRatingString((int) (des.getRating().getOverallRating())));
         descriptionTabbedPanel1.setDescription(des.getDescription(), des.getHotelAmenities(), des.getRating());
-        
-        thisBooking = new Booking(bc.getCheckIn(), bc.getCheckOut(),bc.getNumGuests() ,
+
+        thisBooking = new Booking(bc.getCheckIn(), bc.getCheckOut(), bc.getNumGuests(),
                 bc.getNumRooms(), des.getAddress(), des.getHotelName(), type,
-                (int)price);//TODO: ADD SOMETHING FOR WATILIST!!
+                (int) price);//TODO: ADD SOMETHING FOR WATILIST!!
         thisBooking.setHotel(des);
         thisBooking.setWaitlist(!des.isRoomTypeAvailable(type));
         thisBooking.setHotelID(des.getHotelID());
@@ -1794,11 +1792,10 @@ public class MainForm extends javax.swing.JFrame implements MouseListener,
 
     private void makeBookingConstraints() {
         LocalDate checkIn = checkInDatePanel.getDate();
-        LocalDate checkOut = checkOutDatePanel.getDate();    
-        double price = (int)(priceSpinner.getValue());
+        LocalDate checkOut = checkOutDatePanel.getDate();
+        double price = (int) (priceSpinner.getValue());
         String loc = locationCB.getSelectedItem().toString();
         int r = bookGuestRoomPanel.getRooms();
-        
 
         boolean showAll = !showAvailableCheckBox.isSelected();
         bc = new BookingConstraints(checkIn, checkOut, price, r, loc, showAll);
@@ -1818,16 +1815,15 @@ public class MainForm extends javax.swing.JFrame implements MouseListener,
     public void refreshHotelDetailsUI() {
         thisBooking.setPrice((int) thisBooking.getHotel().getCost(thisBooking.getRoomType(), thisBooking.getNumRooms(), thisBooking.getCheckIn(), thisBooking.getCheckOut()));
         bookingConfirmationLinkLabel.setText(thisBooking.getNumRooms() + " " + thisBooking.getRoomType() + ", " + thisBooking.getNumPeople() + " Guests");
-        totalPriceLabel.setText(HotelListItemPanel.CURRENCY+thisBooking.getPrice() );
+        totalPriceLabel.setText(HotelListItemPanel.CURRENCY + thisBooking.getPrice());
         dateLabel.setText("From " + thisBooking.getCheckIn().toString() + " to " + thisBooking.getCheckOut().toString());
-      
+
         if (thisBooking.isWaitlist()) {
             bookNowButton.setText("Waitlist");
         } else {
             bookNowButton.setText("Book Now");
         }
-        
-        
+
     }
 
     @Override
@@ -1843,21 +1839,24 @@ public class MainForm extends javax.swing.JFrame implements MouseListener,
             case PastBookingListPanel.CANCEL_BOOKING:
                 Booking b = ((PastBookingListPanel) ((JButton) e.getSource()).getParent()).getThisBooking();
                 b.print();
-                if(!b.isWaitlist()){
-                    
-                    if(Period.between(LocalDate.now(), b.getCheckIn()).getDays()<=2 ){
+                if (!b.isWaitlist()&&Period.between(LocalDate.now(), b.getCheckIn()).getDays() <= 2) {
                         int i = JOptionPane.showConfirmDialog(null, "<html>If you will <b>Cancel</b> booking now 50% amount will be deducted</html>", "Warning!!", JOptionPane.YES_NO_OPTION);
-                          if(i==JOptionPane.YES_OPTION)    
-                              Helper.cancelBooking(b); }
+                        if (i == JOptionPane.YES_OPTION) {
+                            Helper.cancelBooking(b);
+                        }
                     
-                }else{
-                 int i = JOptionPane.showConfirmDialog(null, "Are you sure you want to cancel", "Warning!!", JOptionPane.YES_NO_OPTION);
-                          if(i==JOptionPane.YES_OPTION)    
-                              Helper.cancelBooking(b);
-                
+                } else {
+                    int i = JOptionPane.showConfirmDialog(null, "Are you sure you want to cancel", "Warning!!", JOptionPane.YES_NO_OPTION);
+                    if (i == JOptionPane.YES_OPTION) {
+                        Helper.cancelBooking(b);
+                    }
                 }
+                if(listTypeCB.getSelectedIndex()==0)
                 loadBookingList(PastBookingListPanel.CONFIRMED);
+                else
+                    loadBookingList(PastBookingListPanel.WAIT_LIST);
                 break;
+
             case PastBookingListPanel.MODIFY_BOOKING:
                 Booking b2 = ((PastBookingListPanel) ((JButton) e.getSource()).getParent()).getThisBooking();
                 b2.print();
@@ -1869,16 +1868,16 @@ public class MainForm extends javax.swing.JFrame implements MouseListener,
                 Booking b3 = ((PastBookingListPanel) ((JButton) e.getSource()).getParent()).getThisBooking();
                 b3.print();
                 long ref = Helper.confirmWaitlistBooking(b3);
-                if(ref>0){
-                    JOptionPane.showMessageDialog(null, "Booking Confirmed! Your Booking reference is #"+ref, "EzyBook", JOptionPane.PLAIN_MESSAGE);
+                if (ref > 0) {
+                    JOptionPane.showMessageDialog(null, "Booking Confirmed! Your Booking reference is #" + ref, "EzyBook", JOptionPane.PLAIN_MESSAGE);
                     listTypeCB.setSelectedIndex(0);
                     loadBookingList();
                 }
-                
+
                 break;
 
             case PastBookingListPanel.SUBMIT_RATING:
-               PastBookingListPanel panel = (PastBookingListPanel) ((JButton) e.getSource()).getParent();
+                PastBookingListPanel panel = (PastBookingListPanel) ((JButton) e.getSource()).getParent();
                 Booking b4 = panel.getThisBooking();
                 panel.setRatingPanelEnabled(false);
                 b4.setRating(panel.getRatingPanelStars());
@@ -1900,7 +1899,7 @@ public class MainForm extends javax.swing.JFrame implements MouseListener,
     }
 
     public void loadHotelList() {
-        
+
         makeBookingConstraints();
         ArrayList<HotelDesc> list = Helper.searchAndReturnHotelList(bc);
 
