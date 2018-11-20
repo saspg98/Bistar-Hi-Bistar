@@ -54,7 +54,7 @@ public class HotelListItemPanel extends javax.swing.JPanel {
         addressLabel.setText(des.getAddress());
         ratingLabel.setText(UIMethods.getRatingString((int)(des.getRating().getOverallRating())));
         if (des.getBufferedImage() != null) {
-            Image img = des.getBufferedImage().getScaledInstance(-1, -1, Image.SCALE_SMOOTH);
+            Image img = des.getBufferedImage().getScaledInstance(550, -1, Image.SCALE_SMOOTH);
             ImageIcon imgIcon = new ImageIcon(img);
             imageLabel.setIcon(imgIcon);
 

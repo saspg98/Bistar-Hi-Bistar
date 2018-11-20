@@ -1734,7 +1734,7 @@ public class MainForm extends javax.swing.JFrame implements MouseListener,
     private void loadHotelDetails(HotelListItemPanel hotelListItemPanel, String type) {
         HotelDesc des = hotelListItemPanel.getHotelDesc();
          if (des.getBufferedImage() != null) {
-            Image img = des.getBufferedImage().getScaledInstance(-1, -1, Image.SCALE_SMOOTH);
+            Image img = des.getBufferedImage().getScaledInstance(600, -1, Image.SCALE_SMOOTH);
             ImageIcon imgIcon = new ImageIcon(img);
             hotelImageLabel.setIcon(imgIcon);
 
