@@ -41,6 +41,7 @@ public class RatingPanel extends javax.swing.JPanel implements MouseListener {
     @Override
     public void setEnabled(boolean enabled) {
         this.enabled = enabled;
+        emptyState =false; 
     }
     
     
@@ -111,9 +112,10 @@ public class RatingPanel extends javax.swing.JPanel implements MouseListener {
         star = s;
         refreshRating();
         
-        for(int i=0;i<star&&i<5;i++)
+        for(int i=0;i<star&&i<5;i++){
+            starLabel[i].setForeground(NORMAL_STATE_COLOR);
             starLabel[i].setText(UIMethods.getStarString());
-        
+         } 
         }
     
     @Override
@@ -141,7 +143,8 @@ public class RatingPanel extends javax.swing.JPanel implements MouseListener {
 
     @Override
     public void mouseExited(MouseEvent e) {
-        
+        if(emptyState)
+            refreshRating();
     }
 
 

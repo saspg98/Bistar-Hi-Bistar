@@ -23,6 +23,30 @@ public class Booking {
     private long bookingReference;
     private boolean waitlist=false;
     private int hotelID;
+    private int rating;
+
+    public Booking(Booking booking) {
+        this.checkIn = booking.checkIn;
+        this.checkOut = booking.checkOut;
+        this.numPeople = booking.numPeople;
+        this.numRooms = booking.numRooms;
+        this.address = booking.address;
+        this.hotelName = booking.hotelName;
+        this.roomType = booking.roomType;
+        this.price = booking.price;
+        this.bookingReference = booking.bookingReference;
+        this.hotelID = booking.hotelID;
+        this.rating = booking.rating;
+        this.hotel = booking.hotel;
+    }
+
+   public int getRating() {
+        return rating;
+    }
+
+    public void setRating(int rating) {
+        this.rating = rating;
+    }
     
     private HotelDesc hotel;
 
@@ -142,7 +166,7 @@ public class Booking {
     public Booking(){}
     
     public void print(){
-        System.err.println(hotelName + roomType + numRooms);
+        System.err.println("Booking :"+hotelName+"  "+ roomType +"  "+ numRooms+"  "+rating);
     }
     
 }

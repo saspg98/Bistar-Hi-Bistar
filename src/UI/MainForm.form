@@ -167,13 +167,16 @@
           <Dimension value="[520, 300]"/>
         </Property>
       </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="modifyBookingDialog.setMinimumSize(new java.awt.Dimension(827, 770));"/>
+      </AuxValues>
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout"/>
       <SubComponents>
         <Component class="custom.components.ModifyBookingDialogPanel" name="modifyDateDialogPanel1">
           <Properties>
             <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-              <Dimension value="[447, 300]"/>
+              <Dimension value="[827, 770]"/>
             </Property>
           </Properties>
           <Constraints>
@@ -582,7 +585,7 @@
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Lato" size="16" style="0"/>
                 </Property>
-                <Property name="maximum" type="int" value="20000"/>
+                <Property name="maximum" type="int" value="1000000"/>
                 <Property name="value" type="int" value="3000"/>
               </Properties>
               <Events>
@@ -691,7 +694,7 @@
                   <Font name="Lato" size="22" style="0"/>
                 </Property>
                 <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
-                  <SpinnerModel initial="3000.0" maximum="20000.0" numberType="java.lang.Double" stepSize="250.0" type="number"/>
+                  <SpinnerModel initial="15000" maximum="1000000" numberType="java.lang.Integer" stepSize="250" type="number"/>
                 </Property>
               </Properties>
               <Events>

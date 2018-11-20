@@ -73,6 +73,7 @@ public class GuestRoomPanel extends javax.swing.JPanel {
         roomPanel = new javax.swing.JPanel();
         jLabel16 = new javax.swing.JLabel();
         roomSpinner = new javax.swing.JSpinner();
+        jLabel18 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(25, 25, 25));
         setLayout(new java.awt.GridBagLayout());
@@ -93,7 +94,7 @@ public class GuestRoomPanel extends javax.swing.JPanel {
         guestPanel.add(jLabel17, gridBagConstraints);
 
         guestSpinner.setFont(new java.awt.Font("Lato", 0, 22)); // NOI18N
-        guestSpinner.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1));
+        guestSpinner.setModel(new javax.swing.SpinnerNumberModel(1, 1, null, 1));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 0;
@@ -103,6 +104,8 @@ public class GuestRoomPanel extends javax.swing.JPanel {
         guestPanel.add(guestSpinner, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
@@ -135,11 +138,27 @@ public class GuestRoomPanel extends javax.swing.JPanel {
         roomPanel.add(roomSpinner, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 0;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_END;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         add(roomPanel, gridBagConstraints);
+
+        jLabel18.setFont(new java.awt.Font("Lato Black", 0, 18)); // NOI18N
+        jLabel18.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel18.setText("(3 guests per room)");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.ipadx = 2;
+        gridBagConstraints.ipady = 2;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.FIRST_LINE_START;
+        gridBagConstraints.weightx = 0.25;
+        gridBagConstraints.weighty = 0.25;
+        gridBagConstraints.insets = new java.awt.Insets(1, 1, 1, 1);
+        add(jLabel18, gridBagConstraints);
     }// </editor-fold>//GEN-END:initComponents
 
 
@@ -148,6 +167,7 @@ public class GuestRoomPanel extends javax.swing.JPanel {
     private javax.swing.JSpinner guestSpinner;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
     private javax.swing.JPanel roomPanel;
     private javax.swing.JSpinner roomSpinner;
     // End of variables declaration//GEN-END:variables

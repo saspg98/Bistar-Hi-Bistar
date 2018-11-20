@@ -19,15 +19,15 @@ public class JDBCConnection {
         private static Statement st;
         private static Statement st2;
 
-    public static Connection getCon() {
+    public Connection getCon() {
         return con;
     }
 
-    public static Statement getSt() {
+    public Statement getSt() {
         return st;
     }
 
-    public static Statement getSt2() {
+    public Statement getSt2() {
         return st2;
     }
     

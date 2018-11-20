@@ -5,11 +5,14 @@
  */
 package custom.components;
 
+import bridge.Helper;
 import internal.Booking;
 import java.awt.Color;
 import java.awt.GridBagConstraints;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
+import java.time.LocalDate;
+import java.time.Period;
 
 /**
  *
@@ -58,6 +61,13 @@ public class PastBookingListPanel extends javax.swing.JPanel {
 
         } else if (typeOfPanel.equals(WAIT_LIST)) {
             setStateToWaitlist();
+        }if(typeOfPanel.equals(CONFIRMED))
+        {
+            Period period = Period.between(LocalDate.now(),booking.getCheckIn());
+            
+            if(period.getDays() < 3) 
+                  this.remove(updateButton);
+                    
         }
 
     }
@@ -77,13 +87,11 @@ public class PastBookingListPanel extends javax.swing.JPanel {
         updateButton.setText("Submit");
         updateButton.setActionCommand(SUBMIT_RATING);
         
-        //TODO: Uncomment the code below, requires thisBooking and confBooking table to add a rating field
-        
-        /*if(thisBooking.getRating()>0){
-        ratingPanel.setStar(thisBooking.getRating());
-        ratingPanel.setEnabled(false);
-        updateButton.setEnabled(false);
-        }*/
+        if(thisBooking.getRating()>0){
+             ratingPanel.setStar(thisBooking.getRating());
+            ratingPanel.setEnabled(false);
+            updateButton.setEnabled(false);
+        }
     }
 
     private void setStateToWaitlist() {
@@ -91,6 +99,8 @@ public class PastBookingListPanel extends javax.swing.JPanel {
         updateButton.setBackground(BOOK_COLOR);
         updateButton.setText("Book Now");
         updateButton.setActionCommand(BOOK_WAITLIST);
+        if(!Helper.checkBookingPossibility(thisBooking))
+            this.remove(updateButton);
     }
 
     public void setRatingPanelEnabled(boolean val) {

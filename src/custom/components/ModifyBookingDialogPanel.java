@@ -7,27 +7,43 @@ package custom.components;
 
 import internal.Booking;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.time.LocalDate;
 
 /**
  *
  * @author Sarthak
  */
-public class ModifyBookingDialogPanel extends javax.swing.JPanel {
+public class ModifyBookingDialogPanel extends javax.swing.JPanel implements MouseListener {
 
-    public static final String  B_UPDATE= "DATE_UPDATE";
-    public static final String  B_CANCEL= "DATE_CANCEL";
+    public static final String B_UPDATE = "DATE_UPDATE";
+    public static final String B_CANCEL = "DATE_CANCEL";
+    public static final String B_CALCULATE = "DATE_CALCULATE";
     private Booking booking;
+
     /**
      * Creates new form GuestRoomDialogPanel
      */
     public ModifyBookingDialogPanel() {
         initComponents();
-        updateButton.setActionCommand(B_UPDATE);
+        updateButton.setActionCommand(B_CALCULATE);
         cancelButton.setActionCommand(B_CANCEL);
+        checkInPanel.setMaxDate(LocalDate.now().plusDays(4).plusYears(4));
+        checkOutPanel.setMaxDate(LocalDate.now().plusDays(5).plusYears(4));
+        checkInPanel.setMinDate(LocalDate.now().plusDays(4));
+        checkOutPanel.setMinDate(LocalDate.now().plusDays(5));
+
+        updateButton.setText("Calculate");
+
+        //setting mouse listener
+        checkInPanel.addMouseListener(this);
+        checkOutPanel.addMouseListener(this);
+        guestRoomPanel.addMouseListener(this);
+        roomTypeCB.addMouseListener(this);
     }
-    
-    
-    public void addActionListener(ActionListener a){
+
+    public void addActionListener(ActionListener a) {
         updateButton.addActionListener(a);
         cancelButton.addActionListener(a);
     }
@@ -36,10 +52,31 @@ public class ModifyBookingDialogPanel extends javax.swing.JPanel {
         return booking;
     }
 
-    
-    
-    
-    
+    public void setBooking(Booking b) {
+
+        booking = new Booking(b);
+        previousCostLabel.setText("" + b.getPrice());
+        newCostLabel.setText("" + b.getPrice());
+        roomTypeCB.setSelectedItem(b.getRoomType());
+        checkInPanel.setDate(b.getCheckIn());
+        checkOutPanel.setDate(b.getCheckOut());
+        guestRoomPanel.setGuests(b.getNumPeople());
+        guestRoomPanel.setRooms(b.getNumRooms());
+    }
+
+    public void setUpdate() {
+        updateButton.setText("Update");
+        updateButton.setActionCommand(B_UPDATE);
+    }
+
+    public void updateNewPrice(int a) {
+        newCostLabel.setText("" + a);
+    }
+
+    public void setCalulate() {
+        updateButton.setText("Calculate");
+        updateButton.setActionCommand(B_CALCULATE);
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -53,14 +90,14 @@ public class ModifyBookingDialogPanel extends javax.swing.JPanel {
 
         cancelButton = new javax.swing.JButton();
         updateButton = new javax.swing.JButton();
-        datePanel1 = new custom.components.DatePanel();
-        datePanel2 = new custom.components.DatePanel();
+        checkOutPanel = new custom.components.DatePanel();
+        checkInPanel = new custom.components.DatePanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
+        newCostLabel = new javax.swing.JLabel();
+        previousCostLabel = new javax.swing.JLabel();
         guestRoomPanel = new custom.components.GuestRoomPanel();
         jLabel7 = new javax.swing.JLabel();
         roomTypeCB = new javax.swing.JComboBox<>();
@@ -95,24 +132,20 @@ public class ModifyBookingDialogPanel extends javax.swing.JPanel {
         gridBagConstraints.weighty = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(10, 5, 15, 5);
         add(updateButton, gridBagConstraints);
-
-        datePanel1.setBackground(new java.awt.Color(25, 25, 25));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        add(datePanel1, gridBagConstraints);
-
-        datePanel2.setBackground(new java.awt.Color(25, 25, 25));
+        add(checkOutPanel, gridBagConstraints);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        add(datePanel2, gridBagConstraints);
+        add(checkInPanel, gridBagConstraints);
 
         jLabel1.setFont(new java.awt.Font("Lato Black", 0, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
@@ -162,27 +195,27 @@ public class ModifyBookingDialogPanel extends javax.swing.JPanel {
         gridBagConstraints.insets = new java.awt.Insets(5, 18, 5, 5);
         add(jLabel4, gridBagConstraints);
 
-        jLabel5.setFont(new java.awt.Font("Lato Black", 0, 24)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel5.setText("Rs.3400");
+        newCostLabel.setFont(new java.awt.Font("Lato Black", 0, 24)); // NOI18N
+        newCostLabel.setForeground(new java.awt.Color(255, 255, 255));
+        newCostLabel.setText("Rs.3400");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 5;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        add(jLabel5, gridBagConstraints);
+        add(newCostLabel, gridBagConstraints);
 
-        jLabel6.setFont(new java.awt.Font("Lato Black", 0, 24)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel6.setText("Rs.2200");
+        previousCostLabel.setFont(new java.awt.Font("Lato Black", 0, 24)); // NOI18N
+        previousCostLabel.setForeground(new java.awt.Color(255, 255, 255));
+        previousCostLabel.setText("Rs.2200");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 4;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        add(jLabel6, gridBagConstraints);
+        add(previousCostLabel, gridBagConstraints);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 2;
@@ -206,7 +239,7 @@ public class ModifyBookingDialogPanel extends javax.swing.JPanel {
         add(jLabel7, gridBagConstraints);
 
         roomTypeCB.setFont(new java.awt.Font("Lato", 0, 24)); // NOI18N
-        roomTypeCB.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Executive", "Savita ka", "Non-AC" }));
+        roomTypeCB.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Penthouse", "Executive", "Deluxe", "Standard" }));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 3;
@@ -219,17 +252,55 @@ public class ModifyBookingDialogPanel extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton cancelButton;
-    private custom.components.DatePanel datePanel1;
-    private custom.components.DatePanel datePanel2;
+    private custom.components.DatePanel checkInPanel;
+    private custom.components.DatePanel checkOutPanel;
     private custom.components.GuestRoomPanel guestRoomPanel;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel newCostLabel;
+    private javax.swing.JLabel previousCostLabel;
     private javax.swing.JComboBox<String> roomTypeCB;
     private javax.swing.JButton updateButton;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void mouseClicked(MouseEvent e) {
+        setCalulate();
+    }
+
+    @Override
+    public void mousePressed(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseReleased(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseEntered(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseExited(MouseEvent e) {
+
+    }
+
+    public boolean updateBooking() {
+        if (checkInPanel.getDate().isBefore(checkOutPanel.getDate())) {
+
+            booking.setNumPeople(guestRoomPanel.getGuests());
+            booking.setNumRooms(guestRoomPanel.getRooms());
+            booking.setRoomType((String) roomTypeCB.getSelectedItem());
+            booking.setCheckIn(checkInPanel.getDate());
+            booking.setCheckOut(checkOutPanel.getDate());
+            return true;
+        }
+        return false;
+    }
 }

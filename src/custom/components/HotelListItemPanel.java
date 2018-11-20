@@ -7,8 +7,10 @@ import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
+import java.awt.Image;
 import java.awt.event.MouseListener;
 import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
 /**
@@ -51,7 +53,13 @@ public class HotelListItemPanel extends javax.swing.JPanel {
         priceRangeLabel.setText(des.getPriceRange());
         addressLabel.setText(des.getAddress());
         ratingLabel.setText(UIMethods.getRatingString((int)(des.getRating().getOverallRating())));
-       
+        if (des.getBufferedImage() != null) {
+            Image img = des.getBufferedImage().getScaledInstance(imageLabel.getWidth(), -1, Image.SCALE_SMOOTH);
+            ImageIcon imgIcon = new ImageIcon(img);
+            imageLabel.setIcon(imgIcon);
+
+        }
+ 
         setRoomTypesDisplay(des, showAll, priceConstraint);
     }
 

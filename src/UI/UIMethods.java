@@ -106,9 +106,6 @@ public class UIMethods {
     }
 
     public static HotelListItemPanel[] createHotelListItemPanels(ArrayList<HotelDesc> hotels, MouseListener m,double priceConstraint ,boolean showAll ){
-        for(int i=0;i<hotels.size();i++){
-            
-        }
         
         Iterator itr = hotels.iterator(); 
         while (itr.hasNext()) 
