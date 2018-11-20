@@ -54,7 +54,7 @@ public class HotelListItemPanel extends javax.swing.JPanel {
         addressLabel.setText(des.getAddress());
         ratingLabel.setText(UIMethods.getRatingString((int)(des.getRating().getOverallRating())));
         if (des.getBufferedImage() != null) {
-            Image img = des.getBufferedImage().getScaledInstance(imageLabel.getWidth(), -1, Image.SCALE_SMOOTH);
+            Image img = des.getBufferedImage().getScaledInstance(-1, -1, Image.SCALE_SMOOTH);
             ImageIcon imgIcon = new ImageIcon(img);
             imageLabel.setIcon(imgIcon);
 
@@ -85,6 +85,7 @@ public class HotelListItemPanel extends javax.swing.JPanel {
                  roomLinks[i] = new JLabel("<html>" + HotelDesc.ROOM_TYPES[i] + " - " + "<font color='#00c600'>" + CURRENCY + prices[i] + "</font>" + UNAVAILABEL_STRING + "</html>");
             roomLinks[i].setFont(mainFont); // NOI18N
             roomLinks[i].setForeground(textColor);
+            roomLinks[i].setSize(30,30);
             roomLinks[i].setHorizontalAlignment(javax.swing.SwingConstants.LEADING);
             roomLinks[i].setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
             roomLinks[i].setBorder(BorderFactory.createEmptyBorder(0, 0, 1, 0));
@@ -113,7 +114,6 @@ public class HotelListItemPanel extends javax.swing.JPanel {
         imageLabel.setForeground(new java.awt.Color(255, 255, 255));
         imageLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         imageLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/hotel.jpg"))); // NOI18N
-        imageLabel.setText("Image");
         imageLabel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
         imageLabel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         imageLabel.setName("dontUnderline"); // NOI18N
@@ -127,13 +127,15 @@ public class HotelListItemPanel extends javax.swing.JPanel {
 
         ratingLabel.setFont(new java.awt.Font("FreeMono", 0, 36)); // NOI18N
         ratingLabel.setForeground(new java.awt.Color(255, 255, 0));
+        ratingLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         ratingLabel.setText("Rating");
 
-        priceRangeLabel.setFont(new java.awt.Font("Lato", 0, 24)); // NOI18N
+        priceRangeLabel.setFont(new java.awt.Font("Lato", 0, 30)); // NOI18N
         priceRangeLabel.setForeground(new java.awt.Color(0, 198, 0));
+        priceRangeLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         priceRangeLabel.setText("Rs.300-500");
         priceRangeLabel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        priceRangeLabel.setName("underline"); // NOI18N
+        priceRangeLabel.setName("underlineText"); // NOI18N
 
         centerPanel.setBackground(new java.awt.Color(25, 25, 25));
         centerPanel.setLayout(new java.awt.GridBagLayout());
@@ -144,8 +146,9 @@ public class HotelListItemPanel extends javax.swing.JPanel {
         gridBagConstraints.fill = java.awt.GridBagConstraints.VERTICAL;
         centerPanel.add(roomListPanel, gridBagConstraints);
 
-        addressLabel.setFont(new java.awt.Font("Lato", 0, 24)); // NOI18N
+        addressLabel.setFont(new java.awt.Font("Lato", 0, 30)); // NOI18N
         addressLabel.setForeground(new java.awt.Color(255, 255, 255));
+        addressLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         addressLabel.setText("Address");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -154,36 +157,35 @@ public class HotelListItemPanel extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(imageLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(imageLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 349, Short.MAX_VALUE)
+                    .addComponent(ratingLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(hotelNameLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 550, Short.MAX_VALUE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(ratingLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(priceRangeLabel))
-                    .addComponent(centerPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(addressLabel)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(hotelNameLabel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 445, Short.MAX_VALUE)
+                    .addComponent(centerPanel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(addressLabel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(priceRangeLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(22, 22, 22)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addComponent(imageLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 277, Short.MAX_VALUE)
+                        .addGap(1, 1, 1)
+                        .addComponent(ratingLabel)
+                        .addGap(8, 8, 8))
+                    .addGroup(layout.createSequentialGroup()
                         .addComponent(hotelNameLabel)
-                        .addGap(2, 2, 2)
-                        .addComponent(addressLabel)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(centerPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(imageLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 279, Short.MAX_VALUE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(ratingLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(priceRangeLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(7, 7, 7)
+                        .addComponent(addressLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(priceRangeLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(centerPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents

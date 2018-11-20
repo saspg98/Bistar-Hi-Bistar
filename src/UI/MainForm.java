@@ -22,6 +22,7 @@ import internal.BookingConstraints;
 import internal.DialogActionListener;
 import java.awt.Component;
 import java.awt.Dialog;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
@@ -29,6 +30,7 @@ import java.time.LocalDate;
 import java.time.Month;
 import java.time.Period;
 import java.util.ArrayList;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 
@@ -514,9 +516,11 @@ public class MainForm extends javax.swing.JFrame implements MouseListener,
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
         jLabel9.setText("Select Location");
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 4;
+        gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 1;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_END;
+        gridBagConstraints.ipadx = 18;
+        gridBagConstraints.ipady = 18;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
@@ -531,7 +535,7 @@ public class MainForm extends javax.swing.JFrame implements MouseListener,
         gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        gridBagConstraints.insets = new java.awt.Insets(5, 18, 5, 5);
+        gridBagConstraints.insets = new java.awt.Insets(4, 29, 4, 5);
         bookPanel.add(priceInputLabel, gridBagConstraints);
 
         priceSlider.setBackground(new java.awt.Color(25, 25, 25));
@@ -547,6 +551,7 @@ public class MainForm extends javax.swing.JFrame implements MouseListener,
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
@@ -555,7 +560,7 @@ public class MainForm extends javax.swing.JFrame implements MouseListener,
         locationCB.setFont(new java.awt.Font("Lato", 0, 22)); // NOI18N
         locationCB.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Gondwa", "Thane", "Awadh" }));
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 5;
+        gridBagConstraints.gridx = 4;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
         gridBagConstraints.weightx = 1.0;
@@ -585,8 +590,9 @@ public class MainForm extends javax.swing.JFrame implements MouseListener,
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 5;
-        gridBagConstraints.gridwidth = 6;
+        gridBagConstraints.gridy = 6;
+        gridBagConstraints.gridwidth = 5;
+        gridBagConstraints.gridheight = 16;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.weightx = 4.0;
@@ -601,13 +607,13 @@ public class MainForm extends javax.swing.JFrame implements MouseListener,
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 3;
-        gridBagConstraints.gridy = 4;
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 5;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.ipadx = 8;
+        gridBagConstraints.ipadx = 14;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        gridBagConstraints.insets = new java.awt.Insets(17, 17, 17, 17);
+        gridBagConstraints.insets = new java.awt.Insets(0, 17, 0, 17);
         bookPanel.add(goButton, gridBagConstraints);
 
         priceSpinner.setFont(new java.awt.Font("Lato", 0, 22)); // NOI18N
@@ -623,7 +629,7 @@ public class MainForm extends javax.swing.JFrame implements MouseListener,
         gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        gridBagConstraints.insets = new java.awt.Insets(3, 5, 5, 5);
         bookPanel.add(priceSpinner, gridBagConstraints);
 
         titleLabel.setFont(new java.awt.Font("Lato Black", 0, 36)); // NOI18N
@@ -633,11 +639,11 @@ public class MainForm extends javax.swing.JFrame implements MouseListener,
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridwidth = 6;
+        gridBagConstraints.gridwidth = 5;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTH;
         gridBagConstraints.weightx = 4.0;
         gridBagConstraints.weighty = 2.0;
-        gridBagConstraints.insets = new java.awt.Insets(2, 0, 15, 0);
+        gridBagConstraints.insets = new java.awt.Insets(0, 0, 5, 0);
         bookPanel.add(titleLabel, gridBagConstraints);
 
         jLabel19.setFont(new java.awt.Font("Lato Black", 0, 22)); // NOI18N
@@ -649,19 +655,19 @@ public class MainForm extends javax.swing.JFrame implements MouseListener,
         gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        gridBagConstraints.insets = new java.awt.Insets(5, 18, 5, 5);
+        gridBagConstraints.insets = new java.awt.Insets(4, 26, 3, 2);
         bookPanel.add(jLabel19, gridBagConstraints);
 
         jLabel20.setFont(new java.awt.Font("Lato Black", 0, 22)); // NOI18N
         jLabel20.setForeground(new java.awt.Color(255, 255, 255));
         jLabel20.setText("Check Out");
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 4;
+        gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 3;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_END;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        gridBagConstraints.insets = new java.awt.Insets(0, 5, 0, 5);
         bookPanel.add(jLabel20, gridBagConstraints);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
@@ -669,25 +675,24 @@ public class MainForm extends javax.swing.JFrame implements MouseListener,
         gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        gridBagConstraints.insets = new java.awt.Insets(0, 5, 0, 5);
         bookPanel.add(checkInDatePanel, gridBagConstraints);
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 5;
+        gridBagConstraints.gridx = 4;
         gridBagConstraints.gridy = 3;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        gridBagConstraints.insets = new java.awt.Insets(0, 5, 0, 5);
         bookPanel.add(checkOutDatePanel, gridBagConstraints);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 2;
-        gridBagConstraints.gridwidth = 4;
+        gridBagConstraints.gridwidth = 5;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
         gridBagConstraints.weightx = 3.0;
         gridBagConstraints.weighty = 1.0;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        gridBagConstraints.insets = new java.awt.Insets(0, 13, 0, 161);
         bookPanel.add(bookGuestRoomPanel, gridBagConstraints);
 
         showAvailableCheckBox.setFont(new java.awt.Font("Lato Black", 0, 22)); // NOI18N
@@ -696,9 +701,8 @@ public class MainForm extends javax.swing.JFrame implements MouseListener,
         showAvailableCheckBox.setText("Show Only Available Rooms");
         showAvailableCheckBox.setOpaque(false);
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 4;
+        gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 4;
-        gridBagConstraints.gridwidth = 2;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
         bookPanel.add(showAvailableCheckBox, gridBagConstraints);
@@ -955,51 +959,50 @@ public class MainForm extends javax.swing.JFrame implements MouseListener,
         hotelDetailsPanel.setLayout(new java.awt.GridBagLayout());
 
         hotelTitlePanel.setBackground(new java.awt.Color(25, 25, 25));
+        hotelTitlePanel.setLayout(new java.awt.GridBagLayout());
 
         hotelDetailsRatingLabel.setFont(new java.awt.Font("FreeMono", 0, 36)); // NOI18N
         hotelDetailsRatingLabel.setForeground(new java.awt.Color(255, 255, 0));
         hotelDetailsRatingLabel.setText("Rating");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(9, 17, 0, 0);
+        hotelTitlePanel.add(hotelDetailsRatingLabel, gridBagConstraints);
 
         numReviewsLabel.setFont(new java.awt.Font("Lato", 0, 24)); // NOI18N
         numReviewsLabel.setForeground(new java.awt.Color(255, 255, 255));
+        numReviewsLabel.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
         numReviewsLabel.setText("3,454 reviews");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridwidth = 3;
+        gridBagConstraints.ipadx = 8;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(16, 15, 0, 221);
+        hotelTitlePanel.add(numReviewsLabel, gridBagConstraints);
 
         hotelNameLabel.setFont(new java.awt.Font("Lato Black", 0, 36)); // NOI18N
         hotelNameLabel.setForeground(new java.awt.Color(255, 255, 255));
+        hotelNameLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         hotelNameLabel.setText("RESHMA HOTEL");
-
-        javax.swing.GroupLayout hotelTitlePanelLayout = new javax.swing.GroupLayout(hotelTitlePanel);
-        hotelTitlePanel.setLayout(hotelTitlePanelLayout);
-        hotelTitlePanelLayout.setHorizontalGroup(
-            hotelTitlePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(hotelTitlePanelLayout.createSequentialGroup()
-                .addGap(43, 43, 43)
-                .addGroup(hotelTitlePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(hotelTitlePanelLayout.createSequentialGroup()
-                        .addComponent(hotelDetailsRatingLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(numReviewsLabel))
-                    .addComponent(hotelNameLabel))
-                .addContainerGap(1020, Short.MAX_VALUE))
-        );
-        hotelTitlePanelLayout.setVerticalGroup(
-            hotelTitlePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, hotelTitlePanelLayout.createSequentialGroup()
-                .addComponent(hotelNameLabel)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(hotelTitlePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(hotelDetailsRatingLabel)
-                    .addComponent(numReviewsLabel)))
-        );
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(0, 32, 0, 0);
+        hotelTitlePanel.add(hotelNameLabel, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
-        gridBagConstraints.gridwidth = 2;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.FIRST_LINE_START;
-        gridBagConstraints.weightx = 2.0;
+        gridBagConstraints.weightx = 0.8;
         gridBagConstraints.weighty = 1.5;
+        gridBagConstraints.insets = new java.awt.Insets(0, 139, 3, 0);
         hotelDetailsPanel.add(hotelTitlePanel, gridBagConstraints);
 
         imagePanel.setBackground(new java.awt.Color(25, 25, 25));
@@ -1015,11 +1018,13 @@ public class MainForm extends javax.swing.JFrame implements MouseListener,
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 2;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridheight = 3;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.FIRST_LINE_START;
         gridBagConstraints.weightx = 2.0;
         gridBagConstraints.weighty = 3.0;
+        gridBagConstraints.insets = new java.awt.Insets(24, 0, 0, 24);
         hotelDetailsPanel.add(imagePanel, gridBagConstraints);
 
         bookingOptionsPanel.setBackground(new java.awt.Color(25, 25, 25));
@@ -1108,9 +1113,10 @@ public class MainForm extends javax.swing.JFrame implements MouseListener,
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 2;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.FIRST_LINE_START;
-        gridBagConstraints.weightx = 2.0;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
+        gridBagConstraints.weightx = 1.3;
         gridBagConstraints.weighty = 3.0;
+        gridBagConstraints.insets = new java.awt.Insets(3, 0, 3, 62);
         hotelDetailsPanel.add(bookingOptionsPanel, gridBagConstraints);
 
         descriptionPanel.setBackground(new java.awt.Color(25, 25, 25));
@@ -1154,7 +1160,7 @@ public class MainForm extends javax.swing.JFrame implements MouseListener,
             backPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(backPanelLayout.createSequentialGroup()
                 .addComponent(backLabel)
-                .addGap(0, 1293, Short.MAX_VALUE))
+                .addGap(0, 933, Short.MAX_VALUE))
         );
         backPanelLayout.setVerticalGroup(
             backPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1727,6 +1733,12 @@ public class MainForm extends javax.swing.JFrame implements MouseListener,
 
     private void loadHotelDetails(HotelListItemPanel hotelListItemPanel, String type) {
         HotelDesc des = hotelListItemPanel.getHotelDesc();
+         if (des.getBufferedImage() != null) {
+            Image img = des.getBufferedImage().getScaledInstance(-1, -1, Image.SCALE_SMOOTH);
+            ImageIcon imgIcon = new ImageIcon(img);
+            hotelImageLabel.setIcon(imgIcon);
+
+        }
         double price = des.getCost(type, bc.getNumRooms(), bc.getCheckIn(), bc.getCheckOut());
         hotelNameLabel.setText(des.getHotelName());
         numReviewsLabel.setText(des.getRating().getTotalRatingCount() + " reviews");

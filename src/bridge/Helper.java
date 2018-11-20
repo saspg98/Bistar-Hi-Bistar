@@ -13,10 +13,14 @@ import java.sql.*;
 import internal.HotelDesc;
 import internal.BookingConstraints;
 import internal.Rating;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+import java.io.InputStream;
 import java.time.LocalDate;
 import java.time.Period;
 import java.util.ArrayList;
 import java.util.Iterator;
+import javax.imageio.ImageIO;
 
 /**
  *
@@ -348,7 +352,17 @@ public class Helper {
                     hotel.setHotelID(rs.getInt("HotelID"));
                     hotel.setNumOfRoomTypes(new int[]{availablePenthouse, availableExecutive, availableDeluxe, availableStandard});
                     hotel.setPrices(new double[]{rs.getInt("PenthousePrice"), rs.getInt("ExecutiveRoomPrice"), rs.getInt("DeluxeRoomPrice"), rs.getInt("StandardRoomPrice")});
-
+                    
+                    s="SELECT HotelImage FROM dbo.hotelImage WHERE HotelID =" +hotel.getHotelID();
+                    ResultSet rs1 = query.getSt2().executeQuery(s);
+                    while(rs1.next()){
+                    InputStream is = rs1.getBinaryStream("HotelImage");
+                    BufferedImage img = ImageIO.read(is);
+                    hotel.setBufferedImage(img);
+                    }
+                    
+                    rs1.close();
+                    
                     Rating r = new Rating(rs.getInt("ExcellentCount"), rs.getInt("VeryGoodCount"),
                             rs.getInt("AvgCount"), rs.getInt("PoorCount"), rs.getInt("TerribleCount"),
                             rs.getInt("ReviewCount"));
@@ -365,6 +379,9 @@ public class Helper {
 
             closeConnection();
             se.printStackTrace();
+            
+        }catch(IOException e){
+            System.out.println("Unable to load Image");
         }
 
         return hotelList;
